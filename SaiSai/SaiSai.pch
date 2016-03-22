@@ -1,0 +1,113 @@
+//
+//  SaiSai.pch
+//  SaiSai
+//
+//  Created by weige on 15/8/15.
+//  Copyright (c) 2015年 NJNightDayTechnology. All rights reserved.
+//
+
+#ifndef SaiSai_SaiSai_pch
+#define SaiSai_SaiSai_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#pragma mark
+#pragma mark ====== 接口头文件 ======
+#import "Interface.h"
+
+#import "HttpBody.h"
+
+#import "UMSocialSnsService.h"
+#import "UMSocialDataService.h"
+#import "UMSocialSnsPlatformManager.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
+#import "WeiboSDK.h"
+#import "WXApi.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+
+#pragma mark
+#pragma mark ====== common头文件 ======
+#import "PositionTool.h"
+#import "PXAlertView.h"
+#import "ProgressHUD.h"
+#import "UserModel.h"
+#import "RegexKitLite.h"
+#import "UIViewExt.h"
+#import "NDHMenuView.h"
+#import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
+#import "NetDataCommon.h"
+#import "AdvertView.h"
+#import "MJRefresh.h"
+#import "GlobalData.h"
+
+
+#pragma mark
+#pragma mark ====== controller头文件 ======
+#import "XTViewController.h"
+#import "XTTabBarController.h"
+#import "XTCustomNavigationController.h"
+
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "HomePageController.h"
+#import "MatchController.h"
+#import "PersonController.h"
+
+
+#pragma mark
+#pragma mark ====== 通用宏 ======
+
+
+#pragma mark -
+#pragma mark FONT
+
+#define FONT(num)                   [UIFont fontWithName:@"HelveticaNeue-Light" size:num]
+#define Bold_FONT(num)              [UIFont fontWithName:@"HelveticaNeue-Bold" size:num]
+
+#pragma mark -
+#pragma mark SETTINGS
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define USER_DEFAULT [NSUserDefaults standardUserDefaults]
+#define SAFE_RELEASE(x) [x release];x=nil
+#define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+
+#pragma mark -
+#pragma mark COLOR
+
+#define View_BACKGROUND_COLOR            UIColorFromRGB(0xefefef)
+
+#define BACKGROUND_COLOR            [UIColor colorWithRed:241.f/255 green:242.f/255 blue:244.f/255 alpha:1.f]//UIColorFromRGB(0xe6e6e6)
+#define XT_MAINCOLOR                [UIColor colorWithRed:252.0/255.0 green:182.0/255.0 blue:12.0/255.0 alpha:1.0]
+#define XT_N_MAINCOLOR              UIColorFromRGB(0x64d5ff)
+#define XT_BTNCOLOR                 UIColorFromRGB(0xf54947)
+#define XT_TEXTGRAYCOLOR            UIColorFromRGB(0x808080)
+#define XT_BLACKCOLOR               UIColorFromRGB(0x202020)
+
+#define yBlueColor                   UIColorFromRGB(0x07b9bb)
+
+#define XT_GREENCOLOR               [UIColor colorWithRed:88.0/255.0 green:167.0/255.0 blue:68/255.0 alpha:1.0]
+
+#define LINECOLOR                   [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0]
+#define TEXT_COLOR                  [UIColor lightGrayColor]
+// rgb颜色转换（16进制->10进制）
+#define UIColorFromRGB(rgbValue)    [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+//清除背景色
+#define CLEARCOLOR                  [UIColor clearColor]
+
+#define DARKGRAYCOLOR  [UIColor colorWithRed:163.0/255.0 green:163.0/255.0 blue:163.0/255.0 alpha:1.0]
+#define CANCEL_COLOR   UIColorFromRGB(0xa6a6a6)
+
+//tab文字颜色
+#define TabbarTitleColor    UIColorFromRGB(0x999999)
+#define TabbarNTitleColor   UIColorFromRGB(0x9f9f9f)
+
+#define HIDDEN_TAB      @"HIDDEN_TAB"
+#define SHOW_TAB        @"SHOW_TAB"
+
+#endif
