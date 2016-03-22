@@ -188,7 +188,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
-   NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:-1 eage:-1 uid:uId isMy:-1 gid:-1 isaward:-1 awardconfigId:awardId];
+    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:-1 eage:-1 uid:uId isMy:-1 gid:-1 isaward:-1 awardconfigId:awardId keyword:@""];
     
     [ProgressHUD show:LOADING];
     

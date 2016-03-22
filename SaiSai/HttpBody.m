@@ -136,7 +136,7 @@
  *  @param awardconfig_id  获奖配置的id
  *  @return 参赛作品列表包体
  */
-+ (NSDictionary *)applyListBody:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward awardconfigId:(int)awardId{
++ (NSDictionary *)applyListBody:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward awardconfigId:(int)awardId keyword:(NSString *)keyword{
     NSMutableDictionary *pram = [NSMutableDictionary dictionary];
     [pram setObject:@"getApplyList" forKey:@"action"];
     
@@ -164,6 +164,11 @@
     if (awardId >= 0) {
         [pram setObject:@(awardId) forKey:@"awardconfig_id"];
     }
+    if (keyword >=0) {
+        [pram setObject:keyword forKey:@"keyword"];
+
+    }
+
 //    if (isaward>=0) {
 //        [pram setObject:@(isaward) forKey:@"is_award"];
 //    }
@@ -184,6 +189,7 @@
     [pram setObject:@(page) forKey:@"page"];
     [pram setObject:@(rows) forKey:@"rows"];
     [pram setObject:@(proId) forKey:@"project_id"];
+
     if (status>=0) {
         [pram setObject:@(status) forKey:@"status"];
     }

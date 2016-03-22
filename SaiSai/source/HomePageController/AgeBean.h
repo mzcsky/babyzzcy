@@ -14,6 +14,7 @@
 @property (nonatomic,assign) int  fromAge;
 @property (nonatomic,assign) int endAge;
 @property (nonatomic,strong) NSString *ageName;
+@property (nonatomic,strong) NSString *keyword;
 
 +(AgeBean *)parseInfo:(NSDictionary *)infoDic;
 

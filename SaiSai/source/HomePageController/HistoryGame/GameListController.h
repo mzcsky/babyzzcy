@@ -11,6 +11,6 @@
 
 @interface GameListController : XTViewController
 
-@property (nonatomic,strong) MatchCCBean *matchBean;
+@property (nonatomic,assign) MatchCCBean *matchBean;
 
 @end

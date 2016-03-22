@@ -433,7 +433,7 @@
         uid = [[UserModel shareInfo] uid];
     }
     
-    NSDictionary *paraDic = [HttpBody applyListBody:(int)self.page rows:[PAGE_COUNT intValue] fage:-1 eage:-1 uid:uid isMy:-1 gid:(int)self.fBean.mId isaward:-1 awardconfigId:-1];
+    NSDictionary *paraDic = [HttpBody applyListBody:(int)self.page rows:[PAGE_COUNT intValue] fage:-1 eage:-1 uid:uid isMy:-1 gid:(int)self.fBean.mId isaward:-1 awardconfigId:-1 keyword:@""];
     
     [ProgressHUD show:LOADING];
     

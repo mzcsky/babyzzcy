@@ -21,6 +21,7 @@
 #import "MatchCADBean.h"
 #import "MatchDetailController.h"
 #import "MatchClaBean.h"
+#import "SearchWorkController.h"
 
 @interface HomePageController ()<NDHMenuViewDelegate,UITableViewDataSource,UITableViewDelegate,HomePageCellDelegate,AdvertViewDelegate>
 
@@ -36,12 +37,12 @@
 @end
 
 @implementation HomePageController{
-    
+    //获奖展示
     UITableView       * _showTableView;
     NSMutableArray    * _showDataArray;
     NSInteger         _showPage;
     
-    
+    //轮播
     AdvertView        *_lunadView;
     NSMutableArray    *_lunadArray, *_lunadSArray, *_luntArray;
     NSMutableArray    *_lunclaArray, *_lunclaNames;
@@ -55,7 +56,7 @@
 //当页面出现的时候
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-     self.navigationController.navigationBarHidden = YES;
+//     self.navigationController.navigationBarHidden = YES;
     XTTabBarController * rootCtrller = [GlobalData shareInstance].mRootController;
     [rootCtrller setmTabBarViewHidden:NO animation:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
@@ -67,7 +68,7 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    [self initRightItem];
     [self addNotification];
     [self initData];//数据初始化
    
@@ -108,6 +109,26 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showGold{
+    SearchWorkController *ctrller = [[SearchWorkController alloc] init];
+    ctrller.m_showBackBt = YES;
+    ctrller.title = @"搜索作品";
+    [self.navigationController pushViewController:ctrller animated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];}
+- (void)initRightItem{
+    UIButton *rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightItem.frame = CGRectMake(0, 8, 40, 40);
+    [rightItem setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [rightItem setTitle:@"搜索" forState:UIControlStateNormal];
+    [rightItem setImage:[UIImage imageNamed:@"ic_search.png"] forState:UIControlStateNormal];
+    [rightItem setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
+    [rightItem addTarget:self action:@selector(showGold) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
+
+    self.navigationItem.rightBarButtonItem =rightBar;
 }
 
 /**
@@ -173,7 +194,7 @@
     _showPage = 1;
 
     //总的切换
-    SSButtonView * bntView = [[SSButtonView alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 40) TitleArray:@[@"风采展示",@"获奖展示",] AndSelectIndex:0 AndBlock:^(NSInteger index) {
+    SSButtonView * bntView = [[SSButtonView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40) TitleArray:@[@"风采展示",@"获奖展示",] AndSelectIndex:0 AndBlock:^(NSInteger index) {
         NSLog(@"点击%ld",(long)index);
         
         if (index ==0) {
@@ -202,7 +223,7 @@
         _ndMenuView = [[NDHMenuView alloc] initWithFrame:CGRectMake(0, bntView.bottom, SCREEN_WIDTH, 39)];
         _ndMenuView.backgroundColor = [UIColor whiteColor];
         _ndMenuView.delegate = self;
-        UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, bntView.bottom+40,SCREEN_WIDTH, 1)];
+        UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, _ndMenuView.bottom,SCREEN_WIDTH, 1)];
         lineImg.backgroundColor = [UIColor lightGrayColor];
         [self.view addSubview:lineImg];
         [self.view addSubview:_ndMenuView];
@@ -213,7 +234,7 @@
     
     _showDataArray = [NSMutableArray array];
     //风采展示
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 101, SCREEN_WIDTH, SCREEN_HEIGHT-148)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _ndMenuView.bottom+1, SCREEN_WIDTH, SCREEN_HEIGHT-148)];
     _tableView.dataSource = self;
     _tableView.delegate   = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -228,7 +249,7 @@
     
     
     //获奖展示
-    _showTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 61, SCREEN_WIDTH, SCREEN_HEIGHT-153+20-113)];
+    _showTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-153+20-113)];
     _showTableView.dataSource = self;
     _showTableView.delegate   = self;
     _showTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -467,7 +488,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
-    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:fromAge eage:toAge uid:uId isMy:-1 gid:-1 isaward:-1 awardconfigId:-1];
+    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:fromAge eage:toAge uid:uId isMy:-1 gid:-1 isaward:-1 awardconfigId:-1 keyword:@""];
     
     [ProgressHUD show:LOADING];
     

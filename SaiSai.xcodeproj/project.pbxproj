@@ -137,9 +137,9 @@
 		6E2F22121C84A0240040B9F6 /* ic_default_head_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E2F22111C84A0240040B9F6 /* ic_default_head_image.png */; };
 		6E6207101C97BDC900F8DA31 /* mc_arrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */; };
 		6E6207191C999F9600F8DA31 /* SSButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6207181C999F9600F8DA31 /* SSButtonView.m */; };
+		6EBC9F581CA131BE0088F94C /* ic_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC9F571CA131BE0088F94C /* ic_search.png */; };
+		6EBC9F5B1CA134320088F94C /* SearchWorkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC9F5A1CA134320088F94C /* SearchWorkController.m */; };
 		6EC7E3751C9189EA0025C336 /* match_lijibaoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC7E3741C9189EA0025C336 /* match_lijibaoming.png */; };
-		6EC7E3781C918A3F0025C336 /* 000.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC7E3761C918A3F0025C336 /* 000.png */; };
-		6EC7E37F1C926A8C0025C336 /* icon_huojiangzhanshi_fang_53.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC7E37E1C926A8C0025C336 /* icon_huojiangzhanshi_fang_53.png */; };
 		6EEAE0AF1C855B8000F619BD /* MyUsermsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */; };
 		6EEAE0B21C85690800F619BD /* MyFansMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0B11C85690800F619BD /* MyFansMsgViewController.m */; };
 		E8741C2D1B9D68BB00ECD9FF /* RecommendToFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8741C2C1B9D68BB00ECD9FF /* RecommendToFriendController.m */; };
@@ -528,9 +528,10 @@
 		6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mc_arrowUp@2x.png"; sourceTree = "<group>"; };
 		6E6207171C999F9600F8DA31 /* SSButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSButtonView.h; sourceTree = "<group>"; };
 		6E6207181C999F9600F8DA31 /* SSButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSButtonView.m; sourceTree = "<group>"; };
+		6EBC9F571CA131BE0088F94C /* ic_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_search.png; sourceTree = "<group>"; };
+		6EBC9F591CA134320088F94C /* SearchWorkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWorkController.h; sourceTree = "<group>"; };
+		6EBC9F5A1CA134320088F94C /* SearchWorkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWorkController.m; sourceTree = "<group>"; };
 		6EC7E3741C9189EA0025C336 /* match_lijibaoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = match_lijibaoming.png; sourceTree = "<group>"; };
-		6EC7E3761C918A3F0025C336 /* 000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 000.png; sourceTree = "<group>"; };
-		6EC7E37E1C926A8C0025C336 /* icon_huojiangzhanshi_fang_53.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_huojiangzhanshi_fang_53.png; sourceTree = "<group>"; };
 		6EEAE0AD1C855B8000F619BD /* MyUsermsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUsermsgViewController.h; sourceTree = "<group>"; };
 		6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUsermsgViewController.m; sourceTree = "<group>"; };
 		6EEAE0B01C85690800F619BD /* MyFansMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFansMsgViewController.h; sourceTree = "<group>"; };
@@ -1363,8 +1364,7 @@
 		E89DE1D51B8D639200F98ED3 /* homePage */ = {
 			isa = PBXGroup;
 			children = (
-				6EC7E37E1C926A8C0025C336 /* icon_huojiangzhanshi_fang_53.png */,
-				6EC7E3761C918A3F0025C336 /* 000.png */,
+				6EBC9F571CA131BE0088F94C /* ic_search.png */,
 				6E2F22111C84A0240040B9F6 /* ic_default_head_image.png */,
 				63A893A61C230FB300B35CA4 /* pic_default.jpg */,
 				639826F11C195A160008E936 /* bigPic_default@2x.jpg */,
@@ -1609,6 +1609,8 @@
 				F589EFFB1B980C1700EF8814 /* ShareView.m */,
 				6E6207171C999F9600F8DA31 /* SSButtonView.h */,
 				6E6207181C999F9600F8DA31 /* SSButtonView.m */,
+				6EBC9F591CA134320088F94C /* SearchWorkController.h */,
+				6EBC9F5A1CA134320088F94C /* SearchWorkController.m */,
 			);
 			path = HomePageController;
 			sourceTree = "<group>";
@@ -1976,6 +1978,7 @@
 				F58D0B071B94355B0085ABA5 /* match_type1@2x.png in Resources */,
 				E87C472E1B90562E00D79B0B /* hp_whiteCBg@2x.png in Resources */,
 				E89DE1E61B8D9AC800F98ED3 /* hp_shareBg@2x.png in Resources */,
+				6EBC9F581CA131BE0088F94C /* ic_search.png in Resources */,
 				63E281611C0D79E20017B265 /* UMSShareListController.xib in Resources */,
 				63EC32141C1F1723004D1CAD /* icon-60-phone@2x.png in Resources */,
 				E8741C361B9D6A5700ECD9FF /* s_wxq@2x.png in Resources */,
@@ -1996,9 +1999,7 @@
 				63D9F9901BDA825B00A9A8C2 /* guide1_480.png in Resources */,
 				F5B1A9CE1B847554009D6366 /* login_qq@2x.png in Resources */,
 				636CA8E31C0F4A6A00250A08 /* tab_xx_sel@2x.png in Resources */,
-				6EC7E3781C918A3F0025C336 /* 000.png in Resources */,
 				F51BA1FF1B80DCF900513D81 /* tab_math_sel@2x.png in Resources */,
-				6EC7E37F1C926A8C0025C336 /* icon_huojiangzhanshi_fang_53.png in Resources */,
 				F52AB86F1B7F79DE00BF1A86 /* arrowBack@2x.png in Resources */,
 				F57AB3711B94A87C00D8B489 /* pc_myfance@2x.png in Resources */,
 				63D9F9951BDA825B00A9A8C2 /* guide2_568.png in Resources */,
@@ -2135,6 +2136,7 @@
 				6333D25C1C095F96000613B1 /* NSString+Empty.m in Sources */,
 				E8D0C7DE1B96EB6300B957AC /* RegisteController.m in Sources */,
 				6333D2611C095F96000613B1 /* MJPhotoLoadingView.m in Sources */,
+				6EBC9F5B1CA134320088F94C /* SearchWorkController.m in Sources */,
 				6333D2861C095F96000613B1 /* UIImage+WebP.m in Sources */,
 				6333D2AB1C095F96000613B1 /* UIButton+AFNetworking.m in Sources */,
 				6333D2AC1C095F96000613B1 /* UIImageView+AFNetworking.m in Sources */,
