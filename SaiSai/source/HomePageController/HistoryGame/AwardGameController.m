@@ -11,6 +11,7 @@
 #import "AwardGameController.h"
 #import "HomePageCell.h"
 #import "AwardLevelBean.h"
+#import "AwardSearchController.h"
 @interface AwardGameController ()<UITableViewDataSource,UITableViewDelegate,HomePageCellDelegate,NDHMenuViewDelegate>
 
 @property (nonatomic,strong) UITableView      *tableView;
@@ -30,6 +31,7 @@
     // Do any additional setup after loading the view.
     
     [self addNotification];
+    [self initRightItem];
     [self initMenuView];
     [self initTableView];
     
@@ -42,6 +44,27 @@
 -(void)dealloc{
     [self removeNotification];
     
+}
+- (void)showGold{
+    AwardLevelBean *bean = _menuArray[_ndMenuIndex];
+    AwardSearchController *ctrller = [[AwardSearchController alloc] initWithInfo:@{@"mid":bean.mId}];
+    ctrller.m_showBackBt = YES;
+    ctrller.title = @"获奖作品搜索";
+    [self.navigationController pushViewController:ctrller animated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
+}
+- (void)initRightItem{
+    UIButton *rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightItem.frame = CGRectMake(0, 8, 40, 40);
+    [rightItem setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [rightItem setTitle:@"搜索" forState:UIControlStateNormal];
+    [rightItem setImage:[UIImage imageNamed:@"ic_search.png"] forState:UIControlStateNormal];
+    [rightItem setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
+    [rightItem addTarget:self action:@selector(showGold) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
+    
+    self.navigationItem.rightBarButtonItem =rightBar;
 }
 
 -(void)initMenuView{
@@ -90,7 +113,6 @@
                     [titleArr addObject:bean.mName];
                 }
                 [_ndMenuView setTitles:titleArr];
-//                [self getDataArr];
                 [self refreshDataA];
             }
             else{
@@ -210,13 +232,10 @@
             if (dataArr && dataArr.count > 0) {
                 for (int i = 0; i < dataArr.count; i++) {
                     SaiBean *bean = [SaiBean parseInfo:dataArr[i]];
-//                    if (bean.applySubArr && [bean.applySubArr isKindOfClass:[NSArray class]] && bean.applySubArr.count > 0) {
-//                        [_dataArray addObject:bean];
-//                    }
+
                     if (bean.applySubArr && [bean.applySubArr isKindOfClass:[NSArray class]] && bean.applySubArr.count >0) {
                         [_dataArray addObject:bean];
                     }
-//                    [_dataArray addObject:bean];
                 }
             }
             if (_dataArray.count<[PAGE_COUNT integerValue]) {

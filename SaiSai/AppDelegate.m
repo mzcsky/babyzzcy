@@ -240,7 +240,7 @@ fetchCompletionHandler:(void
     NSMutableArray * tabCtrllers = [[NSMutableArray alloc] init];
     HomePageController * view1 = [[HomePageController alloc] init];
 
-    view1.title = @"风采展示";
+    view1.title = @"重在参与";
     view1.mIsMainPage = YES ;
     [tabCtrllers addObject:view1];
     

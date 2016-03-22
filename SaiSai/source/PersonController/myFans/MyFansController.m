@@ -66,6 +66,7 @@
  *  加载更多
  */
 -(void)loadMore{
+    
     _currentPage++;
     [self getFansArrWithCurPage:_currentPage andCount:[PAGE_COUNT intValue]];
 }

@@ -1,37 +1,44 @@
 //
-//  SearchWorkController.m
+//  AwardSearchController.m
 //  SaiSai
 //
 //  Created by 宝贝计画 on 16/3/22.
 //  Copyright © 2016年 NJNightDayTechnology. All rights reserved.
 //
 
-#import "SearchWorkController.h"
+#import "AwardSearchController.h"
 #import "HomePageCell.h"
 #import "AgeBean.h"
 #import "AttendOrFansBean.h"
 #import "MJPhoto.h"
 #import "MJPhotoBrowser.h"
-@interface SearchWorkController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, HomePageCellDelegate>
+#import "AwardLevelBean.h"
+@interface AwardSearchController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, HomePageCellDelegate>
+
 @property (nonatomic,strong) NDHMenuView      *ndMenuView;
-@property (nonatomic,strong) NSMutableArray   *menuArray;
 @property (nonatomic,assign) NSInteger         ndMenuIndex;
 @property (nonatomic,strong) UITableView      *tableView;
 @end
 
+@implementation AwardSearchController{
+    UITableView       *_AStableView;
+    NSMutableArray    *_ASdataArray;
+    UISearchBar       *_ASsearchBar;
+    int               _ASpage;
 
-@implementation SearchWorkController{
-    UITableView       *_SWtableView;
-    NSMutableArray    *_SWdataArray;
-    UISearchBar       *_SWsearchBar;
-    int               _SWpage;
+
 }
-
+-(id)initWithInfo:(NSDictionary*)info{
+    if (self = [super init]) {
+        self.requestInfo = info;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addNotification];
     [self initTableView];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,8 +46,8 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)addNotification{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SWrefreshDatas) name:HP_REFRESH object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SWrefreshCountData) name:HP_REFRESHCOUNTDATA object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ASrefreshDataA) name:HP_REFRESH object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ASrefreshCountDataA) name:HP_REFRESHCOUNTDATA object:nil];
 }
 
 -(void)removeNotification{
@@ -53,77 +60,62 @@
 
 
 - (void)initTableView{
-    _SWtableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
-    _SWtableView.backgroundColor = CLEARCOLOR;
-    _SWtableView.dataSource = self;
-    _SWtableView.delegate = self;
-    _SWtableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:_SWtableView];
+    _AStableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    _AStableView.backgroundColor = CLEARCOLOR;
+    _AStableView.dataSource = self;
+    _AStableView.delegate = self;
+    _AStableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_AStableView];
     
-    _SWsearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    _SWsearchBar.backgroundColor = CLEARCOLOR;
-    _SWsearchBar.delegate = self;
-    [self.view addSubview:_SWsearchBar];
-
-        [_SWtableView addFooterWithTarget:self action:@selector(SWloadMore)];
-
-
+    _ASsearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    _ASsearchBar.backgroundColor = CLEARCOLOR;
+    _ASsearchBar.delegate = self;
+    [self.view addSubview:_ASsearchBar];
+    
+    [_AStableView addFooterWithTarget:self action:@selector(ASloadMoreDataA)];
+    
+    
 }
 
-/**
- *  刷新数据
- */
--(void)SWrefreshDatas{
-    _SWpage = 1;
-    [self searchFriendsWithCurPage:1 count:[PAGE_COUNT intValue]];
+- (void)ASrefreshDataA{
+    _ASpage = 1;
+    [self getDataArrPage:1 andCount:[PAGE_COUNT intValue]];
 }
-
-/**
- *  加载更多
+/*
+ *加载更多
  */
--(void)SWloadMore{
-    if ([_SWsearchBar.text isEqualToString:@""]) {
-        return;
-    }
-    _SWpage++;
-    [self searchFriendsWithCurPage:_SWpage count:[PAGE_COUNT intValue]];
+- (void)ASloadMoreDataA{
+    _ASpage++;
+    [self getDataArrPage:_ASpage andCount:[PAGE_COUNT intValue]];
 }
-
 /**
- *  刷新到当前页
+ *    网络调用失败  页数－1
  */
--(void)SWrefreshCountData{
-    int count = _SWpage * [PAGE_COUNT intValue];
-    [self searchFriendsWithCurPage:1 count:count];
-}
 
-/**
- *  网络调用失败 页数－1
- */
--(void)SWreducePage{
-    _SWpage--;
-    if (_SWpage <= 0) {
-        _SWpage = 1;
+-(void)ASreducePage{
+    _ASpage--;
+    if (_ASpage <= 0) {
+        _ASpage = 1;
     }
 }
+/*
+ *刷新当前页面
+ */
+-(void)ASrefreshCountDataA{
+    int count = _ASpage * [PAGE_COUNT intValue];
+    [self getDataArrPage:1 andCount:count];
+}
 
--(void)searchFriendsWithCurPage:(int)page count:(int)count{
-    NSString *searchStr = _SWsearchBar.text;
+
+//
+-(void)getDataArrPage:(int)page andCount:(int)count{
+    NSString *searchStr = _ASsearchBar.text;
     if (!searchStr && [searchStr isEqualToString:@""]) {
         return;
     }
-    int fromAge, toAge;
-    if (_ndMenuIndex == 0)
-    {
-        fromAge = -1;
-        toAge   = -1;
-    }
-    else{
-        AgeBean *bean = _menuArray[_ndMenuIndex-1];
-        fromAge = bean.fromAge;
-        toAge   = bean.endAge;
-    }
     
+
+    int awardId = [self.requestInfo[@"mid"] intValue];
     int uId = -1;
     if ([[UserModel shareInfo] isLogin]) {
         uId = [[UserModel shareInfo] uid];
@@ -132,57 +124,55 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
- 
-    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:fromAge eage:toAge uid:uId isMy:-1
-                                                gid:-1 isaward:-1 awardconfigId:-1 keyword:searchStr];
+    
+    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:-1 eage:-1 uid:uId isMy:-1 gid:-1 isaward:-1 awardconfigId:awardId keyword:searchStr];
     
     [ProgressHUD show:LOADING];
     
     [manager GET:URLADDRESS parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
-        [_SWtableView footerEndRefreshing];
+        [_AStableView headerEndRefreshing];
+        [_AStableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"===========请求搜索作品数据结果========:%@",jsonDic);
+        NSLog(@"请求获奖作品数据结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
-            if (page == 1) {
-                if (_SWdataArray && _SWdataArray.count > 0) {
-                    [_SWdataArray removeAllObjects];
-                    _SWdataArray = nil;
+            if (page == 1){
+                if (_ASdataArray && _ASdataArray.count > 0) {
+                    [_ASdataArray removeAllObjects];
+                    _ASdataArray = nil;
                 }
-                _SWdataArray = [[NSMutableArray alloc] init];
+                _ASdataArray = [[NSMutableArray alloc] init];
             }
-            
             if (dataArr && dataArr.count > 0) {
                 for (int i = 0; i < dataArr.count; i++) {
                     SaiBean *bean = [SaiBean parseInfo:dataArr[i]];
-                    if (bean.applySubArr && [bean.applySubArr isKindOfClass:[NSArray class]] && bean.applySubArr.count > 0) {
-                        [_SWdataArray addObject:bean];
+                    
+                    if (bean.applySubArr && [bean.applySubArr isKindOfClass:[NSArray class]] && bean.applySubArr.count >0) {
+                        [_ASdataArray addObject:bean];
                     }
                 }
             }
-            if (dataArr.count < [PAGE_COUNT intValue]) {
-                _SWtableView.footerHidden =YES;
+            if (dataArr.count<[PAGE_COUNT integerValue]) {
+                [_AStableView setFooterHidden:YES];
+            }else{
+                [_AStableView setFooterHidden:NO];
             }
-            else{
-                _SWtableView.footerHidden = NO;
-            }
-            [_SWtableView reloadData];
+            [_AStableView reloadData];
             
             [ProgressHUD dismiss];
         }
         else{
+            
             [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
-            [self SWreducePage];
+            [self ASreducePage];
         }
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         NSLog(@"failuer");
         [ProgressHUD showError:CHECKNET];
-        
-        [_SWtableView footerEndRefreshing];
+        [_AStableView headerEndRefreshing];
+        [_AStableView footerEndRefreshing];
     }];
-    
-
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIndentifier = HomePageCellIdentifier;
@@ -192,19 +182,19 @@
     }
     cell.oTView.contrller = self;
     cell.delegate = self;
-    SaiBean *commentBean = (SaiBean *)_SWdataArray[indexPath.row];
+    SaiBean *commentBean = (SaiBean *)_ASdataArray[indexPath.row];
     [cell setCellInfo:commentBean];
     return cell;
-
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _SWdataArray.count;
+    return _ASdataArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     HomePageCell *cell = [[HomePageCell alloc] init];
-    SaiBean *saibean = (SaiBean *)_SWdataArray[indexPath.row];
+    SaiBean *saibean = (SaiBean *)_ASdataArray[indexPath.row];
     CGFloat height = [cell returnHeight:saibean];
     return height;
 }
@@ -212,17 +202,17 @@
 #pragma mark
 #pragma mark ===================== UIScrollView delegate ==================
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [_SWsearchBar resignFirstResponder];
+    [_ASsearchBar resignFirstResponder];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSString *str = _SWsearchBar.text;
+    NSString *str = _ASsearchBar.text;
     if (!str && [str isEqualToString:@""]) {
         return;
     }
-    [_SWsearchBar resignFirstResponder];
+    [_ASsearchBar resignFirstResponder];
     // 调用接口
-    [self SWrefreshDatas];
+    [self ASrefreshDataA];
 }
 
 -(BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
@@ -237,7 +227,7 @@
         return;
     }
     //调用接口
-    [self SWrefreshDatas];
+    [self ASrefreshDataA];
 }
 
 #pragma mark
@@ -263,7 +253,7 @@
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
         NSLog(@"请求关注或者取消关注结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
-            [self SWrefreshCountData];
+            [self ASrefreshCountDataA];
         }
         else{
             [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
@@ -300,11 +290,10 @@
 //显示更多
 -(void)showMoreComment:(SaiBean *)bean{
     bean.isShowMore = !bean.isShowMore;
-
-    [_SWtableView reloadData];
-
+    
+    [_AStableView reloadData];
+    
 }
-
 
 
 @end

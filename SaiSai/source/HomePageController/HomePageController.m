@@ -117,7 +117,8 @@
     ctrller.title = @"搜索作品";
     [self.navigationController pushViewController:ctrller animated:YES];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];}
+    [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
+}
 - (void)initRightItem{
     UIButton *rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
     rightItem.frame = CGRectMake(0, 8, 40, 40);

@@ -139,7 +139,6 @@
 + (NSDictionary *)applyListBody:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward awardconfigId:(int)awardId keyword:(NSString *)keyword{
     NSMutableDictionary *pram = [NSMutableDictionary dictionary];
     [pram setObject:@"getApplyList" forKey:@"action"];
-    
     if (page >= 0) {
         [pram setObject:@(page) forKey:@"page"];
     }
@@ -164,10 +163,8 @@
     if (awardId >= 0) {
         [pram setObject:@(awardId) forKey:@"awardconfig_id"];
     }
-    if (keyword >=0) {
-        [pram setObject:keyword forKey:@"keyword"];
+    [pram setObject:keyword forKey:@"keyword"];
 
-    }
 
 //    if (isaward>=0) {
 //        [pram setObject:@(isaward) forKey:@"is_award"];
