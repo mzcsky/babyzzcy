@@ -96,9 +96,10 @@
     [self addSubview:shareBg];
     UILabel *attendLab = [self setLabel:@"分享" andRect:CGRectMake(shareBg.left, 32+30,shareBg.width, 15) andTextColor:XT_BLACKCOLOR];
     [self addSubview:attendLab];
-    UIImageView *valueImg = [self setValueBg:@"hp_shareBg.png" andRect:CGRectMake(shareBg.width/2-8,3, 16, 18)];
-    [shareBg addSubview:valueImg];
     
+    UIImageView *valueImg = [self setValueBg:@"hp_shareBgG@2x" andRect:CGRectMake(shareBg.width/2-8,6, 18, 17)];
+    [shareBg addSubview:valueImg];
+    //设置按钮
     _shareBtn = [self setOperationBtn:shareBg.frame andTag:3];
     [self addSubview:_shareBtn];
 }
@@ -109,10 +110,11 @@
 -(void)initHotView{
     UIImageView *hotBg = [self setBgImg:_shareBtn.right+78 + _seperateWidth];
     [self addSubview:hotBg];
-    UILabel *attendLab = [self setLabel:@"热度" andRect:CGRectMake(hotBg.left, 32+30,hotBg.width, 15) andTextColor:XT_BLACKCOLOR];
-    [self addSubview:attendLab];
-    
-    _hotNumLab = [self setLabel:@"0" andRect:CGRectMake(0, 0, hotBg.width, hotBg.height) andTextColor:XT_BLACKCOLOR];
+//    UILabel *attendLab = [self setLabel:@"热度" andRect:CGRectMake(hotBg.left, 32+30,hotBg.width, 15) andTextColor:XT_BLACKCOLOR];
+//    [self addSubview:attendLab];
+    UIImageView *valueImgg = [self setValueBg:@"redu.png" andRect:CGRectMake(hotBg.width/3-1, 6, 16, 18)];
+    [hotBg addSubview:valueImgg];
+    _hotNumLab = [self setLabel:@"0" andRect:CGRectMake(0, valueImgg.bottom-3, hotBg.width, hotBg.height+3) andTextColor:XT_BLACKCOLOR];
     [hotBg addSubview:_hotNumLab];
 }
 
@@ -121,7 +123,8 @@
  */
 -(UIImageView *)setBgImg:(CGFloat)left{
     UIImageView *bgImg = [[UIImageView alloc] initWithFrame:CGRectMake(left, 6+30, 49, 24)];
-    bgImg.image = [UIImage imageNamed:@"hp_operateBg"];
+    bgImg.image = [UIImage imageNamed:@""];
+//    bgImg.image = [UIImage imageNamed:@"hp_operateBg"];
     return bgImg;
 }
 
@@ -185,9 +188,9 @@
  *  @param favor  0 未登录 1 已赞过 2 未赞过
  */
 - (void)setIsFavor:(int)favor{
-    if (favor == 1) {
+    if ( favor == 1) {
         [_zanVabg setImage:[UIImage imageNamed:@"hp_attention.png"]];
-    }else if (favor == 2){
+    }else if(favor == 2){
         [_zanVabg setImage:[UIImage imageNamed:@"hp_unattention.png"]];
     }
 }
@@ -279,7 +282,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
-    int favor = self.saiBean.is_favor == 1? 2:1;
+    int favor = self.saiBean.is_favor == 1? 2:1 ;
     
     NSDictionary *parm = [HttpBody updateFavourWithUId:[[UserModel shareInfo] uid] pId:[_saiBean.sId intValue] status:favor];
     [ProgressHUD show:LOADING];
@@ -294,8 +297,10 @@
             NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
             [notificationCenter postNotificationName:HP_REFRESHCOUNTDATA object:nil];
         }
+        
         else{
             [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
+
         }
         
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {

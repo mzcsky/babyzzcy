@@ -134,6 +134,7 @@
  *  @param gid  比赛主题id
  *  @param isaward 是否查询已经获奖的
  *  @param awardconfig_id  获奖配置的id
+ *  @param keyword 搜索
  *  @return 参赛作品列表包体
  */
 + (NSDictionary *)applyListBody:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward awardconfigId:(int)awardId keyword:(NSString *)keyword{
@@ -164,13 +165,44 @@
         [pram setObject:@(awardId) forKey:@"awardconfig_id"];
     }
     [pram setObject:keyword forKey:@"keyword"];
-
-
 //    if (isaward>=0) {
 //        [pram setObject:@(isaward) forKey:@"is_award"];
 //    }
     return pram;
 }
+/*
+ *  参赛
+ */
++ (NSDictionary *)applyListBody:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward  keyword:(NSString *)keyword{
+    NSMutableDictionary *pram = [NSMutableDictionary dictionary];
+    [pram setObject:@"getApplyList" forKey:@"action"];
+    if (page >= 0) {
+        [pram setObject:@(page) forKey:@"page"];
+    }
+    if (rows >= 0) {
+        [pram setObject:@(rows) forKey:@"rows"];
+    }
+    if (uid>=0) {
+        [pram setObject:@(uid) forKey:@"uid"];
+    }
+    if (fage>=0) {
+        [pram setObject:@(fage) forKey:@"fage"];
+    }
+    if (eage>=0) {
+        [pram setObject:@(eage) forKey:@"eage"];
+    }
+    if (isMy == 1) {
+        [pram setObject:@(isMy) forKey:@"is_myapply"];
+    }
+    if (gid>=0) {
+        [pram setObject:@(gid) forKey:@"gid"];
+    }
+ 
+    [pram setObject:keyword forKey:@"keyword"];
+    return pram;
+}
+
+
 
 /**
  *  获取参赛主题列表接口

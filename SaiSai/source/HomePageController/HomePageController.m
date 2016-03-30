@@ -53,7 +53,9 @@
     
 
 }
-//当页面出现的时候
+/**
+ *  当前页面出现时
+ */
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 //     self.navigationController.navigationBarHidden = YES;
@@ -62,24 +64,26 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
-//当，当前面消失时调用
+/**
+ *  当前页面消失时
+ */
 -(void)viewWillDisappear:(BOOL)animated{
        self.navigationController.navigationBarHidden = NO;
 }
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self initRightItem];
     [self addNotification];
     [self initData];//数据初始化
-   
-
     [self initTableView];//用户信息请求
-     [self lungetData];//广告栏请求
+    [self lungetData];//广告栏请求
     [self getDetail];//补充广告栏数据请求
     [self getAgeMenu];//获取年龄分类
     
 
 }
+
 - (void)initData{
     _lunPage = 1;
     _lunprojId = 0;
@@ -111,14 +115,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)showGold{
-    SearchWorkController *ctrller = [[SearchWorkController alloc] init];
-    ctrller.m_showBackBt = YES;
-    ctrller.title = @"搜索作品";
-    [self.navigationController pushViewController:ctrller animated:YES];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
-}
+
+/**
+ *  搜索
+ */
+
 - (void)initRightItem{
     UIButton *rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
     rightItem.frame = CGRectMake(0, 8, 40, 40);
@@ -126,12 +127,88 @@
     [rightItem setTitle:@"搜索" forState:UIControlStateNormal];
     [rightItem setImage:[UIImage imageNamed:@"ic_search.png"] forState:UIControlStateNormal];
     [rightItem setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
-    [rightItem addTarget:self action:@selector(showGold) forControlEvents:UIControlEventTouchUpInside];
+    [rightItem addTarget:self action:@selector(showGoldS) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
-
     self.navigationItem.rightBarButtonItem =rightBar;
+    
+}
+/**
+ *  进入搜索界面
+ */
+- (void)showGoldS{
+    SearchWorkController *ctrller = [[SearchWorkController alloc] init];
+    ctrller.m_showBackBt = YES;
+    ctrller.title = @"搜索作品";
+    [self.navigationController pushViewController:ctrller animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
 }
 
+#pragma mark - ===============切换==============
+/**
+ *  初始化tableview  40+64+49 底层界面位置
+ */
+-(void)initTableView{
+    //切换视图
+    _isFinishedRequest = NO;
+    _showPage = 1;
+    //总的切换
+    SSButtonView * bntView = [[SSButtonView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40) TitleArray:@[@"风采展示",@"获奖展示",] AndSelectIndex:0 AndBlock:^(NSInteger index) {
+        NSLog(@"点击%ld",(long)index);
+        if (index ==0) {
+            _tableView.hidden = NO;
+            _showTableView.hidden = YES;
+            _ndMenuView.hidden = NO;
+            _lunadView.hidden = NO;
+        }else{
+            _tableView.hidden = YES;
+            _showTableView.hidden = NO;
+            _ndMenuView.hidden = YES;
+            _lunadView.hidden = YES;
+            if (!_isFinishedRequest) {
+                [self getData];
+            }
+            
+        }
+    }];
+    [self.view addSubview:bntView];
+    
+    //年龄分类
+    if (!_ndMenuView) {
+        _ndMenuView = [[NDHMenuView alloc] initWithFrame:CGRectMake(0, bntView.bottom, SCREEN_WIDTH, 39)];
+        _ndMenuView.backgroundColor = [UIColor whiteColor];
+        _ndMenuView.delegate = self;
+        UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, _ndMenuView.bottom,SCREEN_WIDTH, 1)];
+        lineImg.backgroundColor = [UIColor lightGrayColor];
+        [self.view addSubview:lineImg];
+        [self.view addSubview:_ndMenuView];
+    }
+    _showDataArray = [NSMutableArray array];
+    
+    //风采展示
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _ndMenuView.bottom+1, SCREEN_WIDTH, SCREEN_HEIGHT-148)];
+    _tableView.dataSource = self;
+    _tableView.delegate   = self;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.backgroundColor = BACKGROUND_COLOR;
+    _tableView.hidden = NO;
+    [self.view addSubview:_tableView];
+    [_tableView addHeaderWithTarget:self action:@selector(getAgeMenu)];
+    [_tableView addFooterWithTarget:self action:@selector(loadMore)];
+    
+    //获奖展示
+    _showTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-148)];
+    _showTableView.dataSource = self;
+    _showTableView.delegate   = self;
+    _showTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _showTableView.backgroundColor = BACKGROUND_COLOR;
+    _showTableView.hidden = YES;
+    [self.view addSubview:_showTableView];
+    [_showTableView addHeaderWithTarget:self action:@selector(getHuojiang)];
+    [_showTableView addFooterWithTarget:self action:@selector(loadHuojiang)];
+  
+//    _contentView.contentSize = CGSizeMake(SCREEN_WIDTH, 150+_lunadView.height+bntView.height+_tableView.height);
+    
+}
 /**
  *  获取年龄分类
  */
@@ -183,89 +260,12 @@
 
 
 
-
-
-#pragma mark - ===============切换==============
-/**
- *  初始化tableview  40+64+49 底层界面位置
- */
--(void)initTableView{
-//    //切换视图
-    _isFinishedRequest = NO;
-    _showPage = 1;
-
-    //总的切换
-    SSButtonView * bntView = [[SSButtonView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40) TitleArray:@[@"风采展示",@"获奖展示",] AndSelectIndex:0 AndBlock:^(NSInteger index) {
-        NSLog(@"点击%ld",(long)index);
-        
-        if (index ==0) {
-            _tableView.hidden = NO;
-            _showTableView.hidden = YES;
-            _ndMenuView.hidden = NO;
-            _lunadView.hidden = NO;
-        }else{
-            _tableView.hidden = YES;
-            _showTableView.hidden = NO;
-            _ndMenuView.hidden = YES;
-            _lunadView.hidden = YES;
-            if (!_isFinishedRequest) {
-                [self getData];
-            }
-            
-        }
-    }];
-   
-    [self.view addSubview:bntView];
-    
-    
-    //年龄分类
-    if (!_ndMenuView) {
-        
-        _ndMenuView = [[NDHMenuView alloc] initWithFrame:CGRectMake(0, bntView.bottom, SCREEN_WIDTH, 39)];
-        _ndMenuView.backgroundColor = [UIColor whiteColor];
-        _ndMenuView.delegate = self;
-        UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, _ndMenuView.bottom,SCREEN_WIDTH, 1)];
-        lineImg.backgroundColor = [UIColor lightGrayColor];
-        [self.view addSubview:lineImg];
-        [self.view addSubview:_ndMenuView];
-    }
-    
-
-
-    
-    _showDataArray = [NSMutableArray array];
-    //风采展示
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _ndMenuView.bottom+1, SCREEN_WIDTH, SCREEN_HEIGHT-148)];
-    _tableView.dataSource = self;
-    _tableView.delegate   = self;
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = BACKGROUND_COLOR;
-    _tableView.hidden = NO;
-  [self.view addSubview:_tableView];
-    [_tableView addHeaderWithTarget:self action:@selector(getAgeMenu)];
-    [_tableView addFooterWithTarget:self action:@selector(loadMore)];
-    
-    
-    
-    
-    
-    //获奖展示
-    _showTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-153+20-113)];
-    _showTableView.dataSource = self;
-    _showTableView.delegate   = self;
-    _showTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _showTableView.backgroundColor = BACKGROUND_COLOR;
-    _showTableView.hidden = YES;
-    
-    [_showTableView addHeaderWithTarget:self action:@selector(getHuojiang)];
-    [_showTableView addFooterWithTarget:self action:@selector(loadHuojiang)];
-    [self.view addSubview:_showTableView];
-  
-//    _contentView.contentSize = CGSizeMake(SCREEN_WIDTH, 150+_lunadView.height+bntView.height+_tableView.height);
-    
-}
-
 #pragma mark - ==============广告栏轮播数据===========
+/**
+ *  轮播
+ *
+ *  @param index
+ */
 - (void)didSelectIndex:(NSInteger)index{
     if (!_lunadArray || _lunadArray.count==0) {
         return;
@@ -287,14 +287,13 @@
     [self.navigationController pushViewController:ctrl animated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
 }
-
 /*
  *   轮播数据框位置
  */
-
 - (void)initAdView{
     if (_lunadView == nil) {
         _lunadView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 21, SCREEN_WIDTH, 150) delegate:self withImageArr:_lunadSArray];
+        
         _tableView.tableHeaderView = _lunadView;
         UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0,_lunadView.bottom,SCREEN_WIDTH, 1)];
         lineImg.backgroundColor = [UIColor lightGrayColor];
@@ -316,7 +315,7 @@
     [manager GET:URLADDRESS parameters:pram success:^(AFHTTPRequestOperation * operation, id response){
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+        NSLog(@"请求获取轮播列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {
@@ -351,64 +350,7 @@
         [_tableView footerEndRefreshing];
     }];
 }
-
-
-#pragma mark =============请求获取广告栏接口请求==============
-/*
- *
- */
-- (void)getData{
-    NSDictionary *pram = [HttpBody gameListBody:(int)_showPage rows:[PAGE_COUNT intValue] status:4 projectid:0];
-
-    [ProgressHUD show:LOADING];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
-    [manager GET:URLADDRESS parameters:pram success:^(AFHTTPRequestOperation * operation, id response){
-        [_showTableView headerEndRefreshing];
-        [_showTableView footerEndRefreshing];
-        
-        NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
-        //解析数据
-        int status = [[resDict objectForKey:@"status"] intValue];
-        if (status == 1) {
-            //请求成功
-            _isFinishedRequest = YES;
-            NSDictionary *data = [resDict objectForKey:@"data"];
-            //解析列表数据
-            if (_showPage == 1) {
-                [_showDataArray removeAllObjects];
-            }
-            NSArray *darray = [data objectForKey:@"data"];
-            for (NSDictionary *dict in darray) {
-                MatchCCBean *bean = [MatchCCBean analyseData:dict];
-                [_showDataArray addObject:bean];
-            }
-            if (darray.count<10) {
-                [_showTableView setFooterHidden:YES];
-            }else{
-                [_showTableView setFooterHidden:NO];
-            }
-            [_showTableView reloadData];
-            [ProgressHUD dismiss];
-        }else{
-            //数据请求失败
-            if (_showPage>1) {
-                _showPage--;
-            }
-            [ProgressHUD showError:[resDict objectForKey:@"msg"]];
-        }
-    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"failuer");
-        [ProgressHUD showError:CHECKNET];
-        if (_showPage>1) {
-            _showPage--;
-        }
-        [_showTableView headerEndRefreshing];
-        [_showTableView footerEndRefreshing];
-    }];
-}
-/*
+/**
  *     补充广告栏数据接口请求。
  */
 - (void)getDetail{
@@ -540,6 +482,63 @@
     }];
 }
 
+
+#pragma mark =============获奖展示接口请求==============
+/*
+ * 请求获奖展示
+ */
+- (void)getData{
+    NSDictionary *pram = [HttpBody gameListBody:(int)_showPage rows:[PAGE_COUNT intValue] status:4 projectid:0];
+
+    [ProgressHUD show:LOADING];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+    [manager GET:URLADDRESS parameters:pram success:^(AFHTTPRequestOperation * operation, id response){
+        [_showTableView headerEndRefreshing];
+        [_showTableView footerEndRefreshing];
+        
+        NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
+        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+        //解析数据
+        int status = [[resDict objectForKey:@"status"] intValue];
+        if (status == 1) {
+            //请求成功
+            _isFinishedRequest = YES;
+            NSDictionary *data = [resDict objectForKey:@"data"];
+            //解析列表数据
+            if (_showPage == 1) {
+                [_showDataArray removeAllObjects];
+            }
+            NSArray *darray = [data objectForKey:@"data"];
+            for (NSDictionary *dict in darray) {
+                MatchCCBean *bean = [MatchCCBean analyseData:dict];
+                [_showDataArray addObject:bean];
+            }
+            if (darray.count<10) {
+                [_showTableView setFooterHidden:YES];
+            }else{
+                [_showTableView setFooterHidden:NO];
+            }
+            [_showTableView reloadData];
+            [ProgressHUD dismiss];
+        }else{
+            //数据请求失败
+            if (_showPage>1) {
+                _showPage--;
+            }
+            [ProgressHUD showError:[resDict objectForKey:@"msg"]];
+        }
+    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+        NSLog(@"failuer");
+        [ProgressHUD showError:CHECKNET];
+        if (_showPage>1) {
+            _showPage--;
+        }
+        [_showTableView headerEndRefreshing];
+        [_showTableView footerEndRefreshing];
+    }];
+}
+
 #pragma mark ==================== NDHMenuView delegate =======================
 #pragma mark =======年龄分类切换=====
 
@@ -571,16 +570,13 @@
     }else if (tableView == _showTableView){
         //获奖展示
         static NSString * cellId = @"cellId";
-        
         MatchCCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
             cell = [[MatchCCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         }
         MatchCCBean *bean = [_showDataArray objectAtIndex:indexPath.row];
         [cell setInfo:bean];
-        
         return cell;
-
     }else{
         //广告栏
         static NSString *MATCHCELL = @"MATCHCELL";
@@ -588,7 +584,6 @@
         if (!cell) {
             cell = [[MatchCCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MATCHCELL];
         }
-        
         MatchCCBean *bean = [_luntArray objectAtIndex:indexPath.row];
         [cell setInfo:bean];
         

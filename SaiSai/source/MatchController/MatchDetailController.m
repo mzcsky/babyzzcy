@@ -11,7 +11,6 @@
 #import "MJPhotoBrowser.h"
 #import "MyNavButton.h"
 #import "MatchDetailController.h"
-#import "MatchDCCell.h"
 #import "MJRefresh.h"
 #import "SaiBean.h"
 #import "HomePageCell.h"
@@ -19,14 +18,14 @@
 #import "ShareView.h"
 #import "MatchCCell.h"
 #import "MatchCADBean.h"
-
+#import "MatchWorkController.h"
 #define HomePageCellIdentifier1 @"HomePageCellIdentifier1"
 
 #define MATCHDCCELL     @"MATCHDCCELL"
 #define MATCHCCELL      @"MATCHCCELL"
 #define MATCHDC_BASE_TAG        71300
 
-@interface MatchDetailController ()<UITableViewDataSource, UITableViewDelegate, AdvertViewDelegate, HomePageCellDelegate, BMControllerDelegate>
+@interface MatchDetailController ()<UITableViewDataSource, UITableViewDelegate, AdvertViewDelegate, HomePageCellDelegate, BMControllerDelegate , UIWebViewDelegate>
 
 @property (nonatomic, retain) UITableView       *tableView;
 
@@ -41,7 +40,8 @@
 @property (nonatomic, assign) NSInteger                 type;
 
 @property (nonatomic, retain) NSMutableArray            *xgArray;
-
+@property (nonatomic, retain) UILabel                   *CSlabel;
+@property (nonatomic, retain) UIWebView                 *webView;
 @end
 
 @implementation MatchDetailController
@@ -55,33 +55,58 @@
     [self initData];
     [self initTableView];
     [self getData];
+    
+
+    
     if (self.adSArray && self.adArray) {
         [self initAdView];
     }
     
     if (self.fBean && (self.fBean.status==1)) {
-        UIImage *image = [UIImage imageNamed:@"match_lijibaoming.png"];
+        UIImage *imagee = [UIImage imageNamed:@"hp_shareBgGG.png"];
+        UIButton *rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
+        rightItem.frame = CGRectMake(-110, SCREEN_HEIGHT-121, SCREEN_WIDTH/2+180, 60);
+        [rightItem setImage:imagee forState:UIControlStateNormal];
+        [rightItem addTarget:self action:@selector(shareBgClick) forControlEvents:UIControlEventTouchUpInside];
+        rightItem.backgroundColor = CLEARCOLOR;
+        [self.view addSubview:rightItem];
+        
+        UIImage *image = [UIImage imageNamed:@"match_lijibaoming"];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(SCREEN_WIDTH-110, SCREEN_HEIGHT-104, 110, 40);
+        btn.frame = CGRectMake(SCREEN_WIDTH/2-40, SCREEN_HEIGHT-118, SCREEN_WIDTH/2+40, 55);
         [btn setImage:image forState:UIControlStateNormal];
         btn.backgroundColor = CLEARCOLOR;
+        
+        UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0,btn.top,SCREEN_WIDTH, 1)];
+        lineImg.backgroundColor = [UIColor lightGrayColor];
+        [self.view addSubview:lineImg];
         [btn addTarget:self action:@selector(baomingAction) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
+
     }
+
 }
 
+- (void)showGold{
+    MatchWorkController *ctrller = [[MatchWorkController alloc] init];
+    ctrller.m_showBackBt = YES;
+    ctrller.title = @"搜索作品";
+    [self.navigationController pushViewController:ctrller animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
+}
+
+
 -(void)initRightItem{
-    MyNavButton *rightItem = [MyNavButton buttonWithType:UIButtonTypeCustom];
-    rightItem.frame = CGRectMake(0, 0, 40, 64);
-    [rightItem setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-    [rightItem setImage:[UIImage imageNamed:@"hp_shareBg"] forState:UIControlStateNormal];
-    [rightItem setTitle:@"分享" forState:UIControlStateNormal];
-    rightItem.titleLabel.font = FONT(12);
-    [rightItem setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [rightItem addTarget:self action:@selector(shareBgClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem * rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
-    self.navigationItem.rightBarButtonItem = rightBar;
+UIButton *Item = [UIButton buttonWithType:UIButtonTypeCustom];
+Item.frame = CGRectMake(0, 8, 40, 40);
+[Item setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+[Item setTitle:@"搜索" forState:UIControlStateNormal];
+[Item setImage:[UIImage imageNamed:@"ic_search.png"] forState:UIControlStateNormal];
+[Item setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
+[Item addTarget:self action:@selector(showGold) forControlEvents:UIControlEventTouchUpInside];
+UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:Item];
+self.navigationItem.rightBarButtonItem =rightBar;
 }
 
 -(void)shareBgClick{
@@ -113,6 +138,8 @@
 -(void)removeNotification{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:HP_REFRESHCOUNTDATA object:nil];
 }
+
+
 - (void)initData{
     self.page = 1;
     self.type = MATCHDC_BASE_TAG;
@@ -123,14 +150,24 @@
 }
 
 - (void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-65)];
     _tableView.backgroundColor = CLEARCOLOR;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:_tableView];
     [_tableView addHeaderWithTarget:self action:@selector(refreshData)];
     [_tableView addFooterWithTarget:self action:@selector(loadMoreData)];
+    
+    _CSlabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2, SCREEN_WIDTH, 50)];
+    _CSlabel.textColor = [UIColor  lightTextColor];
+    _CSlabel.font = [UIFont systemFontOfSize:20];
+    _CSlabel.text = @"活动正在征集审核通过马上展示";
+    _CSlabel.textAlignment = NSTextAlignmentCenter;
+
+    
+    [_tableView addSubview:_CSlabel];
+    [self.view addSubview:_tableView];
+    
 }
 
 - (void)initAdView{
@@ -142,7 +179,7 @@
         UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 4, SCREEN_WIDTH-20, 150)];
         bgView.backgroundColor = [UIColor whiteColor];
         [contentView addSubview:bgView];
-        
+
         self.adView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-20, 150) delegate:self withImageArr:self.adSArray];
         [bgView addSubview:self.adView];
     }
@@ -192,15 +229,20 @@
     return 1;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 35;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (self.type) {
         case MATCHDC_BASE_TAG:
         {
-            return 450;
+            if (_webView) {
+                CGFloat h = _webView.scrollView.contentSize.height;
+                NSLog(@"------%f",h);
+                return h;
+            }
+            return 0;
 
         }
             break;
@@ -223,7 +265,6 @@
     }
     return 400;
 }
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
     _headView.backgroundColor = BACKGROUND_COLOR;
@@ -234,11 +275,18 @@
     imageView.layer.cornerRadius = 2;
     imageView.clipsToBounds = YES;
     [_headView addSubview:imageView];
+    UIImageView *DownImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, _headView.bottom,SCREEN_WIDTH, 1)];
+    DownImg.backgroundColor = [UIColor lightGrayColor];
+    UIImageView *UpImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, _headView.height-1, SCREEN_WIDTH, 1)];
+    UpImg.backgroundColor =[UIColor lightGrayColor];
+    [_headView addSubview:DownImg];
+    [_headView addSubview:UpImg];
     
+
     float width = (SCREEN_WIDTH-20-8)/3;
     float height = 26;
     
-    NSArray *array = [NSArray arrayWithObjects:@"说明指导", @"作品展览", @"相关推荐", nil];
+    NSArray *array = [NSArray arrayWithObjects:@"指导说明", @"作品展览", @"相关推荐", nil];
     for (int i = 0; i < 3; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(2+i*(width+2), 2, width, height);
@@ -259,25 +307,37 @@
     }
     
     return _headView;
+    
 }
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (self.type) {
         case MATCHDC_BASE_TAG:
         {
-         
-            MatchDCCell *cell = [tableView dequeueReusableCellWithIdentifier:MATCHDCCELL];
+            _CSlabel.hidden = YES;
+            
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MATCHDCCELL];
             if (!cell) {
-                cell = [[MatchDCCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MATCHDCCELL];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MATCHDCCELL];
             }
             
-            [cell loadHtml:self.fBean.g_guide];
             
+            if (!_webView) {
+                _webView =[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+                _webView.delegate = self;
+                _webView.scrollView.scrollEnabled = NO;
+                [self loadHtml:self.fBean.g_guide];
+            }
+            [cell.contentView addSubview:_webView];
+
             return cell;
         }
             break;
         case MATCHDC_BASE_TAG+1:
         {
+
             HomePageCell *cell = [tableView dequeueReusableCellWithIdentifier:HomePageCellIdentifier1];
             if (!cell) {
                 cell = [[HomePageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HomePageCellIdentifier1];
@@ -285,6 +345,7 @@
             cell.oTView.contrller = self;
             cell.delegate = self;
             [cell setCellInfo:_tArray[indexPath.row]];
+        
             
             return cell;
         }
@@ -294,6 +355,7 @@
             MatchCCell *cell = [tableView dequeueReusableCellWithIdentifier:MATCHCCELL];
             if (!cell) {
                 cell = [[MatchCCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MATCHCCELL];
+
             }
             MatchCCBean *bean = [self.xgArray objectAtIndex:indexPath.row];
             [cell setInfo:bean];
@@ -306,7 +368,33 @@
             return nil;
             break;
     }
+
 }
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    CGFloat h = [webView.scrollView contentSize].height;
+    
+    CGRect maFrame = webView.frame;
+    maFrame.size.height = h;
+    webView.frame = maFrame;
+    
+//    [_tableView reloadData];
+    
+}
+
+
+- (void)loadHtml:(NSString *)url{
+    if ([url hasPrefix:@"http://"]) {
+        NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        [_webView loadRequest:req];
+    }else{
+        NSString *show = [NSString stringWithFormat:@"<p>%@</p>",url];
+        [_webView loadHTMLString:show baseURL:nil];
+    }
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -314,6 +402,7 @@
         case MATCHDC_BASE_TAG+2:
         {
             //相关推荐
+
             MatchCCBean *bean = [self.xgArray objectAtIndex:indexPath.row];
             DVersionView *view = [[DVersionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
             [view loadText:bean.content];
@@ -367,8 +456,10 @@
             break;
     }
 }
-
+//相关推荐
 - (void)getXGData{
+    _CSlabel.hidden = YES;
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
@@ -423,7 +514,7 @@
         }
     }];
 }
-
+//请求获取参数作品数据
 - (void)getData{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
@@ -456,7 +547,9 @@
                 }
                 self.adArray = adArray;
                 self.adSArray = adImgs;
+                
                 [_adView reloadDataWithArray:self.adSArray];
+                //以上为轮播数据
             }
             
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
@@ -470,8 +563,12 @@
                 for (int i = 0; i < dataArr.count; i++) {
                     SaiBean *bean = [SaiBean parseInfo:dataArr[i]];
                     [_tArray addObject:bean];
+                    _CSlabel.hidden = YES;
                 }
+            }else{
+                _CSlabel.hidden = NO;
             }
+            
             if (dataArr.count < [PAGE_COUNT intValue]) {
                 _tableView.footerHidden = YES;
             }
@@ -506,15 +603,16 @@
     self.type = btn.tag;
     switch (btn.tag) {
         case MATCHDC_BASE_TAG:
-        {
-            //显示参赛作品数据
+        {               //参赛指导
+
             [_tableView setHeaderHidden:YES];
             [_tableView setFooterHidden:YES];
         }
             break;
         case MATCHDC_BASE_TAG+1:
         {
-            //参赛指导
+            //显示参赛作品数据
+
             [_tableView setHeaderHidden:NO];
             [_tableView setFooterHidden:NO];
             [self refreshData];
@@ -552,6 +650,7 @@
     ctrl.fBean = self.fBean;
     [self.navigationController pushViewController:ctrl animated:YES];
 }
+
 
 #pragma mark
 #pragma mark ============== UITableViewCell delegate =====================
@@ -626,5 +725,10 @@
     //刷新数据
     [_tableView reloadData];
 }
+
+
+
+
+
 
 @end

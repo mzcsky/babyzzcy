@@ -31,6 +31,7 @@
     _label.textAlignment = NSTextAlignmentCenter;
     _label.textColor = TabbarNTitleColor;
     _label.font = FONT(14);
+    
     [self.contentView addSubview:_label];
 }
 

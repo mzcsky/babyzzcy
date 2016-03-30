@@ -10,6 +10,7 @@
 #import "MJPhotoBrowser.h"
 #import "MySaiSaiController.h"
 #import "AttendOrFansBean.h"
+
 @interface MySaiSaiController ()<HomePageCellDelegate>
 
 @property (nonatomic,strong) NSMutableArray *dataArray;
@@ -32,19 +33,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(id)initWithUserId:(int)userid bOrAid:(int)boraid{
+-(id)initWithUserId:(int)userid bOrAid:(int)boraid {
     if (self = [super init]) {
-      
         self.uid = userid;
-        boraid = userid;
-        boraid = self.uid;
     }
     
     return self;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-   // [self refreshCountData];
+//    [self refreshCountData];
 }
 
 -(void)dealloc{
@@ -118,59 +116,60 @@
 /**
  *  获取参数作品数据
  */
+    
 -(void)getDataArrWithCurPage:(int)page andCount:(int)count{
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
-    
-    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:-1 eage:-1 uid:/*[[UserModel shareInfo] uid]*/self.uid  isMy:1 gid:-1 isaward:-1 awardconfigId:-1 keyword:@""];
-    
-    [ProgressHUD show:LOADING];
-    
-    [manager GET:URLADDRESS parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
-        [_tableView headerEndRefreshing];
-        [_tableView footerEndRefreshing];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
         
-        NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取我的参数作品数据结果:%@",jsonDic);
-        if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
-            NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
-            if (page == 1) {
-                if (_dataArray && _dataArray.count > 0) {
-                    [_dataArray removeAllObjects];
-                    _dataArray = nil;
-                }
-                _dataArray = [[NSMutableArray alloc] init];
-            }
+        NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:-1 eage:-1 uid:/*[[UserModel shareInfo] uid]*/self.uid   isMy:1 gid:-1 isaward:-1 awardconfigId:-1 keyword:@""];
+        
+        [ProgressHUD show:LOADING];
+        
+        [manager GET:URLADDRESS parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
+            [_tableView headerEndRefreshing];
+            [_tableView footerEndRefreshing];
             
-            if (dataArr && dataArr.count > 0) {
-                for (int i = 0; i < dataArr.count; i++) {
-                    SaiBean *bean = [SaiBean parseInfo:dataArr[i]];
-                    [_dataArray addObject:bean];
+            NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
+            NSLog(@"请求获取我的参数作品数据结果:%@",jsonDic);
+            if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
+                NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
+                if (page == 1) {
+                    if (_dataArray && _dataArray.count > 0) {
+                        [_dataArray removeAllObjects];
+                        _dataArray = nil;
+                    }
+                    _dataArray = [[NSMutableArray alloc] init];
                 }
-            }
-            if (dataArr.count < [PAGE_COUNT intValue]) {
-                _tableView.footerHidden = YES;
+
+                if (dataArr && dataArr.count > 0) {
+                    for (int i = 0; i < dataArr.count; i++) {
+                        SaiBean *bean = [SaiBean parseInfo:dataArr[i]];
+                        [_dataArray addObject:bean];
+                    }
+                }
+                if (dataArr.count < [PAGE_COUNT intValue]) {
+                    _tableView.footerHidden = YES;
+                }
+                else{
+                    _tableView.footerHidden = NO;
+                }
+                [_tableView reloadData];
+                
+                [ProgressHUD dismiss];
             }
             else{
-                _tableView.footerHidden = NO;
+                [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
+                [self reducePage];
             }
-            [_tableView reloadData];
+        } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+            NSLog(@"failuer");
+            [ProgressHUD showError:CHECKNET];
             
-            [ProgressHUD dismiss];
-        }
-        else{
-            [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
-            [self reducePage];
-        }
-    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"failuer");
-        [ProgressHUD showError:CHECKNET];
-        
-        [_tableView headerEndRefreshing];
-        [_tableView footerEndRefreshing];
-    }];
-}
+            [_tableView headerEndRefreshing];
+            [_tableView footerEndRefreshing];
+        }];
+    }
+
 
 #pragma mark
 #pragma mark ==============UITableView dataSource and delegate ===============
@@ -196,62 +195,7 @@
     return height;
 }
 
-#pragma mark
-#pragma mark ============== UITableViewCell delegate =====================
-/**
- *  取消关注  或者 关注接口    //attention 0：未关注 1：已关注   status 1 关注  2取消关注
- */
--(void)attentionClick:(SaiBean *)bean{
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    int status = 0;
-    if ([bean.attention isEqualToString:@"0"]) {
-        status = 1;
-    }
-    else{
-        status = 2;
-    }
-    
-    NSDictionary *parm = [HttpBody attendOrCancelAttendWithUId:/*[[UserModel shareInfo] uid]*/self.uid bId:[bean.uId intValue] status:status];
-    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
-    [manager GET:URLADDRESS parameters:parm success:^(AFHTTPRequestOperation * operation, id response) {
-        NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求关注或者取消关注结果:%@",jsonDic);
-        if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
-            [self refreshCountData];
-        }
-        else{
-            [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
-        }
-        
-    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-        [ProgressHUD showError:CHECKNET];
-    }];
-}
 
-//显示大图
-- (void)showBigPics:(SaiBean *)bean{
-    NSInteger count = bean.applySubArr.count;
-    
-    // 1.封装图片数据
-    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
-    for (int i = 0; i<count; i++) {
-        NSDictionary *dict = [bean.applySubArr objectAtIndex:i];
-        MJPhoto *photo = [[MJPhoto alloc] init];
-        
-        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectZero];
-        imgView.size = CGSizeMake(300, 300);
-        
-        photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"pic_url"]]];
-        photo.srcImageView = imgView; // 来源于哪个UIImageView
-        [photos addObject:photo];
-    }
-    
-    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
-    browser.photos = photos; // 设置所有的图片
-    browser.currentPhotoIndex = 0;
-    [browser show];
-}
+
 
 @end

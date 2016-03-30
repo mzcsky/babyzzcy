@@ -30,14 +30,14 @@
     layout.minimumInteritemSpacing = 30;
     layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-//参赛主题  全部
+//参赛主题  (全部) 年龄分类
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.frame.size.height) collectionViewLayout:layout];
     _collectionView.backgroundColor = [UIColor clearColor];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerClass:[NDHMenuCell class] forCellWithReuseIdentifier:NDHMENUCELL];
     [self addSubview:_collectionView];
-}
+} 
 
 - (void)initData{
     //默认选中颜色

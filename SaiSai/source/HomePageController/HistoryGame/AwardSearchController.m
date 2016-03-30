@@ -13,12 +13,14 @@
 #import "MJPhoto.h"
 #import "MJPhotoBrowser.h"
 #import "AwardLevelBean.h"
+#import "HttpBody.h"
 @interface AwardSearchController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, HomePageCellDelegate>
 
 @property (nonatomic,strong) NDHMenuView      *ndMenuView;
 @property (nonatomic,assign) NSInteger         ndMenuIndex;
 @property (nonatomic,strong) UITableView      *tableView;
-@end
+@property (nonatomic,strong) NSMutableArray   *menuArray;
+ @end
 
 @implementation AwardSearchController{
     UITableView       *_AStableView;
@@ -115,18 +117,18 @@
     }
     
 
-    int awardId = [self.requestInfo[@"mid"] intValue];
+    AwardLevelBean *bean = _menuArray[_ndMenuIndex];
+    int awardId = [bean.mId intValue];
     int uId = -1;
     if ([[UserModel shareInfo] isLogin]) {
         uId = [[UserModel shareInfo] uid];
     }
     
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
-    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:-1 eage:-1 uid:uId isMy:-1 gid:-1 isaward:-1 awardconfigId:awardId keyword:searchStr];
-    
+    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:-1 eage:-1 uid:uId isMy:-1 gid:5 isaward:-1 awardconfigId:awardId keyword:searchStr];
+
     [ProgressHUD show:LOADING];
     
     [manager GET:URLADDRESS parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){

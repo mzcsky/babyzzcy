@@ -252,5 +252,5 @@
  *  @return 获取相关主题列表接口
  */
 + (NSDictionary *)getadlist:(int)page row:(int)rows gid:(int)gid;
-
++ (NSDictionary *)applyListBody:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward  keyword:(NSString *)keyword;
 @end

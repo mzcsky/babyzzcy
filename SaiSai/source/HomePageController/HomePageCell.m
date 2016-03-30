@@ -71,6 +71,7 @@
         jubaoBtn.titleLabel.font = FONT(10);
         [jubaoBtn setTitleColor:XT_BLACKCOLOR forState:UIControlStateNormal];
         [jubaoBtn addTarget:self action:@selector(jubaoAction) forControlEvents:UIControlEventTouchUpInside];
+     
         [self.contentView addSubview:jubaoBtn];
         
         attentionBtn = [UIButton buttonWithType:UIButtonTypeCustom];

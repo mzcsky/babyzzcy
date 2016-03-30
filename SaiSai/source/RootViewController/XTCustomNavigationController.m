@@ -9,7 +9,7 @@
 #import "XTCustomNavigationController.h"
 #import "XTViewController.h"
 @implementation UINavigationBar (UINavigationBarCategory)
-
+//导航栏颜色
 -(void)setBackgroundImage:(UIImage*)image  
 {  
     NSArray * views = [self subviews];
@@ -41,7 +41,7 @@
 }
 
 -(void)setNavigationBarBg {
-    UIImage *image=[UIImage imageWithColor:XT_MAINCOLOR];
+    UIImage *image=[UIImage imageWithColor:[UIColor whiteColor]];
     [self.navigationBar setBackgroundImage:image];
     
     if (IOS_VERSION >= 7) {

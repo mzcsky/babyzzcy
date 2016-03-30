@@ -52,7 +52,7 @@
     if ([[UserModel shareInfo] isLogin]) {
         
         self.iconArray = [NSArray arrayWithObjects:@"pc_myworks.png", @"pc_myfocus.png", @"pc_myfance.png", @"pc_mypaticipate.png", nil];
-        self.nameArray = [NSArray arrayWithObjects:@"参赛作品", @"关注", @"粉丝", @"参与的比赛", nil];
+        self.nameArray = [NSArray arrayWithObjects:@"他的作品展", @"关注", @"粉丝", @"他的参与(艺术素质测评发展指标)", nil];
         
         [self initTableView];
         [self initTHeader];

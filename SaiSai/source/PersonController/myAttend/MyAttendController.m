@@ -191,8 +191,11 @@
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             [self refreshCountData];
         }
+     
         else{
             [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
+            [self refreshCountData ];
+
         }
         
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
@@ -200,6 +203,11 @@
     }];
 }
 
+
+
+
+
+//进入已关注人界面
 -(void)UesrHeaderClickedfollow:(AttendOrFansBean *)bean{
     MyUsermsgViewController * MUVC = [[MyUsermsgViewController alloc]initWithBean:bean];
     MUVC.title = bean.nickName;

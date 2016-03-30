@@ -16,7 +16,7 @@
 
 #define UPIMAGECELL      @"UPIMAGECELL"
 
-#define TEXTVIEWHOLDER   @"创作意图:(最多80字)"
+#define TEXTVIEWHOLDER   @"描述说明:(最多140字)"
 
 @interface UpdatePictureController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,NDDataPickerDelegate,UPImageCellDelegate>
 

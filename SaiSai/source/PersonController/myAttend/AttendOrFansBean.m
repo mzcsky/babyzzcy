@@ -17,6 +17,10 @@
     AttendOrFansBean *bean = [[AttendOrFansBean alloc] init];
     bean.afId = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"id"]];
     bean.bOrAId = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"bid" orKey:@"aid"]];
+
+    
+    
+    
     bean.nickName = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"nick_name"]];
     bean.icon = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"icon"]];
     //我的关注，我的粉丝 返参: attention 是否关注 0：未关注 1：已关注

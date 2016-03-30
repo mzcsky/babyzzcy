@@ -89,7 +89,7 @@
     rightItem.frame = CGRectMake(0, 0, 60, 64);
     [rightItem setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
     [rightItem setImage:[UIImage imageNamed:@"cansaizhidao.png"] forState:UIControlStateNormal];
-    [rightItem setTitle:@"参赛指导" forState:UIControlStateNormal];
+    [rightItem setTitle:@"指导说明" forState:UIControlStateNormal];
     rightItem.titleLabel.font = FONT(12);
     [rightItem setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [rightItem addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
@@ -239,11 +239,11 @@
     if (self.preData.flag == 1) {
         [self initLine:y];
         if (self.preData.is_org==2) {
-            [self initTip:16 y:y w:78 name:@"*参赛组织:"];
+            [self initTip:16 y:y w:158 name:@"*参赛组织(学校班级):"];
         }else{
-            [self initTip:16 y:y w:78 name:@"参赛组织:"];
+            [self initTip:16 y:y w:158 name:@"参赛组织(学校班级):"];
         }
-        _tpoField = [self createTextField:95 y:y w:SCREEN_WIDTH-110];
+        _tpoField = [self createTextField:157 y:y w:SCREEN_WIDTH-110];
         y += 35;
     }
     

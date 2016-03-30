@@ -8,11 +8,11 @@
 
 #import "XTViewController.h"
 #import "AttendOrFansBean.h"
+#import "SaiBean.h"
 @interface MyUsermsgViewController : XTViewController
 
 
 @property (nonatomic,strong) AttendOrFansBean * userBean;
-
 -(id)initWithBean:(AttendOrFansBean *)bean;
 
 @end

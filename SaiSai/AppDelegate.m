@@ -27,6 +27,7 @@
 
 - (void)dealloc{
     [self removeNotification];
+    
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -36,6 +37,7 @@
     //显示状态栏    颜色
     [[UIApplication sharedApplication]setStatusBarHidden:NO];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
+    
 
     [[PositionTool shareInfo] updataLocation];
     
@@ -103,17 +105,17 @@
     }
     [APService setupWithOption:launchOptions];
 
-    [APService setTags:nil alias:@"test1" callbackSelector:@selector(test1) target:self];
+//    [APService setTags:nil alias:@"test1" callbackSelector:@selector(test1) target:self];
     
     [self.window makeKeyAndVisible];
     return YES;
 }
 
 
--(void)test1{
-    
-    NSLog(@"====");
-}
+//-(void)test1{
+//    
+//    NSLog(@"====");
+//}
 -(void)registeUMShare{
     [UMSocialData setAppKey:@"5615258ce0f55aada0003022"];
     
@@ -277,6 +279,9 @@ fetchCompletionHandler:(void
     bAnimation.duration = 1.f ;
     bAnimation.timingFunction = UIViewAnimationCurveEaseInOut;//[CAMediaTimingFunction functionWithName:
     [self.window.layer addAnimation:bAnimation forKey:@"animation"];
+    
+
+
 }
 
 #pragma mark
@@ -299,7 +304,7 @@ fetchCompletionHandler:(void
 
 - (void)showLoginController{
     LoginViewController *ctrl = [[LoginViewController alloc] init];
-    ctrl.title = @"移动比赛平台";
+    ctrl.title = @"学习活动比赛平台";
     ctrl.m_showBackBt = YES;
     ctrl.m_hasNav = NO;
     XTCustomNavigationController* naviCtrller = [[XTCustomNavigationController alloc] initWithRootViewController:ctrl];

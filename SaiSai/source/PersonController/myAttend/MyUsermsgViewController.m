@@ -44,6 +44,7 @@
     if (self = [super init]) {
         self.userBean = bean;
         
+
     }
     return self;
 }
@@ -55,7 +56,7 @@
     if ([[UserModel shareInfo] isLogin]) {
         
         self.iconArray = [NSArray arrayWithObjects:@"pc_myworks.png", @"pc_myfocus.png", @"pc_myfance.png", @"pc_mypaticipate.png", nil];
-        self.nameArray = [NSArray arrayWithObjects:@"参赛作品", @"关注", @"粉丝", @"参与的比赛", nil];
+        self.nameArray = [NSArray arrayWithObjects:@"他的作品展", @"关注", @"粉丝", @"他的参与(艺术素质测评发展指标)", nil];
         
         [self initTableView];
         [self initTHeader];
@@ -143,10 +144,7 @@
         case 0:
         {
             MySaiSaiController *ctrl = [[MySaiSaiController alloc] initWithUserId:[self.userBean.bOrAId intValue] bOrAid:[self.userBean.bOrAId intValue]];
-            
-            
-            
-            ctrl.title = @"参赛作品";
+            ctrl.title = @"他的作品展";
             ctrl.m_showBackBt = YES;
             [self.navigationController pushViewController:ctrl animated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
@@ -180,7 +178,7 @@
         case 3:
         {
             MPMController *ctrl = [[MPMController alloc] initWithUserId:[self.userBean.bOrAId intValue]];
-            ctrl.title = @"参与的比赛";
+            ctrl.title = @"他的参与(艺术素质测评发展指标)";
             ctrl.m_showBackBt = YES;
             [self.navigationController pushViewController:ctrl animated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];

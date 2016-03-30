@@ -9,6 +9,7 @@
 #import "MyAttendCell.h"
 #import "UserModel.h"
 #import "UIImageView+WebCache.h"
+
 @implementation MyAttendCell
 
 - (void)awakeFromNib {

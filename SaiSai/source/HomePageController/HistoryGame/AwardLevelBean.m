@@ -15,7 +15,7 @@
         return [[AwardLevelBean alloc] init];
     }
     AwardLevelBean *bean = [[AwardLevelBean alloc] init];
-    
+    //mid 
     bean.mId = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"id"]];
     bean.mName = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"name"]];
     return bean;

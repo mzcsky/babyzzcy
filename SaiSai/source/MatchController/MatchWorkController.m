@@ -1,35 +1,34 @@
 //
-//  SearchWorkController.m
+//  MatchWorkController.m
 //  SaiSai
 //
-//  Created by 宝贝计画 on 16/3/22.
+//  Created by 宝贝计画 on 16/3/25.
 //  Copyright © 2016年 NJNightDayTechnology. All rights reserved.
 //
 
-#import "SearchWorkController.h"
+#import "MatchWorkController.h"
 #import "HomePageCell.h"
 #import "AgeBean.h"
 #import "AttendOrFansBean.h"
 #import "MJPhoto.h"
 #import "MJPhotoBrowser.h"
-@interface SearchWorkController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,HomePageCellDelegate>
+@interface MatchWorkController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,HomePageCellDelegate>
 @property (nonatomic,strong) NDHMenuView      *ndMenuView;
 @property (nonatomic,strong) UITableView      *tableView;
 @end
 
+@implementation MatchWorkController{
+    UITableView       *_MWtableView;
+    NSMutableArray    *_MWdataArray;
+    UISearchBar       *_MWsearchBar;
+    int               _MWpage;
 
-@implementation SearchWorkController{
-    UITableView       *_SWtableView;
-    NSMutableArray    *_SWdataArray;
-    UISearchBar       *_SWsearchBar;
-    int               _SWpage;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addNotification];
-    [self initTableView];
-
+    [self initTableView];    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,8 +36,8 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)addNotification{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SWrefreshDatas) name:HP_REFRESH object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SWrefreshCountData) name:HP_REFRESHCOUNTDATA object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MWrefreshDatas) name:HP_REFRESH object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MWrefreshCountData) name:HP_REFRESHCOUNTDATA object:nil];
 }
 
 -(void)removeNotification{
@@ -51,72 +50,69 @@
 
 
 - (void)initTableView{
-    _SWtableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-100)];
-    _SWtableView.backgroundColor = CLEARCOLOR;
-    _SWtableView.dataSource = self;
-    _SWtableView.delegate = self;
-    _SWtableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:_SWtableView];
+    _MWtableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-100)];
+    _MWtableView.backgroundColor = CLEARCOLOR;
+    _MWtableView.dataSource = self;
+    _MWtableView.delegate = self;
+    _MWtableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_MWtableView];
     
-    _SWsearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    _SWsearchBar.backgroundColor = CLEARCOLOR;
-    _SWsearchBar.delegate = self;
-    [self.view addSubview:_SWsearchBar];
-
-        [_SWtableView addFooterWithTarget:self action:@selector(SWloadMore)];
-
-
+    
+    
+    
+    _MWsearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    _MWsearchBar.backgroundColor = CLEARCOLOR;
+    _MWsearchBar.delegate = self;
+    [self.view addSubview:_MWsearchBar];
+    
+    [_MWtableView addFooterWithTarget:self action:@selector(MWloadMore)];
+    
+    
 }
 
 /**
  *  刷新数据
  */
--(void)SWrefreshDatas{
-    _SWpage = 1;
+-(void)MWrefreshDatas{
+    _MWpage = 1;
     [self searchFriendsWithCurPage:1 count:[PAGE_COUNT intValue]];
 }
 
 /**
  *  加载更多
  */
--(void)SWloadMore{
-    if ([_SWsearchBar.text isEqualToString:@""]) {
+-(void)MWloadMore{
+    if ([_MWsearchBar.text isEqualToString:@""]) {
         return;
     }
-    _SWpage++;
-    [self searchFriendsWithCurPage:_SWpage count:[PAGE_COUNT intValue]];
+    _MWpage++;
+    [self searchFriendsWithCurPage:_MWpage count:[PAGE_COUNT intValue]];
 }
 
 /**
  *  刷新到当前页
  */
--(void)SWrefreshCountData{
-    int count = _SWpage * [PAGE_COUNT intValue];
+-(void)MWrefreshCountData{
+    int count = _MWpage * [PAGE_COUNT intValue];
     [self searchFriendsWithCurPage:1 count:count];
 }
 
 /**
  *  网络调用失败 页数－1
  */
--(void)SWreducePage{
-    _SWpage--;
-    if (_SWpage <= 0) {
-        _SWpage = 1;
-    
+-(void)MWreducePage{
+    _MWpage--;
+    if (_MWpage <= 0) {
+        _MWpage = 1;
     }
 }
-/**
- *  搜索作品请求
- *
- *  @param page
- *  @param count
- */
+
 -(void)searchFriendsWithCurPage:(int)page count:(int)count{
-    NSString *searchStr = _SWsearchBar.text;
+    NSString *searchStr = _MWsearchBar.text;
     if (!searchStr && [searchStr isEqualToString:@""]) {
         return;
     }
-
+    
     int uId = -1;
     if ([[UserModel shareInfo] isLogin]) {
         uId = [[UserModel shareInfo] uid];
@@ -125,25 +121,26 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
- 
+    
     NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:-1 eage:-1 uid:uId isMy:-1
                                                 gid:-1 isaward:-1 awardconfigId:-1 keyword:searchStr];
+    
     
     [ProgressHUD show:LOADING];
     
     [manager GET:URLADDRESS parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
-        [_SWtableView footerEndRefreshing];
+        [_MWtableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
         NSLog(@"===========请求搜索作品数据结果========:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
             if (page == 1) {
-                if (_SWdataArray && _SWdataArray.count > 0) {
-                    [_SWdataArray removeAllObjects];
-                    _SWdataArray = nil;
+                if (_MWdataArray && _MWdataArray.count > 0) {
+                    [_MWdataArray removeAllObjects];
+                    _MWdataArray = nil;
                 }
-                _SWdataArray = [[NSMutableArray alloc] init];
+                _MWdataArray = [[NSMutableArray alloc] init];
             }
             
             if (dataArr && dataArr.count > 0) {
@@ -151,36 +148,33 @@
                     SaiBean *bean = [SaiBean parseInfo:dataArr[i]];
                     if (bean.applySubArr && [bean.applySubArr isKindOfClass:[NSArray class]]
                         && bean.applySubArr.count > 0) {
-                        [_SWdataArray addObject:bean];
+                        [_MWdataArray addObject:bean];
                     }
                 }
             }
             if (dataArr.count < [PAGE_COUNT intValue]) {
-                _SWtableView.footerHidden =YES;
+                _MWtableView.footerHidden =YES;
             }
             else{
-                _SWtableView.footerHidden = NO;
+                _MWtableView.footerHidden = NO;
             }
-            [_SWtableView reloadData];
+            [_MWtableView reloadData];
             
             [ProgressHUD dismiss];
         }
         else{
             [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
-            [self SWreducePage];
+            [self MWreducePage];
         }
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         NSLog(@"failuer");
         [ProgressHUD showError:CHECKNET];
         
-        [_SWtableView footerEndRefreshing];
+        [_MWtableView footerEndRefreshing];
     }];
     
-
+    
 }
-
-
-#pragma mark =================TableViewCell delegate=============
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIndentifier = HomePageCellIdentifier;
     HomePageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
@@ -189,19 +183,19 @@
     }
     cell.oTView.contrller = self;
     cell.delegate = self;
-    SaiBean *commentBean = (SaiBean *)_SWdataArray[indexPath.row];
+    SaiBean *commentBean = (SaiBean *)_MWdataArray[indexPath.row];
     [cell setCellInfo:commentBean];
     return cell;
-
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _SWdataArray.count;
+    return _MWdataArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     HomePageCell *cell = [[HomePageCell alloc] init];
-    SaiBean *saibean = (SaiBean *)_SWdataArray[indexPath.row];
+    SaiBean *saibean = (SaiBean *)_MWdataArray[indexPath.row];
     CGFloat height = [cell returnHeight:saibean];
     return height;
 }
@@ -209,17 +203,17 @@
 #pragma mark
 #pragma mark ===================== UIScrollView delegate ==================
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [_SWsearchBar resignFirstResponder];
+    [_MWsearchBar resignFirstResponder];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSString *str = _SWsearchBar.text;
+    NSString *str = _MWsearchBar.text;
     if (!str && [str isEqualToString:@""]) {
         return;
     }
-    [_SWsearchBar resignFirstResponder];
+    [_MWsearchBar resignFirstResponder];
     // 调用接口
-    [self SWrefreshDatas];
+    [self MWrefreshDatas];
 }
 
 -(BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
@@ -234,18 +228,13 @@
         return;
     }
     //调用接口
-    [self SWrefreshDatas];
-    
-    
+    [self MWrefreshDatas];
 }
 
 #pragma mark
 #pragma mark =============== MyAttendCell delegate =================
-
 /**
- *  取消关注或者关注接口
- *
- *  @param beanattention 0：未关注 1：已关注   status 1 关注  2取消关注
+ *  取消关注  或者 关注接口    attention 0：未关注 1：已关注   status 1 关注  2取消关注
  */
 -(void)attentionClick:(SaiBean *)bean{
     
@@ -265,7 +254,7 @@
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
         NSLog(@"请求关注或者取消关注结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
-            [self SWrefreshCountData];
+            [self MWrefreshCountData];
         }
         else{
             [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
@@ -275,7 +264,6 @@
         [ProgressHUD showError:CHECKNET];
     }];
 }
-
 
 
 @end

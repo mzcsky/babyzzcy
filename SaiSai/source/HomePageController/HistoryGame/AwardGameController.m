@@ -12,7 +12,7 @@
 #import "HomePageCell.h"
 #import "AwardLevelBean.h"
 #import "AwardSearchController.h"
-@interface AwardGameController ()<UITableViewDataSource,UITableViewDelegate,HomePageCellDelegate,NDHMenuViewDelegate>
+@interface AwardGameController ()<UITableViewDataSource,UITableViewDelegate,NDHMenuViewDelegate,HomePageCellDelegate>
 
 @property (nonatomic,strong) UITableView      *tableView;
 @property (nonatomic,strong) NSMutableArray   *dataArray;
@@ -31,7 +31,7 @@
     // Do any additional setup after loading the view.
     
     [self addNotification];
-    [self initRightItem];
+//    [self initRightItem];
     [self initMenuView];
     [self initTableView];
     
@@ -45,27 +45,27 @@
     [self removeNotification];
     
 }
-- (void)showGold{
-    AwardLevelBean *bean = _menuArray[_ndMenuIndex];
-    AwardSearchController *ctrller = [[AwardSearchController alloc] initWithInfo:@{@"mid":bean.mId}];
-    ctrller.m_showBackBt = YES;
-    ctrller.title = @"获奖作品搜索";
-    [self.navigationController pushViewController:ctrller animated:YES];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
-}
-- (void)initRightItem{
-    UIButton *rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightItem.frame = CGRectMake(0, 8, 40, 40);
-    [rightItem setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-    [rightItem setTitle:@"搜索" forState:UIControlStateNormal];
-    [rightItem setImage:[UIImage imageNamed:@"ic_search.png"] forState:UIControlStateNormal];
-    [rightItem setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
-    [rightItem addTarget:self action:@selector(showGold) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
-    
-    self.navigationItem.rightBarButtonItem =rightBar;
-}
+//- (void)showGold{
+//    AwardLevelBean *bean = _menuArray[_ndMenuIndex];
+//    AwardSearchController *ctrller = [[AwardSearchController alloc] initWithInfo:@{@"mid":bean.mId}];
+//    ctrller.m_showBackBt = YES;
+//    ctrller.title = @"获奖作品搜索";
+//    [self.navigationController pushViewController:ctrller animated:YES];
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
+//}
+//- (void)initRightItem{
+//    UIButton *rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
+//    rightItem.frame = CGRectMake(0, 8, 40, 40);
+//    [rightItem setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+//    [rightItem setTitle:@"搜索" forState:UIControlStateNormal];
+//    [rightItem setImage:[UIImage imageNamed:@"ic_search.png"] forState:UIControlStateNormal];
+//    [rightItem setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
+//    [rightItem addTarget:self action:@selector(showGold) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
+//    
+//    self.navigationItem.rightBarButtonItem =rightBar;
+//}
 
 -(void)initMenuView{
     _ndMenuView = [[NDHMenuView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 39)];

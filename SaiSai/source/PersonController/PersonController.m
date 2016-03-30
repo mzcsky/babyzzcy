@@ -42,7 +42,7 @@
     if ([[UserModel shareInfo] isLogin]) {
         //
         self.iconArray = [NSArray arrayWithObjects:@"hp_commentBg.png", @"pc_myworks.png", @"pc_myfocus.png", @"pc_myfance.png", @"pc_addFriends.png", @"pc_mypaticipate.png", nil];
-        self.nameArray = [NSArray arrayWithObjects:@"评论消息", @"我的作品展", @"我的关注", @"我的粉丝", @"添加关注好友", @"我参与的活动展览", nil];
+        self.nameArray = [NSArray arrayWithObjects:@"评论消息", @"我的作品展", @"我的关注", @"我的粉丝", @"添加关注好友", @"我的参与(艺术素质测评发展指标)", nil];
         
         [self initTableView];
         [self initTHeader];
@@ -182,7 +182,7 @@
         case 1:
         {
             MySaiSaiController *ctrl = [[MySaiSaiController alloc] initWithUserId:[[UserModel shareInfo] uid] bOrAid:[[UserModel shareInfo] uid]];
-            ctrl.title = @"我的参赛作品";
+            ctrl.title = @"我的作品展";
             ctrl.m_showBackBt = YES;
             [self.navigationController pushViewController:ctrl animated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
@@ -225,7 +225,7 @@
         case 5:
         {
             MPMController *ctrl = [[MPMController alloc] initWithUserId:[[UserModel shareInfo] uid]];
-            ctrl.title = @"我参与的比赛";
+            ctrl.title = @"我的参与(艺术素质测评发展指标)";
             ctrl.m_showBackBt = YES;
             [self.navigationController pushViewController:ctrl animated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];

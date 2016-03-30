@@ -50,7 +50,8 @@
 //    [[JudgeNewVersion Instance] judgeShouldLoadNewVersion:NO];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
-    self.tabBar.tintColor = [UIColor clearColor];
+    self.tabBar.tintColor = [UIColor redColor];
+    
     [self.tabBar removeFromSuperview];
 }
 
