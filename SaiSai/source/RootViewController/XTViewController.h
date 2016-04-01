@@ -17,6 +17,7 @@
 @property (nonatomic, strong)UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
 @property (nonatomic,strong)NSString *mRightBtnTitle;
 @property (nonatomic,strong)NSString *mLeftBtnTitle;
+@property (nonatomic, strong) UIView * TheadView;
 
 @property (nonatomic,assign) BOOL m_showRightBt;
 @property (nonatomic,assign) BOOL m_showBackBt;

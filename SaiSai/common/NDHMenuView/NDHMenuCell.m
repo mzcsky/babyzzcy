@@ -8,6 +8,7 @@
 
 #import "NDHMenuCell.h"
 
+#define sliderHerght 3
 @implementation NDHMenuCell
 
 - (id)initWithFrame:(CGRect)frame{

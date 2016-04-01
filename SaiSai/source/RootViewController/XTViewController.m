@@ -10,6 +10,7 @@
 @synthesize mRightBtnTitle;
 @synthesize mLeftBtnTitle;
 @synthesize mIsMainPage;
+@synthesize TheadView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -66,6 +67,12 @@
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     titleLabel.tag = 1000;
     [self.navigationItem setTitleView:titleLabel];
+    
+    self.TheadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
+    self.TheadView.backgroundColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
+    self.TheadView.hidden = YES;
+    [self.view addSubview:TheadView];
+    
     
     self.view.backgroundColor = BACKGROUND_COLOR;
     
