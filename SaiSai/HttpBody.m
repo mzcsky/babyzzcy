@@ -171,11 +171,11 @@
     return pram;
 }
 /*
- *  参赛
+ *  获奖作品查询接口
  */
-+ (NSDictionary *)applyListBody:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward  keyword:(NSString *)keyword{
++ (NSDictionary *)applyListBody:(int)page rows:(int)rows  uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward  keyword:(NSString *)keyword{
+    
     NSMutableDictionary *pram = [NSMutableDictionary dictionary];
-    [pram setObject:@"getApplyList" forKey:@"action"];
     if (page >= 0) {
         [pram setObject:@(page) forKey:@"page"];
     }
@@ -185,12 +185,7 @@
     if (uid>=0) {
         [pram setObject:@(uid) forKey:@"uid"];
     }
-    if (fage>=0) {
-        [pram setObject:@(fage) forKey:@"fage"];
-    }
-    if (eage>=0) {
-        [pram setObject:@(eage) forKey:@"eage"];
-    }
+
     if (isMy == 1) {
         [pram setObject:@(isMy) forKey:@"is_myapply"];
     }

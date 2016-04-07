@@ -105,7 +105,7 @@
 
     if (isSel) {
         itemBgImage.image = item.imageSel;
-        mItemBgLabel.textColor = XT_MAINCOLOR;
+        mItemBgLabel.textColor = BACKGROUND_FENSE;
     }
     else
     {

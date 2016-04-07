@@ -22,7 +22,7 @@
 #import "MatchDetailController.h"
 #import "MatchClaBean.h"
 #import "SearchWorkController.h"
-
+#import "CustomButton.h"
 
 
 @interface HomePageController ()<NDHMenuViewDelegate,UITableViewDataSource,UITableViewDelegate,HomePageCellDelegate,AdvertViewDelegate>
@@ -146,7 +146,8 @@
         _topBtnView = [[UIView alloc] init];
         
         NSArray * btnArr = @[@"风采展示",@"获奖展示",];
-        
+        NSArray * narImg = @[@"home_fengcai_normal.png",@"home_huojiang_normal.png"];
+        NSArray * selImg = @[@"home_fengcai_Selected.png",@"home_huojiang_Selected.png"];
         CGFloat btnH = 40;
         
         for (int i = 0; i < btnArr.count; i ++) {
@@ -159,10 +160,14 @@
             sender.tag = i;
             
             [sender setTitle:btnArr[i] forState:UIControlStateNormal];
+            [sender setImage:[UIImage imageNamed:narImg[i]] forState:UIControlStateNormal];
+            [sender setImage:[UIImage imageNamed:selImg[i]] forState:UIControlStateSelected];
+            
+            
             sender.layer.borderWidth = 1.0;
             sender.layer.borderColor =[UIColor lightGrayColor].CGColor;
             [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [sender setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+            [sender setTitleColor:BACKGROUND_FENSE forState:UIControlStateSelected];
             
             [sender addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -203,16 +208,19 @@
     
     self.isTableView = sender.tag == 0;
     
+    sender.selected = YES;
+    
     for (UIView * bnt in _topBtnView.subviews) {
         
         if ([bnt isKindOfClass:[UIButton class]] && bnt.tag != sender.tag) {
             
-            [(UIButton *)bnt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            
+            UIButton * otherBtn = (UIButton *)bnt;
+            [otherBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            otherBtn.selected = !sender.selected;
         }
     }
     
-    [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [sender setTitleColor:BACKGROUND_FENSE forState:UIControlStateNormal];
     if (self.isTableView) { //点击风采展示
         
         [self.tableView reloadData];
@@ -243,6 +251,15 @@
     [self.view addSubview:_tableView];
     [_tableView addHeaderWithTarget:self action:@selector(addMoreDataWithHeader)];
     [_tableView addFooterWithTarget:self action:@selector(addMoreDataWithFooter)];
+    
+    /**
+     扇形
+     */
+    CustomButton *custom = [[CustomButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-140, 0, 140, 140)];
+    custom.backgroundColor = [UIColor clearColor];
+    [custom addTarget:self action:@selector(custom) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_tableView addSubview:custom];
     /**
      *  搜索 和 地址选择按钮
      */
@@ -304,6 +321,14 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
     }
 }
+/**
+ *  扇形点击事件
+ */
+-(void)custom{
+    NSLog(@"扇形");
+}
+
+
 
 /**
  *  下拉加载更多数据
@@ -630,7 +655,6 @@
             }else{
                 [_tableView setFooterHidden:YES];
             }
-            //            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationLeft];
             [self.tableView reloadData];
             [_tableView headerEndRefreshing];
             [_tableView footerEndRefreshing];

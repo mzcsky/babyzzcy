@@ -21,8 +21,9 @@
 
 #pragma mark
 #pragma mark ====== 网络请求 ======
+#define URL_AwardUrl           @"http:192.168.1.104:8080/zhongzaicanyu/apply/findApplyListByCondition?"
 
-#define KGetRecommendList          @"http://api.saisaiapp.com/api.php?action=getRecommendList"
+#define KGetRecommendList    @"http://api.saisaiapp.com/api.php?action=getRecommendList"
 
 #define URLADDRESS          @"http://api.saisaiapp.com/api.php"
 

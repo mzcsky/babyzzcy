@@ -57,9 +57,14 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_TAB" object:nil];
+    self.TheadView.hidden = NO;
 }
 
 - (void)showGold{
@@ -96,7 +101,7 @@
 }
 
 - (void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-120)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _tableView.backgroundColor = CLEARCOLOR;
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -109,15 +114,15 @@
 
 - (void)initAdView{
     if (self.adView == nil) {
-        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190)];
         contentView.backgroundColor = CLEARCOLOR;
         _tableView.tableHeaderView = contentView;
         
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 4, SCREEN_WIDTH-20, 150)];
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190)];
         bgView.backgroundColor = [UIColor whiteColor];
         [contentView addSubview:bgView];
         
-        self.adView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-20, 150) delegate:self withImageArr:self.adSArray];
+        self.adView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190) delegate:self withImageArr:self.adSArray];
         [bgView addSubview:self.adView];  //CGRectMake(14, 5, SCREEN_WIDTH-58, 79)
     }
 }
@@ -161,9 +166,14 @@
     if (!_ndMenuView) {
         _sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
         _sectionHeader.backgroundColor = CLEARCOLOR;
-        _ndMenuView = [[NDHMenuView alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-20, 39)];
+        _ndMenuView = [[NDHMenuView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 39)];
         _ndMenuView.backgroundColor = [UIColor whiteColor];
         _ndMenuView.delegate = self;
+        
+        UIView *lin = [[UIView alloc] initWithFrame:CGRectMake(0,_ndMenuView.top+1 , SCREEN_WIDTH, 1)];
+        lin.backgroundColor = [UIColor lightGrayColor];
+        [_ndMenuView addSubview:lin];
+        
         [_sectionHeader addSubview:_ndMenuView];
     }
     

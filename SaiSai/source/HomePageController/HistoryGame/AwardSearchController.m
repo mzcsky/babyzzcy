@@ -117,28 +117,30 @@
     }
     
 
-    AwardLevelBean *bean = _menuArray[_ndMenuIndex];
-    int awardId = [bean.mId intValue];
+    
+    NSNumber *mid = [self.requestInfo valueForKey:@"mid"];
+    int Gid = [mid intValue];
+    
     int uId = -1;
     if ([[UserModel shareInfo] isLogin]) {
         uId = [[UserModel shareInfo] uid];
     }
+
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
-    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count fage:-1 eage:-1 uid:uId isMy:-1 gid:5 isaward:-1 awardconfigId:awardId keyword:searchStr];
-
+    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count uid:uId isMy:-1 gid:Gid isaward:-1 keyword:searchStr];
     [ProgressHUD show:LOADING];
     
-    [manager GET:URLADDRESS parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
+    [manager GET:URL_AwardUrl parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
         [_AStableView headerEndRefreshing];
         [_AStableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
         NSLog(@"请求获奖作品数据结果:%@",jsonDic);
-        if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
-            NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
+        if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
+            NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"list"]];
             if (page == 1){
                 if (_ASdataArray && _ASdataArray.count > 0) {
                     [_ASdataArray removeAllObjects];

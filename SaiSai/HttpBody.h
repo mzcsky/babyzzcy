@@ -252,5 +252,23 @@
  *  @return 获取相关主题列表接口
  */
 + (NSDictionary *)getadlist:(int)page row:(int)rows gid:(int)gid;
-+ (NSDictionary *)applyListBody:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward  keyword:(NSString *)keyword;
+/**
+ *  获奖主题搜索接口
+ *
+ *  @param page   页数 必填
+ *  @param rows 每页个数 必填
+ *  @param uid       当前用户id 可填
+ *  @param isMy
+ *  @param gid      比赛id  必填
+ *  @param isaward
+ *  @param keyword  关键字可填
+ *
+ *  @return 
+ */
++ (NSDictionary *)applyListBody:(int)page rows:(int)rows uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward  keyword:(NSString *)keyword;
+
+
+
+
+
 @end

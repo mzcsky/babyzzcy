@@ -21,7 +21,7 @@
 
 @property (nonatomic, retain) NSMutableArray            *tArray;
 
-@property (nonatomic, assign) NSInteger                 page;
+@property (nonatomic, assign) NSInteger                 pageOn;
 
 @end
 
@@ -42,7 +42,7 @@
 }
 
 - (void)initData{
-    self.page = 1;
+    self.pageOn = 1;
     self.tArray = [[NSMutableArray alloc] init];
 }
 
@@ -99,17 +99,17 @@
 #pragma mark ====== 请求数据 ======
 
 - (void)refreshData{
-    self.page = 1;
+    self.pageOn = 1;
     [self getData];
 }
 
 - (void)loadMoreData{
-    self.page++;
+    self.pageOn++;
     [self getData];
 }
 
 - (void)getData{
-    NSDictionary *pram = [HttpBody gameListBody:(int)self.page rows:[PAGE_COUNT intValue] status:4 projectid:0];
+    NSDictionary *pram = [HttpBody gameListBody:(int)self.pageOn rows:[PAGE_COUNT intValue] status:4 projectid:0];
     
     [ProgressHUD show:LOADING];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -126,7 +126,7 @@
             //请求成功
             NSDictionary *data = [resDict objectForKey:@"data"];
             //解析列表数据
-            if (self.page == 1) {
+            if (self.pageOn == 1) {
                 [self.tArray removeAllObjects];
             }
             
@@ -145,16 +145,16 @@
             [ProgressHUD dismiss];
         }else{
             //数据请求失败
-            if (self.page>1) {
-                self.page--;
+            if (self.pageOn>1) {
+                self.pageOn--;
             }
             [ProgressHUD showError:[resDict objectForKey:@"msg"]];
         }
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         NSLog(@"failuer");
         [ProgressHUD showError:CHECKNET];
-        if (self.page>1) {
-            self.page--;
+        if (self.pageOn>1) {
+            self.pageOn--;
         }
         [_tableView headerEndRefreshing];
         [_tableView footerEndRefreshing];

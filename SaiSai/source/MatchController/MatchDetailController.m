@@ -46,6 +46,11 @@
 
 @implementation MatchDetailController
 
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = NO;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -87,7 +92,7 @@
 
 }
 
-- (void)showGold{
+- (void)showGoldMatch{
     MatchWorkController *ctrller = [[MatchWorkController alloc] init];
     ctrller.m_showBackBt = YES;
     ctrller.title = @"搜索作品";
@@ -101,10 +106,9 @@
 UIButton *Item = [UIButton buttonWithType:UIButtonTypeCustom];
 Item.frame = CGRectMake(0, 8, 40, 40);
 [Item setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-[Item setTitle:@"搜索" forState:UIControlStateNormal];
 [Item setImage:[UIImage imageNamed:@"ic_search.png"] forState:UIControlStateNormal];
 [Item setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
-[Item addTarget:self action:@selector(showGold) forControlEvents:UIControlEventTouchUpInside];
+[Item addTarget:self action:@selector(showGoldMatch) forControlEvents:UIControlEventTouchUpInside];
 UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:Item];
 self.navigationItem.rightBarButtonItem =rightBar;
 }
@@ -150,7 +154,7 @@ self.navigationItem.rightBarButtonItem =rightBar;
 }
 
 - (void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-65)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-110)];
     _tableView.backgroundColor = CLEARCOLOR;
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -159,7 +163,7 @@ self.navigationItem.rightBarButtonItem =rightBar;
     [_tableView addFooterWithTarget:self action:@selector(loadMoreData)];
     
     _CSlabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2, SCREEN_WIDTH, 50)];
-    _CSlabel.textColor = [UIColor  lightTextColor];
+    _CSlabel.textColor = BACKGROUND_FENSE;
     _CSlabel.font = [UIFont systemFontOfSize:20];
     _CSlabel.text = @"活动正在征集审核通过马上展示";
     _CSlabel.textAlignment = NSTextAlignmentCenter;
@@ -172,15 +176,15 @@ self.navigationItem.rightBarButtonItem =rightBar;
 
 - (void)initAdView{
     if (self.adView == nil) {
-        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190)];
         contentView.backgroundColor = CLEARCOLOR;
         _tableView.tableHeaderView = contentView;
         
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 4, SCREEN_WIDTH-20, 150)];
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190)];
         bgView.backgroundColor = [UIColor whiteColor];
         [contentView addSubview:bgView];
 
-        self.adView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-20, 150) delegate:self withImageArr:self.adSArray];
+        self.adView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190) delegate:self withImageArr:self.adSArray];
         [bgView addSubview:self.adView];
     }
 }
@@ -239,7 +243,6 @@ self.navigationItem.rightBarButtonItem =rightBar;
         {
             if (_webView) {
                 CGFloat h = _webView.scrollView.contentSize.height;
-                NSLog(@"------%f",h);
                 return h;
             }
             return 0;
@@ -370,7 +373,11 @@ self.navigationItem.rightBarButtonItem =rightBar;
     }
 
 }
-
+/**
+ *  webView高度
+ *
+ *  @param webView 赋值
+ */
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     
@@ -380,11 +387,14 @@ self.navigationItem.rightBarButtonItem =rightBar;
     maFrame.size.height = h;
     webView.frame = maFrame;
     
-//    [_tableView reloadData];
+    [_tableView reloadData];
     
 }
-
-
+/**
+ *  webView 内容
+ *
+ *  @param url 指导说明
+ */
 - (void)loadHtml:(NSString *)url{
     if ([url hasPrefix:@"http://"]) {
         NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];

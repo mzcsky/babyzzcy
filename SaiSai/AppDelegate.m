@@ -234,8 +234,8 @@ fetchCompletionHandler:(void
     }
     self.tabCtrl = [[XTTabBarController alloc] init];
     self.tabCtrl.delegate = self;
-    NSArray * selImage = [[NSArray alloc] initWithObjects:@"tab_home_nor.png",@"tab_math_nor.png",@"tab_xx_nor.png",@"tab_my_nor.png",nil];
-    NSArray * norImage = [[NSArray alloc] initWithObjects:@"tab_home_sel.png",@"tab_math_sel.png",@"tab_xx_sel.png",@"tab_my_sel.png",nil];
+    NSArray * norImage = [[NSArray alloc] initWithObjects:@"tab_home_nor.png",@"tab_math_nor.png",@"tab_xx_nor.png",@"tab_my_nor.png",nil];
+    NSArray * selImage = [[NSArray alloc] initWithObjects:@"tab_home_sel.png",@"tab_math_sel.png",@"tab_xx_sel.png",@"tab_my_sel.png",nil];
     NSArray *titleArr = [[NSArray alloc] initWithObjects:@"风采展示",@"比赛测评",@"休闲活动",@"我的", nil];
     [self.tabCtrl stupTabBarViewWithHeigth:49.0 norImage:norImage selImage:selImage titleArr:titleArr];
     

@@ -9,6 +9,8 @@
 #import "XTViewController.h"
 #import "MatchCCBean.h"
 @interface AwardSearchController : XTViewController
+
+
 @property (nonatomic,strong) NSDictionary * requestInfo;
 @property (nonatomic,strong) MatchCCBean *matchBean;
 
