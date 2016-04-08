@@ -58,7 +58,7 @@
         _delegate = delegate;
         
         [self initCollectionView];
-//轮播提示
+        //轮播提示
         _pageControl = [[StyledPageControl alloc] init];
         _pageControl.frame = CGRectMake(10, frame.size.height-12, frame.size.width-20, 8);
         [_pageControl setPageControlStyle:PageControlStyleThumb];
@@ -113,6 +113,8 @@
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.itemSize = self.bounds.size;
     layout.minimumLineSpacing = 0;
+    
+    
     
     _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
     [_collectionView registerClass:[AdCell class] forCellWithReuseIdentifier:ADCELL_IDENTIFY];

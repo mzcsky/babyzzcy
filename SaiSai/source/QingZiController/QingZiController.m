@@ -16,10 +16,18 @@
 
 @implementation QingZiController
 
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
+    self.TheadView.hidden = NO;
+}
+
+
+
+
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49-64)];
+
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _webView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_webView];
     

@@ -18,8 +18,6 @@
 
 @property (nonatomic,strong) NDHMenuView      *ndMenuView;
 @property (nonatomic,assign) NSInteger         ndMenuIndex;
-@property (nonatomic,strong) UITableView      *tableView;
-@property (nonatomic,strong) NSMutableArray   *menuArray;
  @end
 
 @implementation AwardSearchController{
@@ -116,24 +114,25 @@
         return;
     }
     
+    NSNumber *nub = [self.requestInfo valueForKey:@"mid"];
+    int Gid = [nub intValue];
 
-    
-    NSNumber *mid = [self.requestInfo valueForKey:@"mid"];
-    int Gid = [mid intValue];
     
     int uId = -1;
     if ([[UserModel shareInfo] isLogin]) {
         uId = [[UserModel shareInfo] uid];
     }
-
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
-    NSDictionary *paraDic = [HttpBody applyListBody:page rows:count uid:uId isMy:-1 gid:Gid isaward:-1 keyword:searchStr];
+    NSDictionary *paraDic = [HttpBody findApplyListByCondition:page rows:count fage:-1 eage:-1 uid:uId isMy:-1 gid:Gid isaward:-1 awardconfigId:-1 keyword:searchStr];
+    
     [ProgressHUD show:LOADING];
     
     [manager GET:URL_AwardUrl parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
+        
+        
         [_AStableView headerEndRefreshing];
         [_AStableView footerEndRefreshing];
         
@@ -172,7 +171,7 @@
             [self ASreducePage];
         }
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"failuer");
+        NSLog(@"failuer===%@",error);
         [ProgressHUD showError:CHECKNET];
         [_AStableView headerEndRefreshing];
         [_AStableView footerEndRefreshing];
@@ -267,37 +266,7 @@
         [ProgressHUD showError:CHECKNET];
     }];
 }
-//显示大图
-- (void)showBigPics:(SaiBean *)bean{
-    NSInteger count = bean.applySubArr.count;
-    
-    // 1.封装图片数据
-    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
-    for (int i = 0; i<count; i++) {
-        NSDictionary *dict = [bean.applySubArr objectAtIndex:i];
-        MJPhoto *photo = [[MJPhoto alloc] init];
-        
-        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectZero];
-        imgView.size = CGSizeMake(300, 300);
-        
-        photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"pic_url"]]];
-        photo.srcImageView = imgView; // 来源于哪个UIImageView
-        [photos addObject:photo];
-    }
-    
-    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
-    browser.photos = photos; // 设置所有的图片
-    browser.currentPhotoIndex = 0;
-    [browser show];
-}
 
-//显示更多
--(void)showMoreComment:(SaiBean *)bean{
-    bean.isShowMore = !bean.isShowMore;
-    
-    [_AStableView reloadData];
-    
-}
 
 
 @end

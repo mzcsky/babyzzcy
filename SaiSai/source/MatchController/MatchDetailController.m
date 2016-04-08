@@ -24,7 +24,7 @@
 #define MATCHDCCELL     @"MATCHDCCELL"
 #define MATCHCCELL      @"MATCHCCELL"
 #define MATCHDC_BASE_TAG        71300
-
+#define adViewHeight       190
 @interface MatchDetailController ()<UITableViewDataSource, UITableViewDelegate, AdvertViewDelegate, HomePageCellDelegate, BMControllerDelegate , UIWebViewDelegate>
 
 @property (nonatomic, retain) UITableView       *tableView;
@@ -611,6 +611,13 @@ self.navigationItem.rightBarButtonItem =rightBar;
     UIButton *btn = (UIButton *)sender;
     btn.selected = YES;
     self.type = btn.tag;
+    
+    CGFloat currentY = _tableView.contentOffset.y;
+    if (currentY > adViewHeight) {
+        _tableView.contentOffset = CGPointMake(0,adViewHeight);
+        
+    }
+    
     switch (btn.tag) {
         case MATCHDC_BASE_TAG:
         {               //参赛指导

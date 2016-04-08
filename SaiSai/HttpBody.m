@@ -173,31 +173,50 @@
 /*
  *  获奖作品查询接口
  */
-+ (NSDictionary *)applyListBody:(int)page rows:(int)rows  uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward  keyword:(NSString *)keyword{
-    
+/**
+ *  获奖作品查询
+ *
+ *  @param page    页数
+ *  @param rows    条数
+ *  @param uid     当前用户ID
+ *  @param gid     比赛ID
+ *  @param keyword 关键字查询
+ *
+ *  @return
+ */
++ (NSDictionary *)findApplyListByCondition:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward awardconfigId:(int)awardId keyword:(NSString *)keyword{
     NSMutableDictionary *pram = [NSMutableDictionary dictionary];
+    
     if (page >= 0) {
         [pram setObject:@(page) forKey:@"page"];
     }
     if (rows >= 0) {
         [pram setObject:@(rows) forKey:@"rows"];
     }
-    if (uid>=0) {
-        [pram setObject:@(uid) forKey:@"uid"];
+    if (fage>=0) {
+        [pram setObject:@(fage) forKey:@"fage"];
     }
-
+    if (eage>=0) {
+        [pram setObject:@(eage) forKey:@"eage"];
+    }
     if (isMy == 1) {
         [pram setObject:@(isMy) forKey:@"is_myapply"];
     }
+    if (awardId >= 0) {
+        [pram setObject:@(awardId) forKey:@"awardconfig_id"];
+    }
+
     if (gid>=0) {
         [pram setObject:@(gid) forKey:@"gid"];
     }
- 
+    if (uid>=0) {
+        [pram setObject:@(uid) forKey:@"uid"];
+    }
     [pram setObject:keyword forKey:@"keyword"];
+    
     return pram;
+    
 }
-
-
 
 /**
  *  获取参赛主题列表接口

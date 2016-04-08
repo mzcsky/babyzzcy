@@ -58,20 +58,15 @@
      *  判断是否是新版本，是现实引导页，否不显示引导页，直接加载登陆页面
      */
 
-    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     
-    NSString * oldVersion = [defaults objectForKey:@"oldVersion"];
-    NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    
-    if (![version isEqualToString:oldVersion])
+    if (![defaults valueForKey:@"isReadyRun"])
     {
         GuidePage * loadCtrller = [[GuidePage alloc] init];
         self.window.rootViewController = loadCtrller;
     }else{
         [self initMainViewController];
     }
-    [defaults setObject:version forKey:@"oldVersion"];
-    [defaults synchronize];
+
     
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
@@ -242,12 +237,12 @@ fetchCompletionHandler:(void
     NSMutableArray * tabCtrllers = [[NSMutableArray alloc] init];
     HomePageController * view1 = [[HomePageController alloc] init];
 
-    view1.title = @"重在参与";
+//    view1.title = @"重在参与";
     view1.mIsMainPage = YES ;
     [tabCtrllers addObject:view1];
     
     MatchController * view2= [[MatchController alloc] init];
-    view2.title = @"参赛主题";
+//    view2.title = @"参赛主题";
     [tabCtrllers addObject:view2];
     
     QingZiController *view3 = [[QingZiController alloc] init];

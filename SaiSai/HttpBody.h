@@ -253,22 +253,17 @@
  */
 + (NSDictionary *)getadlist:(int)page row:(int)rows gid:(int)gid;
 /**
- *  获奖主题搜索接口
+ *  获奖查询
  *
- *  @param page   页数 必填
- *  @param rows 每页个数 必填
- *  @param uid       当前用户id 可填
- *  @param isMy
- *  @param gid      比赛id  必填
- *  @param isaward
- *  @param keyword  关键字可填
+ *  @param page    页数
+ *  @param rows    作品条数
+ *  @param uid     当前用户ID
+ *  @param gid     比赛ID
+ *  @param keyword 关键字查询
  *
- *  @return 
+ *  @return
  */
-+ (NSDictionary *)applyListBody:(int)page rows:(int)rows uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward  keyword:(NSString *)keyword;
-
-
-
++ (NSDictionary *)findApplyListByCondition:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward awardconfigId:(int)awardId keyword:(NSString *)keyword;
 
 
 @end

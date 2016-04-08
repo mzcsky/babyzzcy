@@ -30,7 +30,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    // Do any additional setup after loading the view from its nib
+    
+    [defaults setObject:@"1" forKey:@"isReadyRun"];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     mScrollView  =[[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0,SCREEN_WIDTH, SCREEN_HEIGHT)];

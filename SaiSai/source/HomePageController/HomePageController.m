@@ -25,7 +25,9 @@
 #import "CustomButton.h"
 
 
-@interface HomePageController ()<NDHMenuViewDelegate,UITableViewDataSource,UITableViewDelegate,HomePageCellDelegate,AdvertViewDelegate>
+#define lunViewHeight 190.0
+
+@interface HomePageController ()<NDHMenuViewDelegate,UITableViewDataSource,UITableViewDelegate,HomePageCellDelegate,AdvertViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) NDHMenuView      *ndMenuView;
 @property (nonatomic, strong) NSMutableArray   *menuArray;
@@ -145,7 +147,7 @@
         
         _topBtnView = [[UIView alloc] init];
         
-        NSArray * btnArr = @[@"风采展示",@"获奖展示",];
+        NSArray * btnArr = @[@"  风采展示",@"  获奖展示",];
         NSArray * narImg = @[@"home_fengcai_normal.png",@"home_huojiang_normal.png"];
         NSArray * selImg = @[@"home_fengcai_Selected.png",@"home_huojiang_Selected.png"];
         CGFloat btnH = 40;
@@ -186,16 +188,15 @@
  *  @return 年龄
  */
 - (NDHMenuView *)ndMenuView{
-    
-    
+
     if (_ndMenuView == nil) {
-        
+
         //年龄分类
         if (!_ndMenuView) {
             _ndMenuView = [[NDHMenuView alloc] initWithFrame:CGRectMake(0, self.topBtnView.bottom, SCREEN_WIDTH, 39)];
             _ndMenuView.backgroundColor = [UIColor whiteColor];
             _ndMenuView.delegate = self;
-            
+
         }
     }
     return _ndMenuView;
@@ -217,6 +218,7 @@
             UIButton * otherBtn = (UIButton *)bnt;
             [otherBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             otherBtn.selected = !sender.selected;
+   
         }
     }
     
@@ -259,7 +261,7 @@
     custom.backgroundColor = [UIColor clearColor];
     [custom addTarget:self action:@selector(custom) forControlEvents:UIControlEventTouchUpInside];
     
-    [_tableView addSubview:custom];
+//    [_tableView addSubview:custom];
     /**
      *  搜索 和 地址选择按钮
      */
@@ -302,7 +304,8 @@
     
     btnView.layer.cornerRadius = 8;
     btnView.clipsToBounds = YES;
-    
+   
+
     [self.tableView addSubview:btnView];
 }
 
@@ -437,7 +440,7 @@
 - (AdvertView *)lunadView{
     
     if (_lunadView == nil) {
-        _lunadView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190) delegate:self withImageArr:_lunadSArray];
+        _lunadView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,lunViewHeight) delegate:self withImageArr:_lunadSArray];
     }
     return _lunadView;
 }
@@ -565,7 +568,7 @@
     if ([[UserModel shareInfo] isLogin]) {
         uId = [[UserModel shareInfo] uid];
     }
-    
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
@@ -588,12 +591,12 @@
                 }
                 _dataArray = [[NSMutableArray alloc] init];
             }
-            
             if (dataArr && dataArr.count > 0) {
                 for (int i = 0; i < dataArr.count; i++) {
                     SaiBean *bean = [SaiBean parseInfo:dataArr[i]];
                     if (bean.applySubArr && [bean.applySubArr isKindOfClass:[NSArray class]] && bean.applySubArr.count > 0) {
                         [_dataArray addObject:bean];
+                        
                     }
                 }
             }
@@ -683,8 +686,18 @@
 #pragma mark ==================== NDHMenuView delegate =======================
 #pragma mark =======年龄分类切换=====
 - (void)menuDidSelected:(int)index{
+    
+    
+    
+    CGFloat currentY = _tableView.contentOffset.y;
+    if (currentY > lunViewHeight) {
+        _tableView.contentOffset = CGPointMake(0,lunViewHeight);
+
+    }
     _ndMenuIndex = index;
     [self refreshDatas];
+
+    
 }
 #pragma mark
 #pragma mark ==============UITableView dataSource and delegate ===============
@@ -715,10 +728,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     if (_isTableView && section == 1) {
-        
+
         return self.ndMenuView.bottom + 1;
     }else if(!_isTableView && section == 1){
-        
+
         return self.topBtnView.frame.size.height;
     }
     
@@ -910,6 +923,7 @@
 -(void)refreshDatas{
     _currentPage = 1;
     [self getDataArrWithCurPage:1 andCount:[PAGE_COUNT intValue]];
+
 }
 
 /**
@@ -939,6 +953,8 @@
         _currentPage = 1;
     }
 }
+
+
 //This function is where all the magic happens
 //-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
 //
@@ -967,5 +983,5 @@
 //    [UIView commitAnimations];
 //    
 //}
-//
+
 @end

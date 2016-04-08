@@ -109,5 +109,7 @@
 
 #define HIDDEN_TAB      @"HIDDEN_TAB"
 #define SHOW_TAB        @"SHOW_TAB"
+#define defaults [NSUserDefaults standardUserDefaults]
+
 
 #endif

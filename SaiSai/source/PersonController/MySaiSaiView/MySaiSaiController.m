@@ -40,10 +40,12 @@
     
     return self;
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = NO;
 //    [self refreshCountData];
 }
+
 
 -(void)dealloc{
     [self removeNotification];
@@ -173,6 +175,7 @@
 
 #pragma mark
 #pragma mark ==============UITableView dataSource and delegate ===============
+//他的作品展
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIndentifier = HomePageCellIdentifier;
     HomePageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];

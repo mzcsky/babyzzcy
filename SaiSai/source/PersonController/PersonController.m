@@ -53,18 +53,21 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+    self.TheadView.hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_TAB object:nil];
     [_headIcon sd_setImageWithURL:[NSURL URLWithString:[[UserModel shareInfo] icon]]];
     _nameLabel.text = [[UserModel shareInfo] nickName];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
+//- (void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//}
 
 - (void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-49)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _tableView.backgroundColor = CLEARCOLOR;
+    
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -84,7 +87,6 @@
     _headIcon = [[UIImageView alloc] initWithFrame:CGRectMake(14, 4, 46, 46)];
     _headIcon.layer.cornerRadius = 23;
     _headIcon.clipsToBounds = YES;
-//    [_headIcon sd_setImageWithURL:[NSURL URLWithString:[[UserModel shareInfo] icon]]];
     [_headIcon sd_setImageWithURL:[NSURL URLWithString:[[UserModel shareInfo] icon]] placeholderImage:[UIImage imageNamed:@"ic_default_head_image.png"]];
     _headIcon.backgroundColor = BACKGROUND_COLOR;
     [view addSubview:_headIcon];
