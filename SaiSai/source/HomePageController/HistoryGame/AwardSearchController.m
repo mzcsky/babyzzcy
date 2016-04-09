@@ -60,7 +60,7 @@
 
 
 - (void)initTableView{
-    _AStableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    _AStableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-100)];
     _AStableView.backgroundColor = CLEARCOLOR;
     _AStableView.dataSource = self;
     _AStableView.delegate = self;
