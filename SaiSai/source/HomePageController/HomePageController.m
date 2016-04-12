@@ -25,7 +25,6 @@
 #import "CustomButton.h"
 
 
-#define lunViewHeight 190.0
 
 @interface HomePageController ()<NDHMenuViewDelegate,UITableViewDataSource,UITableViewDelegate,HomePageCellDelegate,AdvertViewDelegate,UIScrollViewDelegate>
 
@@ -259,9 +258,8 @@
      */
     CustomButton *custom = [[CustomButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-140, 0, 140, 140)];
     custom.backgroundColor = [UIColor clearColor];
-    [custom addTarget:self action:@selector(custom) forControlEvents:UIControlEventTouchUpInside];
+    [custom addTarget:self action:@selector(custom:) forControlEvents:UIControlEventTouchUpInside];
     
-//    [_tableView addSubview:custom];
     /**
      *  搜索 和 地址选择按钮
      */
@@ -327,7 +325,7 @@
 /**
  *  扇形点击事件
  */
--(void)custom{
+-(void)custom:(UIButton *)coustom{
     NSLog(@"扇形");
 }
 
@@ -365,7 +363,7 @@
     NSDictionary *paraDic = [HttpBody ageTypeListBody];
     [manager GET:URLADDRESS parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:operation.responseData options:kNilOptions error:nil];
-        NSLog(@"请求年龄分类结果:%@",jsonDic);
+//        NSLog(@"请求年龄分类导航结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[jsonDic objectForKey:@"data"]];
             if (dataArr && dataArr.count > 0) {
@@ -457,7 +455,7 @@
     [manager GET:URLADDRESS parameters:pram success:^(AFHTTPRequestOperation * operation, id response){
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取轮播列表接口结果:%@",resDict);
+//        NSLog(@"请求获取广告轮播列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {
@@ -505,7 +503,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+//        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {
@@ -581,7 +579,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参数作品数据结果:%@",jsonDic);
+//        NSLog(@"请求获取主界面参赛作品数据结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
             if (page == 1) {
@@ -637,7 +635,7 @@
         [_showTableView footerEndRefreshing];
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+//        NSLog(@"请求请求获奖展示主题列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {
@@ -686,18 +684,13 @@
 #pragma mark ==================== NDHMenuView delegate =======================
 #pragma mark =======年龄分类切换=====
 - (void)menuDidSelected:(int)index{
-    
-    
-    
+
     CGFloat currentY = _tableView.contentOffset.y;
     if (currentY > lunViewHeight) {
         _tableView.contentOffset = CGPointMake(0,lunViewHeight);
-
     }
     _ndMenuIndex = index;
     [self refreshDatas];
-
-    
 }
 #pragma mark
 #pragma mark ==============UITableView dataSource and delegate ===============

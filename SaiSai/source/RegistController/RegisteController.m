@@ -35,6 +35,8 @@
 @property (nonatomic, strong) UIButton          *selBtn;
 @property (nonatomic, strong) NSString         *lastYZM;
 
+@property (nonatomic, strong) UIButton         *sexBtn;
+
 
 @end
 
@@ -181,14 +183,15 @@
     
     [self initImgView:topH + 39.5];
     
-    UIButton *sexBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    sexBtn.frame = CGRectMake(SCREEN_WIDTH-100,topH, 90, 40);
-    [sexBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-    [sexBtn setTitleColor:XT_BLACKCOLOR forState:UIControlStateNormal];
-    [sexBtn setTitle:@"^" forState:UIControlStateNormal];
-    sexBtn.titleLabel.font = FONT(14);
-    [sexBtn addTarget:self action:@selector(sexBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:sexBtn];
+    _sexBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _sexBtn.frame = CGRectMake(SCREEN_WIDTH-100,topH, 90, 40);
+    [_sexBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [_sexBtn setTitleColor:XT_BLACKCOLOR forState:UIControlStateNormal];
+    [_sexBtn setImage:[UIImage imageNamed:@"mc_arrowDn"] forState:UIControlStateNormal];
+    [_sexBtn setImage:[UIImage imageNamed:@"mc_arrowUp"] forState:UIControlStateSelected];
+    _sexBtn.titleLabel.font = FONT(14);
+    [_sexBtn addTarget:self action:@selector(sexBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_scrollView addSubview:_sexBtn];
     
     return lab;
 }
@@ -200,7 +203,9 @@
 }
 
 //选择性别
--(void)sexBtnClick{
+-(void)sexBtnClick:(UIButton *)sender{
+    sender.selected = YES;
+
     [_mobileField resignFirstResponder];
     [_codeField resignFirstResponder];
     [_nickNameField resignFirstResponder];
@@ -224,8 +229,17 @@
 - (void)dataDidSelected:(NSString *)data index:(int)index{
     [_sexLab setText:data];
     _sexIndex = index;
+    self.sexBtn.selected = NO;
+    
 }
+/**
+ *  选中取消
+ */
+- (void)cancelSelect{
 
+    self.sexBtn.selected = NO;
+
+}
 /**
  *  获取验证码
  */

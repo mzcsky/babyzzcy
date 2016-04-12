@@ -113,6 +113,10 @@
 	<string>是否允许程序访问您的位置?</string>
 	<key>NSLocationWhenInUseDescription</key>
 	<string>是否允许程序访问您的位置?</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

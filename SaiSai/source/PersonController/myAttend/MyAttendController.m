@@ -60,11 +60,7 @@
     
      [self refreshDatas];
     
-//    AttendOrFansBean *bean = [[AttendOrFansBean alloc] init];
-//    bean.nickName = @"哈哈哈";
-//    
-//    _dataArray = [NSMutableArray arrayWithObjects:bean,bean,bean, nil];
-//    [_tableView reloadData];
+
     
 }
 

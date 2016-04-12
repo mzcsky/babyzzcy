@@ -110,16 +110,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (void)initData{
     self.imageArray = [[NSMutableArray alloc] init];
     self.areaArray = [[NSMutableArray alloc] init];
@@ -134,7 +124,7 @@
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
         NSLog(@"点击报名获取相关信息接口结果:%@",resDict);
         int status = [[resDict objectForKey:@"status"] intValue];
-        if (status == 1) {
+               if (status == 1) {
             [ProgressHUD dismiss];
             NSDictionary *data = [resDict objectForKey:@"data"];
             self.preData = [BMPreData analyseData:data];
@@ -948,7 +938,7 @@
     [manager GET:URLADDRESS parameters:pram success:^(AFHTTPRequestOperation * operation, id response){
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+//        NSLog(@"请求获取报名界面参赛主题列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {

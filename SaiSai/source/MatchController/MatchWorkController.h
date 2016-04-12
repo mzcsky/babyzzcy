@@ -10,4 +10,9 @@
 
 @interface MatchWorkController : XTViewController
 
+
+@property (nonatomic,strong) NSDictionary * requestInfo;
+
+-(id)initWithInfoGid:(NSDictionary*)info;
+
 @end

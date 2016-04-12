@@ -100,17 +100,14 @@
     }
     [APService setupWithOption:launchOptions];
 
-//    [APService setTags:nil alias:@"test1" callbackSelector:@selector(test1) target:self];
+    
     
     [self.window makeKeyAndVisible];
     return YES;
 }
 
 
-//-(void)test1{
-//    
-//    NSLog(@"====");
-//}
+
 -(void)registeUMShare{
     [UMSocialData setAppKey:@"5615258ce0f55aada0003022"];
     
@@ -133,9 +130,8 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the
 }
-
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -209,15 +205,10 @@ fetchCompletionHandler:(void
     // IOS 7 Support Required
     
     [APService handleRemoteNotification:userInfo];
-    //推送 网页跳转
-    NSString * url = userInfo[@"aps"][@"alert"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     
+    NSLog(@"推送----%@",userInfo);
+ 
     completionHandler(UIBackgroundFetchResultNewData);
-}
-- (void)application:(UIApplication *)application
-                didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
-    NSLog(@"DeviceToken 获取失败，原因：%@",error);
 }
 
 #pragma mark
@@ -237,12 +228,12 @@ fetchCompletionHandler:(void
     NSMutableArray * tabCtrllers = [[NSMutableArray alloc] init];
     HomePageController * view1 = [[HomePageController alloc] init];
 
-//    view1.title = @"重在参与";
     view1.mIsMainPage = YES ;
+    view1.title = @"风采展示";
     [tabCtrllers addObject:view1];
     
     MatchController * view2= [[MatchController alloc] init];
-//    view2.title = @"参赛主题";
+    view2.title = @"比赛测评";
     [tabCtrllers addObject:view2];
     
     QingZiController *view3 = [[QingZiController alloc] init];
@@ -250,7 +241,7 @@ fetchCompletionHandler:(void
     [tabCtrllers addObject:view3]; 
     
     PersonController * view4= [[PersonController alloc] init];
-    view4.title = @"我的";
+    view4.title = @"我";
     [tabCtrllers addObject:view4];
     
     NSMutableArray* naviCtrllers = [[NSMutableArray alloc] initWithCapacity:tabCtrllers.count];
@@ -292,6 +283,7 @@ fetchCompletionHandler:(void
             //显示登录页面
             [self showLoginController];
             return NO;
+            
         }
     }
     return YES;

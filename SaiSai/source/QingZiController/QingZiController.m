@@ -8,9 +8,10 @@
 
 #import "QingZiController.h"
 
-@interface QingZiController ()
+@interface QingZiController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIWebView     *webView;
+@property (nonatomic, strong) UIScrollView * Adscroll;
 
 @end
 

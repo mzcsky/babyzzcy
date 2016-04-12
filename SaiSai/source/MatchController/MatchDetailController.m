@@ -19,15 +19,23 @@
 #import "MatchCCell.h"
 #import "MatchCADBean.h"
 #import "MatchWorkController.h"
+
+
+
+
+
+
 #define HomePageCellIdentifier1 @"HomePageCellIdentifier1"
 
 #define MATCHDCCELL     @"MATCHDCCELL"
 #define MATCHCCELL      @"MATCHCCELL"
 #define MATCHDC_BASE_TAG        71300
-#define adViewHeight       190
 @interface MatchDetailController ()<UITableViewDataSource, UITableViewDelegate, AdvertViewDelegate, HomePageCellDelegate, BMControllerDelegate , UIWebViewDelegate>
 
 @property (nonatomic, retain) UITableView       *tableView;
+//@property (nonatomic, retain) XTTabBarController    *tabCtrl;
+
+
 
 @property (nonatomic, retain) AdvertView        *adView;
 
@@ -93,7 +101,8 @@
 }
 
 - (void)showGoldMatch{
-    MatchWorkController *ctrller = [[MatchWorkController alloc] init];
+    NSNumber *mid = [NSNumber numberWithInteger:self.fBean.mId];
+    MatchWorkController *ctrller = [[MatchWorkController alloc] initWithInfoGid:@{@"mid":mid}];
     ctrller.m_showBackBt = YES;
     ctrller.title = @"搜索作品";
     [self.navigationController pushViewController:ctrller animated:YES];
@@ -103,14 +112,14 @@
 
 -(void)initRightItem{
     
-UIButton *Item = [UIButton buttonWithType:UIButtonTypeCustom];
-Item.frame = CGRectMake(0, 8, 40, 40);
-[Item setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-[Item setImage:[UIImage imageNamed:@"ic_search.png"] forState:UIControlStateNormal];
-[Item setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
-[Item addTarget:self action:@selector(showGoldMatch) forControlEvents:UIControlEventTouchUpInside];
-UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:Item];
-self.navigationItem.rightBarButtonItem =rightBar;
+    UIButton *Item = [UIButton buttonWithType:UIButtonTypeCustom];
+    Item.frame = CGRectMake(0, 8, 40, 40);
+    [Item setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [Item setImage:[UIImage imageNamed:@"ic_search.png"] forState:UIControlStateNormal];
+    [Item setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
+    [Item addTarget:self action:@selector(showGoldMatch) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:Item];
+    self.navigationItem.rightBarButtonItem =rightBar;
 }
 
 -(void)shareBgClick{
@@ -176,15 +185,15 @@ self.navigationItem.rightBarButtonItem =rightBar;
 
 - (void)initAdView{
     if (self.adView == nil) {
-        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190)];
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight)];
         contentView.backgroundColor = CLEARCOLOR;
         _tableView.tableHeaderView = contentView;
         
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190)];
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight)];
         bgView.backgroundColor = [UIColor whiteColor];
         [contentView addSubview:bgView];
 
-        self.adView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190) delegate:self withImageArr:self.adSArray];
+        self.adView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight) delegate:self withImageArr:self.adSArray];
         [bgView addSubview:self.adView];
     }
 }
@@ -543,7 +552,7 @@ self.navigationItem.rightBarButtonItem =rightBar;
         [_tableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参数作品数据结果:%@",jsonDic);
+//        NSLog(@"请求获取关注人作品数据结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             
             NSArray *banner = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"banner"]];
@@ -613,8 +622,8 @@ self.navigationItem.rightBarButtonItem =rightBar;
     self.type = btn.tag;
     
     CGFloat currentY = _tableView.contentOffset.y;
-    if (currentY > adViewHeight) {
-        _tableView.contentOffset = CGPointMake(0,adViewHeight);
+    if (currentY > lunViewHeight) {
+        _tableView.contentOffset = CGPointMake(0,lunViewHeight);
         
     }
     
@@ -658,14 +667,30 @@ self.navigationItem.rightBarButtonItem =rightBar;
         btn.selected = NO;
     }
 }
+//报名点击事件
 
 - (void)baomingAction{
-    BMController *ctrl = [[BMController alloc] init];
-    ctrl.title = @"报名";
-    ctrl.m_showBackBt = YES;
-    ctrl.delegate = self;
-    ctrl.fBean = self.fBean;
-    [self.navigationController pushViewController:ctrl animated:YES];
+//
+    if (![[UserModel shareInfo] isLogin]) {
+        //显示登录页面
+        LoginViewController *ctrlLog = [[LoginViewController alloc] init];
+        ctrlLog.title = @"学习活动比赛平台";
+        ctrlLog.m_showBackBt = YES;
+        ctrlLog.m_hasNav = NO;
+        XTCustomNavigationController* naviCtrller = [[XTCustomNavigationController alloc] initWithRootViewController:ctrlLog];
+        [self presentViewController:naviCtrller animated:YES completion:^{
+            
+        }];
+        
+    }else{
+        BMController *ctrl = [[BMController alloc] init];
+        ctrl.title = @"报名";
+        ctrl.m_showBackBt = YES;
+        ctrl.delegate = self;
+        ctrl.fBean = self.fBean;
+        [self.navigationController pushViewController:ctrl animated:YES];
+        
+    }
 }
 
 

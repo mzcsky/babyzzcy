@@ -19,7 +19,6 @@
 #import "HistoryGameController.h"
 
 #define MATCHCELL       @"MATCHCELL"
-#define adViewHeight 190.0
 @interface MatchController ()<UITableViewDataSource, UITableViewDelegate, AdvertViewDelegate, NDHMenuViewDelegate>
 
 @property (nonatomic, retain) UITableView       *tableView;
@@ -49,7 +48,6 @@
     [super viewDidLoad];
     if ([[UserModel shareInfo] isLogin]) {
         //登录后初始化页面
-//        [self initRightItem];
         [self initData];
         [self initTableView];
         [self getData];
@@ -75,20 +73,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
 }
 
-- (void)initRightItem{
-//    MyNavButton *rightItem = [MyNavButton buttonWithType:UIButtonTypeCustom];
-//    UIButton *rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
-//    rightItem.frame = CGRectMake(0, 0, 35, 35);
-//    [rightItem setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-////    [rightItem setTitle:@"获奖展示" forState:UIControlStateNormal];
-//    [rightItem setImage:[UIImage imageNamed:@"icon_huojiangzhanshi_fang_53"] forState:UIControlStateNormal];
-//    [rightItem setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
-//    [rightItem addTarget:self action:@selector(showGold) forControlEvents:UIControlEventTouchUpInside];
-////    rightItem.titleLabel.font = Bold_FONT(9);
-//    
-//    UIBarButtonItem * rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
-//    self.navigationItem.rightBarButtonItem = rightBar;
-}
+
 
 - (void)initData{
     self.page = 1;
@@ -114,16 +99,16 @@
 
 - (void)initAdView{
     if (self.adView == nil) {
-        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, adViewHeight)];
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight)];
         contentView.backgroundColor = CLEARCOLOR;
         _tableView.tableHeaderView = contentView;
         
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, adViewHeight)];
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight)];
         bgView.backgroundColor = [UIColor whiteColor];
         [contentView addSubview:bgView];
         
-        self.adView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, adViewHeight) delegate:self withImageArr:self.adSArray];
-        [bgView addSubview:self.adView];  //CGRectMake(14, 5, SCREEN_WIDTH-58, 79)
+        self.adView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight) delegate:self withImageArr:self.adSArray];
+        [bgView addSubview:self.adView];
     }
 }
 
@@ -237,7 +222,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+//        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {
@@ -323,7 +308,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+//        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {
@@ -385,8 +370,8 @@
     MatchClaBean *bean = [_claArray objectAtIndex:index];
     _projId = [bean.mID intValue];
     CGFloat currentY = _tableView.contentOffset.y;
-    if (currentY >adViewHeight) {
-        _tableView.contentOffset = CGPointMake(0, 190);
+    if (currentY >lunViewHeight) {
+        _tableView.contentOffset = CGPointMake(0, lunViewHeight);
     }
     [self refreshData];
 }

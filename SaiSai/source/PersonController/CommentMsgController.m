@@ -66,6 +66,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     [_tableView registerClass:[CMCCell class] forCellReuseIdentifier:CMCCELL];
     [self.view addSubview:_tableView];
 }
@@ -109,7 +110,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:operation.responseData options:kNilOptions error:nil];
-        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+//        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {

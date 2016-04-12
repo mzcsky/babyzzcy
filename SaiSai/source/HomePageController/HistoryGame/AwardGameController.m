@@ -12,6 +12,8 @@
 #import "HomePageCell.h"
 #import "AwardLevelBean.h"
 #import "AwardSearchController.h"
+
+
 @interface AwardGameController ()<UITableViewDataSource,UITableViewDelegate,NDHMenuViewDelegate,HomePageCellDelegate>
 
 @property (nonatomic,strong) UITableView      *tableView;
@@ -82,6 +84,11 @@
 #pragma mark
 #pragma mark ==================== NDHMenuView delegate =======================
 -(void)menuDidSelected:(int)index{
+    CGFloat currentY = _tableView.contentOffset.y;
+    if (currentY > 0) {
+        _tableView.contentOffset = CGPointMake(0,0);
+        
+    }
     _ndMenuIndex = index;
     [self refreshDataA];
     
@@ -218,7 +225,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参数作品数据结果:%@",jsonDic);
+//        NSLog(@"请求获取获奖展示作品数据结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
             if (page == 1){

@@ -23,7 +23,7 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = self.bounds;
         button.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
-        [button addTarget:self action:@selector(cancleAction) forControlEvents:UIControlEventTouchUpInside];
+//        [button addTarget:self action:@selector(cancleAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
         
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, self.height-306, SCREEN_WIDTH, 306)];

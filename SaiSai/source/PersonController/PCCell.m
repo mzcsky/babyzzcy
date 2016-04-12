@@ -17,13 +17,15 @@
         [self initIcon];
         [self initNameLabel];
         
+        
+        
         UIImage *image2 = [UIImage imageNamed:@"pc_arrow_r.png"];
         UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-10-image2.size.width, (46-image2.size.height)/2, image2.size.width, image2.size.height)];
         [arrow setImage:image2];
         [self.contentView addSubview:arrow];
         
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 39.5, SCREEN_WIDTH, 0.5)];
-        line.backgroundColor = [UIColor grayColor];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 39.5, SCREEN_WIDTH, 1)];
+        line.backgroundColor = LINECOLOR;
         [self.contentView addSubview:line];
     }
     return self;

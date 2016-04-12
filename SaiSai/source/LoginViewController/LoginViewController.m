@@ -68,7 +68,7 @@
     image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(10, 65, 10, 20)];
     UIImage *mobile = [UIImage imageNamed:@"login_mobile.png"];
     UIImage *psw = [UIImage imageNamed:@"login_psw.png"];
-    
+
     UIView *mview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 51, 42)];
     UIImageView *mlview = [[UIImageView alloc] initWithFrame:CGRectMake(-2, 0, 51, 42)];
     mlview.contentMode = UIViewContentModeCenter;
@@ -127,7 +127,7 @@
     UIImage *wbImage = [UIImage imageNamed:@"login_weibo.png"];
     UIImage *qqImage = [UIImage imageNamed:@"login_qq.png"];
     NSArray *array = [NSArray arrayWithObjects:wxImage, wbImage, qqImage, nil];
-    NSArray *names = [NSArray arrayWithObjects:@"微信", @"微博", @"QQ", nil];
+    NSArray *names = [NSArray arrayWithObjects:@"微信登陆", @"微博登陆", @"QQ登陆", nil];
     loImage = [loImage resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     reImage = [reImage resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     

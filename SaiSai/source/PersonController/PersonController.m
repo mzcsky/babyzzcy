@@ -20,7 +20,7 @@
 
 #define PCCELL      @"PCCELL"
 
-@interface PersonController ()<UITableViewDataSource, UITableViewDelegate>
+@interface PersonController ()<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, retain) UITableView   *tableView;
 
@@ -53,21 +53,20 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_TAB object:nil];
+    
     self.navigationController.navigationBarHidden = YES;
     self.TheadView.hidden = NO;
-    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_TAB object:nil];
+    
     [_headIcon sd_setImageWithURL:[NSURL URLWithString:[[UserModel shareInfo] icon]]];
     _nameLabel.text = [[UserModel shareInfo] nickName];
 }
 
-//- (void)viewDidAppear:(BOOL)animated{
-//    [super viewDidAppear:animated];
-//}
+
 
 - (void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-69)];
     _tableView.backgroundColor = CLEARCOLOR;
-    
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -76,39 +75,51 @@
 }
 
 - (void)initTHeader{
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 194)];
     headerView.backgroundColor = CLEARCOLOR;
     _tableView.tableHeaderView = headerView;
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 54)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 154)];
     view.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:view];
     
-    _headIcon = [[UIImageView alloc] initWithFrame:CGRectMake(14, 4, 46, 46)];
+    
+    for (int i = 0 ; i < 2 ; i++) {
+        
+        CGFloat lineY = i == 0 ? headerView.height-1 : view.bottom+1  ;
+        UIView *linView = [[UIView alloc] initWithFrame:CGRectMake(0, lineY, SCREEN_WIDTH, 1)];
+        linView.backgroundColor = LINECOLOR;
+        [headerView addSubview:linView];
+    }
+
+    
+    _headIcon = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH-55)/2, (view.height-55)/2, 60, 60)];
     _headIcon.layer.cornerRadius = 23;
     _headIcon.clipsToBounds = YES;
     [_headIcon sd_setImageWithURL:[NSURL URLWithString:[[UserModel shareInfo] icon]] placeholderImage:[UIImage imageNamed:@"ic_default_head_image.png"]];
     _headIcon.backgroundColor = BACKGROUND_COLOR;
+    UITapGestureRecognizer* gesture=[[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(showPSIC)];
+   _headIcon.userInteractionEnabled = YES;
+   
+    gesture.numberOfTouchesRequired = 1; //手指数
+    gesture.numberOfTapsRequired = 1; //tap次数
+    gesture.delegate = self;
+    CALayer * layer = [_headIcon layer];
+    layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    layer.borderWidth = 1.0f;
+
+    [_headIcon addGestureRecognizer:gesture];
     [view addSubview:_headIcon];
     
-    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, SCREEN_WIDTH-105, 54)];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _headIcon.bottom, SCREEN_WIDTH, 55)];
     _nameLabel.backgroundColor = CLEARCOLOR;
     _nameLabel.font = FONT(15);
     _nameLabel.text = [[UserModel shareInfo] nickName];
-    _nameLabel.textAlignment = NSTextAlignmentLeft;
+    _nameLabel.textAlignment = NSTextAlignmentCenter;
     _nameLabel.textColor = [UIColor blackColor];
     [view addSubview:_nameLabel];
     
-    UIImage *image = [UIImage imageNamed:@"pc_arrow_r.png"];
-    UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-10-image.size.width, (54-image.size.height)/2, image.size.width, image.size.height)];
-    [arrow setImage:image];
-    [view addSubview:arrow];
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.backgroundColor = CLEARCOLOR;
-    btn.frame = CGRectMake(0, 0, SCREEN_WIDTH, 60);
-    [btn addTarget:self action:@selector(showPSIC) forControlEvents:UIControlEventTouchUpInside];
-    [headerView addSubview:btn];
+
 }
 
 - (void)initTFooter{
@@ -160,12 +171,10 @@
     if (!cell) {
         cell = [[PCCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PCCELL];
     }
-    
     NSString *icon = [self.iconArray objectAtIndex:indexPath.row];
     NSString *name = [self.nameArray objectAtIndex:indexPath.row];
     [cell setIcon:icon];
     [cell setName:name];
-    
     return cell;
 }
 
@@ -175,6 +184,7 @@
         case 0:
         {
             CommentMsgController *ctrl = [[CommentMsgController alloc] init];
+            
             ctrl.title = @"评论消息";
             ctrl.m_showBackBt = YES;
             [self.navigationController pushViewController:ctrl animated:YES];
