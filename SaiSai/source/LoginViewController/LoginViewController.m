@@ -41,11 +41,16 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
     self.muarray = [NSMutableArray array];
     [self initScrollView];
     [self initLogoView];
     [self initInputView];
     [self initButtons];
+    
+    
+
     
 }
 

@@ -247,12 +247,15 @@
     if(stade)
     {
         CGRect rect = CGRectMake(0, self.view.frame.size.height+21, SCREEN_WIDTH, mTabBarHeigth);
+        mTabBarView.backgroundColor = [UIColor purpleColor];
         mTabBarView.frame = rect;
     }
     else
     {
         
         CGRect rect = CGRectMake(0, self.view.frame.size.height - mTabBarHeigth, SCREEN_WIDTH, mTabBarHeigth);
+        mTabBarView.backgroundColor = [UIColor blackColor];
+
         mTabBarView.frame = rect;
     }
     

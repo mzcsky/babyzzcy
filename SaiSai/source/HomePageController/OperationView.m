@@ -56,20 +56,19 @@
 //    
 //    _zanBtn = [self setOperationBtn:attendBg.frame andTag:1];
 //    [self addSubview:_zanBtn];
+    
     UIImageView *attendBg = [self setBgImg:0];
-    
     [self addSubview:attendBg];
-
-    UILabel *attendLab = [self setLabel:@"点赞" andRect:CGRectMake(0, 32+30,49, 15) andTextColor:XT_BLACKCOLOR];
-    [self addSubview:attendLab];
-
-    
-    
     _zanVabg = [self setValueBg:@"hp_attention.png" andRect:CGRectMake(attendBg.width/2-10,4, 19, 18)];
     
     [attendBg addSubview:_zanVabg];
+        UILabel *attendLab = [self setLabel:@"点赞" andRect:CGRectMake(0, 32+30,49, 15) andTextColor:XT_BLACKCOLOR];
+    [self addSubview:attendLab];
+//    _zanBtn = [self setOperationBtn:attendBg.frame andTag:1];
+    _zanBtn = [self setOperationBtn:CGRectMake(0, 22, 70, 60) andTag:1];
+//    _zanBtn.titleLabel.font = FONT(10);
+
     
-    _zanBtn = [self setOperationBtn:attendBg.frame andTag:1];
     [self addSubview:_zanBtn];
 }
 
@@ -92,15 +91,16 @@
  *  ～～～～～～～～创建分享view
  */
 -(void)initShareView{
-    UIImageView *shareBg = [self setBgImg:_alertBtn.right + _seperateWidth];
+    UIImageView *shareBg = [self setBgImg:_alertBtn.right + _seperateWidth-10];
     [self addSubview:shareBg];
-    UILabel *attendLab = [self setLabel:@"分享" andRect:CGRectMake(shareBg.left, 32+30,shareBg.width, 15) andTextColor:XT_BLACKCOLOR];
-    [self addSubview:attendLab];
     
-    UIImageView *valueImg = [self setValueBg:@"hp_shareBgG@2x" andRect:CGRectMake(shareBg.width/2-8,6, 18, 17)];
+    UIImageView *valueImg = [self setValueBg:@"hp_shareBgG@2x" andRect:CGRectMake(shareBg.width/2-18,6, 18, 17)];
     [shareBg addSubview:valueImg];
+    UILabel *attendLab = [self setLabel:@"分享" andRect:CGRectMake(shareBg.left-10, 32+30,shareBg.width, 15) andTextColor:XT_BLACKCOLOR];
+    [self addSubview:attendLab];
     //设置按钮
-    _shareBtn = [self setOperationBtn:shareBg.frame andTag:3];
+    _shareBtn = [self setOperationBtn:CGRectMake(shareBg.left-10,22, 70, 60) andTag:3];
+    
     [self addSubview:_shareBtn];
 }
 
@@ -108,7 +108,7 @@
  *  ～～～～～～～～创建热度view
  */
 -(void)initHotView{
-    UIImageView *hotBg = [self setBgImg:_shareBtn.right+78 + _seperateWidth];
+    UIImageView *hotBg = [self setBgImg:_shareBtn.right+50 + _seperateWidth];
     [self addSubview:hotBg];
 //    UILabel *attendLab = [self setLabel:@"热度" andRect:CGRectMake(hotBg.left, 32+30,hotBg.width, 15) andTextColor:XT_BLACKCOLOR];
 //    [self addSubview:attendLab];
@@ -286,6 +286,7 @@
     
     NSDictionary *parm = [HttpBody updateFavourWithUId:[[UserModel shareInfo] uid] pId:[_saiBean.sId intValue] status:favor];
     [ProgressHUD show:LOADING];
+    
     
     [manager GET:URLADDRESS parameters:parm success:^(AFHTTPRequestOperation * operation, id response) {
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];

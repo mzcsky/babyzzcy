@@ -7,12 +7,16 @@
 //
 
 #import "QingZiController.h"
+#import "QingZiCell.h"
 
-@interface QingZiController ()<UIScrollViewDelegate>
+@interface QingZiController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UIWebView     *webView;
 @property (nonatomic, strong) UIScrollView * Adscroll;
 
+@property (nonatomic, strong) UITableView * tabw;
+
+@property (nonatomic, strong) NSArray * dataArr;
 @end
 
 @implementation QingZiController
@@ -34,6 +38,8 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.zzcyer.com"]];
     [_webView loadRequest:request];
+    
 }
+
 
 @end

@@ -30,6 +30,8 @@
 @implementation PersonInfoController
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
 }
 
 - (void)viewDidLoad {

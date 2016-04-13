@@ -75,7 +75,7 @@
 }
 
 - (void)initTHeader{
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 194)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 174)];
     headerView.backgroundColor = CLEARCOLOR;
     _tableView.tableHeaderView = headerView;
     
@@ -86,9 +86,11 @@
     
     for (int i = 0 ; i < 2 ; i++) {
         
-        CGFloat lineY = i == 0 ? headerView.height-1 : view.bottom+1  ;
+        CGFloat lineY = i == 0 ? headerView.height-1 : view.bottom+1 ;
+
         UIView *linView = [[UIView alloc] initWithFrame:CGRectMake(0, lineY, SCREEN_WIDTH, 1)];
         linView.backgroundColor = LINECOLOR;
+        
         [headerView addSubview:linView];
     }
 
