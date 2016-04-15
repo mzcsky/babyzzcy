@@ -112,7 +112,7 @@
 //    [self addSubview:attendLab];
     UIImageView *valueImgg = [self setValueBg:@"redu.png" andRect:CGRectMake(hotBg.width/2, 6, 16, 18)];
     [hotBg addSubview:valueImgg];
-    _hotNumLab = [self setLabel:@"0" andRect:CGRectMake(48, valueImgg.bottom+2, 49, 15) andTextColor:XT_BLACKCOLOR];
+    _hotNumLab = [self setLabel:@"0" andRect:CGRectMake(10, valueImgg.bottom+2, hotBg.width, 15) andTextColor:XT_BLACKCOLOR];
     [hotBg addSubview:_hotNumLab];
 }
 
