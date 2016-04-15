@@ -59,14 +59,12 @@
     
     UIImageView *attendBg = [self setBgImg:0];
     [self addSubview:attendBg];
-    _zanVabg = [self setValueBg:@"hp_attention.png" andRect:CGRectMake(attendBg.width/2-10,4, 19, 18)];
+    _zanVabg = [self setValueBg:@"hp_attention.png" andRect:CGRectMake(attendBg.width/2,4, 19, 18)];
     
     [attendBg addSubview:_zanVabg];
-        UILabel *attendLab = [self setLabel:@"点赞" andRect:CGRectMake(0, 32+30,49, 15) andTextColor:XT_BLACKCOLOR];
+        UILabel *attendLab = [self setLabel:@"点赞" andRect:CGRectMake(attendBg.width/2,32, 20, 15) andTextColor:XT_BLACKCOLOR];
     [self addSubview:attendLab];
-//    _zanBtn = [self setOperationBtn:attendBg.frame andTag:1];
-    _zanBtn = [self setOperationBtn:CGRectMake(0, 22, 70, 60) andTag:1];
-//    _zanBtn.titleLabel.font = FONT(10);
+    _zanBtn = [self setOperationBtn:CGRectMake(0, 0, self.width/3, 50) andTag:1];
 
     
     [self addSubview:_zanBtn];
@@ -91,15 +89,15 @@
  *  ～～～～～～～～创建分享view
  */
 -(void)initShareView{
-    UIImageView *shareBg = [self setBgImg:_alertBtn.right + _seperateWidth-10];
+    UIImageView *shareBg = [self setBgImg:_zanBtn.right];
     [self addSubview:shareBg];
     
-    UIImageView *valueImg = [self setValueBg:@"hp_shareBgG@2x" andRect:CGRectMake(shareBg.width/2-18,6, 18, 17)];
+    UIImageView *valueImg = [self setValueBg:@"hp_shareBgG@2x" andRect:CGRectMake(shareBg.width/2,5, 18, 17)];
     [shareBg addSubview:valueImg];
-    UILabel *attendLab = [self setLabel:@"分享" andRect:CGRectMake(shareBg.left-10, 32+30,shareBg.width, 15) andTextColor:XT_BLACKCOLOR];
+    UILabel *attendLab = [self setLabel:@"分享" andRect:CGRectMake(_zanBtn.right+shareBg.width/2, 32,20, 15) andTextColor:XT_BLACKCOLOR];
     [self addSubview:attendLab];
     //设置按钮
-    _shareBtn = [self setOperationBtn:CGRectMake(shareBg.left-10,22, 70, 60) andTag:3];
+    _shareBtn = [self setOperationBtn:CGRectMake(_zanBtn.right,0, self.width/3, 50) andTag:3];
     
     [self addSubview:_shareBtn];
 }
@@ -108,13 +106,13 @@
  *  ～～～～～～～～创建热度view
  */
 -(void)initHotView{
-    UIImageView *hotBg = [self setBgImg:_shareBtn.right+50 + _seperateWidth];
+    UIImageView *hotBg = [self setBgImg:_shareBtn.right];
     [self addSubview:hotBg];
 //    UILabel *attendLab = [self setLabel:@"热度" andRect:CGRectMake(hotBg.left, 32+30,hotBg.width, 15) andTextColor:XT_BLACKCOLOR];
 //    [self addSubview:attendLab];
-    UIImageView *valueImgg = [self setValueBg:@"redu.png" andRect:CGRectMake(hotBg.width/3-1, 6, 16, 18)];
+    UIImageView *valueImgg = [self setValueBg:@"redu.png" andRect:CGRectMake(hotBg.width/2, 6, 16, 18)];
     [hotBg addSubview:valueImgg];
-    _hotNumLab = [self setLabel:@"0" andRect:CGRectMake(0, valueImgg.bottom-3, hotBg.width, hotBg.height+3) andTextColor:XT_BLACKCOLOR];
+    _hotNumLab = [self setLabel:@"0" andRect:CGRectMake(48, valueImgg.bottom+2, 49, 15) andTextColor:XT_BLACKCOLOR];
     [hotBg addSubview:_hotNumLab];
 }
 
@@ -122,9 +120,8 @@
  *  创建背景
  */
 -(UIImageView *)setBgImg:(CGFloat)left{
-    UIImageView *bgImg = [[UIImageView alloc] initWithFrame:CGRectMake(left, 6+30, 49, 24)];
+    UIImageView *bgImg = [[UIImageView alloc] initWithFrame:CGRectMake(left, 6, self.width/3, 24)];
     bgImg.image = [UIImage imageNamed:@""];
-//    bgImg.image = [UIImage imageNamed:@"hp_operateBg"];
     return bgImg;
 }
 

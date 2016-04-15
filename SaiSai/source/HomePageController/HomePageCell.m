@@ -115,7 +115,7 @@
         descriptionLab.textColor = XT_BLACKCOLOR;
         [self.contentView addSubview:descriptionLab];
         
-        _oTView = [[OperationView alloc] initWithFrame:CGRectMake(bigPicture.left, 310, bigPicture.width, 50)];
+        _oTView = [[OperationView alloc] initWithFrame:CGRectMake(bigPicture.left, picNameLab.bottom, bigPicture.width, 50)];
         _oTView.backgroundColor = CLEARCOLOR;
         [self.contentView addSubview:_oTView];
         
@@ -176,7 +176,7 @@
 //    }
 //    else{
         descriptionLab.hidden = YES;;
-        _oTView.frame         = CGRectMake(bigPicture.left, 280, bigPicture.width, 50);
+        _oTView.frame         = CGRectMake(bigPicture.left, picNameLab.bottom, bigPicture.width, 50);
 
     //    }
     
@@ -191,13 +191,13 @@
 //        [commentView setCommentArr:(int)bean.commentsArr.count];   //设置评论内容
         CGFloat cVHeight = [commentView countHeight:bean.commentsArr];
         commentView.frame = CGRectMake(bigPicture.left, _oTView.bottom, bigPicture.width,cVHeight);  //330 360
-        contenView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _oTView.bottom+cVHeight); //330  360
+        contenView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _oTView.bottom); //330  360
         [commentView.moreBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     else{
         //信息大小
         commentView.hidden = YES;
-        contenView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _oTView.bottom+30);  //330  360
+        contenView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _oTView.bottom);  //330  360
     }
     
     //是否关注 0：未关注 1：已关注 2 ：自己的作品
