@@ -15,6 +15,7 @@
 
 
 @protocol MyFansCellDelegate <NSObject>
+@optional
 -(void)UesrHeaderClickedfans:(AttendOrFansBean*)bean;
 
 /**
@@ -32,7 +33,7 @@
     
     AttendOrFansBean *aFBean;
 }
-@property (nonatomic,assign) id<MyFansCellDelegate> delegate;
+@property (nonatomic,weak) id<MyFansCellDelegate> delegate;
 
 -(void)setCellInfo:(AttendOrFansBean *)bean;
 

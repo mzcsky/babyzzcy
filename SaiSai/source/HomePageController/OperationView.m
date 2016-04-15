@@ -76,14 +76,14 @@
  *  ～～～～～～～～创建修改view
  */
 -(void)initAlertView{
-    UIImageView *alertBg = [self setBgImg:_zanBtn.right + _seperateWidth];
+//    UIImageView *alertBg = [self setBgImg:_zanBtn.right + _seperateWidth];
 //    [self addSubview:alertBg];
-    UILabel *attendLab = [self setLabel:@"修改" andRect:CGRectMake(alertBg.left, 32,alertBg.width, 15) andTextColor:XT_BLACKCOLOR];
+//    UILabel *attendLab = [self setLabel:@"修改" andRect:CGRectMake(alertBg.left, 32,alertBg.width, 15) andTextColor:XT_BLACKCOLOR];
 //    [self addSubview:attendLab];
-    UIImageView *valueImg = [self setValueBg:@"hp_alertBg.png" andRect:CGRectMake(alertBg.width/2-7,2, 15, 20)];
+//    UIImageView *valueImg = [self setValueBg:@"hp_alertBg.png" andRect:CGRectMake(alertBg.width/2-7,2, 15, 20)];
 //    [alertBg addSubview:valueImg];
     
-    _alertBtn = [self setOperationBtn:alertBg.frame andTag:2];
+//    _alertBtn = [self setOperationBtn:alertBg.frame andTag:2];
 //    [self addSubview:_alertBtn];
 }
 

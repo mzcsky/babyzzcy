@@ -18,6 +18,5 @@
 
 +(NSString *) jsonStringWithObject:(id) object;
 
-+(void) jsonTest;
 
 @end

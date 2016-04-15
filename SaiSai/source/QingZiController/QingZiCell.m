@@ -38,9 +38,9 @@
 
     QingZiCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
-    if (!cell) {
+//    if (!cell) {
         cell = [[QingZiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
+//    }
     cell.indexPath = indexPath;
     
     return cell;

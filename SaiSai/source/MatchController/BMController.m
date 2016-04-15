@@ -896,7 +896,7 @@
         [formData appendPartWithFileData:data name:@"file[]" fileName:imageName mimeType:@"image/png"];
     } success:^(AFHTTPRequestOperation * operation, id response) {
         
-        NSString *string= [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+//        NSString *string= [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
         NSLog(@"上传图片结果:%@",resDict);
         //解析数据

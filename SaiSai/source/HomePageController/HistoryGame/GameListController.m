@@ -79,7 +79,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    SaiBean *bean = [self.tArray objectAtIndex:indexPath.row];
+//    SaiBean *bean = [self.tArray objectAtIndex:indexPath.row];
 
 }
 
@@ -97,7 +97,7 @@
 }
 
 - (void)getData{
-    NSDictionary *pram = [HttpBody applyListBody:(int)self.page rows:[PAGE_COUNT intValue] fage:-1 eage:-1 uid:-1 isMy:-1 gid:_matchBean.mId isaward:1 awardconfigId:-1 keyword:@""];
+    NSDictionary *pram = [HttpBody applyListBody:(int)self.page rows:[PAGE_COUNT intValue] fage:-1 eage:-1 uid:-1 isMy:-1 gid:(int)_matchBean.mId isaward:1 awardconfigId:-1 keyword:@""];
     
     [ProgressHUD show:LOADING];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

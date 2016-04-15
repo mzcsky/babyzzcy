@@ -30,7 +30,7 @@
 #define MATCHDCCELL     @"MATCHDCCELL"
 #define MATCHCCELL      @"MATCHCCELL"
 #define MATCHDC_BASE_TAG        71300
-@interface MatchDetailController ()<UITableViewDataSource, UITableViewDelegate, AdvertViewDelegate, HomePageCellDelegate, BMControllerDelegate , UIWebViewDelegate>
+@interface MatchDetailController ()<UITableViewDataSource, UITableViewDelegate, AdvertViewDelegate, BMControllerDelegate , UIWebViewDelegate, HomePageCellDelegate>
 
 @property (nonatomic, retain) UITableView       *tableView;
 //@property (nonatomic, retain) XTTabBarController    *tabCtrl;

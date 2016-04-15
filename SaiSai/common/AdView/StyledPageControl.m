@@ -176,14 +176,14 @@
 				if (gap==2)
 				{
 					break;
-					total_width = self._numberOfPages*_diameter + (self._numberOfPages-1)*gap;
+//					total_width = self._numberOfPages*_diameter + (self._numberOfPages-1)*gap;
 				}
 			}
 			
 			if (_diameter==2)
 			{
 				break;
-				total_width = self._numberOfPages*_diameter + (self._numberOfPages-1)*gap;
+//				total_width = self._numberOfPages*_diameter + (self._numberOfPages-1)*gap;
 			}
 		}
 		

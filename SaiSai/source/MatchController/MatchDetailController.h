@@ -8,7 +8,6 @@
 
 #import "XTViewController.h"
 #import "MatchCCBean.h"
-
 @interface MatchDetailController : XTViewController<UMSocialUIDelegate>
 
 @property (nonatomic, retain) MatchCCBean   *fBean;

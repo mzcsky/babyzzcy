@@ -163,8 +163,8 @@
     }
     
     CGRect visibleBounds = _photoScrollView.bounds;
-	int firstIndex = (int)floorf((CGRectGetMinX(visibleBounds)+kPadding*2) / CGRectGetWidth(visibleBounds));
-	int lastIndex  = (int)floorf((CGRectGetMaxX(visibleBounds)-kPadding*2-1) / CGRectGetWidth(visibleBounds));
+	NSInteger firstIndex = (int)floorf((CGRectGetMinX(visibleBounds)+kPadding*2) / CGRectGetWidth(visibleBounds));
+	NSInteger lastIndex  = (int)floorf((CGRectGetMaxX(visibleBounds)-kPadding*2-1) / CGRectGetWidth(visibleBounds));
     if (firstIndex < 0) firstIndex = 0;
     if (firstIndex >= _photos.count) firstIndex = _photos.count - 1;
     if (lastIndex < 0) lastIndex = 0;
@@ -187,7 +187,7 @@
 	
 	for (NSUInteger index = firstIndex; index <= lastIndex; index++) {
 		if (![self isShowingPhotoViewAtIndex:index]) {
-			[self showPhotoViewAtIndex:index];
+			[self showPhotoViewAtIndex:(int)index];
 		}
 	}
 }

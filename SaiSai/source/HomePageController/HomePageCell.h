@@ -17,7 +17,7 @@
 
 @class HomePageCell;
 @protocol HomePageCellDelegate <NSObject>
-
+@optional
 -(void)attentionClick:(SaiBean *)bean;
 
 - (void)showBigPics:(SaiBean *)bean;
@@ -54,7 +54,7 @@
 }
 
 @property (nonatomic,strong) OperationView       *oTView;
-@property (nonatomic,assign) id<HomePageCellDelegate> delegate;
+@property (nonatomic,weak) id<HomePageCellDelegate> delegate;
 
 -(void)setCellInfo:(SaiBean *)bean;
 -(CGFloat)returnHeight:(SaiBean *)bean;

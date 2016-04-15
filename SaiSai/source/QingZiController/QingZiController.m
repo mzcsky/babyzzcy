@@ -9,10 +9,9 @@
 #import "QingZiController.h"
 #import "QingZiCell.h"
 
-@interface QingZiController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface QingZiController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UIWebView     *webView;
-@property (nonatomic, strong) UIScrollView * Adscroll;
 
 @property (nonatomic, strong) UITableView * tabw;
 
