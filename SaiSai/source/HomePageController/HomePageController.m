@@ -290,7 +290,6 @@
         
         button.tag = i;
         
-        //        [button setImage:[UIImage imageNamed:@"ic_search.png"] forState:UIControlStateNormal];
         [button setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
         [button addTarget:self action:@selector(showGoldS:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -439,6 +438,7 @@
     
     if (_lunadView == nil) {
         _lunadView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,lunViewHeight) delegate:self withImageArr:_lunadSArray];
+        _lunadView.backgroundColor = [UIColor whiteColor];
     }
     return _lunadView;
 }

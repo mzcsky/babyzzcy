@@ -132,6 +132,10 @@
 		63EC32261C1F2CDE004D1CAD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EC32251C1F2CDE004D1CAD /* Security.framework */; };
 		63EC32281C1F2CF6004D1CAD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EC32271C1F2CF6004D1CAD /* libz.tbd */; };
 		63EC322A1C1F2D43004D1CAD /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63EC32291C1F2D43004D1CAD /* PushConfig.plist */; };
+		6E207A8C1CC4836500B686A9 /* ActionAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E207A851CC4836500B686A9 /* ActionAdView.m */; };
+		6E207A8D1CC4836500B686A9 /* ActivityDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E207A871CC4836500B686A9 /* ActivityDetailController.m */; };
+		6E207A8E1CC4836500B686A9 /* QingZiTitleScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E207A891CC4836500B686A9 /* QingZiTitleScroll.m */; };
+		6E207A8F1CC4836500B686A9 /* SixBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E207A8B1CC4836500B686A9 /* SixBtnCell.m */; };
 		6E2F22101C844B900040B9F6 /* UsermsgController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2F220F1C844B900040B9F6 /* UsermsgController.m */; };
 		6E2F22121C84A0240040B9F6 /* ic_default_head_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E2F22111C84A0240040B9F6 /* ic_default_head_image.png */; };
 		6E2FA25B1CB6459F00016D42 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2FA25A1CB6459F00016D42 /* CustomButton.m */; };
@@ -531,6 +535,14 @@
 		63EC32251C1F2CDE004D1CAD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		63EC32271C1F2CF6004D1CAD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		63EC32291C1F2D43004D1CAD /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		6E207A841CC4836500B686A9 /* ActionAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionAdView.h; sourceTree = "<group>"; };
+		6E207A851CC4836500B686A9 /* ActionAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionAdView.m; sourceTree = "<group>"; };
+		6E207A861CC4836500B686A9 /* ActivityDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailController.h; sourceTree = "<group>"; };
+		6E207A871CC4836500B686A9 /* ActivityDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailController.m; sourceTree = "<group>"; };
+		6E207A881CC4836500B686A9 /* QingZiTitleScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingZiTitleScroll.h; sourceTree = "<group>"; };
+		6E207A891CC4836500B686A9 /* QingZiTitleScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingZiTitleScroll.m; sourceTree = "<group>"; };
+		6E207A8A1CC4836500B686A9 /* SixBtnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SixBtnCell.h; sourceTree = "<group>"; };
+		6E207A8B1CC4836500B686A9 /* SixBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SixBtnCell.m; sourceTree = "<group>"; };
 		6E2F220E1C844B900040B9F6 /* UsermsgController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsermsgController.h; sourceTree = "<group>"; };
 		6E2F220F1C844B900040B9F6 /* UsermsgController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsermsgController.m; sourceTree = "<group>"; };
 		6E2F22111C84A0240040B9F6 /* ic_default_head_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_default_head_image.png; sourceTree = "<group>"; };
@@ -1315,6 +1327,14 @@
 				6E4939F51CBDFB7500F3464D /* QingZiController.m */,
 				6E4939F11CBCF4A600F3464D /* QingZiCell.h */,
 				6E4939F21CBCF4A600F3464D /* QingZiCell.m */,
+				6E207A841CC4836500B686A9 /* ActionAdView.h */,
+				6E207A851CC4836500B686A9 /* ActionAdView.m */,
+				6E207A8A1CC4836500B686A9 /* SixBtnCell.h */,
+				6E207A8B1CC4836500B686A9 /* SixBtnCell.m */,
+				6E207A881CC4836500B686A9 /* QingZiTitleScroll.h */,
+				6E207A891CC4836500B686A9 /* QingZiTitleScroll.m */,
+				6E207A861CC4836500B686A9 /* ActivityDetailController.h */,
+				6E207A871CC4836500B686A9 /* ActivityDetailController.m */,
 			);
 			path = QingZiController;
 			sourceTree = "<group>";
@@ -2150,6 +2170,7 @@
 				E8CE08D81B9FD21100E9B29E /* NSString+HXAddtions.m in Sources */,
 				F56AA8FA1B821FD200E1DC5A /* UserModel.m in Sources */,
 				6EEAE0AF1C855B8000F619BD /* MyUsermsgViewController.m in Sources */,
+				6E207A8D1CC4836500B686A9 /* ActivityDetailController.m in Sources */,
 				6E2FA25B1CB6459F00016D42 /* CustomButton.m in Sources */,
 				F52AB8351B7F77B900BF1A86 /* main.m in Sources */,
 				6333D2691C095F96000613B1 /* MJRefreshHeaderView.m in Sources */,
@@ -2179,6 +2200,7 @@
 				F52AB8931B7F81B400BF1A86 /* MatchController.m in Sources */,
 				F57E2D2F1BA062120018B0BA /* CityBean.m in Sources */,
 				E8741C3F1B9DDE5600ECD9FF /* HistoryGameController.m in Sources */,
+				6E207A8E1CC4836500B686A9 /* QingZiTitleScroll.m in Sources */,
 				F5B1A9BE1B846AFD009D6366 /* UIView+XT.m in Sources */,
 				6333D2721C095F96000613B1 /* NDHMenuView.m in Sources */,
 				6333D25C1C095F96000613B1 /* NSString+Empty.m in Sources */,
@@ -2194,6 +2216,8 @@
 				F5F7307C1B98953800FA9B76 /* BMPreData.m in Sources */,
 				6333D2AA1C095F96000613B1 /* UIAlertView+AFNetworking.m in Sources */,
 				E8B6AC161B95EA2700F104D5 /* SettingViewCell.m in Sources */,
+				6E207A8F1CC4836500B686A9 /* SixBtnCell.m in Sources */,
+				6E207A8C1CC4836500B686A9 /* ActionAdView.m in Sources */,
 				6333D2801C095F96000613B1 /* SDWebImageManager+MJ.m in Sources */,
 				6E4939F31CBCF4A600F3464D /* QingZiCell.m in Sources */,
 				E89304141B8C60CF006A4C1E /* HomePageCell.m in Sources */,

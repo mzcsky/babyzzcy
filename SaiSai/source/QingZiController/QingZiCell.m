@@ -14,113 +14,87 @@
 
 @property (nonatomic, strong) NSIndexPath * indexPath;
 
-@property (nonatomic, strong) UIImageView * adImgView;
+@property (nonatomic, weak) UIView * lineV;
+@property (nonatomic, strong) UIImageView * imgView;
+@property (nonatomic, strong) UILabel * activityLab;
+@property (nonatomic, strong) UILabel * agLab;
 
-@property (nonatomic, strong) NSArray * btnArr;
-@property (nonatomic, strong) NSArray * titleArr;
+
+
 
 
 @end
 
 @implementation QingZiCell
 
-- (NSArray *)titleArr
-{
-    if (!_titleArr) {
-        _titleArr = @[@"艺术课堂",@"演出展览",@"出游日期",@"拉客的看",@"我去欧文",@"配需机构"];
-    }
-    return _titleArr;
-}
+
 
 + (instancetype)valueWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 
     static NSString * cellID = @"QingZiCell";
-
+   
+    
     QingZiCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    
-//    if (!cell) {
+   
+    if (!cell) {
         cell = [[QingZiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//    }
-    cell.indexPath = indexPath;
-    
+    }
+
     return cell;
 }
-
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
 
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        UIView * lineV = [[UIView alloc] init];
+        lineV.backgroundColor = [UIColor lightGrayColor];
+        self.lineV = lineV;
+        _imgView = [[UIImageView alloc] init];
+        _imgView.backgroundColor = [UIColor greenColor];
         
-        NSInteger section = self.indexPath.section;
-        NSInteger row = self.indexPath.row;
         
-        if (section==0) {
-            if (row==0) {
-                [self.contentView addSubview:self.adImgView];
-
-            }else{
-            
-                [self createBtn];
-            }
-        }else{
+        _activityLab = [[UILabel alloc] init];
+        _activityLab.textColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:20/255.0 alpha:1.0];
+        _activityLab.text = @"活动名称";
+        _activityLab.font = FONT(20);
+        _activityLab.textAlignment = NSTextAlignmentLeft;
         
-            
-        }
+        _agLab = [[UILabel alloc]init];
+        _agLab.textColor =[UIColor colorWithRed:20/255.0 green:20/255.0 blue:20/255.0 alpha:1.0];
+        NSString *sex = @"巧克力";
+        NSString *taijian = @"麦芽糖";
+        NSString *str = [NSString stringWithFormat:@"性别：%@ | 姓名：%@",sex,taijian];
+        
+        _agLab.text = str;
+        _agLab.font = FONT(13);
+        _agLab.textAlignment = NSTextAlignmentLeft;
+        
+        [self.contentView addSubview:_imgView];
+        [self.contentView addSubview:_activityLab];
+        [self.contentView addSubview:_agLab];
+        [self.contentView addSubview:lineV];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
     }
     
     return self;
 }
 
-- (void)createBtn{
-    
-    NSMutableArray * buttonArr = [NSMutableArray array];
-    for (int i = 0; i < self.titleArr.count; i ++) {
-        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:self.titleArr[i] forState:UIControlStateNormal];
-        btn.titleLabel.font = FONT(15);
-        [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"download_img"] forState:UIControlStateNormal];
-        btn.tag = i;
-        
-        [buttonArr addObject:btn];
-        
-        [self.contentView addSubview:btn];
-    }
-    self.btnArr = buttonArr;
-}
-- (UIImageView *)adImgView{
 
-    if (!_adImgView) {
-        _adImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bigPic_default"]];
-    }
-    return _adImgView;
-}
 - (void)layoutSubviews{
-
     [super layoutSubviews];
+    self.lineV.frame = CGRectMake(0, self.frame.size.height-1, self.frame.size.width, 1);
     
-    NSInteger section = self.indexPath.section;
-    NSInteger row = self.indexPath.row;
+    self.imgView.frame = CGRectMake(0, 0, self.width, self.height-60);
     
-    if (section==0) {
-        if (row==0) {
-            self.adImgView.frame = self.bounds;
-
-            
-        }else{
-            
-            for (UIButton * btn in self.btnArr) {
-                
-                CGFloat btnW = (SCREEN_WIDTH - btnCount*2*kMargic)/btnCount;
-                CGFloat btnX = kMargic + (btnW+kMargic*2)*(btn.tag%btnCount);
-                CGFloat btnH = btnW;
-                CGFloat btnY = kMargic + (btnH+kMargic)*(btn.tag/btnCount);
-                
-                btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
-                
-            }
-        }
-    }
-
+    CGSize activiSize = textSizeFont(self.activityLab.text, _activityLab.font, SCREEN_WIDTH-20, 0);
+    
+    self.activityLab.frame = CGRectMake(10, _imgView.bottom+10, activiSize.width, activiSize.height);
+    
+    CGSize agLabSize = textSizeFont(self.agLab.text, _agLab.font, SCREEN_WIDTH-20, 0);
+    
+    self.agLab.frame = CGRectMake(10, _activityLab.bottom+5, agLabSize.width, agLabSize.height );
+    
 }
+
 @end

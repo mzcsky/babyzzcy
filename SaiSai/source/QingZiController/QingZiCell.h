@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-#define kMargic    (20*SCREEN_WIDTH)
-#define btnCount 3  //每行显示按钮个数
+
 
 @interface QingZiCell : UITableViewCell
 
 + (instancetype)valueWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
+
+
+
+
 @end

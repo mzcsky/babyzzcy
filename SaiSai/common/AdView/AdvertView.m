@@ -33,12 +33,23 @@
     if (array.count>0) {
         NSString *first = [_imageArr firstObject];
         NSString *last = [_imageArr lastObject];
-        [_imageArr addObject:first];
-        [_imageArr insertObject:last atIndex:0];
-        _currentIndex = 1;
-        NSInteger count = _imageArr.count-2;
-        _pageControl.currentPage = _currentIndex-1;
-        [_pageControl setNumberOfPages:(int)count];
+        
+        if (array.count == 1) {
+            _currentIndex = 1;
+            NSInteger count = _imageArr.count;
+            _pageControl.currentPage = _currentIndex-1;
+            [_pageControl setNumberOfPages:(int)count];
+        }else{
+            [_imageArr addObject:first];
+            [_imageArr insertObject:last atIndex:0];
+            _currentIndex = 1;
+            NSInteger count = _imageArr.count-2;
+            _pageControl.currentPage = _currentIndex-1;
+            [_pageControl setNumberOfPages:(int)count];
+        }
+        
+        
+        
     }
     
     //刷新数据
@@ -129,7 +140,7 @@
     if (_isUN) {
         return;
     }
-    if (_imageArr.count>0) {
+    if (_imageArr.count>1) {
         NSIndexPath *index = [NSIndexPath indexPathForItem:1 inSection:0];
         [_collectionView scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     }
@@ -137,8 +148,12 @@
 
 #pragma mark - 3秒换图片
 - (void) handleTimer: (NSTimer *) timer{
-    NSIndexPath *index = [NSIndexPath indexPathForItem:_pageControl.currentPage+2 inSection:0];
-    [_collectionView scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+    
+    if (_imageArr.count>1) {
+        NSIndexPath *index = [NSIndexPath indexPathForItem:_pageControl.currentPage+2 inSection:0];
+        [_collectionView scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+
+    }
 }
 
 - (void)dealloc{
@@ -263,8 +278,6 @@
         [self addSubview:imageView1];
     }
     imageView1.frame = frame;
-//    [imageView1 setImageWithURL:[NSURL URLWithString:[imageURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
-//               placeholderImage:[UIImage imageNamed:@"default_ad.png"]];
     [imageView1 sd_setImageWithURL:[NSURL URLWithString:[imageURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"default_ad.png"]];
     imageView1.tag = 1001;
     [self bringSubviewToFront:imageView1];

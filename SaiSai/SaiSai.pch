@@ -115,5 +115,13 @@
 #define SHOW_TAB        @"SHOW_TAB"
 #define defaults [NSUserDefaults standardUserDefaults]
 
+// 计算文本的尺寸
+#define textSizeFont(text, fontSizeFont, width, height) [text boundingRectWithSize:CGSizeMake(width, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:fontSizeFont} context:nil].size;
+
+
+
+
+
+
 
 #endif
