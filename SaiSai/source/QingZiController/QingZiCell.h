@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PlistModel.h"
 
 
 @interface QingZiCell : UITableViewCell
@@ -15,6 +15,7 @@
 + (instancetype)valueWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
 
 
+@property (nonatomic, strong) PlistModel * model;
 
 
 @end

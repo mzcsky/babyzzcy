@@ -14,7 +14,9 @@
 #import "ActionAdView.h"
 #import "MatchDetailController.h"
 #import "NDHMenuView.h"
-#import "SearchWorkController.h"
+#import "QingZiSearch.h"
+
+
 #define titleScrollHeight 50
 #define CellHeight lunViewHeight + 60
 @interface QingZiController ()<UITableViewDelegate,UITableViewDataSource,SixBtnCellDelegate,ActionAdViewDelegate, NDHMenuViewDelegate >
@@ -31,6 +33,9 @@
 @property (nonatomic, strong) UIScrollView * adScrollView;
 @property (nonatomic, strong) UIPageControl * pageControl;
 
+
+@property (nonatomic, strong) NSArray * plistArr;
+
 @end
 
 @implementation QingZiController
@@ -44,7 +49,26 @@
 }
 
 
+- (NSArray *)plistArr{
 
+    if (!_plistArr) {
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"QingZiPist" ofType:@"plist"];
+        NSArray * plitArr = [[NSArray alloc] initWithContentsOfFile:plistPath];
+        
+        NSMutableArray * tempArr = [NSMutableArray array];
+        for (NSDictionary * dic in plitArr) {
+            PlistModel * model = [PlistModel valueWithDic:dic];
+            
+            [tempArr addObject:model];
+
+        }
+        
+        _plistArr = tempArr;
+        [self.tableView reloadData];
+    }
+    
+    return _plistArr;
+}
 - (void)viewDidLoad{
     [super viewDidLoad];
 
@@ -62,6 +86,8 @@
     
     [self.view addSubview:_tableView];
     
+    [self plistArr];
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -69,7 +95,7 @@
     return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return (section==0) ? 2 : 5;
+    return (section==0) ? 2 : _plistArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -122,14 +148,18 @@
         return cell;
         
     }else if(indexPath.section==0 && indexPath.row==1){
+        
         SixBtnCell * cell = [SixBtnCell valueWithTableView:tableView];
         cell.delegate = self;
         return cell;
+  
     }else{
+        PlistModel * model = [_plistArr objectAtIndex:indexPath.row];
         
         QingZiCell * cell = [QingZiCell valueWithTableView:tableView indexPath:indexPath];
         
-        
+        cell.model = model;
+
         return cell;
     }
 }
@@ -265,6 +295,7 @@
 }
 
 #pragma ----mark----ActionAdViewDelegate
+//点击事件
 - (void)imageViewClickAtIndex:(NSInteger)index{
     if (!_adImgArr || _adImgArr.count==0) {
         return;
@@ -290,9 +321,9 @@
     if (sender.tag == 0) {
         
     }else{
-        SearchWorkController *ctrller = [[SearchWorkController alloc] init];
+        QingZiSearch *ctrller = [[QingZiSearch alloc] init];
         ctrller.m_showBackBt = YES;
-        ctrller.title = @"搜索作品";
+        ctrller.title = @"活动搜索";
         [self.navigationController pushViewController:ctrller animated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
     }

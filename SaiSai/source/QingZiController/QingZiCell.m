@@ -7,7 +7,7 @@
 //
 
 #import "QingZiCell.h"
-
+//公里 地区 | 日期  可选 年龄
 
 
 @interface QingZiCell ()
@@ -16,8 +16,11 @@
 
 @property (nonatomic, weak) UIView * lineV;
 @property (nonatomic, strong) UIImageView * imgView;
+
 @property (nonatomic, strong) UILabel * activityLab;
 @property (nonatomic, strong) UILabel * agLab;
+@property (nonatomic, strong) NSString * areaStr;
+//@property (nonatomic, strong) NSString * <#name#>;
 
 
 
@@ -61,11 +64,7 @@
         
         _agLab = [[UILabel alloc]init];
         _agLab.textColor =[UIColor colorWithRed:20/255.0 green:20/255.0 blue:20/255.0 alpha:1.0];
-        NSString *sex = @"巧克力";
-        NSString *taijian = @"麦芽糖";
-        NSString *str = [NSString stringWithFormat:@"性别：%@ | 姓名：%@",sex,taijian];
         
-        _agLab.text = str;
         _agLab.font = FONT(13);
         _agLab.textAlignment = NSTextAlignmentLeft;
         
@@ -80,9 +79,16 @@
     return self;
 }
 
+- (void)setModel:(PlistModel *)model{
+
+    _model = model;
+    _agLab.text = [NSString stringWithFormat:@"%@ | %@ | %@ | %@",model.name,model.age,model.area,model.time];
+}
 
 - (void)layoutSubviews{
+    
     [super layoutSubviews];
+    
     self.lineV.frame = CGRectMake(0, self.frame.size.height-1, self.frame.size.width, 1);
     
     self.imgView.frame = CGRectMake(0, 0, self.width, self.height-60);

@@ -159,6 +159,9 @@
 		6EBC9F5B1CA134320088F94C /* SearchWorkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC9F5A1CA134320088F94C /* SearchWorkController.m */; };
 		6EEAE0AF1C855B8000F619BD /* MyUsermsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */; };
 		6EEAE0B21C85690800F619BD /* MyFansMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0B11C85690800F619BD /* MyFansMsgViewController.m */; };
+		6EF7E7FA1CC5D3A000CCC376 /* QingZiPist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EF7E7F91CC5D3A000CCC376 /* QingZiPist.plist */; };
+		6EF7E7FD1CC5D58C00CCC376 /* PlistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7E7FC1CC5D58C00CCC376 /* PlistModel.m */; };
+		6EF7E8001CC5DA6A00CCC376 /* QingZiSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7E7FF1CC5DA6A00CCC376 /* QingZiSearch.m */; };
 		E8741C2D1B9D68BB00ECD9FF /* RecommendToFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8741C2C1B9D68BB00ECD9FF /* RecommendToFriendController.m */; };
 		E8741C331B9D6A5700ECD9FF /* s_lianjie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8741C2F1B9D6A5700ECD9FF /* s_lianjie@2x.png */; };
 		E8741C341B9D6A5700ECD9FF /* s_sina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8741C301B9D6A5700ECD9FF /* s_sina@2x.png */; };
@@ -576,6 +579,11 @@
 		6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUsermsgViewController.m; sourceTree = "<group>"; };
 		6EEAE0B01C85690800F619BD /* MyFansMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFansMsgViewController.h; sourceTree = "<group>"; };
 		6EEAE0B11C85690800F619BD /* MyFansMsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFansMsgViewController.m; sourceTree = "<group>"; };
+		6EF7E7F91CC5D3A000CCC376 /* QingZiPist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = QingZiPist.plist; sourceTree = "<group>"; };
+		6EF7E7FB1CC5D58C00CCC376 /* PlistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistModel.h; sourceTree = "<group>"; };
+		6EF7E7FC1CC5D58C00CCC376 /* PlistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistModel.m; sourceTree = "<group>"; };
+		6EF7E7FE1CC5DA6A00CCC376 /* QingZiSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingZiSearch.h; sourceTree = "<group>"; };
+		6EF7E7FF1CC5DA6A00CCC376 /* QingZiSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingZiSearch.m; sourceTree = "<group>"; };
 		E8741C2B1B9D68BB00ECD9FF /* RecommendToFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendToFriendController.h; sourceTree = "<group>"; };
 		E8741C2C1B9D68BB00ECD9FF /* RecommendToFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendToFriendController.m; sourceTree = "<group>"; };
 		E8741C2F1B9D6A5700ECD9FF /* s_lianjie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "s_lianjie@2x.png"; sourceTree = "<group>"; };
@@ -1327,6 +1335,11 @@
 				6E4939F51CBDFB7500F3464D /* QingZiController.m */,
 				6E4939F11CBCF4A600F3464D /* QingZiCell.h */,
 				6E4939F21CBCF4A600F3464D /* QingZiCell.m */,
+				6EF7E7FB1CC5D58C00CCC376 /* PlistModel.h */,
+				6EF7E7FC1CC5D58C00CCC376 /* PlistModel.m */,
+				6EF7E7F91CC5D3A000CCC376 /* QingZiPist.plist */,
+				6EF7E7FE1CC5DA6A00CCC376 /* QingZiSearch.h */,
+				6EF7E7FF1CC5DA6A00CCC376 /* QingZiSearch.m */,
 				6E207A841CC4836500B686A9 /* ActionAdView.h */,
 				6E207A851CC4836500B686A9 /* ActionAdView.m */,
 				6E207A8A1CC4836500B686A9 /* SixBtnCell.h */,
@@ -2007,6 +2020,7 @@
 				E89DE1E41B8D9AC800F98ED3 /* hp_commentBg@2x.png in Resources */,
 				63D9F9991BDA825B00A9A8C2 /* guide3_568.png in Resources */,
 				F589F01E1B9873B600EF8814 /* bm_add@2x.png in Resources */,
+				6EF7E7FA1CC5D3A000CCC376 /* QingZiPist.plist in Resources */,
 				63E281621C0D79E20017B265 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				6E2F22121C84A0240040B9F6 /* ic_default_head_image.png in Resources */,
 				63E2815D1C0D79E20017B265 /* UMShareEditViewController.xib in Resources */,
@@ -2159,6 +2173,7 @@
 				6333D2641C095F96000613B1 /* MJPhotoView.m in Sources */,
 				6333D2701C095F96000613B1 /* NDDatePicker.m in Sources */,
 				6333D2A01C095F96000613B1 /* AFHTTPRequestOperationManager.m in Sources */,
+				6EF7E8001CC5DA6A00CCC376 /* QingZiSearch.m in Sources */,
 				F52AB8751B7F79DE00BF1A86 /* XTTabBarController.m in Sources */,
 				6333D2771C095F96000613B1 /* PXAlertView.m in Sources */,
 				F52AB8381B7F77B900BF1A86 /* AppDelegate.m in Sources */,
@@ -2225,6 +2240,7 @@
 				F590B6781B9AF43D009BD9E0 /* MPMController.m in Sources */,
 				6333D2A71C095F96000613B1 /* AFURLResponseSerialization.m in Sources */,
 				E8B6AC091B95CE9300F104D5 /* MyAttendCell.m in Sources */,
+				6EF7E7FD1CC5D58C00CCC376 /* PlistModel.m in Sources */,
 				6333D27A1C095F96000613B1 /* NSData+ImageContentType.m in Sources */,
 				6333D27E1C095F96000613B1 /* SDWebImageDownloader.m in Sources */,
 				F589F0141B984FC400EF8814 /* BMController.m in Sources */,

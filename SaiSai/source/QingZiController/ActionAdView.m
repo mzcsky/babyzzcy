@@ -149,7 +149,7 @@
             [button setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
             [button addTarget:self action:@selector(SearchClick:) forControlEvents:UIControlEventTouchUpInside];
             
-            button.alpha = 0.4;
+            button.alpha = 0.2;
             [btnView addSubview:button];
         }
         
