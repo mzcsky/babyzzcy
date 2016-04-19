@@ -18,9 +18,11 @@
     if (self = [super init]) {
         self.name = dic[@"name"];
         self.age = dic[@"age"];
-
+        self.total = dic[@"total"];
+        self.price = dic[@"price"];
+        self.reg = dic [@"reg"];
         self.time = dic[@"time"];
-
+        self.spell = dic[@"spell"];
         self.area = dic[@"area"];
 
     }

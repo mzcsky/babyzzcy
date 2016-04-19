@@ -164,6 +164,7 @@
     
     picNameLab.text = [NSString stringWithFormat:@"  作品名称:%@",bean.title];
     picNameLab.textAlignment = NSTextAlignmentCenter;
+    
     gtitleNameLab.text = [NSString stringWithFormat:@"%@",bean.g_title];
     gtitleNameLab.textAlignment = NSTextAlignmentCenter;
 //    创作意图修改

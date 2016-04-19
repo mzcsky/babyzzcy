@@ -14,6 +14,10 @@
 @property (nonatomic, strong) NSString * age;
 @property (nonatomic, strong) NSString * area;
 @property (nonatomic, strong) NSString * time;
+@property (nonatomic, strong) NSString * price;
+@property (nonatomic, strong) NSString * reg;
+@property (nonatomic, strong) NSString * total;
+@property (nonatomic, strong) NSString * spell;
 
 - (instancetype)initWithDic:(NSDictionary *)dic;
 + (instancetype)valueWithDic:(NSDictionary *)dic;
