@@ -15,8 +15,7 @@
 #import "MatchDetailController.h"
 #import "NDHMenuView.h"
 #import "QingZiSearch.h"
-
-
+#import "QingZiBean.h"
 #define titleScrollHeight 50
 #define CellHeight lunViewHeight + 60
 @interface QingZiController ()<UITableViewDelegate,UITableViewDataSource,SixBtnCellDelegate,ActionAdViewDelegate, NDHMenuViewDelegate >
@@ -27,11 +26,17 @@
 @property (nonatomic, strong) NSArray * dataArr;
 
 @property (nonatomic, strong) NSArray * adImgArr;
+@property (nonatomic, strong) NSArray * adButtonArr;
+
+
+
 
 @property (nonatomic, strong) NSTimer * timer;
 
 @property (nonatomic, strong) UIScrollView * adScrollView;
 @property (nonatomic, strong) UIPageControl * pageControl;
+
+
 
 
 @property (nonatomic, strong) NSArray * plistArr;
@@ -74,7 +79,7 @@
 
     //获取轮播图数据
     [self adImgArr];
-    
+    [self adButton];
     //添加tabbleView
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-20-49) style:UITableViewStylePlain];
     _tableView.delegate   = self;
@@ -149,8 +154,9 @@
         
     }else if(indexPath.section==0 && indexPath.row==1){
         
-        SixBtnCell * cell = [SixBtnCell valueWithTableView:tableView];
+        SixBtnCell * cell = [SixBtnCell valueWithTableView:tableView dataArr:_adButtonArr];
         cell.delegate = self;
+        
         return cell;
   
     }else{
@@ -328,6 +334,44 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
     }
 }
+
+#pragma mark -----------获取button数据---------------
+
+- (NSArray *)adButton{
+    if (!_adButtonArr) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+        
+        NSMutableArray * dataArr = [NSMutableArray array];
+
+        [manager GET:URL_Button parameters:@{} success:^(AFHTTPRequestOperation * operation, id response){
+            NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
+            NSLog(@"请求按钮数据结果:%@",jsonDic);
+            if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
+                NSArray *adArray = [[NSArray alloc] initWithArray:[jsonDic objectForKey:@"data"] ];
+
+                for (int i = 0; i < adArray.count; i++) {
+                    if (adArray.count<=1) {
+                        QingZiBean *bean = [QingZiBean QZparseInfo:adArray[i]];
+                        [dataArr addObject:bean];
+                    }else{
+                    QingZiBean *bean = [QingZiBean QZparseInfo:adArray[i]];
+                        [dataArr addObject:bean];
+                        }
+                }
+                [_tableView reloadData];
+            }
+            _adButtonArr = dataArr;
+        } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+            NSLog(@"failuer");
+        }];
+    }
+    return _adButtonArr;
+
+}
+
+
+
 
 
 @end

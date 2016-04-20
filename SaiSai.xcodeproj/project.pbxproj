@@ -155,6 +155,7 @@
 		6E4939F61CBDFB7500F3464D /* QingZiController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4939F51CBDFB7500F3464D /* QingZiController.m */; };
 		6E6207101C97BDC900F8DA31 /* mc_arrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */; };
 		6E6207191C999F9600F8DA31 /* SSButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6207181C999F9600F8DA31 /* SSButtonView.m */; };
+		6E91C5F11CC749D900673B94 /* QingZiBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C5F01CC749D900673B94 /* QingZiBean.m */; };
 		6EBC9F581CA131BE0088F94C /* ic_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC9F571CA131BE0088F94C /* ic_search.png */; };
 		6EBC9F5B1CA134320088F94C /* SearchWorkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC9F5A1CA134320088F94C /* SearchWorkController.m */; };
 		6EEAE0AF1C855B8000F619BD /* MyUsermsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */; };
@@ -572,6 +573,8 @@
 		6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mc_arrowUp@2x.png"; sourceTree = "<group>"; };
 		6E6207171C999F9600F8DA31 /* SSButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSButtonView.h; sourceTree = "<group>"; };
 		6E6207181C999F9600F8DA31 /* SSButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSButtonView.m; sourceTree = "<group>"; };
+		6E91C5EF1CC749D900673B94 /* QingZiBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingZiBean.h; sourceTree = "<group>"; };
+		6E91C5F01CC749D900673B94 /* QingZiBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingZiBean.m; sourceTree = "<group>"; };
 		6EBC9F571CA131BE0088F94C /* ic_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_search.png; sourceTree = "<group>"; };
 		6EBC9F591CA134320088F94C /* SearchWorkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWorkController.h; sourceTree = "<group>"; };
 		6EBC9F5A1CA134320088F94C /* SearchWorkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWorkController.m; sourceTree = "<group>"; };
@@ -1335,6 +1338,8 @@
 				6E4939F51CBDFB7500F3464D /* QingZiController.m */,
 				6E4939F11CBCF4A600F3464D /* QingZiCell.h */,
 				6E4939F21CBCF4A600F3464D /* QingZiCell.m */,
+				6E91C5EF1CC749D900673B94 /* QingZiBean.h */,
+				6E91C5F01CC749D900673B94 /* QingZiBean.m */,
 				6EF7E7FB1CC5D58C00CCC376 /* PlistModel.h */,
 				6EF7E7FC1CC5D58C00CCC376 /* PlistModel.m */,
 				6EF7E7F91CC5D3A000CCC376 /* QingZiPist.plist */,
@@ -2288,6 +2293,7 @@
 				6333D2571C095F96000613B1 /* AdCell.m in Sources */,
 				6333D2B01C095F96000613B1 /* VersionCheckAPI.m in Sources */,
 				E8D0C7D91B96E7E800B957AC /* MySaiSaiController.m in Sources */,
+				6E91C5F11CC749D900673B94 /* QingZiBean.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

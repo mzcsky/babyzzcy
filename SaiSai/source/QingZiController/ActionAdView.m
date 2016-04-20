@@ -7,6 +7,7 @@
 //
 
 #import "ActionAdView.h"
+#import "StyledPageControl.h"
 @interface ActionAdView ()<UIScrollViewDelegate>
 
 
@@ -115,7 +116,8 @@
         self.pageControl.currentPage = 0;
         self.pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
         self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-        self.pageControl.frame = CGRectMake(SCREEN_WIDTH/2, _scrollView.height-12, 0,0 );
+        self.pageControl.frame = CGRectMake(SCREEN_WIDTH/2, _scrollView.height-8, -3,-3 );
+
         /**
          *  搜索 和 地址选择按钮
          */

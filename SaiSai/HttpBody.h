@@ -266,4 +266,44 @@
 + (NSDictionary *)findApplyListByCondition:(int)page rows:(int)rows fage:(int)fage eage:(int)eage uid:(int)uid isMy:(int)isMy gid:(int)gid isaward:(int)isaward awardconfigId:(int)awardId keyword:(NSString *)keyword;
 
 
+///**
+// *  艺术展览
+// *
+// *  @param content     标题
+// *  @param description 图片
+// *  @param datavalue   请求值
+// *
+// *  @return datavalue
+// */
+//+ (NSDictionary *)artApplyfindAll:(int)content description:(int)description datavalue:(int)datavalue;
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

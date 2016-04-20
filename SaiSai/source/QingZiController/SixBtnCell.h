@@ -22,5 +22,6 @@
 
 @property (nonatomic, weak) id <SixBtnCellDelegate>delegate;
 
-+ (instancetype)valueWithTableView:(UITableView *)tableView;
+
++ (instancetype)valueWithTableView:(UITableView *)tableView dataArr:(NSArray *)dataArr;
 @end

@@ -10,7 +10,7 @@
 
 #define sliderHerght 3
 @implementation NDHMenuCell
-
+//切换选择条
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -21,10 +21,10 @@
 }
 
 - (void)initLabel{
-    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,10, self.frame.size.width, self.frame.size.height-20)];
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width, self.frame.size.height)];
     _imageView.backgroundColor = XT_MAINCOLOR;
     _imageView.clipsToBounds = YES;
-    _imageView.layer.cornerRadius = 10.f;
+    _imageView.layer.cornerRadius = 1.0f;
     [self.contentView addSubview:_imageView];
     
     _label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
@@ -39,7 +39,7 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     _label.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    _imageView.frame = CGRectMake(0,10, self.frame.size.width, self.frame.size.height-20);
+    _imageView.frame = CGRectMake(0,36, self.frame.size.width, self.frame.size.height);
 }
 
 #pragma mark

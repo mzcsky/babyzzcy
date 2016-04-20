@@ -7,26 +7,20 @@
 //
 
 #import "SixBtnCell.h"
-
-
+#import "QingZiBean.h"
 @interface SixBtnCell ()
 
-@property (nonatomic, strong) NSArray * btnArr;
 @property (nonatomic, strong) NSArray * titleArr;
-
+@property (nonatomic, strong) NSArray * btnArr;
+@property (nonatomic, strong) NSArray * dataArr;
 
 @end
 
 @implementation SixBtnCell
 
-- (NSArray *)titleArr
-{
-    if (!_titleArr) {
-        _titleArr = @[@"艺术课堂",@"演出展览",@"出游日期",@"拉客的看",@"我去欧文",@"配需机构"];
-    }
-    return _titleArr;
-}
-+ (instancetype)valueWithTableView:(UITableView *)tableView{
+
+
++ (instancetype)valueWithTableView:(UITableView *)tableView dataArr:(NSArray *)dataArr{
     
     static NSString * cellID = @"SixBtnCell";
     
@@ -38,6 +32,11 @@
         cell = [[SixBtnCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
+    cell.dataArr = dataArr;
+    
+    if (dataArr.count && !cell.btnArr) {
+        [cell createBtn];
+    }
     
     return cell;
 }
@@ -45,7 +44,7 @@
     
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        [self createBtn];
+        
     }
     
     return self;
@@ -53,12 +52,15 @@
 - (void)createBtn{
     
     NSMutableArray * buttonArr = [NSMutableArray array];
-    for (int i = 0; i < self.titleArr.count; i ++) {
+    for (int i = 0; i < self.dataArr.count; i ++) {
+        
+        QingZiBean *bena = [_dataArr objectAtIndex:i];
+        
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:self.titleArr[i] forState:UIControlStateNormal];
+        [btn setTitle:bena.content forState:UIControlStateNormal];
         btn.titleLabel.font = FONT(15);
         [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"download_img"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:bena.descr]]] forState:UIControlStateNormal];
         btn.tag = i;
         
         [buttonArr addObject:btn];
