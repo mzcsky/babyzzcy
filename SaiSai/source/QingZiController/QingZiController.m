@@ -16,6 +16,10 @@
 #import "NDHMenuView.h"
 #import "QingZiSearch.h"
 #import "QingZiBean.h"
+#import "QingZiShowController.h"
+
+
+
 #define titleScrollHeight 50
 #define CellHeight lunViewHeight + 60
 @interface QingZiController ()<UITableViewDelegate,UITableViewDataSource,SixBtnCellDelegate,ActionAdViewDelegate, NDHMenuViewDelegate >
@@ -249,11 +253,20 @@
 }
 #pragma ----mark----SixBtnCellDelegate
 
-- (void)pushViewWithIndex:(NSInteger)index andTitle:(NSString *)title{
-    ActivityDetailController * VC = [[ActivityDetailController alloc] initWithTitle:title index:index];
-    [self.navigationController pushViewController:VC animated:YES];
-}
+- (void)pushViewWithIndex:(NSInteger)index andModel:(QingZiBean *)model{
+    
+    if (index == 0) {
+        ActivityDetailController * VC = [[ActivityDetailController alloc] init];
+        VC.model = model;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    if (index == 1) {
+        QingZiShowController *showVC = [[QingZiShowController alloc] init];
+        showVC.model = model;
+        [self.navigationController pushViewController:showVC animated:YES];
+    }
 
+}
 #pragma ----mark----懒加载
 - (NSArray *)adImgArr{
     if (!_adImgArr) {
@@ -322,7 +335,7 @@
     [self.navigationController pushViewController:ctrl animated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
 }
-
+//搜索
 - (void)searchBtnClickSender:(UIButton *)sender{
     if (sender.tag == 0) {
         
@@ -348,7 +361,8 @@
             NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
             NSLog(@"请求按钮数据结果:%@",jsonDic);
             if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
-                NSArray *adArray = [[NSArray alloc] initWithArray:[jsonDic objectForKey:@"data"] ];
+                NSDictionary * dataDic = jsonDic[@"data"];
+                NSArray *adArray = [[NSArray alloc] initWithArray:[dataDic objectForKey:@"list"] ];
 
                 for (int i = 0; i < adArray.count; i++) {
                     if (adArray.count<=1) {

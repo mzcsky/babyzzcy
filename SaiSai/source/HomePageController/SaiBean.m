@@ -54,6 +54,7 @@
     }
     
     if (bean.birthday && ![bean.birthday isEqualToString:@""]) {
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"YYYY-MM-dd";
         NSDate *birthdayDate = [formatter dateFromString:bean.birthday];
@@ -64,8 +65,9 @@
         
         int year = (int)[comps year];
         int month = (int)[comps month];
-        
+
         bean.age = [NSString stringWithFormat:@"%d岁%d个月",year,month];
+        
     }
     
     return bean;

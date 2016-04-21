@@ -18,6 +18,8 @@
     QZbean.descr     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:QZinfoDic forKey:@"description"]];
     QZbean.content   = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:QZinfoDic forKey:@"content"]];
     QZbean.datavalue = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:QZinfoDic forKey:@"datavalue"]];
+   
+    
     return QZbean;
 }
 

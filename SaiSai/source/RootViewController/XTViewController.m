@@ -158,7 +158,7 @@
  */
 -(void)createBtnBack
 {
-    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 15, 25)];
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 18, 25)];
     if (mLeftBtnTitle && ![mLeftBtnTitle isEqualToString:@""] && mLeftBtnTitle != nil) {
         leftButton.frame = CGRectMake(0, 0, 20, 36);
         [leftButton setTitle:mLeftBtnTitle forState:UIControlStateNormal];
@@ -168,7 +168,6 @@
     else
     {
         [leftButton setImage:[UIImage imageNamed:@"arrowBack.png"] forState:UIControlStateNormal];
-       // [leftButton setBackgroundImage:[UIImage imageNamed:@"nav_back"] forState:UIControlStateNormal];
     }
     
     leftButton.exclusiveTouch = YES;

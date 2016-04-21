@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "QingZiBean.h"
 @interface ActivityDetailController : UIViewController
 
-- (instancetype)initWithTitle:(NSString *)title index:(NSInteger)index;
+@property (nonatomic, strong) QingZiBean * model;
+
 
 @end

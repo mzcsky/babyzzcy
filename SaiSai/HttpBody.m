@@ -505,13 +505,16 @@
     return pram;
 }
 
-//+ (NSDictionary *)artApplyfindAll:(int)content description:(int)description datavalue:(int)datavalue{
-//    NSMutableDictionary *pram = [NSMutableDictionary dictionary];
-//    
-//    [pram setObject:@(content) forKey:@"content"];
-//    [pram setObject:@(description) forKey:@"description"];
-//    [pram setObject:@(datavalue) forKey:@"datavalue"];
-//    
-//    return pram;
-//}
+/**
+ *  休闲活动 按钮接口
+ */
++ (NSDictionary *)PrivilegeCheckBox:(int)page rows:(int)rows datavalue:(int)datavalue{
+    NSMutableDictionary *pram = [NSMutableDictionary dictionary];
+    
+    [pram setObject:@(page) forKey:@"page"];
+    [pram setObject:@(rows) forKey:@"rows"];
+    [pram setObject:@(datavalue) forKey:@"datavalue"];
+    
+    return pram;
+}
 @end

@@ -22,9 +22,14 @@
 #pragma mark
 #pragma mark ====== 网络请求 ======
 
-
+//内
 #define URL_Button           @"http://192.168.1.107:8080/zhongzaicanyu/dictionary/findAll?"
 
+#define URL_AwardUrlN        @"http://192.168.1.107:8080/zhongzaicanyu/apply/findApplyListByCondition?"
+
+
+#pragma mark===============================================================================================
+//外
 #define URL_AwardUrl           @"http://139.129.129.245:9080/zhongzaicanyu/apply/findApplyListByCondition?"
 
 #define KGetRecommendList    @"http://api.saisaiapp.com/api.php?action=getRecommendList"
@@ -40,7 +45,7 @@
 #define USER_PROTOCAL       @"http://m.saisaiapp.com/nd.jsp?id=13&groupId=0"
 
 #pragma mark
-#pragma mark ===== 友盟 key =====
+#pragma mark ===== 友盟 key =================================================================================
 
 //赛赛 腾讯开放平台
 #define TECENT_APPID    @"1104739289"

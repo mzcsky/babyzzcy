@@ -7,7 +7,6 @@
 //
 
 #import "SixBtnCell.h"
-#import "QingZiBean.h"
 @interface SixBtnCell ()
 
 @property (nonatomic, strong) NSArray * titleArr;
@@ -74,9 +73,10 @@
 }
 
 - (void)btnClick:(UIButton *)sender{
-
-    if ([self.delegate respondsToSelector:@selector(pushViewWithIndex:andTitle:)]) {
-        [self.delegate pushViewWithIndex:sender.tag andTitle:sender.currentTitle];
+    
+    QingZiBean *bena = [_dataArr objectAtIndex:sender.tag];
+    if ([self.delegate respondsToSelector:@selector(pushViewWithIndex:andModel:)]) {
+        [self.delegate pushViewWithIndex:sender.tag andModel:bena];
     }
 }
 

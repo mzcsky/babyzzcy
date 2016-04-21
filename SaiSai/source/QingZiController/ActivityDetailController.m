@@ -20,14 +20,6 @@
     [rootCtrller setmTabBarViewHidden:YES animation:YES];
 
 }
-- (instancetype)initWithTitle:(NSString *)title index:(NSInteger)index{
-
-    if (self == [super init]) {
-        self.title = title;
-    }
-    
-    return self;
-}
 
 - (void)viewDidLoad{
 

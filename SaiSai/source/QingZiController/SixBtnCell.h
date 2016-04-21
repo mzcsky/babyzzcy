@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QingZiBean.h"
 
 #define kMargic    20
 #define btnCount 3  //每行显示按钮个数
@@ -14,7 +15,7 @@
 @protocol SixBtnCellDelegate <NSObject>
 
 @optional
-- (void)pushViewWithIndex:(NSInteger)index andTitle:(NSString *)title;
+- (void)pushViewWithIndex:(NSInteger)index andModel:(QingZiBean *)model;
 
 @end
 

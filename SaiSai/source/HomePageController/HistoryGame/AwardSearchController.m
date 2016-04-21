@@ -14,6 +14,7 @@
 #import "MJPhotoBrowser.h"
 #import "AwardLevelBean.h"
 #import "HttpBody.h"
+
 @interface AwardSearchController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, HomePageCellDelegate>
 
 @property (nonatomic,strong) NDHMenuView      *ndMenuView;
@@ -130,14 +131,14 @@
     
     [ProgressHUD show:LOADING];
     
-    [manager GET:URL_AwardUrl parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
+    [manager GET:URL_AwardUrlN parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
         
         
         [_AStableView headerEndRefreshing];
         [_AStableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获奖作品数据结果:%@",jsonDic);
+        NSLog(@"请求获奖作品搜索数据结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"list"]];
             if (page == 1){

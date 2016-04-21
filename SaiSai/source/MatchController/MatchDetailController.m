@@ -19,7 +19,7 @@
 #import "MatchCCell.h"
 #import "MatchCADBean.h"
 #import "MatchWorkController.h"
-
+#import "MatchInstViewController.h"
 
 
 
@@ -50,6 +50,8 @@
 @property (nonatomic, retain) NSMutableArray            *xgArray;
 @property (nonatomic, retain) UILabel                   *CSlabel;
 @property (nonatomic, retain) UIWebView                 *webView;
+
+@property (nonatomic, strong) UIView             *instView;
 @end
 
 @implementation MatchDetailController
@@ -79,29 +81,42 @@
     }
     
     if (self.fBean && (self.fBean.status==1)) {
-        UIImage *imagee = [UIImage imageNamed:@"hp_shareBgGG.png"];
+
+        UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-120, SCREEN_WIDTH,60)];
+        
+        UIButton *instBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        instBtn.frame = CGRectMake(0, 0, footView.width/4, footView.height);
+        [instBtn setImage:[UIImage imageNamed:@"hp_inst.png"] forState:UIControlStateNormal];
+        instBtn.backgroundColor =CLEARCOLOR;
+        [instBtn addTarget:self action:@selector(jigouAciton) forControlEvents:UIControlEventTouchUpInside];
+        
         UIButton *rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        rightItem.frame = CGRectMake(-110, SCREEN_HEIGHT-121, SCREEN_WIDTH/2+180, 60);
-        [rightItem setImage:imagee forState:UIControlStateNormal];
+        rightItem.frame = CGRectMake(instBtn.right-1, 0, footView.width/4, footView.height);
+        [rightItem setBackgroundImage:[UIImage imageNamed:@"hp_share.png"] forState:UIControlStateNormal];
         [rightItem addTarget:self action:@selector(shareBgClick) forControlEvents:UIControlEventTouchUpInside];
         rightItem.backgroundColor = CLEARCOLOR;
-        [self.view addSubview:rightItem];
-        
-        UIImage *image = [UIImage imageNamed:@"match_lijibaoming"];
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(SCREEN_WIDTH/2-40, SCREEN_HEIGHT-118, SCREEN_WIDTH/2+40, 55);
-        [btn setImage:image forState:UIControlStateNormal];
-        btn.backgroundColor = CLEARCOLOR;
-        
-        UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0,btn.top,SCREEN_WIDTH, 1)];
+
+        UIButton *Applybtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        Applybtn.frame = CGRectMake(rightItem.right-1, 0, footView.width/2+2, footView.height);
+        [Applybtn setBackgroundImage:[UIImage imageNamed:@"hp_baoming"] forState:UIControlStateNormal];
+        Applybtn.backgroundColor = CLEARCOLOR;
+        [Applybtn addTarget:self action:@selector(baomingAction) forControlEvents:UIControlEventTouchUpInside];
+
+        UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0,footView.top-1,SCREEN_WIDTH, 1)];
         lineImg.backgroundColor = [UIColor lightGrayColor];
+        
+        [footView addSubview:instBtn];
+        [footView addSubview:rightItem];
+        [footView addSubview:Applybtn];
+        
+        [self.view addSubview:footView];
         [self.view addSubview:lineImg];
-        [btn addTarget:self action:@selector(baomingAction) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btn];
 
     }
 
 }
+
+
 
 - (void)showGoldMatch{
     NSNumber *mid = [NSNumber numberWithInteger:self.fBean.mId];
@@ -123,16 +138,6 @@
     [Item addTarget:self action:@selector(showGoldMatch) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:Item];
     self.navigationItem.rightBarButtonItem =rightBar;
-}
-
--(void)shareBgClick{
-    //分享页面
-    [[ShareView shareInfo] showShare:YES];
-    [[ShareView shareInfo] setController:self];
-    [[ShareView shareInfo] setMsg:self.fBean.g_title];
-    [[ShareView shareInfo] setImg:[UIImage imageNamed:@"icon-60-phone.png"]];
-    [[ShareView shareInfo] setGid:[NSString stringWithFormat:@"%ld",(long)self.fBean.mId]];
-//    [[ShareView shareInfo] setPid:[NSString stringWithFormat:@"%ld",(long)self.fBean.mId]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -327,6 +332,50 @@
 
 
 
+-(void)shareBgClick{
+    //分享页面
+    [[ShareView shareInfo] showShare:YES];
+    [[ShareView shareInfo] setController:self];
+    [[ShareView shareInfo] setMsg:self.fBean.g_title];
+    [[ShareView shareInfo] setImg:[UIImage imageNamed:@"icon-60-phone.png"]];
+    [[ShareView shareInfo] setGid:[NSString stringWithFormat:@"%ld",(long)self.fBean.mId]];
+}
+
+
+//报名点击事件
+- (void)baomingAction{
+    //
+    if (![[UserModel shareInfo] isLogin]) {
+        //显示登录页面
+        LoginViewController *ctrlLog = [[LoginViewController alloc] init];
+        ctrlLog.title = @"学习活动比赛平台";
+        ctrlLog.m_showBackBt = YES;
+        ctrlLog.m_hasNav = NO;
+        XTCustomNavigationController* naviCtrller = [[XTCustomNavigationController alloc] initWithRootViewController:ctrlLog];
+        [self presentViewController:naviCtrller animated:YES completion:^{
+            
+        }];
+        
+    }else{
+        BMController *ctrl = [[BMController alloc] init];
+        ctrl.title = @"报名";
+        ctrl.m_showBackBt = YES;
+        ctrl.delegate = self;
+        ctrl.fBean = self.fBean;
+        [self.navigationController pushViewController:ctrl animated:YES];
+        
+    }
+}
+
+- (void)jigouAciton{
+
+    
+    MatchInstViewController * VC = [[MatchInstViewController alloc] init];
+    VC.view.backgroundColor = [UIColor whiteColor];
+    [self presentViewController:VC animated:YES completion:nil];
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (self.type) {
         case MATCHDC_BASE_TAG:
@@ -337,7 +386,6 @@
             if (!cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MATCHDCCELL];
             }
-            
             
             if (!_webView) {
                 _webView =[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
@@ -670,32 +718,6 @@
         btn.selected = NO;
     }
 }
-//报名点击事件
-
-- (void)baomingAction{
-//
-    if (![[UserModel shareInfo] isLogin]) {
-        //显示登录页面
-        LoginViewController *ctrlLog = [[LoginViewController alloc] init];
-        ctrlLog.title = @"学习活动比赛平台";
-        ctrlLog.m_showBackBt = YES;
-        ctrlLog.m_hasNav = NO;
-        XTCustomNavigationController* naviCtrller = [[XTCustomNavigationController alloc] initWithRootViewController:ctrlLog];
-        [self presentViewController:naviCtrller animated:YES completion:^{
-            
-        }];
-        
-    }else{
-        BMController *ctrl = [[BMController alloc] init];
-        ctrl.title = @"报名";
-        ctrl.m_showBackBt = YES;
-        ctrl.delegate = self;
-        ctrl.fBean = self.fBean;
-        [self.navigationController pushViewController:ctrl animated:YES];
-        
-    }
-}
-
 
 #pragma mark
 #pragma mark ============== UITableViewCell delegate =====================
