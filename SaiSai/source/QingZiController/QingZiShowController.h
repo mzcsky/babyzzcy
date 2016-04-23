@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "QingZiBean.h"
-@interface QingZiShowController : UIViewController
+@interface QingZiShowController : XTViewController
 
 
-@property (nonatomic, strong) QingZiBean * model;
+@property (nonatomic, strong) QingZiBean * Qmodel;
 
 @end

@@ -94,11 +94,10 @@
         _totalLab.backgroundColor = [UIColor orangeColor];
         
       
-        
+        [self.imgView addSubview:_totalLab];
         [self.imgView addSubview:_spellLab];
         [self.imgView addSubview:_PriceLab];
         [self.imgView addSubview:_regLab];
-        [self.imgView addSubview:_totalLab];
         
         
         

@@ -15,7 +15,7 @@
 @protocol SixBtnCellDelegate <NSObject>
 
 @optional
-- (void)pushViewWithIndex:(NSInteger)index andModel:(QingZiBean *)model;
+- (void)pushViewWithIndex:(NSInteger)index andModel:(QingZiBean *)Qmodel;
 
 @end
 

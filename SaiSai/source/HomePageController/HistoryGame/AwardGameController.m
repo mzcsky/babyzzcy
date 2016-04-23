@@ -155,7 +155,7 @@
 }
 
 -(void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,_ndMenuView.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-_ndMenuView.bottom)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,_ndMenuView.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-49-_ndMenuView.height)];
     _tableView.dataSource = self;
     _tableView.delegate   = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

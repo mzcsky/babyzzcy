@@ -8,6 +8,7 @@
 
 #import "ActionAdView.h"
 #import "StyledPageControl.h"
+#import "CustomButton.h"
 @interface ActionAdView ()<UIScrollViewDelegate>
 
 
@@ -151,7 +152,7 @@
             [button setTitleColor:TabbarNTitleColor forState:UIControlStateNormal];
             [button addTarget:self action:@selector(SearchClick:) forControlEvents:UIControlEventTouchUpInside];
             
-            button.alpha = 0.2;
+            button.alpha = 0.4;
             [btnView addSubview:button];
         }
         
@@ -160,6 +161,17 @@
         btnView.layer.cornerRadius = 8;
         btnView.clipsToBounds = YES;
         [self addSubview:btnView];
+        
+        //扇形
+        CustomButton *custom = [[CustomButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-140, 0, 140, 140)];
+        custom.backgroundColor = [UIColor clearColor];
+        [custom addTarget:self action:@selector(customBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [custom setTitle:@"天 天\n领 卷" forState:UIControlStateNormal];
+        custom.titleLabel.numberOfLines = 0;
+
+        custom.titleLabel.font = FONT(18);
+        custom.titleEdgeInsets = UIEdgeInsetsMake(-28, 0, 0, -26);
+        [self addSubview:custom];
         
     }
     
@@ -179,7 +191,9 @@
     }
 }
 
-
+-(void)customBtn:(UIButton *)coustom{
+    NSLog(@"扇形");
+}
 
 
 

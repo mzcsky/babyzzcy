@@ -154,14 +154,13 @@
 		6E4939F61CBDFB7500F3464D /* QingZiController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4939F51CBDFB7500F3464D /* QingZiController.m */; };
 		6E6207101C97BDC900F8DA31 /* mc_arrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */; };
 		6E6207191C999F9600F8DA31 /* SSButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6207181C999F9600F8DA31 /* SSButtonView.m */; };
+		6E8C3F821CCA30CA005397DF /* Match_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E8C3F811CCA30CA005397DF /* Match_share.png */; };
+		6E8C3F841CCA3120005397DF /* MatchDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C3F831CCA3120005397DF /* MatchDetailController.m */; };
 		6E91C5F11CC749D900673B94 /* QingZiBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C5F01CC749D900673B94 /* QingZiBean.m */; };
 		6E91C5F41CC7846600673B94 /* QingZiShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C5F31CC7846600673B94 /* QingZiShowController.m */; };
 		6E91C5F71CC78ACD00673B94 /* QingZiShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C5F61CC78ACD00673B94 /* QingZiShowCell.m */; };
 		6E91C5FD1CC8858900673B94 /* SaiBeanAward.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C5FC1CC8858900673B94 /* SaiBeanAward.m */; };
 		6E91C6261CC8B88700673B94 /* MatchInstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C6251CC8B88700673B94 /* MatchInstViewController.m */; };
-		6E91C62A1CC8C56200673B94 /* hp_baoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E91C6271CC8C56200673B94 /* hp_baoming.png */; };
-		6E91C62B1CC8C56200673B94 /* hp_inst.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E91C6281CC8C56200673B94 /* hp_inst.png */; };
-		6E91C62C1CC8C56200673B94 /* hp_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E91C6291CC8C56200673B94 /* hp_share.png */; };
 		6EBC9F581CA131BE0088F94C /* ic_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC9F571CA131BE0088F94C /* ic_search.png */; };
 		6EBC9F5B1CA134320088F94C /* SearchWorkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC9F5A1CA134320088F94C /* SearchWorkController.m */; };
 		6EEAE0AF1C855B8000F619BD /* MyUsermsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */; };
@@ -280,7 +279,6 @@
 		F58DE8341B92B6B50074FDBB /* MatchCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F58DE8331B92B6B50074FDBB /* MatchCCell.m */; };
 		F58DE8691B9319750074FDBB /* MatchCCBean.m in Sources */ = {isa = PBXBuildFile; fileRef = F58DE8681B9319750074FDBB /* MatchCCBean.m */; };
 		F58DE86C1B9319880074FDBB /* MatchCADBean.m in Sources */ = {isa = PBXBuildFile; fileRef = F58DE86B1B9319880074FDBB /* MatchCADBean.m */; };
-		F58DE8721B934A170074FDBB /* MatchDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58DE8711B934A170074FDBB /* MatchDetailController.m */; };
 		F58F86831B99E38C00E92E12 /* GameTypeBean.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F86821B99E38C00E92E12 /* GameTypeBean.m */; };
 		F58F86861B99E4F300E92E12 /* LastApplyInfoBean.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F86851B99E4F300E92E12 /* LastApplyInfoBean.m */; };
 		F590B6781B9AF43D009BD9E0 /* MPMController.m in Sources */ = {isa = PBXBuildFile; fileRef = F590B6771B9AF43D009BD9E0 /* MPMController.m */; };
@@ -578,6 +576,8 @@
 		6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mc_arrowUp@2x.png"; sourceTree = "<group>"; };
 		6E6207171C999F9600F8DA31 /* SSButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSButtonView.h; sourceTree = "<group>"; };
 		6E6207181C999F9600F8DA31 /* SSButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSButtonView.m; sourceTree = "<group>"; };
+		6E8C3F811CCA30CA005397DF /* Match_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Match_share.png; sourceTree = "<group>"; };
+		6E8C3F831CCA3120005397DF /* MatchDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchDetailController.m; sourceTree = "<group>"; };
 		6E91C5EF1CC749D900673B94 /* QingZiBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingZiBean.h; sourceTree = "<group>"; };
 		6E91C5F01CC749D900673B94 /* QingZiBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingZiBean.m; sourceTree = "<group>"; };
 		6E91C5F21CC7846600673B94 /* QingZiShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingZiShowController.h; sourceTree = "<group>"; };
@@ -588,9 +588,6 @@
 		6E91C5FC1CC8858900673B94 /* SaiBeanAward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaiBeanAward.m; path = ../SaiBeanAward.m; sourceTree = "<group>"; };
 		6E91C6241CC8B88700673B94 /* MatchInstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchInstViewController.h; sourceTree = "<group>"; };
 		6E91C6251CC8B88700673B94 /* MatchInstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchInstViewController.m; sourceTree = "<group>"; };
-		6E91C6271CC8C56200673B94 /* hp_baoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hp_baoming.png; sourceTree = "<group>"; };
-		6E91C6281CC8C56200673B94 /* hp_inst.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hp_inst.png; sourceTree = "<group>"; };
-		6E91C6291CC8C56200673B94 /* hp_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hp_share.png; sourceTree = "<group>"; };
 		6EBC9F571CA131BE0088F94C /* ic_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_search.png; sourceTree = "<group>"; };
 		6EBC9F591CA134320088F94C /* SearchWorkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWorkController.h; sourceTree = "<group>"; };
 		6EBC9F5A1CA134320088F94C /* SearchWorkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWorkController.m; sourceTree = "<group>"; };
@@ -777,7 +774,6 @@
 		F58DE86A1B9319880074FDBB /* MatchCADBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchCADBean.h; sourceTree = "<group>"; };
 		F58DE86B1B9319880074FDBB /* MatchCADBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCADBean.m; sourceTree = "<group>"; };
 		F58DE8701B934A170074FDBB /* MatchDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchDetailController.h; sourceTree = "<group>"; };
-		F58DE8711B934A170074FDBB /* MatchDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchDetailController.m; sourceTree = "<group>"; };
 		F58F86811B99E38C00E92E12 /* GameTypeBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTypeBean.h; sourceTree = "<group>"; };
 		F58F86821B99E38C00E92E12 /* GameTypeBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTypeBean.m; sourceTree = "<group>"; };
 		F58F86841B99E4F300E92E12 /* LastApplyInfoBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastApplyInfoBean.h; sourceTree = "<group>"; };
@@ -1347,10 +1343,95 @@
 			path = Wechat;
 			sourceTree = "<group>";
 		};
-		63E2816B1C0DB0880017B265 /* QingZiController */ = {
+		63E2816B1C0DB0880017B265 /* QingZiController(休闲活动) */ = {
 			isa = PBXGroup;
 			children = (
-				6E91C62D1CC8C9C200673B94 /* QingZiShow */,
+				6E40CDBC1CCB15E800ACE083 /* QingZiShow(休闲活动) */,
+				6E91C62D1CC8C9C200673B94 /* QingZiShow(按钮跳转) */,
+			);
+			name = "QingZiController(休闲活动)";
+			path = QingZiController;
+			sourceTree = "<group>";
+		};
+		63EC32151C1F2C57004D1CAD /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				63EC32291C1F2D43004D1CAD /* PushConfig.plist */,
+				63EC32161C1F2C57004D1CAD /* APService.h */,
+				63EC32171C1F2C57004D1CAD /* libPushSDK-1.8.8.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		6E40CDBA1CCB151C00ACE083 /* HomePage(风采展示) */ = {
+			isa = PBXGroup;
+			children = (
+				F52AB88E1B7F81A100BF1A86 /* HomePageController.h */,
+				F52AB88F1B7F81A100BF1A86 /* HomePageController.m */,
+				E89304121B8C60CF006A4C1E /* HomePageCell.h */,
+				E89304131B8C60CF006A4C1E /* HomePageCell.m */,
+				E89304151B8C621E006A4C1E /* SaiBean.h */,
+				E89304161B8C621E006A4C1E /* SaiBean.m */,
+				E88744261B93F53200866B6D /* CommentBean.h */,
+				E88744271B93F53200866B6D /* CommentBean.m */,
+				E89304081B8C56FE006A4C1E /* AgeBean.h */,
+				E89304091B8C56FE006A4C1E /* AgeBean.m */,
+				E89DE1D81B8D69F800F98ED3 /* OperationView.h */,
+				E89DE1D91B8D69F800F98ED3 /* OperationView.m */,
+				E87C472A1B90554A00D79B0B /* CommentContentView.h */,
+				E87C472B1B90554A00D79B0B /* CommentContentView.m */,
+				F589EFFA1B980C1700EF8814 /* ShareView.h */,
+				F589EFFB1B980C1700EF8814 /* ShareView.m */,
+				6E6207171C999F9600F8DA31 /* SSButtonView.h */,
+				6E6207181C999F9600F8DA31 /* SSButtonView.m */,
+				6EBC9F591CA134320088F94C /* SearchWorkController.h */,
+				6EBC9F5A1CA134320088F94C /* SearchWorkController.m */,
+				6E2FA2591CB6459F00016D42 /* CustomButton.h */,
+				6E2FA25A1CB6459F00016D42 /* CustomButton.m */,
+			);
+			name = "HomePage(风采展示)";
+			sourceTree = "<group>";
+		};
+		6E40CDBB1CCB159300ACE083 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				F589F0151B98523C00EF8814 /* ClassificationButton.h */,
+				F589F0161B98523C00EF8814 /* ClassificationButton.m */,
+				F52AB8911B7F81B400BF1A86 /* MatchController.h */,
+				F52AB8921B7F81B400BF1A86 /* MatchController.m */,
+				F58DE8321B92B6B50074FDBB /* MatchCCell.h */,
+				F58DE8331B92B6B50074FDBB /* MatchCCell.m */,
+				F58DE8671B9319750074FDBB /* MatchCCBean.h */,
+				F58DE8681B9319750074FDBB /* MatchCCBean.m */,
+				F58DE86A1B9319880074FDBB /* MatchCADBean.h */,
+				F58DE86B1B9319880074FDBB /* MatchCADBean.m */,
+				F58DE8701B934A170074FDBB /* MatchDetailController.h */,
+				6E8C3F831CCA3120005397DF /* MatchDetailController.m */,
+				6E91C6241CC8B88700673B94 /* MatchInstViewController.h */,
+				6E91C6251CC8B88700673B94 /* MatchInstViewController.m */,
+				6E3804F81CA5042B00FD61D7 /* MatchWorkController.h */,
+				6E3804F91CA5042B00FD61D7 /* MatchWorkController.m */,
+				F589F0121B984FC400EF8814 /* BMController.h */,
+				F589F0131B984FC400EF8814 /* BMController.m */,
+				F589F01A1B98690E00EF8814 /* BMImageCell.h */,
+				F589F01B1B98690E00EF8814 /* BMImageCell.m */,
+				F5F7307A1B98953800FA9B76 /* BMPreData.h */,
+				F5F7307B1B98953800FA9B76 /* BMPreData.m */,
+				F58F86811B99E38C00E92E12 /* GameTypeBean.h */,
+				F58F86821B99E38C00E92E12 /* GameTypeBean.m */,
+				F58F86841B99E4F300E92E12 /* LastApplyInfoBean.h */,
+				F58F86851B99E4F300E92E12 /* LastApplyInfoBean.m */,
+				F57E2D301BA0814D0018B0BA /* AreaBean.h */,
+				F57E2D311BA0814D0018B0BA /* AreaBean.m */,
+				63E4FA851C151B46007BD20B /* MatchClaBean.h */,
+				63E4FA861C151B46007BD20B /* MatchClaBean.m */,
+			);
+			name = Match;
+			sourceTree = "<group>";
+		};
+		6E40CDBC1CCB15E800ACE083 /* QingZiShow(休闲活动) */ = {
+			isa = PBXGroup;
+			children = (
 				6E4939F41CBDFB7500F3464D /* QingZiController.h */,
 				6E4939F51CBDFB7500F3464D /* QingZiController.m */,
 				6E4939F11CBCF4A600F3464D /* QingZiCell.h */,
@@ -1371,20 +1452,10 @@
 				6E207A861CC4836500B686A9 /* ActivityDetailController.h */,
 				6E207A871CC4836500B686A9 /* ActivityDetailController.m */,
 			);
-			path = QingZiController;
+			name = "QingZiShow(休闲活动)";
 			sourceTree = "<group>";
 		};
-		63EC32151C1F2C57004D1CAD /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				63EC32291C1F2D43004D1CAD /* PushConfig.plist */,
-				63EC32161C1F2C57004D1CAD /* APService.h */,
-				63EC32171C1F2C57004D1CAD /* libPushSDK-1.8.8.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		6E91C62D1CC8C9C200673B94 /* QingZiShow */ = {
+		6E91C62D1CC8C9C200673B94 /* QingZiShow(按钮跳转) */ = {
 			isa = PBXGroup;
 			children = (
 				6E91C5F21CC7846600673B94 /* QingZiShowController.h */,
@@ -1392,7 +1463,7 @@
 				6E91C5F51CC78ACD00673B94 /* QingZiShowCell.h */,
 				6E91C5F61CC78ACD00673B94 /* QingZiShowCell.m */,
 			);
-			name = QingZiShow;
+			name = "QingZiShow(按钮跳转)";
 			sourceTree = "<group>";
 		};
 		E8741C2A1B9D68BB00ECD9FF /* RecommendToFriend */ = {
@@ -1415,7 +1486,7 @@
 			path = setting;
 			sourceTree = "<group>";
 		};
-		E8741C3C1B9DDE4700ECD9FF /* HistoryGame */ = {
+		E8741C3C1B9DDE4700ECD9FF /* HistoryGame(获奖展示) */ = {
 			isa = PBXGroup;
 			children = (
 				E8741C3D1B9DDE5600ECD9FF /* HistoryGameController.h */,
@@ -1433,6 +1504,7 @@
 				6E91C5FB1CC8858900673B94 /* SaiBeanAward.h */,
 				6E91C5FC1CC8858900673B94 /* SaiBeanAward.m */,
 			);
+			name = "HistoryGame(获奖展示)";
 			path = HistoryGame;
 			sourceTree = "<group>";
 		};
@@ -1539,12 +1611,13 @@
 			path = MySaiSaiView;
 			sourceTree = "<group>";
 		};
-		E8D0C7DB1B96EB5300B957AC /* RegistController */ = {
+		E8D0C7DB1B96EB5300B957AC /* RegistController(注册) */ = {
 			isa = PBXGroup;
 			children = (
 				E8D0C7DC1B96EB6300B957AC /* RegisteController.h */,
 				E8D0C7DD1B96EB6300B957AC /* RegisteController.m */,
 			);
+			name = "RegistController(注册)";
 			path = RegistController;
 			sourceTree = "<group>";
 		};
@@ -1639,11 +1712,11 @@
 		F52AB85A1B7F783700BF1A86 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				63E2816B1C0DB0880017B265 /* QingZiController */,
-				E8D0C7DB1B96EB5300B957AC /* RegistController */,
+				63E2816B1C0DB0880017B265 /* QingZiController(休闲活动) */,
+				E8D0C7DB1B96EB5300B957AC /* RegistController(注册) */,
 				F56AA8F61B821FD200E1DC5A /* Model */,
-				F52AB88B1B7F819100BF1A86 /* HomePageController */,
-				F52AB88C1B7F819100BF1A86 /* MatchController */,
+				F52AB88B1B7F819100BF1A86 /* HomePageController(风采展示) */,
+				F52AB88C1B7F819100BF1A86 /* MatchController(比赛评测) */,
 				F52AB88D1B7F819100BF1A86 /* PersonController */,
 				F52AB85C1B7F789F00BF1A86 /* LoginViewController */,
 				F52AB85B1B7F788F00BF1A86 /* RootViewController */,
@@ -1691,72 +1764,24 @@
 			path = LoginViewController;
 			sourceTree = "<group>";
 		};
-		F52AB88B1B7F819100BF1A86 /* HomePageController */ = {
+		F52AB88B1B7F819100BF1A86 /* HomePageController(风采展示) */ = {
 			isa = PBXGroup;
 			children = (
-				E8741C3C1B9DDE4700ECD9FF /* HistoryGame */,
+				6E40CDBA1CCB151C00ACE083 /* HomePage(风采展示) */,
+				E8741C3C1B9DDE4700ECD9FF /* HistoryGame(获奖展示) */,
 				E88D4C8D1B9887F7005DCAF7 /* UpdatePicture */,
-				F52AB88E1B7F81A100BF1A86 /* HomePageController.h */,
-				F52AB88F1B7F81A100BF1A86 /* HomePageController.m */,
-				E89304121B8C60CF006A4C1E /* HomePageCell.h */,
-				E89304131B8C60CF006A4C1E /* HomePageCell.m */,
-				E89304151B8C621E006A4C1E /* SaiBean.h */,
-				E89304161B8C621E006A4C1E /* SaiBean.m */,
-				E88744261B93F53200866B6D /* CommentBean.h */,
-				E88744271B93F53200866B6D /* CommentBean.m */,
-				E89304081B8C56FE006A4C1E /* AgeBean.h */,
-				E89304091B8C56FE006A4C1E /* AgeBean.m */,
-				E89DE1D81B8D69F800F98ED3 /* OperationView.h */,
-				E89DE1D91B8D69F800F98ED3 /* OperationView.m */,
-				E87C472A1B90554A00D79B0B /* CommentContentView.h */,
-				E87C472B1B90554A00D79B0B /* CommentContentView.m */,
-				F589EFFA1B980C1700EF8814 /* ShareView.h */,
-				F589EFFB1B980C1700EF8814 /* ShareView.m */,
-				6E6207171C999F9600F8DA31 /* SSButtonView.h */,
-				6E6207181C999F9600F8DA31 /* SSButtonView.m */,
-				6EBC9F591CA134320088F94C /* SearchWorkController.h */,
-				6EBC9F5A1CA134320088F94C /* SearchWorkController.m */,
-				6E2FA2591CB6459F00016D42 /* CustomButton.h */,
-				6E2FA25A1CB6459F00016D42 /* CustomButton.m */,
 			);
+			name = "HomePageController(风采展示)";
 			path = HomePageController;
 			sourceTree = "<group>";
 		};
-		F52AB88C1B7F819100BF1A86 /* MatchController */ = {
+		F52AB88C1B7F819100BF1A86 /* MatchController(比赛评测) */ = {
 			isa = PBXGroup;
 			children = (
+				6E40CDBB1CCB159300ACE083 /* Match */,
 				F57E2D201BA02F830018B0BA /* CityController */,
-				F589F0151B98523C00EF8814 /* ClassificationButton.h */,
-				F589F0161B98523C00EF8814 /* ClassificationButton.m */,
-				F52AB8911B7F81B400BF1A86 /* MatchController.h */,
-				F52AB8921B7F81B400BF1A86 /* MatchController.m */,
-				F58DE8321B92B6B50074FDBB /* MatchCCell.h */,
-				F58DE8331B92B6B50074FDBB /* MatchCCell.m */,
-				F58DE8671B9319750074FDBB /* MatchCCBean.h */,
-				F58DE8681B9319750074FDBB /* MatchCCBean.m */,
-				F58DE86A1B9319880074FDBB /* MatchCADBean.h */,
-				F58DE86B1B9319880074FDBB /* MatchCADBean.m */,
-				F58DE8701B934A170074FDBB /* MatchDetailController.h */,
-				F58DE8711B934A170074FDBB /* MatchDetailController.m */,
-				6E91C6241CC8B88700673B94 /* MatchInstViewController.h */,
-				6E91C6251CC8B88700673B94 /* MatchInstViewController.m */,
-				6E3804F81CA5042B00FD61D7 /* MatchWorkController.h */,
-				6E3804F91CA5042B00FD61D7 /* MatchWorkController.m */,
-				F589F0121B984FC400EF8814 /* BMController.h */,
-				F589F0131B984FC400EF8814 /* BMController.m */,
-				F589F01A1B98690E00EF8814 /* BMImageCell.h */,
-				F589F01B1B98690E00EF8814 /* BMImageCell.m */,
-				F5F7307A1B98953800FA9B76 /* BMPreData.h */,
-				F5F7307B1B98953800FA9B76 /* BMPreData.m */,
-				F58F86811B99E38C00E92E12 /* GameTypeBean.h */,
-				F58F86821B99E38C00E92E12 /* GameTypeBean.m */,
-				F58F86841B99E4F300E92E12 /* LastApplyInfoBean.h */,
-				F58F86851B99E4F300E92E12 /* LastApplyInfoBean.m */,
-				F57E2D301BA0814D0018B0BA /* AreaBean.h */,
-				F57E2D311BA0814D0018B0BA /* AreaBean.m */,
-				63E4FA851C151B46007BD20B /* MatchClaBean.h */,
-				63E4FA861C151B46007BD20B /* MatchClaBean.m */,
 			);
+			name = "MatchController(比赛评测)";
 			path = MatchController;
 			sourceTree = "<group>";
 		};
@@ -1911,9 +1936,7 @@
 		F58DE86D1B9345A40074FDBB /* match */ = {
 			isa = PBXGroup;
 			children = (
-				6E91C6271CC8C56200673B94 /* hp_baoming.png */,
-				6E91C6281CC8C56200673B94 /* hp_inst.png */,
-				6E91C6291CC8C56200673B94 /* hp_share.png */,
+				6E8C3F811CCA30CA005397DF /* Match_share.png */,
 				6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */,
 				F588B2EA1BA9463000A783D7 /* cansaizhidao@2x.png */,
 				F589F0181B9852B200EF8814 /* mc_arrowDn@2x.png */,
@@ -2044,11 +2067,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5A7B0841BC4BEA800235D45 /* sel_sel@2x.png in Resources */,
-				6E91C62C1CC8C56200673B94 /* hp_share.png in Resources */,
 				63D9F99F1BDA825B00A9A8C2 /* guide4_736.png in Resources */,
 				F5B1A9CB1B847554009D6366 /* login_logo@2x.png in Resources */,
 				63D9F9931BDA825B00A9A8C2 /* guide1_736.png in Resources */,
 				63D9F99C1BDA825B00A9A8C2 /* guide4_480.png in Resources */,
+				6E8C3F821CCA30CA005397DF /* Match_share.png in Resources */,
 				E89DE1D71B8D639D00F98ED3 /* hp_defaultImg@2x.png in Resources */,
 				63D9F9961BDA825B00A9A8C2 /* guide2_667.png in Resources */,
 				F57AB3721B94A87C00D8B489 /* pc_myfocus@2x.png in Resources */,
@@ -2073,7 +2096,6 @@
 				E89DE1E51B8D9AC800F98ED3 /* hp_operateBg@2x.png in Resources */,
 				F58985F91B96EBD300D87687 /* sm_detail_unsel@2x.png in Resources */,
 				F5A7B0831BC4BEA800235D45 /* sel_nor@2x.png in Resources */,
-				6E91C62A1CC8C56200673B94 /* hp_baoming.png in Resources */,
 				63E2815F1C0D79E20017B265 /* UMSLoginViewController.xib in Resources */,
 				6333D25A1C095F96000613B1 /* pageControlSel@2x.png in Resources */,
 				F52AB8401B7F77B900BF1A86 /* Images.xcassets in Resources */,
@@ -2118,7 +2140,6 @@
 				F51BA1FF1B80DCF900513D81 /* tab_math_sel@2x.png in Resources */,
 				F52AB86F1B7F79DE00BF1A86 /* arrowBack@2x.png in Resources */,
 				F57AB3711B94A87C00D8B489 /* pc_myfance@2x.png in Resources */,
-				6E91C62B1CC8C56200673B94 /* hp_inst.png in Resources */,
 				63D9F9951BDA825B00A9A8C2 /* guide2_568.png in Resources */,
 				F51BA2011B80DCF900513D81 /* tab_my_sel@2x.png in Resources */,
 				F51BA1FD1B80DCF900513D81 /* tab_home_sel@2x.png in Resources */,
@@ -2206,7 +2227,6 @@
 				6333D2621C095F96000613B1 /* MJPhotoProgressView.m in Sources */,
 				6333D28B1C095F96000613B1 /* UIViewExt.m in Sources */,
 				F57E2D2C1BA05F7E0018B0BA /* PositionTool.m in Sources */,
-				F58DE8721B934A170074FDBB /* MatchDetailController.m in Sources */,
 				6333D2851C095F96000613B1 /* UIImage+MultiFormat.m in Sources */,
 				63E22D521B99DFE400D04575 /* ForgetPswController.m in Sources */,
 				F589F01C1B98690E00EF8814 /* BMImageCell.m in Sources */,
@@ -2321,6 +2341,7 @@
 				6333D2791C095F96000613B1 /* MKAnnotationView+WebCache.m in Sources */,
 				6333D27D1C095F96000613B1 /* SDWebImageDecoder.m in Sources */,
 				E893040A1B8C56FE006A4C1E /* AgeBean.m in Sources */,
+				6E8C3F841CCA3120005397DF /* MatchDetailController.m in Sources */,
 				E8B6AC0C1B95D11B00F104D5 /* AttendOrFansBean.m in Sources */,
 				6333D2631C095F96000613B1 /* MJPhotoToolbar.m in Sources */,
 				6333D2A41C095F96000613B1 /* AFNetworkReachabilityManager.m in Sources */,

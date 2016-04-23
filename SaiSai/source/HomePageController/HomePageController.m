@@ -258,8 +258,13 @@
      */
     CustomButton *custom = [[CustomButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-140, 0, 140, 140)];
     custom.backgroundColor = [UIColor clearColor];
-    [custom addTarget:self action:@selector(custom:) forControlEvents:UIControlEventTouchUpInside];
+    [custom setTitle:@"天 天\n领 卷" forState:UIControlStateNormal];
+    custom.titleLabel.numberOfLines = 0;
     
+    custom.titleLabel.font = FONT(18);
+    custom.titleEdgeInsets = UIEdgeInsetsMake(-28, 0, 0, -26);
+    [custom addTarget:self action:@selector(custom:) forControlEvents:UIControlEventTouchUpInside];
+//    [_tableView addSubview:custom];
     /**
      *  搜索 和 地址选择按钮
      */

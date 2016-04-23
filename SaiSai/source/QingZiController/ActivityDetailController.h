@@ -10,7 +10,7 @@
 #import "QingZiBean.h"
 @interface ActivityDetailController : UIViewController
 
-@property (nonatomic, strong) QingZiBean * model;
+@property (nonatomic, strong) QingZiBean * Qmodel;
 
 
 @end

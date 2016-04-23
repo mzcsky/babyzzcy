@@ -17,6 +17,11 @@
 
 @implementation MatchInstViewController
 
+
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -31,7 +36,7 @@
     linView.backgroundColor = [UIColor lightGrayColor];
     
     UIButton * popBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    popBtn.frame = CGRectMake(6,26, 45, 33);
+    popBtn.frame = CGRectMake(11,29, 38, 26);
     [popBtn setImage:[self imageAutomaticName:@"arrowBack@2x.png"] forState:UIControlStateNormal];
     [popBtn addTarget:self action:@selector(leftDrawerButtonPress:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -60,18 +65,8 @@
  *  返回按钮点击方法
  */
 -(void)leftDrawerButtonPress:(id)sender{
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

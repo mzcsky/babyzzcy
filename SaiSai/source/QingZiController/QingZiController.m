@@ -17,7 +17,7 @@
 #import "QingZiSearch.h"
 #import "QingZiBean.h"
 #import "QingZiShowController.h"
-
+#import "CustomButton.h"
 
 
 #define titleScrollHeight 50
@@ -41,9 +41,9 @@
 @property (nonatomic, strong) UIPageControl * pageControl;
 
 
-
-
 @property (nonatomic, strong) NSArray * plistArr;
+
+
 
 @end
 
@@ -114,7 +114,7 @@
         
         CGFloat height = kMargic + (btnW+kMargic)*2;
         
-        return height;
+        return height/2;
     }else if(indexPath.section==0 && indexPath.row==0){
         return lunViewHeight;
     }else{
@@ -142,6 +142,7 @@
     }
     return _ndMenuView;
 }
+//
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.section==0 && indexPath.row==0) {
@@ -167,7 +168,6 @@
         PlistModel * model = [_plistArr objectAtIndex:indexPath.row];
         
         QingZiCell * cell = [QingZiCell valueWithTableView:tableView indexPath:indexPath];
-        
         cell.model = model;
 
         return cell;
@@ -253,17 +253,19 @@
 }
 #pragma ----mark----SixBtnCellDelegate
 
-- (void)pushViewWithIndex:(NSInteger)index andModel:(QingZiBean *)model{
+- (void)pushViewWithIndex:(NSInteger)index andModel:(QingZiBean *)Qmodel{
     
     if (index == 0) {
-        ActivityDetailController * VC = [[ActivityDetailController alloc] init];
-        VC.model = model;
-        [self.navigationController pushViewController:VC animated:YES];
+        
+        QingZiShowController *showVC = [[QingZiShowController alloc] init];
+        showVC.Qmodel = Qmodel;
+        [self.navigationController pushViewController:showVC animated:YES];
+
     }
     if (index == 1) {
-        QingZiShowController *showVC = [[QingZiShowController alloc] init];
-        showVC.model = model;
-        [self.navigationController pushViewController:showVC animated:YES];
+        ActivityDetailController * VC = [[ActivityDetailController alloc] init];
+        VC.Qmodel = Qmodel;
+        [self.navigationController pushViewController:VC animated:YES];
     }
 
 }
@@ -383,9 +385,6 @@
     return _adButtonArr;
 
 }
-
-
-
 
 
 @end

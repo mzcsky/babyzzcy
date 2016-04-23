@@ -9,12 +9,13 @@
 #import "QingZiShowController.h"
 #import "QingZiShowCell.h"
 
-
-
+#define CellHeight lunViewHeight+60
 @interface QingZiShowController ()<UITableViewDelegate, UITableViewDataSource, QingZiShowCellDelegate>
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) NSArray * dataValueArr;
+@property (nonatomic, strong) NSArray * plistArr;
+@property (nonatomic, strong) UIView * NaviBarView;
 
 
 @end
@@ -28,7 +29,8 @@
     self.navigationController.navigationBarHidden = YES;
     XTTabBarController * rootCtrller = [GlobalData shareInstance].mRootController;
     [rootCtrller setmTabBarViewHidden:YES animation:YES];
-
+    self.TheadView.hidden = NO;
+    
 }
 
 - (void)viewDidLoad {
@@ -36,8 +38,60 @@
     [self initdata];
     [self initHeaderView];
     [self initTableView];
+
+    [self plistArr];
+
 //    [self getDataValue];
 }
+
+
+
+
+
+
+
+
+//返回按钮
+- (void)initHeaderView{
+    _NaviBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 44)];
+    _NaviBarView.backgroundColor = [UIColor redColor];
+    
+    UIButton *Navbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    Navbtn.frame = CGRectMake(15, 10, 20, 27);
+    [Navbtn setImage:[self imageAutomaticName:@"arrowBack@2x.png"] forState:UIControlStateNormal];
+    [Navbtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    CGFloat searchBtnW = (SCREEN_WIDTH - Navbtn.width-15)/4;
+    CGFloat searchBtnH = _NaviBarView.height;
+    
+    NSArray *searchArr = [[NSArray alloc] init];
+    searchArr = @[@"分类",@"全城",@"年龄",@"评价"];
+    
+    for (int i = 0 ; i < 4; i++) {
+        
+        CGFloat searchBtnX = (Navbtn.width+15)+(searchBtnW)*i;
+        UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        searchBtn.frame = CGRectMake(searchBtnX, 0, searchBtnW, searchBtnH);
+        [searchBtn setTitle:searchArr[i] forState:UIControlStateNormal];
+        [searchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        searchBtn.tag = i;
+        searchBtn.titleLabel.font = FONT(13);
+        
+        [searchBtn addTarget:self action:@selector(searchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_NaviBarView addSubview:searchBtn];
+        
+    }
+    
+    [_NaviBarView addSubview:Navbtn];
+    
+    [self.view addSubview:_NaviBarView];
+
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -48,7 +102,7 @@
 }
 
 - (void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 84, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -56,7 +110,7 @@
     
     [self.view addSubview:_tableView];
     
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 84, SCREEN_WIDTH, 35)];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0,_NaviBarView.bottom , SCREEN_WIDTH, 35)];
     headerView.backgroundColor = [UIColor blackColor];
     headerView.alpha = 0.5f;
     
@@ -79,10 +133,9 @@
         [headerView addSubview:headerBtn];
     }
     
-    
-    
-    
     [self.view addSubview:headerView];
+
+    
 }
 
 
@@ -121,14 +174,16 @@
 
 //设置每个组有多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return _plistArr.count;
 }
 
 //设置单元格显示内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    PlistModel * Pmodel = [_plistArr objectAtIndex:indexPath.row];
+
     QingZiShowCell *cell = [QingZiShowCell valueWithTableView:tableView indexPath:indexPath];
-        cell.delegate = self;
+    cell.delegate = self;
+    cell.Pmodel = Pmodel;
    
     return cell;
 }
@@ -136,46 +191,31 @@
 #pragma mark =============== UITableViewDelegate代理方法===============
 //设置每行Cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return lunViewHeight;
+    return CellHeight;
 }
 
-//返回按钮
-- (void)initHeaderView{
-    UIView *NaviBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 64)];
-    NaviBarView.backgroundColor = [UIColor whiteColor];
-    
-    UIButton *Navbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    Navbtn.frame = CGRectMake(15, 21, 20, 27);
-    [Navbtn setImage:[self imageAutomaticName:@"arrowBack@2x.png"] forState:UIControlStateNormal];
-    [Navbtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
-    
-   
-    
-    CGFloat searchBtnW = (SCREEN_WIDTH - Navbtn.width-15)/4;
-    CGFloat searchBtnH = NaviBarView.height;
 
-    NSArray *searchArr = [[NSArray alloc] init];
-    searchArr = @[@"分类",@"全城",@"年龄",@"评价"];
+- (NSArray *)plistArr{
     
-    for (int i = 0 ; i < 4; i++) {
- 
-        CGFloat searchBtnX = (Navbtn.width+15)+(searchBtnW)*i;
-        UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    if (!_plistArr) {
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"QingZiPist" ofType:@"plist"];
+        NSArray * plitArr = [[NSArray alloc] initWithContentsOfFile:plistPath];
         
-        searchBtn.frame = CGRectMake(searchBtnX, 0, searchBtnW, searchBtnH);
-        [searchBtn setTitle:searchArr[i] forState:UIControlStateNormal];
-        [searchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        searchBtn.tag = i;
+        NSMutableArray * tempArr = [NSMutableArray array];
+        for (NSDictionary * dic in plitArr) {
+            PlistModel * model = [PlistModel valueWithDic:dic];
+            
+            [tempArr addObject:model];
+            
+        }
         
-        [searchBtn addTarget:self action:@selector(searchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [NaviBarView addSubview:searchBtn];
-
+        _plistArr = tempArr;
+        [self.tableView reloadData];
     }
     
-    
-    [NaviBarView addSubview:Navbtn];
-    [self.view addSubview:NaviBarView];
+    return _plistArr;
 }
+
 
 //图片自适应方法
 - (UIImage *)imageAutomaticName:(NSString *)name {
@@ -191,11 +231,11 @@
 
 - (void)searchBtnClick:(UIButton *)searchSender{
 
-    NSLog(@"%d",searchSender.tag);
+    NSLog(@"%ld",(long)searchSender.tag);
 }
 
 - (void)headerBtnClick:(UIButton *)headerSender{
-    NSLog(@"%d",headerSender.tag);
+    NSLog(@"%ld",(long)headerSender.tag);
 }
 
 @end

@@ -82,24 +82,52 @@
     
     if (self.fBean && (self.fBean.status==1)) {
 
-        UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-120, SCREEN_WIDTH,60)];
         
+        
+        
+        
+        
+        UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-64-49, SCREEN_WIDTH,49)];
+   
         UIButton *instBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        instBtn.frame = CGRectMake(0, 0, footView.width/4, footView.height);
-        [instBtn setImage:[UIImage imageNamed:@"hp_inst.png"] forState:UIControlStateNormal];
-        instBtn.backgroundColor =CLEARCOLOR;
+    
+        instBtn.frame = CGRectMake(0, 0, footView.width/4-2, footView.height);
+        [instBtn setTitle:@"机 构 学 校\n合 作 申 请" forState:UIControlStateNormal];
+        instBtn.titleLabel.numberOfLines = 0;
+        instBtn.titleLabel.font = Bold_FONT(13);
+        [instBtn setTitleColor:BACKGROUND_FENSE forState:UIControlStateNormal];
+        [instBtn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+        instBtn.backgroundColor =[UIColor whiteColor];
         [instBtn addTarget:self action:@selector(jigouAciton) forControlEvents:UIControlEventTouchUpInside];
         
+        UIView *linView = [[UIView alloc] initWithFrame:CGRectMake(instBtn.right,0, 2, 49)];
+        linView.backgroundColor = [UIColor lightGrayColor];
+        [footView addSubview:linView];
         UIButton *rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        rightItem.frame = CGRectMake(instBtn.right-1, 0, footView.width/4, footView.height);
-        [rightItem setBackgroundImage:[UIImage imageNamed:@"hp_share.png"] forState:UIControlStateNormal];
+        rightItem.frame = CGRectMake(instBtn.right+1, 0, footView.width/4, footView.height);
+        [rightItem setTitle:@"分享" forState:UIControlStateNormal];
+        [rightItem setImage:[UIImage imageNamed:@"Match_share"] forState:UIControlStateNormal];
+        rightItem.imageEdgeInsets = UIEdgeInsetsMake(-18, 0, 0, -23);
+        rightItem.titleLabel.numberOfLines = 0;
+        rightItem.titleLabel.font = Bold_FONT(13);
+        rightItem.titleEdgeInsets = UIEdgeInsetsMake(0,-28 , -25,0);
+        [rightItem setTitleColor:BACKGROUND_FENSE forState:UIControlStateNormal];
+        [rightItem setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+        rightItem.backgroundColor =[UIColor whiteColor];
+        
         [rightItem addTarget:self action:@selector(shareBgClick) forControlEvents:UIControlEventTouchUpInside];
-        rightItem.backgroundColor = CLEARCOLOR;
 
         UIButton *Applybtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        Applybtn.frame = CGRectMake(rightItem.right-1, 0, footView.width/2+2, footView.height);
-        [Applybtn setBackgroundImage:[UIImage imageNamed:@"hp_baoming"] forState:UIControlStateNormal];
-        Applybtn.backgroundColor = CLEARCOLOR;
+        Applybtn.frame = CGRectMake(rightItem.right+1, 0, footView.width/2+2, footView.height);
+        
+        [Applybtn setTitle:@"立  即  报  名" forState:UIControlStateNormal];
+        Applybtn.titleLabel.numberOfLines = 0;
+        Applybtn.titleLabel.font = Bold_FONT(17);
+        [Applybtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [Applybtn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+
+        
+        Applybtn.backgroundColor = BACKGROUND_FENSE;
         [Applybtn addTarget:self action:@selector(baomingAction) forControlEvents:UIControlEventTouchUpInside];
 
         UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0,footView.top-1,SCREEN_WIDTH, 1)];
@@ -108,7 +136,7 @@
         [footView addSubview:instBtn];
         [footView addSubview:rightItem];
         [footView addSubview:Applybtn];
-        
+
         [self.view addSubview:footView];
         [self.view addSubview:lineImg];
 
@@ -171,7 +199,7 @@
 }
 
 - (void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49-64)];
     _tableView.backgroundColor = CLEARCOLOR;
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -372,7 +400,8 @@
     
     MatchInstViewController * VC = [[MatchInstViewController alloc] init];
     VC.view.backgroundColor = [UIColor whiteColor];
-    [self presentViewController:VC animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:VC animated:YES];
     
 }
 
