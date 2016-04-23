@@ -163,10 +163,10 @@
  *  设置评论数 修改过的地方
  */
 -(void)setCommentValue:(NSString *)commentStr{
-//    if (!commentStr) {
-//        return;
-//    }
-//    _commentNumLab.text = commentStr;
+    if (!commentStr) {
+        return;
+    }
+    _commentNumLab.text = commentStr;
 }
 
 /**
@@ -185,11 +185,11 @@
  *  @param favor  0 未登录 1 已赞过 2 未赞过
  */
 - (void)setIsFavor:(int)favor{
-    if ( favor == 1) {
-        [_zanVabg setImage:[UIImage imageNamed:@"hp_attention.png"]];
-    }else if(favor == 2){
-        [_zanVabg setImage:[UIImage imageNamed:@"hp_unattention.png"]];
-    }
+//    if ( favor == 1) {
+//        [_zanVabg setImage:[UIImage imageNamed:@"hp_attention.png"]];
+//    }else if(favor == 2){
+//        [_zanVabg setImage:[UIImage imageNamed:@"hp_unattention.png"]];
+//    }
 }
 
 /**
@@ -216,6 +216,7 @@
         else if (tempBtn.tag == 1)  //点赞
         {
             NSLog(@"点赞 或  取赞");
+
             [self updateFavour];
         }
 //        else if (tempBtn.tag == 2)  //修改
@@ -283,6 +284,13 @@
     
     NSDictionary *parm = [HttpBody updateFavourWithUId:[[UserModel shareInfo] uid] pId:[_saiBean.sId intValue] status:favor];
     [ProgressHUD show:LOADING];
+    [ProgressHUD dismiss];
+
+    if ( favor == 1) {
+        [_zanVabg setImage:[UIImage imageNamed:@"hp_attention.png"]];
+    }else if(favor == 2){
+        [_zanVabg setImage:[UIImage imageNamed:@"hp_unattention.png"]];
+    }
     
     
     [manager GET:URLADDRESS parameters:parm success:^(AFHTTPRequestOperation * operation, id response) {
@@ -290,7 +298,6 @@
         NSLog(@"请求点赞取赞结果:%@",jsonDic);
         
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1){
-            [ProgressHUD dismiss];
             //刷新数据
             NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
             [notificationCenter postNotificationName:HP_REFRESHCOUNTDATA object:nil];

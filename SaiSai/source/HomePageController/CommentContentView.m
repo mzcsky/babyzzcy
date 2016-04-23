@@ -21,7 +21,7 @@
         imageView.image = [UIImage imageNamed:@"hp_whiteCBg"];
 //        [self addSubview:imageView];
         
-   //     [self setCommentArr:3];
+        [self setCommentArr:3];
     }
     return self;
 }
@@ -44,6 +44,8 @@
     }
     
     for (int i = 0; i < commentCount; i++) {
+//        UILabel *commentLab = [[UILabel alloc] initWithFrame:CGRectMake(20, _cCHeight,self.width-30, 15)];
+
         UILabel *commentLab = [[UILabel alloc] initWithFrame:CGRectMake(20, _cCHeight,self.width-30, 15)];
         commentLab.backgroundColor = CLEARCOLOR;
         commentLab.textColor = XT_BLACKCOLOR;
@@ -58,7 +60,8 @@
         btn.frame = commentLab.bounds;
         btn.backgroundColor = [UIColor colorWithWhite:0 alpha:0.01];
         [btn addTarget:self action:@selector(commentSai:) forControlEvents:UIControlEventTouchUpInside];
-        [commentLab addSubview:btn];
+        //评论回复
+//        [commentLab addSubview:btn];
         btn.tag = 100+i;
     }
     

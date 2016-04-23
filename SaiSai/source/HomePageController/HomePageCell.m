@@ -189,10 +189,11 @@
     commentView.saiBean = bean;
     if (bean.commentsArr && bean.commentsArr.count > 0)  {
         commentView.hidden = NO;
-//        [commentView setCommentArr:(int)bean.commentsArr.count];   //设置评论内容
+        [commentView setCommentArr:(int)bean.commentsArr.count];   //设置评论内容
         CGFloat cVHeight = [commentView countHeight:bean.commentsArr];
-        commentView.frame = CGRectMake(bigPicture.left, _oTView.bottom, bigPicture.width,cVHeight);  //330 360
-        contenView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _oTView.bottom); //330  360
+//        commentView.frame = CGRectMake(bigPicture.left, _oTView.bottom, bigPicture.width,cVHeight);  //330 360
+        commentView.frame = CGRectMake(0, _oTView.bottom, bigPicture.width, cVHeight);
+        contenView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _oTView.bottom+cVHeight); //330  360
         [commentView.moreBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     else{
@@ -233,8 +234,8 @@
     if (bean.commentsArr && [bean.commentsArr isKindOfClass:[NSArray class]] && bean.commentsArr.count > 0) {
         commentView.saiBean = bean;
 
-//        CGFloat cVHeight = [commentView countHeight:bean.commentsArr];  //设置评论内容
-//        return cVHeight+5+noChangeHeight;//cVHeight+330+5+30;
+        CGFloat cVHeight = [commentView countHeight:bean.commentsArr];  //设置评论内容
+        return cVHeight+5+noChangeHeight;//cVHeight+330+5+30;
     }
     return noChangeHeight + 5;
 }

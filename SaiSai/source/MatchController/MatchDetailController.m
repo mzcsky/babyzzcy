@@ -110,13 +110,17 @@
         rightItem.imageEdgeInsets = UIEdgeInsetsMake(-18, 0, 0, -23);
         rightItem.titleLabel.numberOfLines = 0;
         rightItem.titleLabel.font = Bold_FONT(13);
-        rightItem.titleEdgeInsets = UIEdgeInsetsMake(0,-28 , -25,0);
+        rightItem.titleEdgeInsets = UIEdgeInsetsMake(0,-21 , -23,0);
         [rightItem setTitleColor:BACKGROUND_FENSE forState:UIControlStateNormal];
         [rightItem setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
         rightItem.backgroundColor =[UIColor whiteColor];
-        
         [rightItem addTarget:self action:@selector(shareBgClick) forControlEvents:UIControlEventTouchUpInside];
 
+        
+        
+        UIView *linViewR = [[UIView alloc] initWithFrame:CGRectMake(rightItem.right,0, 2, 49)];
+        linViewR.backgroundColor = [UIColor lightGrayColor];
+        [footView addSubview:linViewR];
         UIButton *Applybtn = [UIButton buttonWithType:UIButtonTypeCustom];
         Applybtn.frame = CGRectMake(rightItem.right+1, 0, footView.width/2+2, footView.height);
         
@@ -130,8 +134,9 @@
         Applybtn.backgroundColor = BACKGROUND_FENSE;
         [Applybtn addTarget:self action:@selector(baomingAction) forControlEvents:UIControlEventTouchUpInside];
 
-        UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0,footView.top-1,SCREEN_WIDTH, 1)];
+        UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0,footView.top-1,SCREEN_WIDTH, 0.5)];
         lineImg.backgroundColor = [UIColor lightGrayColor];
+        
         
         [footView addSubview:instBtn];
         [footView addSubview:rightItem];
@@ -140,6 +145,8 @@
         [self.view addSubview:footView];
         [self.view addSubview:lineImg];
 
+    }else{
+        _tableView.frame =CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
     }
 
 }
@@ -199,7 +206,7 @@
 }
 
 - (void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49-64)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-49)];
     _tableView.backgroundColor = CLEARCOLOR;
     _tableView.delegate = self;
     _tableView.dataSource = self;

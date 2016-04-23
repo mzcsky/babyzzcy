@@ -85,7 +85,8 @@
         _regLab.font = FONT(20);
         _regLab.textAlignment = NSTextAlignmentLeft;
         _regLab.backgroundColor = [UIColor orangeColor];
-        
+//        _regLab.layer.cornerRadius = 10;
+//        _regLab.clipsToBounds = YES;
         //累计
         _totalLab = [[UILabel alloc]init];
         _totalLab.textColor =[UIColor whiteColor];
