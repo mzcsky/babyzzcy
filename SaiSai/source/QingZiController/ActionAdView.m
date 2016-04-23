@@ -85,12 +85,13 @@
             if (!isLoad) {
                 MatchCCBean * model = (MatchCCBean *)[_imgArr objectAtIndex:i];
                 UIImageView * imgView = [[UIImageView alloc] init];
-                [imgView setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"bigPic_default.jpg"]];
+//                [imgView setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"bigPic_default.jpg"]];
+                [imgView setImageWithURL:[NSURL URLWithString:model.img]];
                 imgView.tag = i+100;
                 
                 imgView.frame = CGRectMake(i*SCREEN_WIDTH, 0, _scrollView.width, _scrollView.height);
                 
-                imgView.backgroundColor = [UIColor yellowColor];
+                imgView.backgroundColor = [UIColor whiteColor];
                 [_scrollView addSubview:imgView];
                 
                 

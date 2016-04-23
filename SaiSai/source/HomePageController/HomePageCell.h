@@ -41,7 +41,7 @@
     AdvertView          *adView;
     UILabel             *picNameLab;
     UILabel             *descriptionLab;
-    
+    UILabel             *genderLab;
     UILabel             *gtitleNameLab;
     
     UIButton            *attentionBtn;

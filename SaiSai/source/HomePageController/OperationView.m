@@ -185,11 +185,11 @@
  *  @param favor  0 未登录 1 已赞过 2 未赞过
  */
 - (void)setIsFavor:(int)favor{
-//    if ( favor == 1) {
-//        [_zanVabg setImage:[UIImage imageNamed:@"hp_attention.png"]];
-//    }else if(favor == 2){
-//        [_zanVabg setImage:[UIImage imageNamed:@"hp_unattention.png"]];
-//    }
+    if ( favor == 1) {
+        [_zanVabg setImage:[UIImage imageNamed:@"hp_attention.png"]];
+    }else if(favor == 2){
+        [_zanVabg setImage:[UIImage imageNamed:@"hp_unattention.png"]];
+    }
 }
 
 /**
@@ -284,29 +284,41 @@
     
     NSDictionary *parm = [HttpBody updateFavourWithUId:[[UserModel shareInfo] uid] pId:[_saiBean.sId intValue] status:favor];
     [ProgressHUD show:LOADING];
-    [ProgressHUD dismiss];
 
-    if ( favor == 1) {
-        [_zanVabg setImage:[UIImage imageNamed:@"hp_attention.png"]];
-    }else if(favor == 2){
-        [_zanVabg setImage:[UIImage imageNamed:@"hp_unattention.png"]];
-    }
     
     
     [manager GET:URLADDRESS parameters:parm success:^(AFHTTPRequestOperation * operation, id response) {
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
         NSLog(@"请求点赞取赞结果:%@",jsonDic);
         
+        
+        [ProgressHUD dismiss];
+        
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1){
             //刷新数据
-            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-            [notificationCenter postNotificationName:HP_REFRESHCOUNTDATA object:nil];
+//            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+//            [notificationCenter postNotificationName:HP_REFRESHCOUNTDATA object:nil];
+            self.saiBean.is_favor = favor;
+            [self setIsFavor:favor];
+            
+            int currentHot = [self.hotNumLab.text intValue];
+            if (favor==1) {
+                 currentHot++;
+            }else{
+                currentHot--;
+            }
+            
+            [self.hotNumLab setText:[NSString stringWithFormat:@"%d",currentHot]];
+
+        }else{
+        
+            [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
+//            [ProgressHUD dismiss];
         }
         
-        else{
-            [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
 
-        }
+        
+        
         
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         NSLog(@"failuer");
@@ -347,5 +359,7 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+
 
 @end

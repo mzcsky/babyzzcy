@@ -19,7 +19,7 @@
     if (self) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,15,17)];
         imageView.image = [UIImage imageNamed:@"hp_whiteCBg"];
-//        [self addSubview:imageView];
+        [self addSubview:imageView];
         
         [self setCommentArr:3];
     }
