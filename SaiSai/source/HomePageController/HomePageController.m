@@ -94,7 +94,7 @@
     [self initData];//数据初始化
     [self initTableView];//用户信息请求
     
-    [self lungetData];//广告栏请求
+//    [self lungetData];//广告栏请求
     [self getAgeMenu];//获取年龄分类
     [self getDetail];//补充广告栏数据请求
     
@@ -451,50 +451,50 @@
 /*
  * 轮播数据请求
  */
-- (void)lungetData{
-    NSDictionary *pram = [HttpBody gameListBody:(int)_lunPage rows:[PAGE_COUNT intValue] status:-1 projectid:(int)_lunprojId];
-    
-    [ProgressHUD show:LOADING];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
-    [manager GET:URLADDRESS parameters:pram success:^(AFHTTPRequestOperation * operation, id response){
-        
-        NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-//        NSLog(@"请求获取广告轮播列表接口结果:%@",resDict);
-        //解析数据
-        int status = [[resDict objectForKey:@"status"] intValue];
-        if (status == 1) {
-            NSDictionary *data = [resDict objectForKey:@"data"];
-            //请求成功
-            //解析轮播数据
-            if (_lunadArray != nil && _lunadArray.count>0) {
-                //轮播已有数据，不作处理
-            }else{
-                //轮播无数据
-                NSArray *adArray = [data objectForKey:@"recommend"];
-                for (NSDictionary *dict in adArray) {
-                    //赋值信息
-                    MatchCCBean *bean = [MatchCCBean analyseData:dict];
-                    [_lunadArray addObject:bean];
-                    [_lunadSArray addObject:bean.img];
-                }
-            }
-            _lunadView = nil;
-            [_tableView reloadData];
-            [ProgressHUD dismiss];
-        }else{
-            //数据请求失败
-            _lunPage--;
-            [ProgressHUD showError:[resDict objectForKey:@"msg"]];
-        }
-    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"failuer");
-        [ProgressHUD showError:CHECKNET];
-        
-        [_tableView headerEndRefreshing];
-        [_tableView footerEndRefreshing];
-    }];
-}
+//- (void)lungetData{
+//    NSDictionary *pram = [HttpBody gameListBody:(int)_lunPage rows:[PAGE_COUNT intValue] status:-1 projectid:(int)_lunprojId];
+//    
+//    [ProgressHUD show:LOADING];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+//    [manager GET:URLADDRESS parameters:pram success:^(AFHTTPRequestOperation * operation, id response){
+//        
+//        NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
+////        NSLog(@"请求获取广告轮播列表接口结果:%@",resDict);
+//        //解析数据
+//        int status = [[resDict objectForKey:@"status"] intValue];
+//        if (status == 1) {
+//            NSDictionary *data = [resDict objectForKey:@"data"];
+//            //请求成功
+//            //解析轮播数据
+//            if (_lunadArray != nil && _lunadArray.count>0) {
+//                //轮播已有数据，不作处理
+//            }else{
+//                //轮播无数据
+//                NSArray *adArray = [data objectForKey:@"recommend"];
+//                for (NSDictionary *dict in adArray) {
+//                    //赋值信息
+//                    MatchCCBean *bean = [MatchCCBean analyseData:dict];
+//                    [_lunadArray addObject:bean];
+//                    [_lunadSArray addObject:bean.img];
+//                }
+//            }
+//            _lunadView = nil;
+//            [_tableView reloadData];
+//            [ProgressHUD dismiss];
+//        }else{
+//            //数据请求失败
+//            _lunPage--;
+//            [ProgressHUD showError:[resDict objectForKey:@"msg"]];
+//        }
+//    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+//        NSLog(@"failuer");
+//        [ProgressHUD showError:CHECKNET];
+//        
+//        [_tableView headerEndRefreshing];
+//        [_tableView footerEndRefreshing];
+//    }];
+//}
 /**
  *     补充广告栏数据接口请求。
  */
@@ -508,7 +508,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-//        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+//        NSLog(@"请求获取详情广告栏接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {
@@ -728,9 +728,11 @@
     if (_isTableView && section == 1) {
 
         return self.ndMenuView.bottom + 1;
+        
     }else if(!_isTableView && section == 1){
 
         return self.topBtnView.frame.size.height;
+        
     }
     
     return 0;

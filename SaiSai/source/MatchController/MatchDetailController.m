@@ -37,7 +37,8 @@
 
 
 
-@property (nonatomic, retain) AdvertView        *adView;
+//@property (nonatomic, retain) AdvertView        *adView;
+@property (nonatomic, strong) UIImageView * AdimageView;
 
 @property (nonatomic, retain) UIView            *headView;
 
@@ -52,6 +53,12 @@
 @property (nonatomic, retain) UIWebView                 *webView;
 
 @property (nonatomic, strong) UIView             *instView;
+@property (nonatomic, strong) NSMutableArray    *lunAdArray;
+@property (nonatomic, strong) NSMutableArray    *lunAdsArray;
+
+@property (nonatomic, assign) CGFloat                   finalH;
+
+
 @end
 
 @implementation MatchDetailController
@@ -68,25 +75,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addNotification];
-    
     [self initRightItem];
     [self initData];
     [self initTableView];
-    [self getData];
-    
-
+//    [self getData];
     
     if (self.adSArray && self.adArray) {
         [self initAdView];
     }
     
     if (self.fBean && (self.fBean.status==1)) {
-
-        
-        
-        
-        
-        
+      
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-64-49, SCREEN_WIDTH,49)];
    
         UIButton *instBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -98,7 +97,7 @@
         [instBtn setTitleColor:BACKGROUND_FENSE forState:UIControlStateNormal];
         [instBtn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
         instBtn.backgroundColor =[UIColor whiteColor];
-        [instBtn addTarget:self action:@selector(jigouAciton) forControlEvents:UIControlEventTouchUpInside];
+        [instBtn addTarget:self action:@selector(frameworkAction) forControlEvents:UIControlEventTouchUpInside];
         
         UIView *linView = [[UIView alloc] initWithFrame:CGRectMake(instBtn.right,0, 2, 49)];
         linView.backgroundColor = [UIColor lightGrayColor];
@@ -152,7 +151,6 @@
 }
 
 
-
 - (void)showGoldMatch{
     NSNumber *mid = [NSNumber numberWithInteger:self.fBean.mId];
     MatchWorkController *ctrller = [[MatchWorkController alloc] initWithInfoGid:@{@"mid":mid}];
@@ -199,10 +197,11 @@
 - (void)initData{
     self.page = 1;
     self.type = MATCHDC_BASE_TAG;
-    self.adArray = [NSArray array];
-    self.adSArray = [NSArray array];
+    self.adArray = [NSMutableArray array];
+    self.adSArray = [NSMutableArray array];
     self.tArray = [[NSMutableArray alloc] init];
     self.xgArray = [[NSMutableArray alloc] init];
+    
 }
 
 - (void)initTableView{
@@ -227,7 +226,7 @@
 }
 
 - (void)initAdView{
-    if (self.adView == nil) {
+    if (self.AdimageView == nil) {
         UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight)];
         contentView.backgroundColor = CLEARCOLOR;
         _tableView.tableHeaderView = contentView;
@@ -235,9 +234,10 @@
         UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight)];
         bgView.backgroundColor = [UIColor whiteColor];
         [contentView addSubview:bgView];
-
-        self.adView = [[AdvertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight) delegate:self withImageArr:self.adSArray];
-        [bgView addSubview:self.adView];
+        
+        self.AdimageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight)];
+        [_AdimageView setImageWithURL:[NSURL URLWithString:self.fBean.img]];
+        [bgView addSubview:self.AdimageView];
     }
 }
 
@@ -293,8 +293,9 @@
     switch (self.type) {
         case MATCHDC_BASE_TAG:
         {
+            
             if (_webView) {
-                CGFloat h = _webView.scrollView.contentSize.height;
+                CGFloat h = _webView.scrollView.size.height;
                 return h;
             }
             return 0;
@@ -402,7 +403,7 @@
     }
 }
 
-- (void)jigouAciton{
+- (void)frameworkAction{
 
     
     MatchInstViewController * VC = [[MatchInstViewController alloc] init];
@@ -422,12 +423,17 @@
             if (!cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MATCHDCCELL];
             }
-            
+
             if (!_webView) {
                 _webView =[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
                 _webView.delegate = self;
                 _webView.scrollView.scrollEnabled = NO;
+                
+                [_webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+                
                 [self loadHtml:self.fBean.g_guide];
+
+
             }
             [cell.contentView addSubview:_webView];
 
@@ -482,6 +488,7 @@
     CGRect maFrame = webView.frame;
     maFrame.size.height = h;
     webView.frame = maFrame;
+    self.finalH = h;    //赋值
     
     [_tableView reloadData];
     
@@ -493,7 +500,10 @@
  */
 - (void)loadHtml:(NSString *)url{
     if ([url hasPrefix:@"http://"]) {
+
         NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        NSLog(@"===========================================================%@",url);
+        
         [_webView loadRequest:req];
     }else{
         NSString *show = [NSString stringWithFormat:@"<p>%@</p>",url];
@@ -620,6 +630,9 @@
         }
     }];
 }
+
+
+
 //请求获取参数作品数据
 - (void)getData{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -642,21 +655,11 @@
 //        NSLog(@"请求获取关注人作品数据结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             
-            NSArray *banner = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"banner"]];
-            if (banner && [banner isKindOfClass:[NSArray class]] && banner.count>0) {
-                NSMutableArray *adArray = [NSMutableArray array];
-                NSMutableArray *adImgs = [NSMutableArray array];
-                for (NSDictionary *banDict in banner) {
-                    MatchCADBean *bean = [MatchCADBean analyseData:banDict];
-                    [adArray addObject:bean];
-                    [adImgs addObject:bean.img];
-                }
-                self.adArray = adArray;
-                self.adSArray = adImgs;
+       
                 
-                [_adView reloadDataWithArray:self.adSArray];
+                
                 //以上为轮播数据
-            }
+            
             
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
             if (self.page == 1) {
@@ -829,9 +832,31 @@
     [_tableView reloadData];
 }
 
+//WebView监听
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"contentSize"]) {
+        
+        CGFloat h = [_webView.scrollView contentSize].height;
+        
+        CGRect maFrame = _webView.frame;
+        maFrame.size.height = h;
+        
+        if (self.finalH != h) {
+            _webView.frame = maFrame;
+            [_tableView reloadData];
+            
+        }
+        
+        
+    }
+}
+//销毁WebView监听事件
+-(void)viewWillDisappear:(BOOL)antimated{
+    [super viewWillDisappear:antimated];
+    [_webView.scrollView removeObserver:self
+                             forKeyPath:@"contentSize" context:nil];
 
-
-
-
+}
 
 @end

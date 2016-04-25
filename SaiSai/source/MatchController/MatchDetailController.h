@@ -12,7 +12,7 @@
 
 @property (nonatomic, retain) MatchCCBean   *fBean;
 
-@property (nonatomic, retain) NSArray            *adArray;
-@property (nonatomic, retain) NSArray            *adSArray;
+@property (nonatomic, retain) NSMutableArray            *adArray;
+@property (nonatomic, retain) NSMutableArray            *adSArray;
 
 @end
