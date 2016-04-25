@@ -131,7 +131,7 @@
     
     [ProgressHUD show:LOADING];
     
-    [manager GET:URL_AwardUrlN parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
+    [manager GET:URL_AwardUrl parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
         
         
         [_AStableView headerEndRefreshing];

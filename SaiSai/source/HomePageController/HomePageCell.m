@@ -50,21 +50,21 @@
         
         [self.contentView addSubview:headImg];
         
-        nameLab = [[UILabel alloc] initWithFrame:CGRectMake(headImg.right+5, 15, 45, 20)];
+        nameLab = [[UILabel alloc] initWithFrame:CGRectMake(headImg.right+3, 15, 45, 20)];
         nameLab.backgroundColor = CLEARCOLOR;
         nameLab.textColor = XT_BLACKCOLOR;
         nameLab.adjustsFontSizeToFitWidth = YES;
         nameLab.font = FONT(14);
         [self.contentView addSubview:nameLab];
         
-        genderLab = [[UILabel alloc] initWithFrame:CGRectMake(nameLab.right+5, 15, 15, 20)];
+        genderLab = [[UILabel alloc] initWithFrame:CGRectMake(nameLab.right+3, 15, 15, 20)];
         genderLab.backgroundColor = CLEARCOLOR;
         genderLab.textColor = XT_BLACKCOLOR;
         genderLab.adjustsFontSizeToFitWidth = YES;
         genderLab.font = FONT(12);
         [self.contentView addSubview:genderLab];
         
-        ageLab = [[UILabel alloc] initWithFrame:CGRectMake(genderLab.right+5, 15, SCREEN_WIDTH-nameLab.right-118, 20)];
+        ageLab = [[UILabel alloc] initWithFrame:CGRectMake(genderLab.right+3, 15, SCREEN_WIDTH-nameLab.right-118, 20)];
         ageLab.backgroundColor = CLEARCOLOR;
         ageLab.font = FONT(11);
         ageLab.adjustsFontSizeToFitWidth = YES;
@@ -204,8 +204,8 @@
         commentView.hidden = NO;
         [commentView setCommentArr:(int)bean.commentsArr.count];   //设置评论内容
         CGFloat cVHeight = [commentView countHeight:bean.commentsArr];
-        commentView.frame = CGRectMake(bigPicture.left, _oTView.bottom, bigPicture.width,cVHeight);  //330 360
-//        commentView.frame = CGRectMake(0, _oTView.bottom, bigPicture.width, cVHeight);
+//        commentView.frame = CGRectMake(bigPicture.left, _oTView.bottom, bigPicture.width,cVHeight);  //330 360
+        commentView.frame = CGRectMake(0, _oTView.bottom, bigPicture.width, cVHeight);
         contenView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _oTView.bottom+cVHeight); //330  360
         [commentView.moreBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
