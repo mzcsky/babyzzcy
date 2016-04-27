@@ -1359,7 +1359,7 @@
 			isa = PBXGroup;
 			children = (
 				6E40CDBC1CCB15E800ACE083 /* QingZiShow(休闲活动) */,
-				6E91C62D1CC8C9C200673B94 /* QingZiShow(按钮跳转) */,
+				6E91C62D1CC8C9C200673B94 /* QingZiShow(详情页面) */,
 			);
 			name = "QingZiController(休闲活动)";
 			path = QingZiController;
@@ -1467,7 +1467,7 @@
 			name = "QingZiShow(休闲活动)";
 			sourceTree = "<group>";
 		};
-		6E91C62D1CC8C9C200673B94 /* QingZiShow(按钮跳转) */ = {
+		6E91C62D1CC8C9C200673B94 /* QingZiShow(详情页面) */ = {
 			isa = PBXGroup;
 			children = (
 				6E91C5F21CC7846600673B94 /* QingZiShowController.h */,
@@ -1483,7 +1483,7 @@
 				6EE337E31CCF52ED00AF04D3 /* ProductDetailsImageCell.h */,
 				6EE337E41CCF52ED00AF04D3 /* ProductDetailsImageCell.m */,
 			);
-			name = "QingZiShow(按钮跳转)";
+			name = "QingZiShow(详情页面)";
 			sourceTree = "<group>";
 		};
 		E8741C2A1B9D68BB00ECD9FF /* RecommendToFriend */ = {

@@ -219,15 +219,15 @@
 - (void)btnClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+//详情检索
 - (void)searchBtnClick:(UIButton *)searchSender{
    
     
     NSLog(@"%ld",(long)searchSender.tag);
 }
-
+//头部检索
 - (void)headerBtnClick:(UIButton *)headerSender{
-//    NSLog(@"%ld",(long)headerSender.tag);
+    NSLog(@"%ld",(long)headerSender.tag);
 }
 
 @end
