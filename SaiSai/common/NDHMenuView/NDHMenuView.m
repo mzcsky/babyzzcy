@@ -41,7 +41,7 @@
 
 - (void)initData{
     //默认选中颜色
-    _selColor = XT_BLACKCOLOR;//[UIColor colorWithRed:86.0/255.0f green:203/255.0f blue:1 alpha:1];
+    _selColor = Age_BACKROUND_COLOR;//[UIColor colorWithRed:86.0/255.0f green:203/255.0f blue:1 alpha:1];
     
     _curIndex = 0;
     _sizeArray = [[NSMutableArray alloc] init];

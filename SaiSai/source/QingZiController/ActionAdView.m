@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong) NSMutableArray * imgArr;
 
-@property (nonatomic, strong) UITableView * tableView;
 
 @end
 

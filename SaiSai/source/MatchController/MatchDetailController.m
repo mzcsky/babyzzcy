@@ -58,6 +58,8 @@
 
 @property (nonatomic, assign) CGFloat                   finalH;
 
+@property (nonatomic, assign) BOOL isAlive;
+
 
 @end
 
@@ -321,6 +323,42 @@
     }
     return 400;
 }
+
+//WebView监听
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"contentSize"]) {
+        
+        CGFloat h = [_webView.scrollView contentSize].height;
+        
+        CGRect maFrame = _webView.frame;
+        maFrame.size.height = h;
+        
+        if (self.finalH != h) {
+            _webView.frame = maFrame;
+            [_tableView reloadData];
+            
+        }
+        
+    }
+}
+//销毁WebView监听事件
+
+-(void)viewWillDisappear:(BOOL)antimated{
+    [super viewWillDisappear:antimated];
+    
+
+    if (_isAlive) {
+        
+        [_webView.scrollView removeObserver:self
+                                 forKeyPath:@"contentSize" context:nil];
+        _isAlive = NO;
+
+    }
+    
+}
+
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
     _headView.backgroundColor = BACKGROUND_COLOR;
@@ -431,6 +469,8 @@
                 
                 [_webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
                 
+                self.isAlive = YES;
+                
                 [self loadHtml:self.fBean.g_guide];
 
 
@@ -502,7 +542,6 @@
     if ([url hasPrefix:@"http://"]) {
 
         NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-        NSLog(@"===========================================================%@",url);
         
         [_webView loadRequest:req];
     }else{
@@ -654,20 +693,12 @@
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
 //        NSLog(@"请求获取关注人作品数据结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
-            
-       
-                
-                
-                //以上为轮播数据
-            
-            
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
             if (self.page == 1) {
                 if (_tArray && _tArray.count > 0) {
                     [_tArray removeAllObjects];
                 }
             }
-            
             if (dataArr && dataArr.count > 0) {
                 for (int i = 0; i < dataArr.count; i++) {
                     SaiBean *bean = [SaiBean parseInfo:dataArr[i]];
@@ -677,7 +708,6 @@
             }else{
                 _CSlabel.hidden = NO;
             }
-            
             if (dataArr.count < [PAGE_COUNT intValue]) {
                 _tableView.footerHidden = YES;
             }
@@ -685,7 +715,6 @@
                 _tableView.footerHidden = NO;
             }
             [_tableView reloadData];
-            
             [ProgressHUD dismiss];
         }
         else{
@@ -726,19 +755,14 @@
         }
             break;
         case MATCHDC_BASE_TAG+1:
-        {
-            //显示参赛作品数据
-
+        {   //显示参赛作品数据
             [_tableView setHeaderHidden:NO];
             [_tableView setFooterHidden:NO];
             [self refreshData];
-
-        
         }
             break;
         case MATCHDC_BASE_TAG+2:
-        {
-            //相关推荐
+        {   //相关推荐
             [_tableView setHeaderHidden:NO];
             [_tableView setFooterHidden:NO];
             [self refreshData];
@@ -832,31 +856,6 @@
     [_tableView reloadData];
 }
 
-//WebView监听
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"contentSize"]) {
-        
-        CGFloat h = [_webView.scrollView contentSize].height;
-        
-        CGRect maFrame = _webView.frame;
-        maFrame.size.height = h;
-        
-        if (self.finalH != h) {
-            _webView.frame = maFrame;
-            [_tableView reloadData];
-            
-        }
-        
-        
-    }
-}
-//销毁WebView监听事件
--(void)viewWillDisappear:(BOOL)antimated{
-    [super viewWillDisappear:antimated];
-    [_webView.scrollView removeObserver:self
-                             forKeyPath:@"contentSize" context:nil];
 
-}
 
 @end

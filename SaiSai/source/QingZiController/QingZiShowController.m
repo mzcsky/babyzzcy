@@ -157,15 +157,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 #pragma mark ===============UITableViewDataSource===============
 //设置表格的组数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -230,12 +221,13 @@
 }
 
 - (void)searchBtnClick:(UIButton *)searchSender{
-
+   
+    
     NSLog(@"%ld",(long)searchSender.tag);
 }
 
 - (void)headerBtnClick:(UIButton *)headerSender{
-    NSLog(@"%ld",(long)headerSender.tag);
+//    NSLog(@"%ld",(long)headerSender.tag);
 }
 
 @end

@@ -83,7 +83,7 @@
 
 #pragma mark -
 #pragma mark COLOR
-
+#define Age_BACKROUND_COLOR          UIColorFromRGB(0xffaf00)
 #define View_BACKGROUND_COLOR            UIColorFromRGB(0xefefef)
 #define BACKGROUND_FENSE            [UIColor colorWithRed:251.f/255.0 green:144.f/255.0 blue:119.f/255.0 alpha:1.0]
 #define BACKGROUND_COLOR            [UIColor colorWithRed:241.f/255 green:242.f/255 blue:244.f/255 alpha:1.f]//UIColorFromRGB(0xe6e6e6)
@@ -110,7 +110,7 @@
 //tab文字颜色
 #define TabbarTitleColor    UIColorFromRGB(0x999999)
 #define TabbarNTitleColor   UIColorFromRGB(0x9f9f9f)
-
+#
 #define HIDDEN_TAB      @"HIDDEN_TAB"
 #define SHOW_TAB        @"SHOW_TAB"
 #define defaults [NSUserDefaults standardUserDefaults]

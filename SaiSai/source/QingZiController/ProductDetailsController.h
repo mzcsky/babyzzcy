@@ -1,0 +1,13 @@
+//
+//  ProductDetailsController.h
+//  SaiSai
+//
+//  Created by 宝贝计画 on 16/4/26.
+//  Copyright © 2016年 NJNightDayTechnology. All rights reserved.
+//
+
+#import "XTViewController.h"
+
+@interface ProductDetailsController : XTViewController
+
+@end
