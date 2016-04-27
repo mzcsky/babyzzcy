@@ -208,7 +208,7 @@
 
 - (void)initTableView{
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-49)];
-    _tableView.backgroundColor = CLEARCOLOR;
+    _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -465,6 +465,7 @@
             if (!_webView) {
                 _webView =[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
                 _webView.delegate = self;
+                _webView.backgroundColor = [UIColor whiteColor];
                 _webView.scrollView.scrollEnabled = NO;
                 
                 [_webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];

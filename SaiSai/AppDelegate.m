@@ -120,7 +120,6 @@
     [UMSocialQQHandler setQQWithAppId:TECENT_APPID appKey:TECENT_APPKEY url:nil];
     
     [WeiboSDK registerApp:WB_APPID];
-    
     [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToWechatSession]];
     
     

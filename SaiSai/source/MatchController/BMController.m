@@ -85,6 +85,7 @@
 }
 
 -(void)initRightItem{
+    self.view.backgroundColor = [UIColor whiteColor];
     MyNavButton *rightItem = [MyNavButton buttonWithType:UIButtonTypeCustom];
     rightItem.frame = CGRectMake(0, 0, 60, 64);
     [rightItem setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];

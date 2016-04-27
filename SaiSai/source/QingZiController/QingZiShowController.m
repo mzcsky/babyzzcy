@@ -8,14 +8,22 @@
 
 #import "QingZiShowController.h"
 #import "QingZiShowCell.h"
+#import "ProductDetailsController.h"
+#import "WJDropdownMenu.h"
+
 
 #define CellHeight lunViewHeight+60
-@interface QingZiShowController ()<UITableViewDelegate, UITableViewDataSource, QingZiShowCellDelegate>
+@interface QingZiShowController ()<UITableViewDelegate, UITableViewDataSource, QingZiShowCellDelegate,WJMenuDelegate>
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) NSArray * dataValueArr;
 @property (nonatomic, strong) NSArray * plistArr;
 @property (nonatomic, strong) UIView * NaviBarView;
+@property (nonatomic, strong) NSMutableArray * data;
+
+@property (nonatomic, strong) WJDropdownMenu * menu;
+@property (nonatomic, strong) WJDropdownMenu * menu2;
+
 
 
 @end
@@ -32,73 +40,89 @@
     self.TheadView.hidden = NO;
     
 }
-
+- (void)initdata{
+    QZpage = 1;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initdata];
     [self initHeaderView];
     [self initTableView];
-
     [self plistArr];
 
 //    [self getDataValue];
 }
 
 
-
-
-
-
-
-
 //返回按钮
 - (void)initHeaderView{
-    _NaviBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 44)];
-    _NaviBarView.backgroundColor = [UIColor redColor];
+    
+    WJDropdownMenu *menu = [[WJDropdownMenu alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 44)];
+    menu.delegate = self;
+    menu.tag = 0;
+    self.menu = menu;
+    
+    menu.caverAnimationTime = 0.2;//  增加了遮盖层动画时间设置   不设置默认是  0.15
+    menu.menuTitleFont = 12;      //  设置menuTitle字体大小    不设置默认是  11
+    menu.tableTitleFont = 11;     //  设置tableTitle字体大小   不设置默认是  10
+    menu.cellHeight = 38;         //  设置tableViewcell高度   不设置默认是  40
+    menu.menuArrowStyle = menuArrowStyleSolid; // 旋转箭头的样式(空心箭头 or 实心箭头)
+    menu.tableViewMaxHeight = 200; // tableView的最大高度(超过此高度就可以滑动显示)
+    menu.CarverViewColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];//设置遮罩层颜色
+    
+    [self createAllMenuData];
     
     UIButton *Navbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     Navbtn.frame = CGRectMake(15, 10, 20, 27);
     [Navbtn setImage:[self imageAutomaticName:@"arrowBack@2x.png"] forState:UIControlStateNormal];
     [Navbtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    
-    CGFloat searchBtnW = (SCREEN_WIDTH - Navbtn.width-15)/4;
-    CGFloat searchBtnH = _NaviBarView.height;
-    
-    NSArray *searchArr = [[NSArray alloc] init];
-    searchArr = @[@"分类",@"全城",@"年龄",@"评价"];
-    
-    for (int i = 0 ; i < 4; i++) {
-        
-        CGFloat searchBtnX = (Navbtn.width+15)+(searchBtnW)*i;
-        UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-        searchBtn.frame = CGRectMake(searchBtnX, 0, searchBtnW, searchBtnH);
-        [searchBtn setTitle:searchArr[i] forState:UIControlStateNormal];
-        [searchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        searchBtn.tag = i;
-        searchBtn.titleLabel.font = FONT(13);
-        
-        [searchBtn addTarget:self action:@selector(searchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [_NaviBarView addSubview:searchBtn];
-        
-    }
-    
-    [_NaviBarView addSubview:Navbtn];
-    
-    [self.view addSubview:_NaviBarView];
 
+
+    [menu addSubview:Navbtn];
     
+    [self.view addSubview:menu];
+
 }
 
+- (void)createAllMenuData{
+    NSArray *threeMenuTitleArray =  @[@"分类",@"年龄",@"评价"];
+    NSArray *firstArrOne = [NSArray arrayWithObjects:@"精神科",@"耳鼻喉",@"妇科",@"去污科", nil];
+    NSArray *firstMenu = [NSArray arrayWithObject:firstArrOne];
+    
+     NSArray *firstArrTwo = [NSArray arrayWithObjects:@"0岁",@"1岁",@"2岁",@"3岁",@"4岁",@"5岁",@"6岁",@"7岁",@"8岁",@"9岁",@"10岁",@"11岁",@"12岁",nil];
+    NSArray *secondMenu = [NSArray arrayWithObjects:firstArrTwo, nil];
+
+    NSArray *firstArrTherr =[NSArray arrayWithObjects:@"前3",@"前5",@"前10",@"前20",@"前40",@"前100",nil];
+    NSArray *therrMenu = [NSArray arrayWithObject:firstArrTherr];
+    [self.menu createThreeMenuTitleArray:threeMenuTitleArray FirstArr:firstMenu SecondArr:secondMenu threeArr:therrMenu];
+    [self.view bringSubviewToFront:_menu];
+
+
+}
+
+
+
+- (void)menuCellDidSelected:(NSInteger)MenuTitleIndex firstIndex:(NSInteger)firstIndex secondIndex:(NSInteger)secondIndex thirdIndex:(NSInteger)thirdIndex{
+    
+
+}
+
+/** 代理方法返回 菜单标题:MenuTitle  一级菜单内容:firstContent 二级菜单内容:secondContent  三级菜单内容:thirdContent */
+- (void)menuCellDidSelected:(NSString *)MenuTitle firstContent:(NSString *)firstContent secondContent:(NSString *)secondContent thirdContent:(NSString *)thirdContent{
+
+
+    
+    self.data = [NSMutableArray array];
+    [self.data addObject:[NSString stringWithFormat:@"%@ 的 detail data 1",secondContent]];
+    [self.data addObject:[NSString stringWithFormat:@"%@ 的 detail data 2",secondContent]];
+    [self.data addObject:[NSString stringWithFormat:@"%@ 的 detail data 3",secondContent]];
+    [self.tableView reloadData];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-
-- (void)initdata{
-    QZpage = 1;
 }
 
 - (void)initTableView{
@@ -109,37 +133,9 @@
     _tableView.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:_tableView];
-    
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0,_NaviBarView.bottom , SCREEN_WIDTH, 35)];
-    headerView.backgroundColor = [UIColor blackColor];
-    headerView.alpha = 0.5f;
-    
-    
-    CGFloat headerBtnW = SCREEN_WIDTH/3;
-    CGFloat headerBtnH = headerView.height;
-    
-    NSArray *headetBtnArr = [[NSArray alloc]init];
-    headetBtnArr = @[@"距离",@"2016-03-13",@"天数"];
-    
-    for (int i = 0 ; i < 3; i++) {
-        CGFloat headerBtnX =(headerView.frame.origin.x)+headerBtnW*i;
-        UIButton *headerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        headerBtn.frame =CGRectMake(headerBtnX, 0, headerBtnW, headerBtnH);
-        [headerBtn setTitle:headetBtnArr[i] forState:UIControlStateNormal];
-        [headerBtn addTarget:self action:@selector(headerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        headerBtn.backgroundColor = [UIColor redColor];
-        headerBtn.tag = i;
-        
-        [headerView addSubview:headerBtn];
-    }
-    
-    [self.view addSubview:headerView];
 
     
 }
-
-
-
 
 #pragma mark ===============演出展览数据请求==================
 //- (void)getDataValue{
@@ -170,13 +166,13 @@
 
 //设置单元格显示内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PlistModel * Pmodel = [_plistArr objectAtIndex:indexPath.row];
 
-    QingZiShowCell *cell = [QingZiShowCell valueWithTableView:tableView indexPath:indexPath];
-    cell.delegate = self;
-    cell.Pmodel = Pmodel;
-   
-    return cell;
+        PlistModel * Pmodel = [_plistArr objectAtIndex:indexPath.row];
+        QingZiShowCell *cell = [QingZiShowCell valueWithTableView:tableView indexPath:indexPath];
+        cell.delegate = self;
+        cell.Pmodel = Pmodel;
+        return cell;
+
 }
 
 #pragma mark =============== UITableViewDelegate代理方法===============
@@ -185,7 +181,13 @@
     return CellHeight;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        ProductDetailsController *PDVC = [[ProductDetailsController alloc]init];
+        [self.navigationController pushViewController:PDVC animated:YES];
 
+    }
+}
 - (NSArray *)plistArr{
     
     if (!_plistArr) {
@@ -195,11 +197,8 @@
         NSMutableArray * tempArr = [NSMutableArray array];
         for (NSDictionary * dic in plitArr) {
             PlistModel * model = [PlistModel valueWithDic:dic];
-            
             [tempArr addObject:model];
-            
         }
-        
         _plistArr = tempArr;
         [self.tableView reloadData];
     }
@@ -216,18 +215,16 @@
     return [UIImage imageWithCGImage:image.CGImage scale:scale orientation:UIImageOrientationUp];
 }
 
+
 - (void)btnClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
-//详情检索
-- (void)searchBtnClick:(UIButton *)searchSender{
-   
-    
-    NSLog(@"%ld",(long)searchSender.tag);
-}
-//头部检索
-- (void)headerBtnClick:(UIButton *)headerSender{
-    NSLog(@"%ld",(long)headerSender.tag);
-}
+
+
+
+
+
+
+
 
 @end

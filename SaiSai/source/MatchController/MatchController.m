@@ -222,28 +222,13 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-//        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {
             NSDictionary *data = [resDict objectForKey:@"data"];
-            //请求成功
-            //解析轮播数据
-            if (self.adArray != nil && self.adArray.count>0) {
-                //轮播已有数据，不作处理
-            }else{
-                //轮播无数据
-                NSArray *adArray = [data objectForKey:@"recommend"];
-                for (NSDictionary *dict in adArray) {
-                    MatchCCBean *bean = [MatchCCBean analyseData:dict];
-                    [self.adArray addObject:bean];
-                    [self.adSArray addObject:bean.img];
-                }
-                [self initAdView];
-            }
-            
             if (self.claArray != nil && self.claArray.count>0) {
-                //主题已有数据，不作处理
+
             }else{
                 //主题无数据
                 [_claArray removeAllObjects];

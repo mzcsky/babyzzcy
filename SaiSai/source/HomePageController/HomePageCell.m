@@ -11,6 +11,7 @@
 #import "NSString+Empty.h"
 #import "UsermsgController.h"
 #import "HomePageCell.h"
+
 @implementation HomePageCell
 
 - (void)awakeFromNib {
@@ -28,7 +29,7 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-    
+   
         self.backgroundColor = CLEARCOLOR;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         contenView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 330)];
@@ -198,6 +199,8 @@
     [_oTView setCommentValue:[NSString stringWithFormat:@"%i",bean.commentNum]];
     [_oTView setHotValue:[NSString stringWithFormat:@"%i",bean.hotNum]];
     [_oTView setIsFavor:bean.is_favor];
+
+    
     
     commentView.saiBean = bean;
     if (bean.commentsArr && bean.commentsArr.count > 0)  {
@@ -207,6 +210,7 @@
 //        commentView.frame = CGRectMake(bigPicture.left, _oTView.bottom, bigPicture.width,cVHeight);  //330 360
         commentView.frame = CGRectMake(0, _oTView.bottom, bigPicture.width, cVHeight);
         contenView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _oTView.bottom+cVHeight); //330  360
+        
         [commentView.moreBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     else{

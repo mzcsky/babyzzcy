@@ -247,8 +247,8 @@
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-49 -20)];
     _tableView.dataSource = self;
     _tableView.delegate   = self;
+    _tableView.backgroundColor = CLEARCOLOR;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = BACKGROUND_COLOR;
     [self.view addSubview:_tableView];
     [_tableView addHeaderWithTarget:self action:@selector(addMoreDataWithHeader)];
     [_tableView addFooterWithTarget:self action:@selector(addMoreDataWithFooter)];
@@ -447,54 +447,6 @@
     }
     return _lunadView;
 }
-
-/*
- * 轮播数据请求
- */
-//- (void)lungetData{
-//    NSDictionary *pram = [HttpBody gameListBody:(int)_lunPage rows:[PAGE_COUNT intValue] status:-1 projectid:(int)_lunprojId];
-//    
-//    [ProgressHUD show:LOADING];
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
-//    [manager GET:URLADDRESS parameters:pram success:^(AFHTTPRequestOperation * operation, id response){
-//        
-//        NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-////        NSLog(@"请求获取广告轮播列表接口结果:%@",resDict);
-//        //解析数据
-//        int status = [[resDict objectForKey:@"status"] intValue];
-//        if (status == 1) {
-//            NSDictionary *data = [resDict objectForKey:@"data"];
-//            //请求成功
-//            //解析轮播数据
-//            if (_lunadArray != nil && _lunadArray.count>0) {
-//                //轮播已有数据，不作处理
-//            }else{
-//                //轮播无数据
-//                NSArray *adArray = [data objectForKey:@"recommend"];
-//                for (NSDictionary *dict in adArray) {
-//                    //赋值信息
-//                    MatchCCBean *bean = [MatchCCBean analyseData:dict];
-//                    [_lunadArray addObject:bean];
-//                    [_lunadSArray addObject:bean.img];
-//                }
-//            }
-//            _lunadView = nil;
-//            [_tableView reloadData];
-//            [ProgressHUD dismiss];
-//        }else{
-//            //数据请求失败
-//            _lunPage--;
-//            [ProgressHUD showError:[resDict objectForKey:@"msg"]];
-//        }
-//    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-//        NSLog(@"failuer");
-//        [ProgressHUD showError:CHECKNET];
-//        
-//        [_tableView headerEndRefreshing];
-//        [_tableView footerEndRefreshing];
-//    }];
-//}
 /**
  *     补充广告栏数据接口请求。
  */
@@ -852,7 +804,7 @@
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     [manager GET:URLADDRESS parameters:parm success:^(AFHTTPRequestOperation * operation, id response) {
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求关注或者取消关注结果:%@",jsonDic);
+//        NSLog(@"请求关注或者取消关注结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             [self refreshCountData];
         }

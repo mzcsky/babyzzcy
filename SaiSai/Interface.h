@@ -25,12 +25,12 @@
 //内
 #define URL_Button           @"http://192.168.1.102:8080/zhongzaicanyu/dictionary/findAll?"
 
-#define URL_AwardUrlN        @"http://192.168.1.107:8080/zhongzaicanyu/apply/findApplyListByCondition?"
+#define URL_AwardUrlN        @"http://192.168.1.102:8080/zhongzaicanyu/apply/findApplyListByCondition?"
 
 
 #pragma mark===============================================================================================
 //外
-#define URL_AwardUrl           @"http://139.129.129.245:9080/zhongzaicanyu/apply/findApplyListByCondition?"
+#define URL_AwardUrl         @"http://139.129.129.245:9080/zhongzaicanyu/apply/findApplyListByCondition?"
 
 #define KGetRecommendList    @"http://api.saisaiapp.com/api.php?action=getRecommendList"
 

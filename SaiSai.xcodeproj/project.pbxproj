@@ -167,6 +167,7 @@
 		6EE337E21CCF4F2400AF04D3 /* ProductDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337E11CCF4F2400AF04D3 /* ProductDetailsCell.m */; };
 		6EE337E51CCF52ED00AF04D3 /* ProductDetailsImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337E41CCF52ED00AF04D3 /* ProductDetailsImageCell.m */; };
 		6EE337E81CCF648900AF04D3 /* ProductButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337E71CCF648900AF04D3 /* ProductButtonView.m */; };
+		6EE337EB1CD06FF400AF04D3 /* WJDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337EA1CD06FF400AF04D3 /* WJDropdownMenu.m */; };
 		6EEAE0AF1C855B8000F619BD /* MyUsermsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */; };
 		6EEAE0B21C85690800F619BD /* MyFansMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0B11C85690800F619BD /* MyFansMsgViewController.m */; };
 		6EF7E7FA1CC5D3A000CCC376 /* QingZiPist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EF7E7F91CC5D3A000CCC376 /* QingZiPist.plist */; };
@@ -603,6 +604,8 @@
 		6EE337E41CCF52ED00AF04D3 /* ProductDetailsImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailsImageCell.m; sourceTree = "<group>"; };
 		6EE337E61CCF648900AF04D3 /* ProductButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductButtonView.h; sourceTree = "<group>"; };
 		6EE337E71CCF648900AF04D3 /* ProductButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductButtonView.m; sourceTree = "<group>"; };
+		6EE337E91CD06FF400AF04D3 /* WJDropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJDropdownMenu.h; sourceTree = "<group>"; };
+		6EE337EA1CD06FF400AF04D3 /* WJDropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJDropdownMenu.m; sourceTree = "<group>"; };
 		6EEAE0AD1C855B8000F619BD /* MyUsermsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUsermsgViewController.h; sourceTree = "<group>"; };
 		6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUsermsgViewController.m; sourceTree = "<group>"; };
 		6EEAE0B01C85690800F619BD /* MyFansMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFansMsgViewController.h; sourceTree = "<group>"; };
@@ -1474,6 +1477,8 @@
 				6E91C5F31CC7846600673B94 /* QingZiShowController.m */,
 				6E91C5F51CC78ACD00673B94 /* QingZiShowCell.h */,
 				6E91C5F61CC78ACD00673B94 /* QingZiShowCell.m */,
+				6EE337E91CD06FF400AF04D3 /* WJDropdownMenu.h */,
+				6EE337EA1CD06FF400AF04D3 /* WJDropdownMenu.m */,
 				6EE337DD1CCF459800AF04D3 /* ProductDetailsController.h */,
 				6EE337DE1CCF459800AF04D3 /* ProductDetailsController.m */,
 				6EE337E61CCF648900AF04D3 /* ProductButtonView.h */,
@@ -2247,6 +2252,7 @@
 				6333D2621C095F96000613B1 /* MJPhotoProgressView.m in Sources */,
 				6333D28B1C095F96000613B1 /* UIViewExt.m in Sources */,
 				F57E2D2C1BA05F7E0018B0BA /* PositionTool.m in Sources */,
+				6EE337EB1CD06FF400AF04D3 /* WJDropdownMenu.m in Sources */,
 				6333D2851C095F96000613B1 /* UIImage+MultiFormat.m in Sources */,
 				63E22D521B99DFE400D04575 /* ForgetPswController.m in Sources */,
 				F589F01C1B98690E00EF8814 /* BMImageCell.m in Sources */,
