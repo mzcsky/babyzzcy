@@ -238,6 +238,7 @@
         [contentView addSubview:bgView];
         
         self.AdimageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight)];
+        
         [_AdimageView setImageWithURL:[NSURL URLWithString:self.fBean.img]];
         [bgView addSubview:self.AdimageView];
     }

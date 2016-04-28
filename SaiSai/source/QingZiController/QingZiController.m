@@ -44,10 +44,16 @@
 //页面
 @property (nonatomic, strong) UIWebView  *webView;
 
+
 @end
 
 
-@implementation QingZiController
+
+@implementation QingZiController{
+   NSMutableArray * _adSarray;
+
+
+}
 
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -80,10 +86,13 @@
     return _plistArr;
 }
 - (void)initData{
+    _adSarray = [[NSMutableArray alloc] init];
+
 
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
+    [self initData];
     [self adImgArr];
     [self adButton];
     [self initDataTableView];
@@ -370,6 +379,7 @@
                 [self addtimer];
             }
             _adImgArr = dataArr;
+            ;
         } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
             NSLog(@"failuer");
         }];
