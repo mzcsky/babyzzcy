@@ -36,27 +36,78 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-20) style:UITableViewStylePlain];
+    [self initTableView];
+    [self initHeaderButton];
+    [self initFooterButton];
+    
+}
+- (void)initTableView{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-69) style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    UIButton *btnClick = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnClick addTarget:self action:@selector(btnClickBlock) forControlEvents:UIControlEventTouchUpInside];
-    btnClick.frame = CGRectMake(20, 20, 40, 40);
-    btnClick.backgroundColor = [UIColor blueColor];
     
-    [_tableView addSubview:btnClick];
     [self.view addSubview:_tableView];
-    
 }
 
-- (void)btnClickBlock{
-    [self.navigationController popViewControllerAnimated:YES];
-    
-}
 
+
+- (void)initHeaderButton{
+    UIButton *btnBlock = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnBlock addTarget:self action:@selector(btnClickBlock) forControlEvents:UIControlEventTouchUpInside];
+    [btnBlock setImage:[UIImage imageNamed:@"qingzi_block"] forState:UIControlStateNormal];
+    btnBlock.frame = CGRectMake(14, 14, 35, 35);
+    btnBlock.alpha = 0.4;
+    [_tableView addSubview:btnBlock];
+
+}
+- (void)initFooterButton{
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH,49)];
+    
+    CGFloat btnW = SCREEN_WIDTH/4;
+    CGFloat btnH = footView.height;
+    NSArray *btnarr = @[@"留言",@"分享",@"立即报名",@"我要拼团"];
+    for (int i = 0; i < 4; i++) {
+        CGFloat btnX = (btnW)*i;
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = [UIColor whiteColor];
+        [btn setTitle:btnarr[i] forState:UIControlStateNormal];
+        [btn setTitleColor:BACKGROUND_FENSE forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        btn.frame = CGRectMake(btnX, 0, btnW, btnH);
+        if (i == 1) {
+            [btn setTitle:@"分享" forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@"Match_share"] forState:UIControlStateNormal];
+            btn.imageEdgeInsets = UIEdgeInsetsMake(-18, 0, 0, -23);
+            btn.titleLabel.numberOfLines = 0;
+            btn.titleLabel.font = Bold_FONT(11);
+            btn.titleEdgeInsets = UIEdgeInsetsMake(0,-21 , -23,0);
+
+        }
+        if (i == 2) {
+            btn.backgroundColor = BACKGROUND_FENSE;
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+            btn.titleLabel.font = Bold_FONT(18);
+        }
+        if (i == 3) {
+            btn.backgroundColor = [UIColor colorWithRed:253/255.0 green:181/255.0 blue:78/255.0 alpha:1.0];
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+            btn.titleLabel.font = Bold_FONT(18);
+
+        }
+        
+        
+        [footView addSubview:btn];
+    
+    
+    }
+    [self.view addSubview:footView];
+
+}
 
 #pragma mark ==============UITableViewDataSource===========
 //设置表格的组数
@@ -137,7 +188,10 @@
     QingZiController *QZVC = [[QingZiController alloc] init];
     [self.navigationController popToViewController:QZVC animated:YES];
 }
-
+- (void)btnClickBlock{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 
 @end

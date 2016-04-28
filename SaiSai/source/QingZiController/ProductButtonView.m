@@ -21,6 +21,8 @@
     return self;
 }
 - (void)initData{
+
+    
     
     NSArray *arr =@[@"基本信息",@"详细介绍",@"咨询",@"评价"];
 

@@ -36,6 +36,8 @@
     [self initRightItem];
     [self initMenuView];
     [self initTableView];
+    XTTabBarController * rootCtrller = [GlobalData shareInstance].mRootController;
+    [rootCtrller setmTabBarViewHidden:YES animation:YES];
     
 }
 - (void)didReceiveMemoryWarning {
@@ -155,11 +157,11 @@
 }
 
 -(void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,_ndMenuView.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-49-_ndMenuView.height)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,_ndMenuView.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-_ndMenuView.height)];
     _tableView.dataSource = self;
     _tableView.delegate   = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = BACKGROUND_COLOR;
+    _tableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_tableView];
     [_tableView addHeaderWithTarget:self action:@selector(refreshDataA)];
     [_tableView addFooterWithTarget:self action:@selector(loadMoreDataA)];
@@ -317,7 +319,7 @@
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     [manager GET:URLADDRESS parameters:parm success:^(AFHTTPRequestOperation * operation, id response) {
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求关注或者取消关注结果:%@",jsonDic);
+//        NSLog(@"请求关注或者取消关注结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             [self refreshCountDataA];
         }

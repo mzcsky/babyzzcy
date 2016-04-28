@@ -52,7 +52,7 @@
 
 - (void)initTableView{
     _SWtableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-100)];
-    _SWtableView.backgroundColor = CLEARCOLOR;
+    _SWtableView.backgroundColor = [UIColor whiteColor];
     _SWtableView.dataSource = self;
     _SWtableView.delegate = self;
     _SWtableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -275,6 +275,36 @@
     }];
 }
 
+
+- (void)showBigPics:(SaiBean *)bean{
+    NSInteger count = bean.applySubArr.count;
+    
+    // 1.封装图片数据
+    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+    for (int i = 0; i<count; i++) {
+        NSDictionary *dict = [bean.applySubArr objectAtIndex:i];
+        MJPhoto *photo = [[MJPhoto alloc] init];
+        
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectZero];
+        imgView.size = CGSizeMake(300, 300);
+        
+        photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"pic_url"]]];
+        photo.srcImageView = imgView; // 来源于哪个UIImageView
+        [photos addObject:photo];
+    }
+    
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    browser.photos = photos; // 设置所有的图片
+    browser.currentPhotoIndex = 0;
+    [browser show];
+}
+//显示更多
+-(void)showMoreComment:(SaiBean *)bean{
+    bean.isShowMore = !bean.isShowMore;
+    //刷新数据
+    [_tableView reloadData];
+    
+}
 
 
 @end

@@ -87,7 +87,7 @@
 
 - (void)initTableView{
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-60)];
-    _tableView.backgroundColor = CLEARCOLOR;
+    _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -158,9 +158,9 @@
         UIView *lintop = [[UIView alloc] initWithFrame:CGRectMake(0,_ndMenuView.top+1 , SCREEN_WIDTH, 1)];
         lintop.backgroundColor = [UIColor lightGrayColor];
         [_ndMenuView addSubview:lintop];
-        UIView *linbottom = [[UIView alloc] initWithFrame:CGRectMake(0, _ndMenuView.bottom+1, SCREEN_WIDTH, 1)];
-        linbottom.backgroundColor = [UIColor lightGrayColor];
-        [_ndMenuView addSubview:linbottom];
+//        UIView *linbottom = [[UIView alloc] initWithFrame:CGRectMake(0, _ndMenuView.bottom+1, SCREEN_WIDTH, 1)];
+//        linbottom.backgroundColor = [UIColor lightGrayColor];
+//        [_ndMenuView addSubview:linbottom];
         
         [_sectionHeader addSubview:_ndMenuView];
     }
@@ -222,7 +222,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
+//        NSLog(@"请求获取参赛主题列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {
@@ -293,7 +293,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"=============================请求获取参赛主题列表接口结果:%@",resDict);
+//        NSLog(@"=============================请求获取参赛主题列表接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {

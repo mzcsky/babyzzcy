@@ -39,6 +39,8 @@
     [super viewDidLoad];
     [self addNotification];
     [self initTableView];
+    XTTabBarController * rootCtrller = [GlobalData shareInstance].mRootController;
+    [rootCtrller setmTabBarViewHidden:YES animation:YES];
     
 }
 
@@ -62,7 +64,7 @@
 
 - (void)initTableView{
     _AStableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-100)];
-    _AStableView.backgroundColor = CLEARCOLOR;
+    _AStableView.backgroundColor = [UIColor whiteColor];
     _AStableView.dataSource = self;
     _AStableView.delegate = self;
     _AStableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -138,7 +140,7 @@
         [_AStableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获奖作品搜索数据结果:%@",jsonDic);
+//        NSLog(@"请求获奖作品搜索数据结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"list"]];
             if (page == 1){
@@ -255,7 +257,7 @@
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     [manager GET:URLADDRESS parameters:parm success:^(AFHTTPRequestOperation * operation, id response) {
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求关注或者取消关注结果:%@",jsonDic);
+//        NSLog(@"请求关注或者取消关注结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             [self ASrefreshCountDataA];
         }
@@ -269,5 +271,33 @@
 }
 
 
-
+- (void)showBigPics:(SaiBean *)bean{
+    NSInteger count = bean.applySubArr.count;
+    
+    // 1.封装图片数据
+    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+    for (int i = 0; i<count; i++) {
+        NSDictionary *dict = [bean.applySubArr objectAtIndex:i];
+        MJPhoto *photo = [[MJPhoto alloc] init];
+        
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectZero];
+        imgView.size = CGSizeMake(300, 300);
+        
+        photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"pic_url"]]];
+        photo.srcImageView = imgView; // 来源于哪个UIImageView
+        [photos addObject:photo];
+    }
+    
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    browser.photos = photos; // 设置所有的图片
+    browser.currentPhotoIndex = 0;
+    [browser show];
+}
+//显示更多
+-(void)showMoreComment:(SaiBean *)bean{
+    bean.isShowMore = !bean.isShowMore;
+    //刷新数据
+    [_AStableView reloadData];
+    
+}
 @end

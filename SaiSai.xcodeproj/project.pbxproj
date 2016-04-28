@@ -168,6 +168,8 @@
 		6EE337E51CCF52ED00AF04D3 /* ProductDetailsImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337E41CCF52ED00AF04D3 /* ProductDetailsImageCell.m */; };
 		6EE337E81CCF648900AF04D3 /* ProductButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337E71CCF648900AF04D3 /* ProductButtonView.m */; };
 		6EE337EB1CD06FF400AF04D3 /* WJDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337EA1CD06FF400AF04D3 /* WJDropdownMenu.m */; };
+		6EE337F51CD1DC3000AF04D3 /* qingzi_shoucang.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EE337F31CD1DC3000AF04D3 /* qingzi_shoucang.png */; };
+		6EE337F61CD1DC3000AF04D3 /* qingzi_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EE337F41CD1DC3000AF04D3 /* qingzi_block.png */; };
 		6EEAE0AF1C855B8000F619BD /* MyUsermsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */; };
 		6EEAE0B21C85690800F619BD /* MyFansMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0B11C85690800F619BD /* MyFansMsgViewController.m */; };
 		6EF7E7FA1CC5D3A000CCC376 /* QingZiPist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EF7E7F91CC5D3A000CCC376 /* QingZiPist.plist */; };
@@ -606,6 +608,8 @@
 		6EE337E71CCF648900AF04D3 /* ProductButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductButtonView.m; sourceTree = "<group>"; };
 		6EE337E91CD06FF400AF04D3 /* WJDropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJDropdownMenu.h; sourceTree = "<group>"; };
 		6EE337EA1CD06FF400AF04D3 /* WJDropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJDropdownMenu.m; sourceTree = "<group>"; };
+		6EE337F31CD1DC3000AF04D3 /* qingzi_shoucang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qingzi_shoucang.png; sourceTree = "<group>"; };
+		6EE337F41CD1DC3000AF04D3 /* qingzi_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qingzi_block.png; sourceTree = "<group>"; };
 		6EEAE0AD1C855B8000F619BD /* MyUsermsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUsermsgViewController.h; sourceTree = "<group>"; };
 		6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUsermsgViewController.m; sourceTree = "<group>"; };
 		6EEAE0B01C85690800F619BD /* MyFansMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFansMsgViewController.h; sourceTree = "<group>"; };
@@ -1491,6 +1495,15 @@
 			name = "QingZiShow(详情页面)";
 			sourceTree = "<group>";
 		};
+		6EE337F21CD1DC1900AF04D3 /* qingzi */ = {
+			isa = PBXGroup;
+			children = (
+				6EE337F31CD1DC3000AF04D3 /* qingzi_shoucang.png */,
+				6EE337F41CD1DC3000AF04D3 /* qingzi_block.png */,
+			);
+			name = qingzi;
+			sourceTree = "<group>";
+		};
 		E8741C2A1B9D68BB00ECD9FF /* RecommendToFriend */ = {
 			isa = PBXGroup;
 			children = (
@@ -1855,6 +1868,7 @@
 		F52AB8991B7F836300BF1A86 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				6EE337F21CD1DC1900AF04D3 /* qingzi */,
 				63D9F97F1BDA825B00A9A8C2 /* guide */,
 				F589EFFD1B980CBD00EF8814 /* share */,
 				F57AB3671B94A52A00D8B489 /* pc */,
@@ -2188,6 +2202,7 @@
 				63D9F9921BDA825B00A9A8C2 /* guide1_667.png in Resources */,
 				6333D2591C095F96000613B1 /* pageControlNor@2x.png in Resources */,
 				63D9F99D1BDA825B00A9A8C2 /* guide4_568.png in Resources */,
+				6EE337F51CD1DC3000AF04D3 /* qingzi_shoucang.png in Resources */,
 				F51BA1FC1B80DCF900513D81 /* tab_home_nor@2x.png in Resources */,
 				F5669DA41BA718560061DA12 /* jinjiang@2x.png in Resources */,
 				F57AB3751B94A87C00D8B489 /* pc_setting@2x.png in Resources */,
@@ -2195,6 +2210,7 @@
 				F589F0091B980CBD00EF8814 /* share_qq@2x.png in Resources */,
 				63EC322A1C1F2D43004D1CAD /* PushConfig.plist in Resources */,
 				63D9F9981BDA825B00A9A8C2 /* guide3_480.png in Resources */,
+				6EE337F61CD1DC3000AF04D3 /* qingzi_block.png in Resources */,
 				636CA8E21C0F4A6A00250A08 /* tab_xx_nor@2x.png in Resources */,
 				F589F00A1B980CBD00EF8814 /* share_qqkj@2x.png in Resources */,
 				F51BA1FE1B80DCF900513D81 /* tab_math_nor@2x.png in Resources */,

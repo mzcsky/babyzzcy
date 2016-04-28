@@ -123,7 +123,7 @@
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     [manager GET:URLADDRESS parameters:pram success:^(AFHTTPRequestOperation * operation, id response) {
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"点击报名获取相关信息接口结果:%@",resDict);
+//        NSLog(@"点击报名获取相关信息接口结果:%@",resDict);
         int status = [[resDict objectForKey:@"status"] intValue];
                if (status == 1) {
             [ProgressHUD dismiss];
@@ -360,7 +360,7 @@
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     [manager GET:URLADDRESS parameters:parm success:^(AFHTTPRequestOperation * operation, id response){
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:operation.responseData options:kNilOptions error:nil];
-        NSLog(@"请求获取验证码结果:%@",jsonDic);
+//        NSLog(@"请求获取验证码结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
 //            _codeField.text = [NSString stringWithFormat:@"%ld",(long)[[jsonDic objectForKey:@"data"] integerValue]];
             [self startTime];

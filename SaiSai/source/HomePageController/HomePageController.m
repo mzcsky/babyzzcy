@@ -247,7 +247,7 @@
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-49 -20)];
     _tableView.dataSource = self;
     _tableView.delegate   = self;
-    _tableView.backgroundColor = CLEARCOLOR;
+    _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     [_tableView addHeaderWithTarget:self action:@selector(addMoreDataWithHeader)];

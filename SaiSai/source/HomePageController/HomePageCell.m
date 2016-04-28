@@ -126,9 +126,13 @@
         _oTView = [[OperationView alloc] initWithFrame:CGRectMake(bigPicture.left, picNameLab.bottom, bigPicture.width, 50)];
         _oTView.backgroundColor = CLEARCOLOR;
         [self.contentView addSubview:_oTView];
+
         
         commentView = [[CommentContentView alloc] initWithFrame:CGRectMake(bigPicture.left, _oTView.bottom, bigPicture.width,30)];
         commentView.backgroundColor = CLEARCOLOR;
+        UIView *linView = [[UIView alloc] initWithFrame:CGRectMake(0, contenView.top-2.5, SCREEN_WIDTH,2)];
+        linView.backgroundColor = LINCOLOR;
+        [contenView addSubview:linView];
         [self.contentView addSubview:commentView];
         
         UIImage *image = [UIImage imageNamed:@"match_type1.png"];

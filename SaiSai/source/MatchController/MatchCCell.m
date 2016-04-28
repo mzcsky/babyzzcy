@@ -16,8 +16,14 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = CLEARCOLOR;
+        
+        
         _cView = [[UIView alloc] initWithFrame:CGRectMake(10, 2, SCREEN_WIDTH-20, MATCHCCELL_HEIGHT-2)];
         _cView.backgroundColor = [UIColor whiteColor];
+        UIView *linView = [[UIView alloc] initWithFrame:CGRectMake(0, _cView.top-3, SCREEN_WIDTH, 2)];
+        linView.backgroundColor = LINCOLOR;
+        
+        [_cView addSubview:linView];
         [self.contentView addSubview:_cView];
         [self initImageView];
         [self initNameLabel];
