@@ -23,7 +23,7 @@
 #pragma mark ====== 网络请求 ======
 
 //内
-#define URL_Button           @"http://192.168.1.102:8080/zhongzaicanyu/dictionary/findAll?"
+#define URL_Button           @"http://192.168.1.108:8080/zhongzaicanyu/dictionary/findAll?"
 
 #define URL_AwardUrlN        @"http://192.168.1.102:8080/zhongzaicanyu/apply/findApplyListByCondition?"
 
