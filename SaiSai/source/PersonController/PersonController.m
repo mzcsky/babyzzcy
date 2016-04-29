@@ -96,7 +96,7 @@
 
     
     _headIcon = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH-55)/2, (view.height-55)/2, 60, 60)];
-    _headIcon.layer.cornerRadius = 23;
+    _headIcon.layer.cornerRadius = _headIcon.height/2;
     _headIcon.clipsToBounds = YES;
     [_headIcon sd_setImageWithURL:[NSURL URLWithString:[[UserModel shareInfo] icon]] placeholderImage:[UIImage imageNamed:@"ic_default_head_image.png"]];
     _headIcon.backgroundColor = BACKGROUND_COLOR;

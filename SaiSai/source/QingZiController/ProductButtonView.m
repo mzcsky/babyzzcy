@@ -28,7 +28,7 @@
 
     for (int i = 0; i < arr.count; i++) {
        UIButton * PBbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        PBbtn.backgroundColor = [UIColor redColor];
+        PBbtn.backgroundColor = [UIColor whiteColor];
         PBbtn.tag = i;
         [PBbtn setTitle:arr[i] forState:UIControlStateNormal];
         [PBbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
