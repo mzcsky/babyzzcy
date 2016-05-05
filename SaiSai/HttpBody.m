@@ -517,4 +517,18 @@
     
     return pram;
 }
+
++ (NSDictionary *)findProductListByCondition:(int)page rows:(int)rows userx:(int)userx usery:(int)usery type:(int)type logopath:(int)logopath{
+    NSMutableDictionary *pram = [NSMutableDictionary dictionary];
+    [pram setObject:@(page)  forKey:@"page"];
+    [pram setObject:@(rows)  forKey:@"rows"];
+    [pram setObject:@(userx) forKey:@"userX"];
+    [pram setObject:@(usery) forKey:@"userY"];
+    [pram setObject:@(type)   forKey:@"type"];
+    [pram setObject:@(logopath) forKey:@"logopath"];
+    
+    return pram;
+}
+
+
 @end

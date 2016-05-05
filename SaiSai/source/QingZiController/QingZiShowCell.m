@@ -93,7 +93,7 @@
     _Pmodel = Pmodel;
     _ImageView.image = [UIImage imageNamed:@"bigPic_default.jpg"];
     
-    _agLab.text = [NSString stringWithFormat:@"%@ | %@ | %@ | %@",Pmodel.name,Pmodel.age,Pmodel.area,Pmodel.time];
+//    _agLab.text = [NSString stringWithFormat:@"%@ | %@ | %@ | %@",Pmodel.name,Pmodel.age,Pmodel.area,Pmodel.time];
     _PriceLab.text = [NSString stringWithFormat:@"￥%@ 起",Pmodel.price];
     _totalLab.text = [NSString stringWithFormat:@"累计%@人报名",Pmodel.total];
     _spellLab.text = [NSString stringWithFormat:@"%@",Pmodel.spell];

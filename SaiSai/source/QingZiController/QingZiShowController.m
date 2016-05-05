@@ -23,7 +23,6 @@
 @property (nonatomic, strong) NSMutableArray * data;
 
 @property (nonatomic, strong) WJDropdownMenu * menu;
-@property (nonatomic, strong) WJDropdownMenu * menu2;
 
 @property (nonatomic,assign) CGFloat lastContentOffset;
 
@@ -278,35 +277,17 @@
     }
 }
 
+
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
     if (_lastContentOffset < scrollView.contentOffset.y) {
         NSLog(@"向上滚动");
     }else{
         NSLog(@"向下滚动");
     }
-    
-    
-
 }
 
 
-- (NSArray *)plistArr{
-    
-    if (!_plistArr) {
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"QingZiPist" ofType:@"plist"];
-        NSArray * plitArr = [[NSArray alloc] initWithContentsOfFile:plistPath];
-        
-        NSMutableArray * tempArr = [NSMutableArray array];
-        for (NSDictionary * dic in plitArr) {
-            PlistModel * model = [PlistModel valueWithDic:dic];
-            [tempArr addObject:model];
-        }
-        _plistArr = tempArr;
-        [self.tableView reloadData];
-    }
-    
-    return _plistArr;
-}
+
 
 
 //图片自适应方法

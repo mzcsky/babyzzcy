@@ -19,11 +19,14 @@
 #import "QingZiShowController.h"
 #import "CustomButton.h"
 #import "ProductDetailsController.h"
-#define titleScrollHeight 50
+#define titleScrollHeight 39
 #define CellHeight lunViewHeight + 60
 @interface QingZiController ()<UITableViewDelegate,UITableViewDataSource,SixBtnCellDelegate,ActionAdViewDelegate, NDHMenuViewDelegate >
 
 @property (nonatomic, strong) NDHMenuView * ndMenuView;
+@property (nonatomic, strong) NSMutableArray   *menuArray;
+@property (nonatomic, assign) NSInteger menuPage ;
+@property (nonatomic, assign) NSInteger ndMenuIndex;
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) NSArray * dataArr;
@@ -32,10 +35,7 @@
 @property (nonatomic, strong) NSArray * adButtonArr;
 
 
-
-
 @property (nonatomic, strong) NSTimer * timer;
-
 @property (nonatomic, strong) UIScrollView * adScrollView;
 @property (nonatomic, strong) UIPageControl * pageControl;
 
@@ -65,26 +65,7 @@
 }
 
 
-- (NSArray *)plistArr{
 
-    if (!_plistArr) {
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"QingZiPist" ofType:@"plist"];
-        NSArray * plitArr = [[NSArray alloc] initWithContentsOfFile:plistPath];
-        
-        NSMutableArray * tempArr = [NSMutableArray array];
-        for (NSDictionary * dic in plitArr) {
-            PlistModel * model = [PlistModel valueWithDic:dic];
-            
-            [tempArr addObject:model];
-
-        }
-        
-        _plistArr = tempArr;
-        [self.tableView reloadData];
-    }
-    
-    return _plistArr;
-}
 - (void)initData{
     _adSarray = [[NSMutableArray alloc] init];
 
@@ -96,11 +77,9 @@
     [self adImgArr];
     [self adButton];
     [self initDataTableView];
+    [self getAllMenu];
     //获取轮播图数据
-
-
-
-    
+  
 }
 /**
  *  TableView
@@ -185,19 +164,107 @@
  *
  *  @return
  */
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (_ndMenuView == nil) {
         
-        //年龄分类
         if (!_ndMenuView) {
             _ndMenuView = [[NDHMenuView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, 39)];
-            _ndMenuView.backgroundColor = [UIColor redColor];
             _ndMenuView.delegate = self;
             
         }
     }
     return _ndMenuView;
 }
+
+
+-(void)refreshDatas{
+     _menuPage = 1;
+    [self getAllMenu];
+    
+}
+- (void)menuDidSelected:(int)index{
+    
+    CGFloat currentY = _tableView.contentOffset.y;
+    if (currentY > lunViewHeight) {
+        _tableView.contentOffset = CGPointMake(0,lunViewHeight);
+    }
+    _ndMenuIndex = index;
+//    [self GetRefresh];
+}
+
+//- (void)GetRefresh{
+//    if (!_menuArray || _menuArray.count <= 0) {
+//        return;
+//    }
+//    int datavalue;
+//    if (_ndMenuIndex == 0)
+//    {
+//        datavalue = -1;
+//    }else{
+//        QingZiBean *bean = _menuArray[_ndMenuIndex-1];
+//        datavalue =(int)bean.datavalue;
+//    }
+//
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+//    NSDictionary *paraDic = [HttpBody findProductListByCondition:datavalue];
+//    [ProgressHUD show:LOADING];
+//    [manager GET:URLADDRESS parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
+//        [_tableView headerEndRefreshing];
+//        [_tableView footerEndRefreshing];
+//        
+//        NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
+//        //        NSLog(@"请求获取主界面参赛作品数据结果:%@",jsonDic);
+//        if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
+//            NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"list"]];
+  
+//    
+//}
+
+-(void)getAllMenu{
+
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+    [manager GET:URL_Button parameters:nil success:^(AFHTTPRequestOperation * operation, id response) {
+        NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
+                    NSLog(@"请求滑动按钮数据结果:%@",jsonDic);
+        if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
+            NSDictionary *dataDic = jsonDic[@"data"];
+            NSArray *dataArray = [[NSArray alloc] initWithArray:[dataDic objectForKey:@"list"]];
+            
+            if (dataArray && dataArray > 0) {
+                _menuArray = [[NSMutableArray alloc] init];
+                for (int i = 0; i < dataArray.count; i++) {
+                    QingZiBean *bean = [QingZiBean QZparseInfo:dataArray[i]];
+                    [_menuArray addObject:bean];
+                }
+                NSMutableArray *titleArr = [[NSMutableArray alloc] init];
+                for (id object in _menuArray) {
+                    QingZiBean * bean = (QingZiBean*)object;
+                    [titleArr addObject:bean.content];
+                }
+                [titleArr insertObject:@"全部     " atIndex:0];
+                [_menuArray addObject:[[QingZiBean alloc] init]];
+                [_ndMenuView setTitles:titleArr];
+                [_tableView reloadData];
+            }else{
+                [_tableView headerEndRefreshing];
+                [_tableView footerEndRefreshing];
+                [ProgressHUD showError:@"未获取到滑动按钮结果"];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        NSLog(@"failuer");
+        [ProgressHUD showError:CHECKNET];
+        [_tableView headerEndRefreshing];
+        [_tableView footerEndRefreshing];
+    }];
+
+}
+
+
 /**
  *  TableViewCell内容
  *
@@ -228,10 +295,7 @@
         return cell;
   
     }else{
-        PlistModel * model = [_plistArr objectAtIndex:indexPath.row];
-        
         QingZiCell * cell = [QingZiCell valueWithTableView:tableView indexPath:indexPath];
-        cell.model = model;
 
         return cell;
     }
@@ -373,7 +437,6 @@
                             [dataArr addObject:bean1];
                         }
                     }
-                    
                 }
                 [_tableView reloadData];
                 [self addtimer];
@@ -437,7 +500,6 @@
             if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
                 NSDictionary * dataDic = jsonDic[@"data"];
                 NSArray *adArray = [[NSArray alloc] initWithArray:[dataDic objectForKey:@"list"] ];
-
                 for (int i = 0; i < adArray.count; i++) {
                     if (adArray.count<=1) {
                         QingZiBean *bean = [QingZiBean QZparseInfo:adArray[i]];

@@ -9,24 +9,30 @@
 #import "PlistModel.h"
 
 @implementation PlistModel
-+ (instancetype)valueWithDic:(NSDictionary *)dic{
-
-    return [[self alloc] initWithDic:dic];
-}
-- (instancetype)initWithDic:(NSDictionary *)dic{
-
-    if (self = [super init]) {
-        self.name = dic[@"name"];
-        self.age = dic[@"age"];
-        self.total = dic[@"total"];
-        self.price = dic[@"price"];
-        self.reg = dic [@"reg"];
-        self.time = dic[@"time"];
-        self.spell = dic[@"spell"];
-        self.area = dic[@"area"];
-
++ (PlistModel *)PMparseInfo:(NSDictionary *)PMinfoDic{
+    if (!PMinfoDic || ![PMinfoDic isKindOfClass:[NSDictionary class]]) {
+        return [[PlistModel alloc] init];
     }
-    
-    return self;
+    PlistModel *PMbean = [[PlistModel alloc] init];
+    PMbean.logoPath     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+    PMbean.name     = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:PMinfoDic forKey:@"description"]];
+
+    return PMbean;
 }
+
 @end

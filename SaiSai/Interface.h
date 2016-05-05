@@ -27,6 +27,7 @@
 
 #define URL_AwardUrlN        @"http://192.168.1.102:8080/zhongzaicanyu/apply/findApplyListByCondition?"
 
+#define URL_ImgArrUrlN       @"http://192.168.1.106:8080/zhongzaicanyu/product/findProductListByCondition?"
 
 #pragma mark===============================================================================================
 //外

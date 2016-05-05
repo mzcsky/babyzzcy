@@ -85,8 +85,7 @@
         _regLab.font = FONT(20);
         _regLab.textAlignment = NSTextAlignmentLeft;
         _regLab.backgroundColor = [UIColor orangeColor];
-//        _regLab.layer.cornerRadius = 10;
-//        _regLab.clipsToBounds = YES;
+
         //累计
         _totalLab = [[UILabel alloc]init];
         _totalLab.textColor =[UIColor whiteColor];
@@ -94,14 +93,10 @@
         _totalLab.textAlignment = NSTextAlignmentLeft;
         _totalLab.backgroundColor = [UIColor orangeColor];
         
-      
         [self.imgView addSubview:_totalLab];
         [self.imgView addSubview:_spellLab];
         [self.imgView addSubview:_PriceLab];
         [self.imgView addSubview:_regLab];
-        
-        
-        
         
         [self.contentView addSubview:_imgView];
         [self.contentView addSubview:_activityLab];
@@ -114,19 +109,7 @@
     return self;
 }
 
-- (void)setModel:(PlistModel *)model{
 
-    _model = model;
-    _imgView.image = [UIImage imageNamed:@"bigPic_default.jpg"];
-
-    _agLab.text = [NSString stringWithFormat:@"%@ | %@ | %@ | %@",model.name,model.age,model.area,model.time];
-    _PriceLab.text = [NSString stringWithFormat:@"￥%@ 起",model.price];
-    _totalLab.text = [NSString stringWithFormat:@"累计%@人报名",model.total];
-    
-    _regLab.text   = [NSString stringWithFormat:@"%@",model.reg];
-    
-    _spellLab.text = [NSString stringWithFormat:@"%@",model.spell];
-}
 
 - (void)layoutSubviews{
     
@@ -169,5 +152,7 @@
     
     
 }
+
+
 
 @end

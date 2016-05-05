@@ -275,7 +275,6 @@ int               _QZpage;
         else{
             [ProgressHUD showError:[jsonDic objectForKey:@"msg"]];
         }
-        
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         [ProgressHUD showError:CHECKNET];
     }];

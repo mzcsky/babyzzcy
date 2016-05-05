@@ -275,32 +275,16 @@
  */
 + (NSDictionary *)PrivilegeCheckBox:(int)page rows:(int)rows datavalue:(int)datavalue;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ *  休闲活动页面请求
+ *
+ *  @param page  页数
+ *  @param rows  几条
+ *  @param userX 坐标
+ *  @param usery 坐标
+ *  @param type  类型
+ *
+ *  @return
+ */
++ (NSDictionary *)findProductListByCondition:(int)page rows:(int)rows userx:(int)userx usery:(int)usery type:(int)type logopath:(int)logopath;
 @end

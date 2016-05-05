@@ -12,6 +12,8 @@
 #import "ProductButtonView.h"
 #import "QingZiController.h"
 #import "ActivityDetailController.h"
+#import "ProductBasicCell.h"
+
 @interface ProductDetailsController ()<UITableViewDelegate, UITableViewDataSource, ProductDetailsCellDelegate, ProductDetailsImageCellDelegate, ProductButtonViewDelegate>
 
 @property (nonatomic, strong) UITableView * tableView;
@@ -23,6 +25,7 @@
 @property (nonatomic, strong) UIView * BtnView;
 
 @property (nonatomic, strong) UILabel * labImg;
+@property (nonatomic, strong) UIButton * sender;
 
 
 @end
@@ -49,8 +52,7 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    
+
     [self.view addSubview:_tableView];
 }
 
@@ -140,21 +142,54 @@
 #pragma mark ==============UITableViewDataSource===========
 //设置表格的组数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    if (_sender && _sender.tag == 0 ) {
+        return 6;
+    }
     return 2;
 }
 
 //设置每个组有多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return (section==0) ? 1 : 20;
+    if (_sender && _sender.tag == 0 ) {
+        
+        switch (section) {
+            case 0:
+                return 1;
+                break;
+            case 1:
+                return 1;
+                break;
+            case 2:
+                return 4;
+                break;
+            case 3:
+                return 1;
+                break;
+            default:
+                return 0;
+                break;
+        }
+        
+    }
+    return (section == 0 )? 1:3;
 }
 #pragma mark ==============UITableViewDelegate=============
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         return lunViewHeight;
     }else{
-        return 80;
+        return 40;
     }
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (_sender && _sender.tag == 0 ) {
+        
+        return (section==0) ? 0 : 20;
+    }
+    return 0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
    
     if (indexPath.section==0 ) {
@@ -167,12 +202,31 @@
         
           }
     else {
-        ProductDetailsCell * cell = [ProductDetailsCell valueWithTableView:tableView indexPath:indexPath];
-        cell.delegate = self;
-              
-              
-            return cell;
-          }
+        
+        UITableViewCell * cell = nil;
+//        ProductDetailsCell * cell = [ProductDetailsCell valueWithTableView:tableView indexPath:indexPath];
+//        cell.delegate = self;
+       if (_sender.tag ==0 ) {
+        
+
+            cell = [ProductBasicCell valueWithTableView:tableView indexPath:indexPath];
+           
+            cell.backgroundColor = [UIColor orangeColor];
+
+        }else if (_sender.tag == 1){
+            
+            cell = [ProductDetailsCell valueWithTableView:tableView indexPath:indexPath];
+            
+            cell.backgroundColor = [UIColor yellowColor];
+
+        }else if (_sender.tag == 2){
+            cell = [ProductDetailsCell valueWithTableView:tableView indexPath:indexPath];
+
+            cell.backgroundColor = [UIColor redColor];
+
+        }
+        return cell;
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
@@ -187,22 +241,28 @@
         if (!_PBView) {
             _PBView = [[ProductButtonView alloc] init];
             _PBView.delegate = self;
+            self.sender = _PBView.currentBtn;
+            [_tableView reloadData];
         }
     }
     return _PBView;
 }
 
 -(void)PBbtnViewClickSender:(UIButton *)sender{
-    NSLog(@"%ld",(long)sender.tag);
+    
+    _sender = sender;
+    
     if (sender.tag == 0) {
         NSLog(@"基本信息");
     }else if (sender.tag == 1) {
-        NSLog(@"详细介绍");
+        NSLog(@"详细信息");
     }else if (sender.tag == 2){
         NSLog(@"咨询");
     }else{
         NSLog(@"评价");
     }
+    [_tableView reloadData];
+    
 }
 
 

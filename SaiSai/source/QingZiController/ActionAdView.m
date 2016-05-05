@@ -180,7 +180,7 @@
 }
 
 - (void)imgBtnClick:(UIButton*)button{
-
+    
     NSInteger  index = button.tag-100;
     
     if ([self.delegate respondsToSelector:@selector(imageViewClickAtIndex:)]) {

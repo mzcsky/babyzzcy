@@ -17,4 +17,6 @@
 @interface ProductButtonView : UIView
 @property (nonatomic, weak) id<ProductButtonViewDelegate>delegate;
 
+@property (nonatomic, strong ,readonly) UIButton * currentBtn;
+
 @end

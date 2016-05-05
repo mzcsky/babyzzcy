@@ -370,12 +370,15 @@
 //        NSLog(@"请求年龄分类导航结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[jsonDic objectForKey:@"data"]];
+            
             if (dataArr && dataArr.count > 0) {
                 _menuArray = [[NSMutableArray alloc] init];
+                
                 for (int i = 0 ; i < dataArr.count; i++) {
                     AgeBean *bean = [AgeBean parseInfo:dataArr[i]];
                     [_menuArray addObject:bean];
                 }
+                
                 NSMutableArray *titleArr = [[NSMutableArray alloc] init];
                 for (AgeBean *bean in _menuArray) {
                     [titleArr addObject:bean.ageName];
