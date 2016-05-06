@@ -68,9 +68,12 @@
     
 }
 
+
 - (void)initdata{
     QZpage = 1;
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initdata];
@@ -82,6 +85,7 @@
     [self.view addSubview:self.downView];
 //    [self getDataValue];
 }
+
 
 - (UIView *)downView{
 
@@ -130,6 +134,7 @@
     }
     return _downView;
 }
+
 //返回按钮
 - (void)initHeaderView{
     
@@ -160,6 +165,7 @@
     [self.view addSubview:menu];
 
 }
+
 
 - (void)createAllMenuData{
     NSArray *threeMenuTitleArray =  @[@"分类",@"年龄",@"评价"];
@@ -197,9 +203,11 @@
 
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 
 - (void)initTableView{
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
@@ -243,10 +251,8 @@
 //设置单元格显示内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-        PlistModel * Pmodel = [_plistArr objectAtIndex:indexPath.row];
         QingZiShowCell *cell = [QingZiShowCell valueWithTableView:tableView indexPath:indexPath];
         cell.delegate = self;
-        cell.Pmodel = Pmodel;
         return cell;
 
 }
@@ -257,6 +263,7 @@
     return CellHeight;
 }
 
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         ProductDetailsController *PDVC = [[ProductDetailsController alloc]init];
@@ -264,6 +271,8 @@
 
     }
 }
+
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     _lastContentOffset = scrollView.contentOffset.y;
     if (_calendarBacView) {
@@ -285,9 +294,6 @@
         NSLog(@"向下滚动");
     }
 }
-
-
-
 
 
 //图片自适应方法

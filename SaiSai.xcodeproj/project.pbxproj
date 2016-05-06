@@ -186,7 +186,7 @@
 		6EE3382F1CD2060000AF04D3 /* JTVerticalCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE338231CD2060000AF04D3 /* JTVerticalCalendarView.m */; };
 		6EEAE0AF1C855B8000F619BD /* MyUsermsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */; };
 		6EEAE0B21C85690800F619BD /* MyFansMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEAE0B11C85690800F619BD /* MyFansMsgViewController.m */; };
-		6EF7E7FD1CC5D58C00CCC376 /* PlistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7E7FC1CC5D58C00CCC376 /* PlistModel.m */; };
+		6EF7E7FD1CC5D58C00CCC376 /* QingImageBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7E7FC1CC5D58C00CCC376 /* QingImageBean.m */; };
 		6EF7E8001CC5DA6A00CCC376 /* QingZiSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF7E7FF1CC5DA6A00CCC376 /* QingZiSearch.m */; };
 		E8741C2D1B9D68BB00ECD9FF /* RecommendToFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8741C2C1B9D68BB00ECD9FF /* RecommendToFriendController.m */; };
 		E8741C331B9D6A5700ECD9FF /* s_lianjie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8741C2F1B9D6A5700ECD9FF /* s_lianjie@2x.png */; };
@@ -662,8 +662,8 @@
 		6EEAE0AE1C855B8000F619BD /* MyUsermsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUsermsgViewController.m; sourceTree = "<group>"; };
 		6EEAE0B01C85690800F619BD /* MyFansMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFansMsgViewController.h; sourceTree = "<group>"; };
 		6EEAE0B11C85690800F619BD /* MyFansMsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFansMsgViewController.m; sourceTree = "<group>"; };
-		6EF7E7FB1CC5D58C00CCC376 /* PlistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistModel.h; sourceTree = "<group>"; };
-		6EF7E7FC1CC5D58C00CCC376 /* PlistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistModel.m; sourceTree = "<group>"; };
+		6EF7E7FB1CC5D58C00CCC376 /* QingImageBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingImageBean.h; sourceTree = "<group>"; };
+		6EF7E7FC1CC5D58C00CCC376 /* QingImageBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingImageBean.m; sourceTree = "<group>"; };
 		6EF7E7FE1CC5DA6A00CCC376 /* QingZiSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingZiSearch.h; sourceTree = "<group>"; };
 		6EF7E7FF1CC5DA6A00CCC376 /* QingZiSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingZiSearch.m; sourceTree = "<group>"; };
 		E8741C2B1B9D68BB00ECD9FF /* RecommendToFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendToFriendController.h; sourceTree = "<group>"; };
@@ -1505,8 +1505,8 @@
 				6E4939F21CBCF4A600F3464D /* QingZiCell.m */,
 				6E91C5EF1CC749D900673B94 /* QingZiBean.h */,
 				6E91C5F01CC749D900673B94 /* QingZiBean.m */,
-				6EF7E7FB1CC5D58C00CCC376 /* PlistModel.h */,
-				6EF7E7FC1CC5D58C00CCC376 /* PlistModel.m */,
+				6EF7E7FB1CC5D58C00CCC376 /* QingImageBean.h */,
+				6EF7E7FC1CC5D58C00CCC376 /* QingImageBean.m */,
 				6EF7E7FE1CC5DA6A00CCC376 /* QingZiSearch.h */,
 				6EF7E7FF1CC5DA6A00CCC376 /* QingZiSearch.m */,
 				6E207A841CC4836500B686A9 /* ActionAdView.h */,
@@ -2470,7 +2470,7 @@
 				6E91C5FD1CC8858900673B94 /* SaiBeanAward.m in Sources */,
 				6333D2A71C095F96000613B1 /* AFURLResponseSerialization.m in Sources */,
 				E8B6AC091B95CE9300F104D5 /* MyAttendCell.m in Sources */,
-				6EF7E7FD1CC5D58C00CCC376 /* PlistModel.m in Sources */,
+				6EF7E7FD1CC5D58C00CCC376 /* QingImageBean.m in Sources */,
 				6333D27A1C095F96000613B1 /* NSData+ImageContentType.m in Sources */,
 				6333D27E1C095F96000613B1 /* SDWebImageDownloader.m in Sources */,
 				F589F0141B984FC400EF8814 /* BMController.m in Sources */,

@@ -19,6 +19,9 @@
 #import "QingZiShowController.h"
 #import "CustomButton.h"
 #import "ProductDetailsController.h"
+#import "QingImageBean.h"
+
+
 #define titleScrollHeight 39
 #define CellHeight lunViewHeight + 60
 @interface QingZiController ()<UITableViewDelegate,UITableViewDataSource,SixBtnCellDelegate,ActionAdViewDelegate, NDHMenuViewDelegate >
@@ -33,6 +36,7 @@
 
 @property (nonatomic, strong) NSArray * adImgArr;
 @property (nonatomic, strong) NSArray * adButtonArr;
+@property (nonatomic, strong) NSArray * CellImgArr;
 
 
 @property (nonatomic, strong) NSTimer * timer;
@@ -78,6 +82,7 @@
     [self adButton];
     [self initDataTableView];
     [self getAllMenu];
+//    [self CellimageArray];
     //获取轮播图数据
   
 }
@@ -218,12 +223,10 @@
 //        //        NSLog(@"请求获取主界面参赛作品数据结果:%@",jsonDic);
 //        if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
 //            NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"list"]];
-  
-//    
+//
 //}
 
 -(void)getAllMenu{
-
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
@@ -296,7 +299,7 @@
   
     }else{
         QingZiCell * cell = [QingZiCell valueWithTableView:tableView indexPath:indexPath];
-
+        
         return cell;
     }
 }
@@ -496,7 +499,7 @@
 
         [manager GET:URL_Button parameters:@{} success:^(AFHTTPRequestOperation * operation, id response){
             NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-//            NSLog(@"请求按钮数据结果:%@",jsonDic);
+//            NSLog(@"请求图片数据结果:%@",jsonDic);
             if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
                 NSDictionary * dataDic = jsonDic[@"data"];
                 NSArray *adArray = [[NSArray alloc] initWithArray:[dataDic objectForKey:@"list"] ];
@@ -519,11 +522,40 @@
     return _adButtonArr;
 
 }
+
+//-(NSArray *)CellimageArray{
+//    if (!_CellImgArr) {
+//        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//        manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+//        
+//        NSMutableArray * dataArr = [NSMutableArray array];
+//        
+//        [manager GET:URL_ImgArrUrlN parameters:@{} success:^(AFHTTPRequestOperation * operation, id response){
+//            NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
+//                        NSLog(@"请求按钮数据结果:%@",jsonDic);
+//            if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
+//                NSDictionary * dataDic = jsonDic[@"data"];
+//                NSArray *adArray = [[NSArray alloc] initWithArray:[dataDic objectForKey:@"list"] ];
+//                for (int i = 0; i < adArray.count; i++) {
+//                    if (adArray.count<=1) {
+//                        QingImageBean *Imgbean = [QingImageBean ImageBeanparseInfo:adArray[i]];
+//                        [dataArr addObject:Imgbean];
+//                    }else{
+//                        QingImageBean *Imgbean = [QingImageBean ImageBeanparseInfo:adArray[i]];
+//                        [dataArr addObject:Imgbean];
+//                    }
+//                }
+//                [_tableView reloadData];
+//            }
+//            _CellImgArr = dataArr;
+//        } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+//            NSLog(@"failuer");
+//        }];
+//    }
+//
+//    return _CellImgArr;
+//}
 @end
-
-
-
-
 
 
 //老的加载页面

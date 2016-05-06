@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PlistModel : NSObject
+@interface QingImageBean : NSObject
 
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * age;
@@ -20,6 +20,6 @@
 @property (nonatomic, strong) NSString * spell;
 
 
-+(PlistModel *)PMparseInfo:(NSDictionary *)PMinfoDic;
++(QingImageBean *)ImageBeanparseInfo:(NSDictionary *)IBinfoDic;
 
 @end

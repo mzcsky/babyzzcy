@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "QingZiBean.h"
-#import "PlistModel.h"
 @protocol QingZiShowCellDelegate <NSObject>
 
 @end
 
 @interface QingZiShowCell : UITableViewCell
-@property (nonatomic, strong) PlistModel * Pmodel;
 
 @property (nonatomic, weak) id<QingZiShowCellDelegate>delegate;
 
