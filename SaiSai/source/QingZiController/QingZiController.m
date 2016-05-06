@@ -82,7 +82,7 @@
     [self adButton];
     [self initDataTableView];
     [self getAllMenu];
-//    [self CellimageArray];
+    [self CellimageArray];
     //获取轮播图数据
   
 }
@@ -298,7 +298,7 @@
         return cell;
   
     }else{
-        QingZiCell * cell = [QingZiCell valueWithTableView:tableView indexPath:indexPath];
+        QingZiCell * cell = [QingZiCell valueWithTableView:tableView CellImgArr:_CellImgArr];
         
         return cell;
     }
@@ -523,38 +523,43 @@
 
 }
 
-//-(NSArray *)CellimageArray{
-//    if (!_CellImgArr) {
-//        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//        manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
-//        
-//        NSMutableArray * dataArr = [NSMutableArray array];
-//        
-//        [manager GET:URL_ImgArrUrlN parameters:@{} success:^(AFHTTPRequestOperation * operation, id response){
-//            NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-//                        NSLog(@"请求按钮数据结果:%@",jsonDic);
-//            if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
-//                NSDictionary * dataDic = jsonDic[@"data"];
-//                NSArray *adArray = [[NSArray alloc] initWithArray:[dataDic objectForKey:@"list"] ];
-//                for (int i = 0; i < adArray.count; i++) {
-//                    if (adArray.count<=1) {
-//                        QingImageBean *Imgbean = [QingImageBean ImageBeanparseInfo:adArray[i]];
-//                        [dataArr addObject:Imgbean];
-//                    }else{
-//                        QingImageBean *Imgbean = [QingImageBean ImageBeanparseInfo:adArray[i]];
-//                        [dataArr addObject:Imgbean];
-//                    }
-//                }
-//                [_tableView reloadData];
-//            }
-//            _CellImgArr = dataArr;
-//        } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-//            NSLog(@"failuer");
-//        }];
-//    }
-//
-//    return _CellImgArr;
-//}
+-(NSArray *)CellimageArray{
+    if (!_CellImgArr) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+        
+        
+        NSDictionary *paraDic = [HttpBody findProductListByCondition:1 rows:5 userx:111 usery:111 type:-1 logopath:-1];
+//        [ProgressHUD show:LOADING];
+
+        NSMutableArray * dataArr = [NSMutableArray array];
+
+        [manager GET:URL_ImgArrUrlN parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
+            NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
+                        NSLog(@"请求按钮数据结果:%@",jsonDic);
+            if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
+                NSDictionary * dataDic = jsonDic[@"data"];
+                NSArray *adArray = [[NSArray alloc] initWithArray:[dataDic objectForKey:@"list"] ];
+                for (int i = 0; i < adArray.count; i++) {
+                    if (adArray.count<=1) {
+                        QingImageBean *Imgbean = [QingImageBean ImageBeanparseInfo:adArray[i]];
+                        [dataArr addObject:Imgbean];
+                    }else{
+                        QingImageBean *Imgbean = [QingImageBean ImageBeanparseInfo:adArray[i]];
+                        [dataArr addObject:Imgbean];
+                    }
+                }
+                [_tableView reloadData];
+            }
+            _CellImgArr = dataArr;
+        } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+            NSLog(@"failuer");
+            NSLog(@"没有请求到数据");
+        }];
+    }
+
+    return _CellImgArr;
+}
 @end
 
 

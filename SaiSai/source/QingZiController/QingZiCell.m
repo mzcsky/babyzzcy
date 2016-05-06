@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UILabel * PriceLab;
 @property (nonatomic, strong) UILabel * spellLab;
 
+@property (nonatomic, strong) NSArray * CellImgArr;
 
 
 @end
@@ -32,7 +33,7 @@
 
 
 
-+ (instancetype)valueWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
++ (instancetype)valueWithTableView:(UITableView *)tableView CellImgArr:(NSArray *)CellImgArr{
 
     static NSString * cellID = @"QingZiCell";
    
@@ -42,6 +43,9 @@
     if (!cell) {
         cell = [[QingZiCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    cell.CellImgArr = CellImgArr;
+
+
 
     return cell;
 }
@@ -109,7 +113,9 @@
     return self;
 }
 
+- (void)setCellImgArr:(NSArray *)CellImgArr{
 
+}
 
 - (void)layoutSubviews{
     

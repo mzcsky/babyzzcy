@@ -11,7 +11,7 @@
 
 @interface QingZiCell : UITableViewCell
 
-+ (instancetype)valueWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
++ (instancetype)valueWithTableView:(UITableView *)tableView CellImgArr:(NSArray *)CellImgArr;
 
 
 
