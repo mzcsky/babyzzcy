@@ -38,6 +38,8 @@
     [self initTableView];
     XTTabBarController * rootCtrller = [GlobalData shareInstance].mRootController;
     [rootCtrller setmTabBarViewHidden:YES animation:YES];
+    self.view.backgroundColor = [UIColor whiteColor];
+
     
 }
 - (void)didReceiveMemoryWarning {

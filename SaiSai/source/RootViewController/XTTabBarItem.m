@@ -32,7 +32,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = UIColorFromRGB(0xf7f8f9);
+//        self.backgroundColor = UIColorFromRGB(0xf7f8f9);
+        self.backgroundColor = [UIColor whiteColor];
         itemBgImage = [[UIImageView alloc] initWithFrame:CGRectMake((frame.size.width-29)/2, 5,29,29)];
         [self addSubview:itemBgImage];
 
@@ -53,6 +54,7 @@
         tipLabel.textColor = [UIColor whiteColor];
         tipLabel.font = FONT(11);
         [self addSubview:tipLabel];
+    
     }
     
     return self;
@@ -61,6 +63,8 @@
 -(void)setItem:(XTTabItem*)aItem
 {
     item = aItem;
+    
+
 }
 
 -(void)setTips:(NSInteger)tipsNum

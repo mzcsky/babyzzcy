@@ -70,6 +70,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
+    self.view.backgroundColor = [UIColor whiteColor];
+
 //      self.TheadView.hidden = NO;
 }
 
@@ -81,15 +83,15 @@
     [self initData];
     [self initTableView];
 //    [self getData];
-    
+
     if (self.adSArray && self.adArray) {
         [self initAdView];
     }
     
     if (self.fBean && (self.fBean.status==1)) {
-      
+
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-64-49, SCREEN_WIDTH,49)];
-   
+        footView.backgroundColor = [UIColor whiteColor];
         UIButton *instBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
         instBtn.frame = CGRectMake(0, 0, footView.width/4-2, footView.height);
@@ -230,7 +232,7 @@
 - (void)initAdView{
     if (self.AdimageView == nil) {
         UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight)];
-        contentView.backgroundColor = CLEARCOLOR;
+        contentView.backgroundColor = [UIColor whiteColor];
         _tableView.tableHeaderView = contentView;
         
         UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, lunViewHeight)];
@@ -362,7 +364,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
-    _headView.backgroundColor = BACKGROUND_COLOR;
+    _headView.backgroundColor = [UIColor whiteColor];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 2.5, SCREEN_WIDTH-20, 30)];
     imageView.userInteractionEnabled = YES;

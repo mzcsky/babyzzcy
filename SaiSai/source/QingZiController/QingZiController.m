@@ -53,12 +53,7 @@
 
 
 
-@implementation QingZiController{
-   NSMutableArray * _adSarray;
-
-
-}
-
+@implementation QingZiController
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
@@ -66,15 +61,13 @@
     XTTabBarController * rootCtrller = [GlobalData shareInstance].mRootController;
     [rootCtrller setmTabBarViewHidden:NO animation:YES];
     self.TheadView.hidden = NO;
-}
-
-
-
-- (void)initData{
-    _adSarray = [[NSMutableArray alloc] init];
-
+    self.view.backgroundColor = [UIColor whiteColor];
 
 }
+
+
+
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self initData];
@@ -85,6 +78,10 @@
     [self CellimageArray];
     //获取轮播图数据
   
+}
+- (void)initData{
+    
+    
 }
 /**
  *  TableView
@@ -175,6 +172,7 @@
         
         if (!_ndMenuView) {
             _ndMenuView = [[NDHMenuView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, 39)];
+            _ndMenuView.backgroundColor = [UIColor whiteColor];
             _ndMenuView.delegate = self;
             
         }
@@ -237,15 +235,14 @@
             NSDictionary *dataDic = jsonDic[@"data"];
             NSArray *dataArray = [[NSArray alloc] initWithArray:[dataDic objectForKey:@"list"]];
             
-            if (dataArray && dataArray > 0) {
+            if (dataArray && dataArray.count > 0) {
                 _menuArray = [[NSMutableArray alloc] init];
                 for (int i = 0; i < dataArray.count; i++) {
                     QingZiBean *bean = [QingZiBean QZparseInfo:dataArray[i]];
                     [_menuArray addObject:bean];
                 }
                 NSMutableArray *titleArr = [[NSMutableArray alloc] init];
-                for (id object in _menuArray) {
-                    QingZiBean * bean = (QingZiBean*)object;
+                for (QingZiBean *bean in _menuArray) {
                     [titleArr addObject:bean.content];
                 }
                 [titleArr insertObject:@"全部     " atIndex:0];
@@ -554,7 +551,6 @@
             _CellImgArr = dataArr;
         } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
             NSLog(@"failuer");
-            NSLog(@"没有请求到数据");
         }];
     }
 

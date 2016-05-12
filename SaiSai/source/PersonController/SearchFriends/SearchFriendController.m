@@ -21,7 +21,10 @@
 @implementation SearchFriendController
 
 - (void)viewWillAppear:(BOOL)animated{
+    
     self.navigationController.navigationBarHidden = NO;
+    self.view.backgroundColor = [UIColor whiteColor];
+
 }
 
 
@@ -38,7 +41,7 @@
 
 -(void)initTableView{
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
-    _tableView.backgroundColor = CLEARCOLOR;
+    _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

@@ -29,6 +29,8 @@ int               _QZpage;
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
+    self.view.backgroundColor = [UIColor whiteColor];
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,7 +59,7 @@ int               _QZpage;
 
 - (void)initTableView{
     _QZtableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-100)];
-    _QZtableView.backgroundColor = CLEARCOLOR;
+    _QZtableView.backgroundColor = [UIColor whiteColor];
     _QZtableView.dataSource = self;
     _QZtableView.delegate = self;
     _QZtableView.separatorStyle = UITableViewCellSeparatorStyleNone;

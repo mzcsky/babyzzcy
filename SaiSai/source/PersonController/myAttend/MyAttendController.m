@@ -21,8 +21,10 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
+    self.view.backgroundColor = [UIColor whiteColor];
+
 }
-\
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,7 +54,7 @@
     _tableView.dataSource = self;
     _tableView.delegate   = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = BACKGROUND_COLOR;
+    _tableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_tableView];
     
     [_tableView addHeaderWithTarget:self action:@selector(refreshDatas)];

@@ -202,6 +202,7 @@
     HomePageCell *cell = [[HomePageCell alloc] init];
     SaiBean *saibean = (SaiBean *)_SWdataArray[indexPath.row];
     CGFloat height = [cell returnHeight:saibean];
+    
     return height;
 }
 

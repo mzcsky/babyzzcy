@@ -137,7 +137,7 @@
     mTabBarHeigth = higth;
     mTabBarView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.size.height - higth, self.view.frame.size.width, higth)];
     
-    mTabBarView.backgroundColor = [UIColor clearColor];
+    mTabBarView.backgroundColor = [UIColor whiteColor];
     
     NSInteger itemNum = [norImage count];
     itemArr = [[NSMutableArray alloc] init];
@@ -172,8 +172,9 @@
 //    backView.backgroundColor = [UIColor colorWithRed:165.0/255.0f green:165.0/255.0f blue:165.0/255.0f alpha:1];
     backView.backgroundColor = TEXT_COLOR;
     [mTabBarView addSubview:backView];
-    
     [self.view addSubview:mTabBarView];
+    
+
 }
 
 -(void)itemPressed:(id)sender
@@ -182,6 +183,7 @@
         return;
     }
     XTTabBarItem * tmpCtr = (XTTabBarItem*)sender;
+    
     BOOL shouldSelect = YES;
     if (self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]) {
         shouldSelect = [self.delegate tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:tmpCtr.tag]];
@@ -247,14 +249,14 @@
     if(stade)
     {
         CGRect rect = CGRectMake(0, self.view.frame.size.height+21, SCREEN_WIDTH, mTabBarHeigth);
-        mTabBarView.backgroundColor = [UIColor purpleColor];
+        mTabBarView.backgroundColor = [UIColor whiteColor];
         mTabBarView.frame = rect;
     }
     else
     {
         
         CGRect rect = CGRectMake(0, self.view.frame.size.height - mTabBarHeigth, SCREEN_WIDTH, mTabBarHeigth);
-        mTabBarView.backgroundColor = [UIColor blackColor];
+        mTabBarView.backgroundColor = [UIColor whiteColor];
 
         mTabBarView.frame = rect;
     }

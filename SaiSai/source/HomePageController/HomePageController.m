@@ -74,6 +74,7 @@
     [rootCtrller setmTabBarViewHidden:NO animation:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
    //头部时间背景
+    self.view.backgroundColor = [UIColor whiteColor];
     self.TheadView.hidden = NO;
 }
 
@@ -97,7 +98,6 @@
 //    [self lungetData];//广告栏请求
     [self getAgeMenu];//获取年龄分类
     [self getDetail];//补充广告栏数据请求
-    
     
     
 }
