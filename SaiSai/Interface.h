@@ -59,6 +59,7 @@
 //赛赛 微博开放平台
 #define WB_APPID        @"2249456858"
 #define WB_APPSECRET    @"78cfa89cf72ec1b5ad9c78e0d985aee0"
+#define WB_APPBACK     @"http://sns.whalecloud.com/sina2/callback"
 
 #define KUserName       @"KUserName"
 

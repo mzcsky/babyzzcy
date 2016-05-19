@@ -120,11 +120,10 @@
     
     [UMSocialQQHandler setQQWithAppId:TECENT_APPID appKey:TECENT_APPKEY url:nil];
     
-    [WeiboSDK registerApp:WB_APPID];
     [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToWechatSession]];
-    
-    
-    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WB_APPID secret:WB_APPSECRET RedirectURL:WB_APPBACK];
+    //    [WeiboSDK registerApp:WB_APPID];
+//    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
 }
 
 

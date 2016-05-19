@@ -354,12 +354,18 @@ static ShareView    *_shareView;
 - (void)shareQQZ{
     NSString *shareUrl = [NSString stringWithFormat:@"%@?pid=%@&gid=%@", SHARE_ADDRESS, _pid, _gid];
     
-    UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:shareUrl];
+    UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeCount
+                                                                                        url:shareUrl];
     
     [UMSocialQQHandler setQQWithAppId:TECENT_APPID appKey:TECENT_APPKEY url:shareUrl];
     [UMSocialData defaultData].extConfig.qzoneData.title = _shareMst;
 
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQzone] content:_shareMsg image:_shareImg location:nil urlResource:urlResource presentedController:_contrller completion:^(UMSocialResponseEntity *response){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQzone]
+                                                        content:_shareMsg
+                                                          image:_shareImg
+                                                       location:nil urlResource:urlResource
+                                            presentedController:_contrller
+                                                     completion:^(UMSocialResponseEntity *response){
         if (response.responseCode == UMSResponseCodeSuccess) {
             NSLog(@"分享成功！");
         }
@@ -370,12 +376,18 @@ static ShareView    *_shareView;
 - (void)shareQQ{
     NSString *shareUrl = [NSString stringWithFormat:@"%@?pid=%@&gid=%@", SHARE_ADDRESS, _pid, _gid];
     
-    UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:shareUrl];
+    UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeCount url:shareUrl];
 
     [UMSocialQQHandler setQQWithAppId:TECENT_APPID appKey:TECENT_APPKEY url:shareUrl];
     [UMSocialData defaultData].extConfig.qqData.title = _shareMst;
 
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:_shareMsg image:_shareImg location:nil urlResource:urlResource presentedController:_contrller completion:^(UMSocialResponseEntity *response){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ]
+                                                        content:_shareMsg
+                                                          image:_shareImg
+                                                       location:nil
+                                                    urlResource:urlResource
+                                            presentedController:_contrller
+                                                     completion:^(UMSocialResponseEntity *response){
         if (response.responseCode == UMSResponseCodeSuccess) {
             NSLog(@"分享成功！");
         }
@@ -391,7 +403,13 @@ static ShareView    *_shareView;
 
     [UMSocialWechatHandler setWXAppId:WX_APPID appSecret:WX_APPSECRET url:shareUrl];
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = _shareMst;
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:_shareMsg image:_shareImg location:nil urlResource:urlResource presentedController:_contrller completion:^(UMSocialResponseEntity *response){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline]
+                                                        content:_shareMsg
+                                                          image:_shareImg
+                                                       location:nil
+                                                    urlResource:urlResource
+                                            presentedController:_contrller
+                                                     completion:^(UMSocialResponseEntity *response){
         if (response.responseCode == UMSResponseCodeSuccess) {
             NSLog(@"分享成功！");
         }
@@ -406,7 +424,13 @@ static ShareView    *_shareView;
                                         shareUrl];
     [UMSocialWechatHandler setWXAppId:WX_APPID appSecret:WX_APPSECRET url:shareUrl];
     [UMSocialData defaultData].extConfig.wechatSessionData.title = _shareMst;
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:_shareMsg image:_shareImg location:nil urlResource:urlResource presentedController:_contrller completion:^(UMSocialResponseEntity *response){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession]
+                                                        content:_shareMsg
+                                                          image:_shareImg
+                                                       location:nil
+                                                    urlResource:urlResource
+                                            presentedController:_contrller
+                                                     completion:^(UMSocialResponseEntity *response){
         if (response.responseCode == UMSResponseCodeSuccess) {
             NSLog(@"分享成功！");
         }
@@ -417,9 +441,15 @@ static ShareView    *_shareView;
 - (void)shareWeiBo{
     NSString *shareUrl = [NSString stringWithFormat:@"%@?pid=%@&gid=%@", SHARE_ADDRESS, _pid, _gid];
     
-    UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:
+    UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeVideo url:
                                         shareUrl];
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:_shareMsg image:_shareImg location:nil urlResource:urlResource presentedController:_contrller completion:^(UMSocialResponseEntity *shareResponse){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina]
+                                                        content:_shareMsg
+                                                          image:_shareImg
+                                                       location:nil
+                                                    urlResource:urlResource
+                                            presentedController:_contrller
+                                                     completion:^(UMSocialResponseEntity *shareResponse){
         if (shareResponse.responseCode == UMSResponseCodeSuccess) {
             NSLog(@"分享成功！");
             [ProgressHUD showSuccess:@"分享成功!"];
