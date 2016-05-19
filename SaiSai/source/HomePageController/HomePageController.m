@@ -691,7 +691,7 @@
     }else if(!_isTableView && section == 1){
 
         return self.topBtnView.frame.size.height;
-        
+
     }
     
     return 0;
