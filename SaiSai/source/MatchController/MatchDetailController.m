@@ -70,6 +70,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
+  
     self.view.backgroundColor = [UIColor whiteColor];
 
 //      self.TheadView.hidden = NO;

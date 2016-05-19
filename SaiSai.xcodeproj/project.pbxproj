@@ -157,6 +157,7 @@
 		6E4939F61CBDFB7500F3464D /* QingZiController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4939F51CBDFB7500F3464D /* QingZiController.m */; };
 		6E6207101C97BDC900F8DA31 /* mc_arrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */; };
 		6E6207191C999F9600F8DA31 /* SSButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6207181C999F9600F8DA31 /* SSButtonView.m */; };
+		6E7DC1701CE57B8600E47676 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7DC16F1CE57B8600E47676 /* CoreLocation.framework */; };
 		6E8C3F841CCA3120005397DF /* MatchDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C3F831CCA3120005397DF /* MatchDetailController.m */; };
 		6E91C5F11CC749D900673B94 /* QingZiBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C5F01CC749D900673B94 /* QingZiBean.m */; };
 		6E91C5F41CC7846600673B94 /* QingZiShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C5F31CC7846600673B94 /* QingZiShowController.m */; };
@@ -601,6 +602,7 @@
 		6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mc_arrowUp@2x.png"; sourceTree = "<group>"; };
 		6E6207171C999F9600F8DA31 /* SSButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSButtonView.h; sourceTree = "<group>"; };
 		6E6207181C999F9600F8DA31 /* SSButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSButtonView.m; sourceTree = "<group>"; };
+		6E7DC16F1CE57B8600E47676 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6E8C3F831CCA3120005397DF /* MatchDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchDetailController.m; sourceTree = "<group>"; };
 		6E91C5EF1CC749D900673B94 /* QingZiBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingZiBean.h; sourceTree = "<group>"; };
 		6E91C5F01CC749D900673B94 /* QingZiBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingZiBean.m; sourceTree = "<group>"; };
@@ -882,6 +884,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E7DC1701CE57B8600E47676 /* CoreLocation.framework in Frameworks */,
 				63EC32281C1F2CF6004D1CAD /* libz.tbd in Frameworks */,
 				63EC32261C1F2CDE004D1CAD /* Security.framework in Frameworks */,
 				63EC32241C1F2CD3004D1CAD /* UIKit.framework in Frameworks */,
@@ -2048,6 +2051,7 @@
 		F586A3D91B87091A00FCB5F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E7DC16F1CE57B8600E47676 /* CoreLocation.framework */,
 				63EC32271C1F2CF6004D1CAD /* libz.tbd */,
 				63EC32251C1F2CDE004D1CAD /* Security.framework */,
 				63EC32231C1F2CD3004D1CAD /* UIKit.framework */,

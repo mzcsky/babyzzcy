@@ -62,6 +62,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
+
+    
     XTTabBarController * rootCtrller = [GlobalData shareInstance].mRootController;
     [rootCtrller setmTabBarViewHidden:YES animation:YES];
     self.TheadView.hidden = NO;

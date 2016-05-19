@@ -367,7 +367,8 @@
         if (image) {
             
             CGFloat sa = image.size.width / image.size.height;
-            CGSize size = CGSizeMake(600, 600/sa);
+            //图片压缩
+            CGSize size = CGSizeMake(1200, 1200/sa);
             
             UIGraphicsBeginImageContext(size);
             // 绘制改变大小的图片

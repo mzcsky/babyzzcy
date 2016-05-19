@@ -169,12 +169,12 @@ static PositionTool    *_positionTool;
                            self.province = place.administrativeArea;
                            self.city = place.locality;
                            self.area = place.subLocality;
-                           // 位置名
-                           //                           NSLog(@"thoroughfare,%@",place.thoroughfare);       // 街道
-                           //                           NSLog(@"subThoroughfare,%@",place.subThoroughfare); // 子街道
-                           //                           NSLog(@"locality,%@",place.locality);               // 市
-                           //                           NSLog(@"subLocality,%@",place.subLocality);         // 区
-                           //                           NSLog(@"country,%@",place.country);                 // 国家
+//                            位置名
+//                                                      NSLog(@"thoroughfare,%@",place.thoroughfare);       // 街道
+//                                                      NSLog(@"subThoroughfare,%@",place.subThoroughfare); // 子街道
+//                                                      NSLog(@"locality,%@",place.locality);               // 市
+//                                                      NSLog(@"subLocality,%@",place.subLocality);         // 区
+//                                                      NSLog(@"country,%@",place.country);                 // 国家
                        }
                        NSLog(@"代理数组3%@",_delegatesArr);
                        for (id<PositionToolDelegate> delegate in _delegatesArr) {

@@ -26,6 +26,7 @@
 
 
 
+
 @interface HomePageController ()<NDHMenuViewDelegate,UITableViewDataSource,UITableViewDelegate,HomePageCellDelegate,AdvertViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) NDHMenuView      *ndMenuView;
@@ -42,6 +43,7 @@
 @property (nonatomic, strong) NSArray * topBtnArr;
 
 @property (nonatomic, strong) UIView * topBtnView;
+
 
 
 
@@ -110,6 +112,8 @@
     _luntArray = [[NSMutableArray alloc] init];
     
 }
+
+
 
 /*
  *  添加刷新通知
