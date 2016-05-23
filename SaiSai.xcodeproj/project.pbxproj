@@ -182,8 +182,6 @@
 		6EE337E21CCF4F2400AF04D3 /* ProductDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337E11CCF4F2400AF04D3 /* ProductDetailsCell.m */; };
 		6EE337E51CCF52ED00AF04D3 /* ProductDetailsImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337E41CCF52ED00AF04D3 /* ProductDetailsImageCell.m */; };
 		6EE337EB1CD06FF400AF04D3 /* WJDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337EA1CD06FF400AF04D3 /* WJDropdownMenu.m */; };
-		6EE337FA1CD1E7AB00AF04D3 /* qingzi_shoucang.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EE337F71CD1E7AB00AF04D3 /* qingzi_shoucang.png */; };
-		6EE337FB1CD1E7AB00AF04D3 /* qingzi_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EE337F81CD1E7AB00AF04D3 /* qingzi_block.png */; };
 		6EE337FF1CD1E99F00AF04D3 /* qingzi_liuyan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EE337FE1CD1E99F00AF04D3 /* qingzi_liuyan@2x.png */; };
 		6EE338241CD2060000AF04D3 /* JTCalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE338041CD205FF00AF04D3 /* JTCalendarManager.m */; };
 		6EE338251CD2060000AF04D3 /* JTCalendarSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE338061CD205FF00AF04D3 /* JTCalendarSettings.m */; };
@@ -651,8 +649,6 @@
 		6EE337E41CCF52ED00AF04D3 /* ProductDetailsImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailsImageCell.m; sourceTree = "<group>"; };
 		6EE337E91CD06FF400AF04D3 /* WJDropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJDropdownMenu.h; sourceTree = "<group>"; };
 		6EE337EA1CD06FF400AF04D3 /* WJDropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJDropdownMenu.m; sourceTree = "<group>"; };
-		6EE337F71CD1E7AB00AF04D3 /* qingzi_shoucang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qingzi_shoucang.png; path = ../match/qingzi_shoucang.png; sourceTree = "<group>"; };
-		6EE337F81CD1E7AB00AF04D3 /* qingzi_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qingzi_block.png; path = ../match/qingzi_block.png; sourceTree = "<group>"; };
 		6EE337FE1CD1E99F00AF04D3 /* qingzi_liuyan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qingzi_liuyan@2x.png"; sourceTree = "<group>"; };
 		6EE338011CD205FF00AF04D3 /* JTCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendar.h; sourceTree = "<group>"; };
 		6EE338021CD205FF00AF04D3 /* JTCalendarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendarDelegate.h; sourceTree = "<group>"; };
@@ -1598,8 +1594,6 @@
 		6EE337FD1CD1E8A700AF04D3 /* qingzi */ = {
 			isa = PBXGroup;
 			children = (
-				6EE337F71CD1E7AB00AF04D3 /* qingzi_shoucang.png */,
-				6EE337F81CD1E7AB00AF04D3 /* qingzi_block.png */,
 			);
 			name = qingzi;
 			path = "未命名文件夹";
@@ -2291,7 +2285,6 @@
 				F589F01E1B9873B600EF8814 /* bm_add@2x.png in Resources */,
 				6E2F22121C84A0240040B9F6 /* ic_default_head_image.png in Resources */,
 				F58D0B091B94355B0085ABA5 /* match_type3@2x.png in Resources */,
-				6EE337FA1CD1E7AB00AF04D3 /* qingzi_shoucang.png in Resources */,
 				F52AB8781B7F79DE00BF1A86 /* XTViewController.xib in Resources */,
 				F57AB3701B94A87C00D8B489 /* pc_addFriends@2x.png in Resources */,
 				F5B1A9D11B847554009D6366 /* login_weixin@2x.png in Resources */,
@@ -2364,7 +2357,6 @@
 				6EBB27791CED6D6500A2E3B3 /* iOS-social-releasenote.html in Resources */,
 				6E2FA25E1CB6773400016D42 /* home_fengcai_normal@2x.png in Resources */,
 				63D9F99B1BDA825B00A9A8C2 /* guide3_736.png in Resources */,
-				6EE337FB1CD1E7AB00AF04D3 /* qingzi_block.png in Resources */,
 				6EBB27831CED6D6500A2E3B3 /* markdown.css in Resources */,
 				63D9F9941BDA825B00A9A8C2 /* guide2_480.png in Resources */,
 				6E3804EF1CA406F800FD61D7 /* redu.png in Resources */,

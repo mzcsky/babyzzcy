@@ -56,6 +56,9 @@
     [self.view addSubview:_tableView];
     [_tableView addHeaderWithTarget:self action:@selector(refreshData)];
     [_tableView addFooterWithTarget:self action:@selector(loadMoreData)];
+    
+
+    
 }
 
 #pragma mark

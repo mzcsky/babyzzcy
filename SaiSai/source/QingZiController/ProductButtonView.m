@@ -39,6 +39,7 @@
         [PBbtn addTarget:self action:@selector(PBbtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:PBbtn];
         
+        
         if (i==0) {
             _currentBtn = PBbtn;
             [self PBbtnClick:PBbtn];
