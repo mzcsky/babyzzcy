@@ -42,7 +42,7 @@
 #import "AdvertView.h"
 #import "MJRefresh.h"
 #import "GlobalData.h"
-
+#import "UIImage+UIImage.h"
 
 #pragma mark
 #pragma mark ====== controller头文件 ======

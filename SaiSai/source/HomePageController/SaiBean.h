@@ -40,6 +40,7 @@
 @property (nonatomic, assign) NSInteger game_status;          //比赛状态 1:进行中2：评审中3：审核通过4：奖项发布
 @property (nonatomic,assign) BOOL       isShowMore;
 
+
 +(id)parseInfo:(NSDictionary *)infoDic;
 
 @end

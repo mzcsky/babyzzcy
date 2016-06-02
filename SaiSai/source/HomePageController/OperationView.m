@@ -9,7 +9,6 @@
 #import "OperationView.h"
 #import "ShareView.h"
 #import "UpdatePictureController.h"
-
 @implementation OperationView
 
 -(id)initWithFrame:(CGRect)frame{
@@ -340,17 +339,20 @@
     ctrller.m_showBackBt = YES;
     ctrller.title = @"修改作品";
     ctrller.saiBean = self.saiBean;
+    
     [_contrller.navigationController pushViewController:ctrller animated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:HIDDEN_TAB object:nil];
 }
 
 - (void)shareAction{
     //分享页面
+    
+
     [[ShareView shareInfo] showShare:YES];
     [[ShareView shareInfo] setGid:self.saiBean.sId];
     [[ShareView shareInfo] setController:_contrller];
     [[ShareView shareInfo] setMsg:self.saiBean.title];
-    [[ShareView shareInfo] setImg:[UIImage imageNamed:@"icon-60-phone.png"]];
+    [[ShareView shareInfo] setImg:[UIImage imageWithUrlStr:self.saiBean.applySubUrl]];
     [[ShareView shareInfo] setPid:self.saiBean.sId];
     [[ShareView shareInfo] setMst:self.saiBean.g_title];
 }

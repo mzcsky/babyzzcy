@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SaiBean.h"
+
+
 @interface OperationView : UIView<UITextFieldDelegate,UMSocialUIDelegate>
 
 @property (nonatomic,assign) CGFloat  seperateWidth;

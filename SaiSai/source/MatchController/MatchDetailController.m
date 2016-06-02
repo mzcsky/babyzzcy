@@ -415,7 +415,7 @@
     [[ShareView shareInfo] showShare:YES];
     [[ShareView shareInfo] setController:self];
     [[ShareView shareInfo] setMsg:self.fBean.g_title];
-    [[ShareView shareInfo] setImg:[UIImage imageNamed:@"icon-60-phone.png"]];
+    [[ShareView shareInfo] setImg:[UIImage imageWithUrlStr:self.fBean.img]];
     [[ShareView shareInfo] setGid:[NSString stringWithFormat:@"%ld",(long)self.fBean.mId]];
 }
 

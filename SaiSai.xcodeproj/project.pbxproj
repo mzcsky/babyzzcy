@@ -178,6 +178,7 @@
 		6EBB27831CED6D6500A2E3B3 /* markdown.css in Resources */ = {isa = PBXBuildFile; fileRef = 6EBB27641CED6D6500A2E3B3 /* markdown.css */; };
 		6EBC9F581CA131BE0088F94C /* ic_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC9F571CA131BE0088F94C /* ic_search.png */; };
 		6EBC9F5B1CA134320088F94C /* SearchWorkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC9F5A1CA134320088F94C /* SearchWorkController.m */; };
+		6EDCF6381D003CF100FEF0FE /* UIImage+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDCF6371D003CF100FEF0FE /* UIImage+UIImage.m */; };
 		6EE337DF1CCF459800AF04D3 /* ProductDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337DE1CCF459800AF04D3 /* ProductDetailsController.m */; };
 		6EE337E21CCF4F2400AF04D3 /* ProductDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337E11CCF4F2400AF04D3 /* ProductDetailsCell.m */; };
 		6EE337E51CCF52ED00AF04D3 /* ProductDetailsImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE337E41CCF52ED00AF04D3 /* ProductDetailsImageCell.m */; };
@@ -641,6 +642,8 @@
 		6EBC9F571CA131BE0088F94C /* ic_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_search.png; sourceTree = "<group>"; };
 		6EBC9F591CA134320088F94C /* SearchWorkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWorkController.h; sourceTree = "<group>"; };
 		6EBC9F5A1CA134320088F94C /* SearchWorkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWorkController.m; sourceTree = "<group>"; };
+		6EDCF6361D003CF100FEF0FE /* UIImage+UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UIImage.h"; sourceTree = "<group>"; };
+		6EDCF6371D003CF100FEF0FE /* UIImage+UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UIImage.m"; sourceTree = "<group>"; };
 		6EE337DD1CCF459800AF04D3 /* ProductDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailsController.h; sourceTree = "<group>"; };
 		6EE337DE1CCF459800AF04D3 /* ProductDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailsController.m; sourceTree = "<group>"; };
 		6EE337E01CCF4F2400AF04D3 /* ProductDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailsCell.h; sourceTree = "<group>"; };
@@ -1350,28 +1353,9 @@
 		6E40CDBA1CCB151C00ACE083 /* HomePage(风采展示) */ = {
 			isa = PBXGroup;
 			children = (
-				F52AB88E1B7F81A100BF1A86 /* HomePageController.h */,
-				F52AB88F1B7F81A100BF1A86 /* HomePageController.m */,
-				E89304121B8C60CF006A4C1E /* HomePageCell.h */,
-				E89304131B8C60CF006A4C1E /* HomePageCell.m */,
-				E89304151B8C621E006A4C1E /* SaiBean.h */,
-				E89304161B8C621E006A4C1E /* SaiBean.m */,
-				E88744261B93F53200866B6D /* CommentBean.h */,
-				E88744271B93F53200866B6D /* CommentBean.m */,
-				E89304081B8C56FE006A4C1E /* AgeBean.h */,
-				E89304091B8C56FE006A4C1E /* AgeBean.m */,
-				E89DE1D81B8D69F800F98ED3 /* OperationView.h */,
-				E89DE1D91B8D69F800F98ED3 /* OperationView.m */,
-				E87C472A1B90554A00D79B0B /* CommentContentView.h */,
-				E87C472B1B90554A00D79B0B /* CommentContentView.m */,
-				F589EFFA1B980C1700EF8814 /* ShareView.h */,
-				F589EFFB1B980C1700EF8814 /* ShareView.m */,
-				6E6207171C999F9600F8DA31 /* SSButtonView.h */,
-				6E6207181C999F9600F8DA31 /* SSButtonView.m */,
-				6EBC9F591CA134320088F94C /* SearchWorkController.h */,
-				6EBC9F5A1CA134320088F94C /* SearchWorkController.m */,
-				6E2FA2591CB6459F00016D42 /* CustomButton.h */,
-				6E2FA25A1CB6459F00016D42 /* CustomButton.m */,
+				6EDCF6411D003F6800FEF0FE /* Model */,
+				6EDCF6401D003F6600FEF0FE /* View */,
+				6EDCF63F1D003F6300FEF0FE /* Controller */,
 			);
 			name = "HomePage(风采展示)";
 			sourceTree = "<group>";
@@ -1379,36 +1363,9 @@
 		6E40CDBB1CCB159300ACE083 /* Match */ = {
 			isa = PBXGroup;
 			children = (
-				F589F0151B98523C00EF8814 /* ClassificationButton.h */,
-				F589F0161B98523C00EF8814 /* ClassificationButton.m */,
-				F52AB8911B7F81B400BF1A86 /* MatchController.h */,
-				F52AB8921B7F81B400BF1A86 /* MatchController.m */,
-				F58DE8321B92B6B50074FDBB /* MatchCCell.h */,
-				F58DE8331B92B6B50074FDBB /* MatchCCell.m */,
-				F58DE8671B9319750074FDBB /* MatchCCBean.h */,
-				F58DE8681B9319750074FDBB /* MatchCCBean.m */,
-				F58DE86A1B9319880074FDBB /* MatchCADBean.h */,
-				F58DE86B1B9319880074FDBB /* MatchCADBean.m */,
-				F58DE8701B934A170074FDBB /* MatchDetailController.h */,
-				6E8C3F831CCA3120005397DF /* MatchDetailController.m */,
-				6E91C6241CC8B88700673B94 /* MatchInstViewController.h */,
-				6E91C6251CC8B88700673B94 /* MatchInstViewController.m */,
-				6E3804F81CA5042B00FD61D7 /* MatchWorkController.h */,
-				6E3804F91CA5042B00FD61D7 /* MatchWorkController.m */,
-				F589F0121B984FC400EF8814 /* BMController.h */,
-				F589F0131B984FC400EF8814 /* BMController.m */,
-				F589F01A1B98690E00EF8814 /* BMImageCell.h */,
-				F589F01B1B98690E00EF8814 /* BMImageCell.m */,
-				F5F7307A1B98953800FA9B76 /* BMPreData.h */,
-				F5F7307B1B98953800FA9B76 /* BMPreData.m */,
-				F58F86811B99E38C00E92E12 /* GameTypeBean.h */,
-				F58F86821B99E38C00E92E12 /* GameTypeBean.m */,
-				F58F86841B99E4F300E92E12 /* LastApplyInfoBean.h */,
-				F58F86851B99E4F300E92E12 /* LastApplyInfoBean.m */,
-				F57E2D301BA0814D0018B0BA /* AreaBean.h */,
-				F57E2D311BA0814D0018B0BA /* AreaBean.m */,
-				63E4FA851C151B46007BD20B /* MatchClaBean.h */,
-				63E4FA861C151B46007BD20B /* MatchClaBean.m */,
+				6EDCF6481D003FED00FEF0FE /* Model */,
+				6EDCF6471D003FEB00FEF0FE /* View */,
+				6EDCF6461D003FE900FEF0FE /* Controller */,
 			);
 			name = Match;
 			sourceTree = "<group>";
@@ -1416,24 +1373,9 @@
 		6E40CDBC1CCB15E800ACE083 /* QingZiShow(休闲活动) */ = {
 			isa = PBXGroup;
 			children = (
-				6E4939F41CBDFB7500F3464D /* QingZiController.h */,
-				6E4939F51CBDFB7500F3464D /* QingZiController.m */,
-				6E4939F11CBCF4A600F3464D /* QingZiCell.h */,
-				6E4939F21CBCF4A600F3464D /* QingZiCell.m */,
-				6E91C5EF1CC749D900673B94 /* QingZiBean.h */,
-				6E91C5F01CC749D900673B94 /* QingZiBean.m */,
-				6EF7E7FB1CC5D58C00CCC376 /* QingImageBean.h */,
-				6EF7E7FC1CC5D58C00CCC376 /* QingImageBean.m */,
-				6EF7E7FE1CC5DA6A00CCC376 /* QingZiSearch.h */,
-				6EF7E7FF1CC5DA6A00CCC376 /* QingZiSearch.m */,
-				6E207A841CC4836500B686A9 /* ActionAdView.h */,
-				6E207A851CC4836500B686A9 /* ActionAdView.m */,
-				6E207A8A1CC4836500B686A9 /* SixBtnCell.h */,
-				6E207A8B1CC4836500B686A9 /* SixBtnCell.m */,
-				6E207A881CC4836500B686A9 /* QingZiTitleScroll.h */,
-				6E207A891CC4836500B686A9 /* QingZiTitleScroll.m */,
-				6E207A861CC4836500B686A9 /* ActivityDetailController.h */,
-				6E207A871CC4836500B686A9 /* ActivityDetailController.m */,
+				6EDCF63B1D003EE700FEF0FE /* Model */,
+				6EDCF63A1D003EDE00FEF0FE /* View */,
+				6EDCF6391D003ECA00FEF0FE /* Controller */,
 			);
 			name = "QingZiShow(休闲活动)";
 			sourceTree = "<group>";
@@ -1441,22 +1383,9 @@
 		6E91C62D1CC8C9C200673B94 /* QingZiShow(详情页面) */ = {
 			isa = PBXGroup;
 			children = (
-				6E91C5F21CC7846600673B94 /* QingZiShowController.h */,
-				6E91C5F31CC7846600673B94 /* QingZiShowController.m */,
-				6E91C5F51CC78ACD00673B94 /* QingZiShowCell.h */,
-				6E91C5F61CC78ACD00673B94 /* QingZiShowCell.m */,
-				6EE337E91CD06FF400AF04D3 /* WJDropdownMenu.h */,
-				6EE337EA1CD06FF400AF04D3 /* WJDropdownMenu.m */,
-				6EE337DD1CCF459800AF04D3 /* ProductDetailsController.h */,
-				6EE337DE1CCF459800AF04D3 /* ProductDetailsController.m */,
-				6E3DE2E71CD9B6F800680F52 /* ProductButtonView.h */,
-				6E3DE2E61CD9B6F800680F52 /* ProductButtonView.m */,
-				6EE337E01CCF4F2400AF04D3 /* ProductDetailsCell.h */,
-				6EE337E11CCF4F2400AF04D3 /* ProductDetailsCell.m */,
-				6E3DE2E91CD9C58400680F52 /* ProductBasicCell.h */,
-				6E3DE2EA1CD9C58400680F52 /* ProductBasicCell.m */,
-				6EE337E31CCF52ED00AF04D3 /* ProductDetailsImageCell.h */,
-				6EE337E41CCF52ED00AF04D3 /* ProductDetailsImageCell.m */,
+				6EDCF63E1D003F1B00FEF0FE /* Model */,
+				6EDCF63D1D003F1900FEF0FE /* View */,
+				6EDCF63C1D003F1700FEF0FE /* controller */,
 			);
 			name = "QingZiShow(详情页面)";
 			sourceTree = "<group>";
@@ -1591,6 +1520,220 @@
 			path = UMSocial_Sdk_Instructions;
 			sourceTree = "<group>";
 		};
+		6EDCF6321D003C2600FEF0FE /* CateGory */ = {
+			isa = PBXGroup;
+			children = (
+				6EDCF6361D003CF100FEF0FE /* UIImage+UIImage.h */,
+				6EDCF6371D003CF100FEF0FE /* UIImage+UIImage.m */,
+			);
+			name = CateGory;
+			sourceTree = "<group>";
+		};
+		6EDCF6391D003ECA00FEF0FE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6EF7E7FE1CC5DA6A00CCC376 /* QingZiSearch.h */,
+				6EF7E7FF1CC5DA6A00CCC376 /* QingZiSearch.m */,
+				6E4939F41CBDFB7500F3464D /* QingZiController.h */,
+				6E4939F51CBDFB7500F3464D /* QingZiController.m */,
+				6E207A861CC4836500B686A9 /* ActivityDetailController.h */,
+				6E207A871CC4836500B686A9 /* ActivityDetailController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		6EDCF63A1D003EDE00FEF0FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6E4939F11CBCF4A600F3464D /* QingZiCell.h */,
+				6E4939F21CBCF4A600F3464D /* QingZiCell.m */,
+				6E207A841CC4836500B686A9 /* ActionAdView.h */,
+				6E207A851CC4836500B686A9 /* ActionAdView.m */,
+				6E207A8A1CC4836500B686A9 /* SixBtnCell.h */,
+				6E207A8B1CC4836500B686A9 /* SixBtnCell.m */,
+				6E207A881CC4836500B686A9 /* QingZiTitleScroll.h */,
+				6E207A891CC4836500B686A9 /* QingZiTitleScroll.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6EDCF63B1D003EE700FEF0FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6EF7E7FB1CC5D58C00CCC376 /* QingImageBean.h */,
+				6EF7E7FC1CC5D58C00CCC376 /* QingImageBean.m */,
+				6E91C5EF1CC749D900673B94 /* QingZiBean.h */,
+				6E91C5F01CC749D900673B94 /* QingZiBean.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6EDCF63C1D003F1700FEF0FE /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				6EE337E91CD06FF400AF04D3 /* WJDropdownMenu.h */,
+				6EE337EA1CD06FF400AF04D3 /* WJDropdownMenu.m */,
+				6E91C5F21CC7846600673B94 /* QingZiShowController.h */,
+				6E91C5F31CC7846600673B94 /* QingZiShowController.m */,
+				6EE337DD1CCF459800AF04D3 /* ProductDetailsController.h */,
+				6EE337DE1CCF459800AF04D3 /* ProductDetailsController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		6EDCF63D1D003F1900FEF0FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6E91C5F51CC78ACD00673B94 /* QingZiShowCell.h */,
+				6E91C5F61CC78ACD00673B94 /* QingZiShowCell.m */,
+				6E3DE2E71CD9B6F800680F52 /* ProductButtonView.h */,
+				6E3DE2E61CD9B6F800680F52 /* ProductButtonView.m */,
+				6EE337E01CCF4F2400AF04D3 /* ProductDetailsCell.h */,
+				6EE337E11CCF4F2400AF04D3 /* ProductDetailsCell.m */,
+				6E3DE2E91CD9C58400680F52 /* ProductBasicCell.h */,
+				6E3DE2EA1CD9C58400680F52 /* ProductBasicCell.m */,
+				6EE337E31CCF52ED00AF04D3 /* ProductDetailsImageCell.h */,
+				6EE337E41CCF52ED00AF04D3 /* ProductDetailsImageCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6EDCF63E1D003F1B00FEF0FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6EDCF63F1D003F6300FEF0FE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6E2FA2591CB6459F00016D42 /* CustomButton.h */,
+				6E2FA25A1CB6459F00016D42 /* CustomButton.m */,
+				F52AB88E1B7F81A100BF1A86 /* HomePageController.h */,
+				F52AB88F1B7F81A100BF1A86 /* HomePageController.m */,
+				6EBC9F591CA134320088F94C /* SearchWorkController.h */,
+				6EBC9F5A1CA134320088F94C /* SearchWorkController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		6EDCF6401D003F6600FEF0FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E89304121B8C60CF006A4C1E /* HomePageCell.h */,
+				E89304131B8C60CF006A4C1E /* HomePageCell.m */,
+				E89DE1D81B8D69F800F98ED3 /* OperationView.h */,
+				E89DE1D91B8D69F800F98ED3 /* OperationView.m */,
+				F589EFFA1B980C1700EF8814 /* ShareView.h */,
+				F589EFFB1B980C1700EF8814 /* ShareView.m */,
+				6E6207171C999F9600F8DA31 /* SSButtonView.h */,
+				6E6207181C999F9600F8DA31 /* SSButtonView.m */,
+				E87C472A1B90554A00D79B0B /* CommentContentView.h */,
+				E87C472B1B90554A00D79B0B /* CommentContentView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6EDCF6411D003F6800FEF0FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E89304151B8C621E006A4C1E /* SaiBean.h */,
+				E89304161B8C621E006A4C1E /* SaiBean.m */,
+				E88744261B93F53200866B6D /* CommentBean.h */,
+				E88744271B93F53200866B6D /* CommentBean.m */,
+				E89304081B8C56FE006A4C1E /* AgeBean.h */,
+				E89304091B8C56FE006A4C1E /* AgeBean.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6EDCF6421D003FA900FEF0FE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E8741C3D1B9DDE5600ECD9FF /* HistoryGameController.h */,
+				E8741C3E1B9DDE5600ECD9FF /* HistoryGameController.m */,
+				E8741C491B9DF8AE00ECD9FF /* AwardGameController.h */,
+				E8741C4A1B9DF8AE00ECD9FF /* AwardGameController.m */,
+				E8741C401B9DE21700ECD9FF /* GameListController.h */,
+				E8741C411B9DE21700ECD9FF /* GameListController.m */,
+				6E3804E61CA189BC00FD61D7 /* AwardSearchController.h */,
+				6E3804E71CA189BC00FD61D7 /* AwardSearchController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		6EDCF6431D003FAD00FEF0FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E8741C431B9DE2C900ECD9FF /* GameListCell.h */,
+				E8741C441B9DE2C900ECD9FF /* GameListCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6EDCF6441D003FAF00FEF0FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F5669DA01BA713200061DA12 /* AwardLevelBean.h */,
+				F5669DA11BA713200061DA12 /* AwardLevelBean.m */,
+				6E91C5FB1CC8858900673B94 /* SaiBeanAward.h */,
+				6E91C5FC1CC8858900673B94 /* SaiBeanAward.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6EDCF6461D003FE900FEF0FE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F589F0151B98523C00EF8814 /* ClassificationButton.h */,
+				F589F0161B98523C00EF8814 /* ClassificationButton.m */,
+				F52AB8911B7F81B400BF1A86 /* MatchController.h */,
+				F52AB8921B7F81B400BF1A86 /* MatchController.m */,
+				F58DE8701B934A170074FDBB /* MatchDetailController.h */,
+				6E8C3F831CCA3120005397DF /* MatchDetailController.m */,
+				6E91C6241CC8B88700673B94 /* MatchInstViewController.h */,
+				6E91C6251CC8B88700673B94 /* MatchInstViewController.m */,
+				6E3804F81CA5042B00FD61D7 /* MatchWorkController.h */,
+				6E3804F91CA5042B00FD61D7 /* MatchWorkController.m */,
+				F589F0121B984FC400EF8814 /* BMController.h */,
+				F589F0131B984FC400EF8814 /* BMController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		6EDCF6471D003FEB00FEF0FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F5F7307A1B98953800FA9B76 /* BMPreData.h */,
+				F5F7307B1B98953800FA9B76 /* BMPreData.m */,
+				F58DE8321B92B6B50074FDBB /* MatchCCell.h */,
+				F58DE8331B92B6B50074FDBB /* MatchCCell.m */,
+				F589F01A1B98690E00EF8814 /* BMImageCell.h */,
+				F589F01B1B98690E00EF8814 /* BMImageCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6EDCF6481D003FED00FEF0FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F58DE8671B9319750074FDBB /* MatchCCBean.h */,
+				F58DE8681B9319750074FDBB /* MatchCCBean.m */,
+				F58DE86A1B9319880074FDBB /* MatchCADBean.h */,
+				F58DE86B1B9319880074FDBB /* MatchCADBean.m */,
+				F58F86811B99E38C00E92E12 /* GameTypeBean.h */,
+				F58F86821B99E38C00E92E12 /* GameTypeBean.m */,
+				F58F86841B99E4F300E92E12 /* LastApplyInfoBean.h */,
+				F58F86851B99E4F300E92E12 /* LastApplyInfoBean.m */,
+				F57E2D301BA0814D0018B0BA /* AreaBean.h */,
+				F57E2D311BA0814D0018B0BA /* AreaBean.m */,
+				63E4FA851C151B46007BD20B /* MatchClaBean.h */,
+				63E4FA861C151B46007BD20B /* MatchClaBean.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		6EE337FD1CD1E8A700AF04D3 /* qingzi */ = {
 			isa = PBXGroup;
 			children = (
@@ -1685,20 +1828,9 @@
 		E8741C3C1B9DDE4700ECD9FF /* HistoryGame(获奖展示) */ = {
 			isa = PBXGroup;
 			children = (
-				E8741C3D1B9DDE5600ECD9FF /* HistoryGameController.h */,
-				E8741C3E1B9DDE5600ECD9FF /* HistoryGameController.m */,
-				E8741C491B9DF8AE00ECD9FF /* AwardGameController.h */,
-				E8741C4A1B9DF8AE00ECD9FF /* AwardGameController.m */,
-				F5669DA01BA713200061DA12 /* AwardLevelBean.h */,
-				F5669DA11BA713200061DA12 /* AwardLevelBean.m */,
-				E8741C401B9DE21700ECD9FF /* GameListController.h */,
-				E8741C411B9DE21700ECD9FF /* GameListController.m */,
-				E8741C431B9DE2C900ECD9FF /* GameListCell.h */,
-				E8741C441B9DE2C900ECD9FF /* GameListCell.m */,
-				6E3804E61CA189BC00FD61D7 /* AwardSearchController.h */,
-				6E3804E71CA189BC00FD61D7 /* AwardSearchController.m */,
-				6E91C5FB1CC8858900673B94 /* SaiBeanAward.h */,
-				6E91C5FC1CC8858900673B94 /* SaiBeanAward.m */,
+				6EDCF6441D003FAF00FEF0FE /* Model */,
+				6EDCF6431D003FAD00FEF0FE /* View */,
+				6EDCF6421D003FA900FEF0FE /* Controller */,
 			);
 			name = "HistoryGame(获奖展示)";
 			path = HistoryGame;
@@ -1787,9 +1919,9 @@
 		E8B6AC101B95E91C00F104D5 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
+				E8741C2A1B9D68BB00ECD9FF /* RecommendToFriend */,
 				F588B2EE1BA9562B00A783D7 /* DVersionView.h */,
 				F588B2EF1BA9562B00A783D7 /* DVersionView.m */,
-				E8741C2A1B9D68BB00ECD9FF /* RecommendToFriend */,
 				E8B6AC111B95E92B00F104D5 /* SettingViewController.h */,
 				E8B6AC121B95E92B00F104D5 /* SettingViewController.m */,
 				E8B6AC141B95EA2700F104D5 /* SettingViewCell.h */,
@@ -1898,6 +2030,7 @@
 		F52AB8591B7F783700BF1A86 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				6EDCF6321D003C2600FEF0FE /* CateGory */,
 				F52AB8971B7F836300BF1A86 /* file */,
 				F52AB8981B7F836300BF1A86 /* font */,
 				F52AB8991B7F836300BF1A86 /* image */,
@@ -2443,6 +2576,7 @@
 				6EE337EB1CD06FF400AF04D3 /* WJDropdownMenu.m in Sources */,
 				6333D2851C095F96000613B1 /* UIImage+MultiFormat.m in Sources */,
 				63E22D521B99DFE400D04575 /* ForgetPswController.m in Sources */,
+				6EDCF6381D003CF100FEF0FE /* UIImage+UIImage.m in Sources */,
 				F589F01C1B98690E00EF8814 /* BMImageCell.m in Sources */,
 				6333D2831C095F96000613B1 /* UIButton+WebCache.m in Sources */,
 				6333D27B1C095F96000613B1 /* SDImageCache.m in Sources */,

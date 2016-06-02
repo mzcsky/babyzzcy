@@ -543,7 +543,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-//        NSLog(@"请求获取主界面参赛作品数据结果:%@",jsonDic);
+        NSLog(@"请求获取主界面参赛作品数据结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
             if (page == 1) {
