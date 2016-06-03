@@ -415,7 +415,10 @@
     [[ShareView shareInfo] showShare:YES];
     [[ShareView shareInfo] setController:self];
     [[ShareView shareInfo] setMsg:self.fBean.g_title];
-    [[ShareView shareInfo] setImg:[UIImage imageWithUrlStr:self.fBean.img]];
+    NSData * data = [UIImage imageData:[UIImage imageWithUrlStr:self.fBean.img]];
+    UIImage *image = [UIImage imageWithData:data];
+
+    [[ShareView shareInfo] setImg:image];
     [[ShareView shareInfo] setGid:[NSString stringWithFormat:@"%ld",(long)self.fBean.mId]];
 }
 

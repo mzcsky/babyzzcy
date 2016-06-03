@@ -352,7 +352,9 @@
     [[ShareView shareInfo] setGid:self.saiBean.sId];
     [[ShareView shareInfo] setController:_contrller];
     [[ShareView shareInfo] setMsg:self.saiBean.title];
-    [[ShareView shareInfo] setImg:[UIImage imageWithUrlStr:self.saiBean.applySubUrl]];
+    NSData * data = [UIImage imageData:[UIImage imageWithUrlStr:self.saiBean.applySubUrl]];
+    UIImage *image = [UIImage imageWithData:data];
+    [[ShareView shareInfo] setImg:image];
     [[ShareView shareInfo] setPid:self.saiBean.sId];
     [[ShareView shareInfo] setMst:self.saiBean.g_title];
 }

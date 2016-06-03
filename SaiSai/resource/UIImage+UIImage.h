@@ -11,5 +11,6 @@
 @interface UIImage (UIImage)
 
 + (UIImage *)imageWithUrlStr:(NSString *)urlStr;
++ (NSData *)imageData:(UIImage *)myimage;
 
 @end
