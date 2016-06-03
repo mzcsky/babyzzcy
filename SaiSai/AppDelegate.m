@@ -122,8 +122,8 @@
     
     [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToWechatSession]];
     
-    [WeiboSDK registerApp:WB_APPID];
-    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+//    [WeiboSDK registerApp:WB_APPID];
+//    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WB_APPID secret:WB_APPSECRET RedirectURL:WB_APPBACK];
     
 

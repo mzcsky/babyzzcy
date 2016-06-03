@@ -136,6 +136,10 @@
 		6E40CDBE1CCB209600ACE083 /* Match_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E40CDBD1CCB209600ACE083 /* Match_share@2x.png */; };
 		6E4939F31CBCF4A600F3464D /* QingZiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4939F21CBCF4A600F3464D /* QingZiCell.m */; };
 		6E4939F61CBDFB7500F3464D /* QingZiController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4939F51CBDFB7500F3464D /* QingZiController.m */; };
+		6E617A031D011F5F00A4EE7D /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E617A021D011F5F00A4EE7D /* libicucore.tbd */; };
+		6E617A051D011F7400A4EE7D /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E617A041D011F7400A4EE7D /* libstdc++.tbd */; };
+		6E617A071D011FC100A4EE7D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E617A061D011FC100A4EE7D /* libsqlite3.tbd */; };
+		6E617A091D011FC900A4EE7D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E617A081D011FC900A4EE7D /* MessageUI.framework */; };
 		6E6207101C97BDC900F8DA31 /* mc_arrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */; };
 		6E6207191C999F9600F8DA31 /* SSButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6207181C999F9600F8DA31 /* SSButtonView.m */; };
 		6E7DC1701CE57B8600E47676 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7DC16F1CE57B8600E47676 /* CoreLocation.framework */; };
@@ -564,6 +568,10 @@
 		6E4939F21CBCF4A600F3464D /* QingZiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingZiCell.m; sourceTree = "<group>"; };
 		6E4939F41CBDFB7500F3464D /* QingZiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingZiController.h; sourceTree = "<group>"; };
 		6E4939F51CBDFB7500F3464D /* QingZiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingZiController.m; sourceTree = "<group>"; };
+		6E617A021D011F5F00A4EE7D /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		6E617A041D011F7400A4EE7D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		6E617A061D011FC100A4EE7D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		6E617A081D011FC900A4EE7D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6E62070F1C97BDC900F8DA31 /* mc_arrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mc_arrowUp@2x.png"; sourceTree = "<group>"; };
 		6E6207171C999F9600F8DA31 /* SSButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSButtonView.h; sourceTree = "<group>"; };
 		6E6207181C999F9600F8DA31 /* SSButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSButtonView.m; sourceTree = "<group>"; };
@@ -909,10 +917,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E617A091D011FC900A4EE7D /* MessageUI.framework in Frameworks */,
+				6E617A071D011FC100A4EE7D /* libsqlite3.tbd in Frameworks */,
+				E8D0D8E71B9748F700791A1A /* ImageIO.framework in Frameworks */,
+				E8D0D8E51B9748E300791A1A /* JavaScriptCore.framework in Frameworks */,
+				6E617A051D011F7400A4EE7D /* libstdc++.tbd in Frameworks */,
+				63EC32281C1F2CF6004D1CAD /* libz.tbd in Frameworks */,
+				6E617A031D011F5F00A4EE7D /* libicucore.tbd in Frameworks */,
 				6E7DC1701CE57B8600E47676 /* CoreLocation.framework in Frameworks */,
 				6EBB27741CED6D6500A2E3B3 /* TencentOpenAPI.framework in Frameworks */,
 				6EBB27711CED6D6500A2E3B3 /* libWeiboSDK.a in Frameworks */,
-				63EC32281C1F2CF6004D1CAD /* libz.tbd in Frameworks */,
 				6EBB27771CED6D6500A2E3B3 /* libWeChatSDK.a in Frameworks */,
 				63EC32261C1F2CDE004D1CAD /* Security.framework in Frameworks */,
 				63EC32241C1F2CD3004D1CAD /* UIKit.framework in Frameworks */,
@@ -926,11 +940,9 @@
 				F5A395351BC5471D0055E5F7 /* CoreTelephony.framework in Frameworks */,
 				F5A395331BC5463C0055E5F7 /* Social.framework in Frameworks */,
 				F5A395311BC546360055E5F7 /* Accounts.framework in Frameworks */,
-				E8D0D8E71B9748F700791A1A /* ImageIO.framework in Frameworks */,
 				6EBB27661CED6D6500A2E3B3 /* libUMSocial_Sdk_5.2.a in Frameworks */,
 				E8D0D8E91B97490900791A1A /* libsqlite3.dylib in Frameworks */,
 				63EC32181C1F2C57004D1CAD /* libPushSDK-1.8.8.a in Frameworks */,
-				E8D0D8E51B9748E300791A1A /* JavaScriptCore.framework in Frameworks */,
 				E8D0D8E31B9748D800791A1A /* libstdc++.dylib in Frameworks */,
 				E8D0D8E11B9748CC00791A1A /* libz.dylib in Frameworks */,
 				F5B1A9B11B846A3D009D6366 /* libicucore.dylib in Frameworks */,
@@ -2226,6 +2238,10 @@
 		F586A3D91B87091A00FCB5F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E617A081D011FC900A4EE7D /* MessageUI.framework */,
+				6E617A061D011FC100A4EE7D /* libsqlite3.tbd */,
+				6E617A041D011F7400A4EE7D /* libstdc++.tbd */,
+				6E617A021D011F5F00A4EE7D /* libicucore.tbd */,
 				6E7DC16F1CE57B8600E47676 /* CoreLocation.framework */,
 				63EC32271C1F2CF6004D1CAD /* libz.tbd */,
 				63EC32251C1F2CDE004D1CAD /* Security.framework */,
