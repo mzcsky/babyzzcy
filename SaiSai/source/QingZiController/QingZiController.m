@@ -38,19 +38,15 @@
 @property (nonatomic, strong) NSArray * adButtonArr;
 @property (nonatomic, strong) NSArray * CellImgArr;
 
-
 @property (nonatomic, strong) NSTimer * timer;
 @property (nonatomic, strong) UIScrollView * adScrollView;
 @property (nonatomic, strong) UIPageControl * pageControl;
-
 
 @property (nonatomic, strong) NSArray * plistArr;
 //页面
 @property (nonatomic, strong) UIWebView  *webView;
 
-
 @end
-
 
 
 @implementation QingZiController
