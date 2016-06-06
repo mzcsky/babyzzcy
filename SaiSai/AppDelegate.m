@@ -40,7 +40,7 @@
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
     
 
-    [[PositionTool shareInfo] updataLocation];
+//    [[PositionTool shareInfo] updataLocation];
     
     [self registerNotification];
     

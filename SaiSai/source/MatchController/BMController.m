@@ -508,6 +508,8 @@
 
 - (void)showAreaPicker{
     if (!self.dataPicker) {
+//            [[PositionTool shareInfo] updataLocation];
+
         self.dataPicker= [[NDDataPicker alloc] initWithFrame:self.view.bounds];
         self.dataPicker.delegate = self;
     }
