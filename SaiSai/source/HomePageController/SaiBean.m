@@ -44,8 +44,8 @@
     if (bean.applySubArr && bean.applySubArr.count > 0) {
         bean.applySubId = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:bean.applySubArr[0] forKey:@"id"]];
         bean.applySubUrl = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:bean.applySubArr[0] forKey:@"pic_url"]];
-    }    
-    
+    }
+
     NSArray *cArr = [NetDataCommon arrayWithNetData:[infoDic objectForKey:@"comments"]];
     bean.commentsArr = [[NSMutableArray alloc] init];
     for (int i = 0; i < cArr.count; i++) {

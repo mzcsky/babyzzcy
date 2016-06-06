@@ -417,7 +417,6 @@
     [[ShareView shareInfo] setMsg:self.fBean.g_title];
     NSData * data = [UIImage imageData:[UIImage imageWithUrlStr:self.fBean.img]];
     UIImage *image = [UIImage imageWithData:data];
-
     [[ShareView shareInfo] setImg:image];
     [[ShareView shareInfo] setGid:[NSString stringWithFormat:@"%ld",(long)self.fBean.mId]];
 }

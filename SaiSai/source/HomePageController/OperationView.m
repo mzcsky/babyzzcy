@@ -347,7 +347,6 @@
 - (void)shareAction{
     //分享页面
     
-
     [[ShareView shareInfo] showShare:YES];
     [[ShareView shareInfo] setGid:self.saiBean.sId];
     [[ShareView shareInfo] setController:_contrller];
