@@ -18,7 +18,7 @@
 
 #define TEXTVIEWHOLDER   @"描述说明:(最多140字)"
 
-@interface UpdatePictureController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,NDDataPickerDelegate,UPImageCellDelegate>
+@interface UpdatePictureController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,NDDataPickerDelegate,UPImageCellDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,retain) NSMutableArray    *imageArray;
@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSMutableDictionary   *pram;
 
 @property (nonatomic, strong) BMPreData             *pData;
+@property (nonatomic, strong) UIImageView * MimageView;
 
 @end
 
@@ -151,7 +152,8 @@
     
     if (_imageArray && _imageArray.count > 0) {
         
-        [pram setObject:[NSString jsonStringWithArray:_imageArray] forKey:@"pic_urls"];  //[NSString jsonStringWithArray:_imageArray]
+        [pram setObject:[NSString jsonStringWithArray:_imageArray] forKey:@"pic_urls"];
+        //[NSString jsonStringWithArray:_imageArray]
     }
     
     if (_nameField.text && ![_nameField.text isEqualToString:@""]) {
@@ -250,7 +252,7 @@
         cell.alertBtn.hidden = YES;
     }else{
         cell.alertBtn.hidden = NO;
-        [cell setImageURL:_imageArray[indexPath.row]];
+        [cell setImage:_imageArray[indexPath.row]];
     }
 
     return cell;
@@ -277,32 +279,36 @@
         [_desTextView resignFirstResponder];
     }else{
         
-        NSInteger count = self.imageArray.count;
+        UIView * backV = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+        backV.backgroundColor = [UIColor blackColor];
+        [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:backV];
         
-        // 1.封装图片数据
-        NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
-        for (int i = 0; i<count; i++) {
-            MJPhoto *photo = [[MJPhoto alloc] init];
-           // photo.image = [UIImage imageNamed:@"guide4_667"];
-            
-//            UPImageCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-//            cell.imageView;
-            
-            UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectZero];
-            imgView.size = CGSizeMake(300, 300);
-            
-            photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",_imageArray[i]]];
-            photo.srcImageView = imgView; // 来源于哪个UIImageView
-            [photos addObject:photo];
-        }
+        [[UIApplication sharedApplication].keyWindow.rootViewController.view bringSubviewToFront:backV];
         
-        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
-        browser.photos = photos; // 设置所有的图片
-        browser.currentPhotoIndex = indexPath.row;
-        [browser show];
+        
+        UIImage * image = _imageArray[indexPath.row];
+        
+        CGFloat imgH = image.size.height * (SCREEN_WIDTH/image.size.width);
+        _MimageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,imgH)];
+        
+        _MimageView.center = backV.center;
+        
+        _MimageView.image = image;
+        
+        [backV addSubview:_MimageView];
+        
+        UITapGestureRecognizer *singTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeImageView)];
+
+        [backV addGestureRecognizer:singTap];
+
     }
 }
-
+- (void)removeImageView{
+    
+    
+    [_MimageView.superview removeFromSuperview];
+    
+}
 #pragma mark 
 #pragma mark ===UPImageCell delegate =====
 -(void)upImageCellAlert:(NSIndexPath *)indexPath{
@@ -317,6 +323,7 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
         NSLog(@"选择照片");
+        
         self.imagePicker = [[UIImagePickerController alloc] init];
         self.imagePicker.delegate = self;
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -326,9 +333,14 @@
     }
     else if (buttonIndex == 1){
         NSLog(@"拍照");
+
         if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
             self.imagePicker = [[UIImagePickerController alloc] init];
             self.imagePicker.delegate = self;
+            if([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0) {
+                self.imagePicker.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+            }
+
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             self.imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
             [self presentViewController:self.imagePicker animated:YES completion:^{
@@ -454,13 +466,13 @@
         if (status == 1) {
             [ProgressHUD dismiss];
             //修改图片
-            NSArray *array = [resDict objectForKey:@"data"];
+            NSArray *array = @[image];
             
             if (isReplace) {
                 [_imageArray replaceObjectAtIndex:index withObject:[array firstObject]];
             }
             else{
-                [self.imageArray addObject:[array firstObject]];
+                    [self.imageArray addObject:[array firstObject]];                
             }
             
             [_collectionView reloadData];

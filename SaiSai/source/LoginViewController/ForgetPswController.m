@@ -118,7 +118,7 @@
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     [manager GET:URLADDRESS parameters:parm success:^(AFHTTPRequestOperation * operation, id response){
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:operation.responseData options:kNilOptions error:nil];
-        NSLog(@"请求获取验证码结果:%@",jsonDic);
+//        NSLog(@"请求获取验证码结果:%@",jsonDic);
       
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             [self startTime];
@@ -158,7 +158,7 @@
             NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                NSLog(@"____%@",strTime);
+//                NSLog(@"____%@",strTime);
                 [_getVerCodeBtn setTitleColor:XT_TEXTGRAYCOLOR forState:UIControlStateNormal];
                 [_getVerCodeBtn setTitle:[NSString stringWithFormat:@"%@秒后重试",strTime] forState:UIControlStateNormal];
                 _getVerCodeBtn.userInteractionEnabled = NO;

@@ -100,8 +100,8 @@
 //    [self lungetData];//广告栏请求
     [self getAgeMenu];//获取年龄分类
     [self getDetail];//补充广告栏数据请求
-    
-    
+
+
 }
 
 - (void)initData{

@@ -43,7 +43,6 @@
 #import "MJRefresh.h"
 #import "GlobalData.h"
 #import "UIImage+UIImage.h"
-
 #pragma mark
 #pragma mark ====== controller头文件 ======
 #import "XTViewController.h"
@@ -114,13 +113,10 @@
 #define HIDDEN_TAB      @"HIDDEN_TAB"
 #define SHOW_TAB        @"SHOW_TAB"
 #define defaults [NSUserDefaults standardUserDefaults]
-
+//当前VC
+#define CurrentVC [UIApplication sharedApplication].keyWindow.rootViewController
 // 计算文本的尺寸
 #define textSizeFont(text, fontSizeFont, width, height) [text boundingRectWithSize:CGSizeMake(width, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:fontSizeFont} context:nil].size;
-
-
-
-
 
 
 

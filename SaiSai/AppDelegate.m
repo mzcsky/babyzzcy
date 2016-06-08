@@ -16,7 +16,6 @@
 #import "VersionCheckAPI.h"
 #import "QingZiController.h"
 #import "APService.h"
-
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @property (nonatomic, retain) XTTabBarController    *tabCtrl;
@@ -38,7 +37,8 @@
     //显示状态栏    颜色
     [[UIApplication sharedApplication]setStatusBarHidden:NO];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
-    
+
+ 
 
 //    [[PositionTool shareInfo] updataLocation];
     
@@ -54,6 +54,7 @@
      *  版本检测
      */
     [VersionCheckAPI checkVersion];
+
     
     /**
      *  判断是否是新版本，是现实引导页，否不显示引导页，直接加载登陆页面
@@ -101,6 +102,8 @@
     }
     [APService setupWithOption:launchOptions];
 
+    
+    
     
     
     [self.window makeKeyAndVisible];
@@ -267,7 +270,7 @@ fetchCompletionHandler:(void
     bAnimation.duration = 1.f ;
     bAnimation.timingFunction = UIViewAnimationCurveEaseInOut;//[CAMediaTimingFunction functionWithName:
     [self.window.layer addAnimation:bAnimation forKey:@"animation"];
-    
+       
 
 
 }
@@ -302,8 +305,11 @@ fetchCompletionHandler:(void
     }];
     [self.tabCtrl setSelectedViewController:[self.tabCtrl.viewControllers firstObject]];
 }
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleDefault;
 }
+
+
 @end
