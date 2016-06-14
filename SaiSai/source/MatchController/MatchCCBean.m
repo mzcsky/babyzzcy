@@ -21,6 +21,7 @@
     bean.mId = [[NetDataCommon stringFromDic:dict forKey:@"id"] integerValue];
     bean.status = [[NetDataCommon stringFromDic:dict forKey:@"status"] integerValue];
     bean.content = [NetDataCommon stringFromDic:dict forKey:@"content"];
+    bean.thumbnail = [NetDataCommon stringFromDic:dict forKey:@""];
     
     return bean;
 }

@@ -130,13 +130,13 @@
     
     [ProgressHUD show:LOADING];
     
-    [manager GET:URL_AwardUrl parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
+    [manager GET:URL_AwardUrl_innermesh parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
         [_SWtableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
         NSLog(@"===========请求搜索作品数据结果========:%@",jsonDic);
-        if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
-            NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"list"]];
+        if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
+            NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
             if (page == 1) {
                 if (_SWdataArray && _SWdataArray.count > 0) {
                     [_SWdataArray removeAllObjects];
@@ -147,9 +147,12 @@
             
             if (dataArr && dataArr.count > 0) {
                 for (int i = 0; i < dataArr.count; i++) {
+                    
                     SaiBean *bean = [SaiBean parseInfo:dataArr[i]];
+                    
                     if (bean.applySubArr && [bean.applySubArr isKindOfClass:[NSArray class]]
                         && bean.applySubArr.count > 0) {
+                    
                         [_SWdataArray addObject:bean];
                     }
                 }

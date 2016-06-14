@@ -56,41 +56,44 @@
 
 +(NSArray*)arrayWithNetData:(NSArray*)arr
 {
-    
-    if (!arr.count) {
-        return arr;
-    }
-    NSMutableArray * tmpArr = [[NSMutableArray alloc] initWithCapacity:arr.count];
-    
-    for (int i = 0; i < arr.count; i++) {
+    if (arr!=nil && [arr isKindOfClass:[NSArray class]] && [arr count]>0) {
+        NSMutableArray * tmpArr = [[NSMutableArray alloc] initWithCapacity:arr.count];
         
-        
-        NSDictionary * dir = [arr objectAtIndex:i];
-        
-        NSArray * key = [dir allKeys];
-        
-        NSMutableArray * object = [[NSMutableArray alloc] initWithCapacity:key.count];
-        
-        for (int j = 0; j< key.count; j++) {
-            if ([[dir objectForKey:[key objectAtIndex:j]] isKindOfClass:[NSNull class]]) {
-                [object addObject:@""];
+        for (int i = 0; i < arr.count; i++) {
+            
+            
+            NSDictionary * dir = [arr objectAtIndex:i];
+            
+            NSArray * key = [dir allKeys];
+            
+            NSMutableArray * object = [[NSMutableArray alloc] initWithCapacity:key.count];
+            
+            for (int j = 0; j< key.count; j++) {
+                if ([[dir objectForKey:[key objectAtIndex:j]] isKindOfClass:[NSNull class]]) {
+                    [object addObject:@""];
+                }
+                else
+                {
+                    [object addObject:[dir objectForKey:[key objectAtIndex:j]]];
+                }
             }
-            else
-            {
-                [object addObject:[dir objectForKey:[key objectAtIndex:j]]];
-            }
+            
+            
+            NSMutableDictionary * tmpDir = [[NSMutableDictionary alloc] initWithObjects:object forKeys:key];
+            
+            [tmpArr addObject:tmpDir];
+            
         }
+
+        return tmpArr;
+
+    }else{
         
-        
-        NSMutableDictionary * tmpDir = [[NSMutableDictionary alloc] initWithObjects:object forKeys:key];
-        
-        [tmpArr addObject:tmpDir];
-        
+        return nil;
+
     }
+
     
-    NSLog(@"%@",tmpArr);
-    
-    return tmpArr;
 }
 
 @end

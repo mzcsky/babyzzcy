@@ -30,6 +30,8 @@
 
 @property (nonatomic, retain) NSString      *content;
 
+@property (nonatomic, retain) NSString      *thumbnail;
+
 + (MatchCCBean *)analyseData:(NSDictionary *)dict;
 
 @end

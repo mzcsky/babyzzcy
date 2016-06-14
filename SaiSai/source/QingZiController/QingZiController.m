@@ -24,7 +24,7 @@
 
 #define titleScrollHeight 39
 #define CellHeight lunViewHeight + 60
-@interface QingZiController ()<UITableViewDelegate,UITableViewDataSource,SixBtnCellDelegate,ActionAdViewDelegate, NDHMenuViewDelegate >
+@interface QingZiController ()<UITableViewDelegate,UITableViewDataSource,SixBtnCellDelegate,ActionAdViewDelegate, NDHMenuViewDelegate,UIWebViewDelegate >
 
 @property (nonatomic, strong) NDHMenuView * ndMenuView;
 @property (nonatomic, strong) NSMutableArray   *menuArray;
@@ -558,12 +558,23 @@
 //老的加载页面
 - (void)viewDidLoad{
     [super viewDidLoad];
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-44)];
+    [ProgressHUD show:LOADING];
+
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-69)];
     _webView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_webView];
     
+    _webView.delegate = self;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.zzcyer.com"]];
     [_webView loadRequest:request];
+
+    [self.view addSubview:_webView];
+
+}
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+//    NSLog(@"aaaaaaaaaa");
+    [ProgressHUD dismiss];
 }
 @end
 

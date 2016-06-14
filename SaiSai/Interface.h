@@ -25,9 +25,9 @@
 //内
 #define URL_Button           @"http://139.129.129.245:9080/zhongzaicanyu/dictionary/findAll?"
 
-#define URL_AwardUrlN        @"http://192.168.1.102:8080/zhongzaicanyu/apply/findApplyListByCondition?"
-
 #define URL_ImgArrUrlN       @"http://192.168.1.111:8080/zhongzaicanyu/product/findProductListByCondition?"
+
+#define URL_AwardUrl_innermesh      @"http://saisai.iapptry.com/ceshi/Sy/grabble?"
 
 #pragma mark===============================================================================================
 //外

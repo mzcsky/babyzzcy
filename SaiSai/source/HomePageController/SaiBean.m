@@ -19,7 +19,6 @@
     
     
     bean.sId = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"id"]];
-    
     bean.tId = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"tid"]];
     bean.gId = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"gid"]];
     bean.uId = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"uid"]];
@@ -33,17 +32,18 @@
     bean.birthday = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"birthday"]];
     bean.addtime = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"addtime"]];
     bean.headImg = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"img"]];
-//    bean.headImg = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"bigPic_default.jpg"]];
     
     bean.attention = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:infoDic forKey:@"attention"]];
     bean.award_level = [[NetDataCommon stringFromDic:infoDic forKey:@"award_level"] intValue];
     bean.is_favor = [[NetDataCommon stringFromDic:infoDic forKey:@"is_favor"] intValue];
     bean.game_status = [[NetDataCommon stringFromDic:infoDic forKey:@"game_status"] integerValue];
     
+    
     bean.applySubArr = [NetDataCommon arrayWithNetData:[infoDic objectForKey:@"apply_sub"]];
     if (bean.applySubArr && bean.applySubArr.count > 0) {
         bean.applySubId = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:bean.applySubArr[0] forKey:@"id"]];
         bean.applySubUrl = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:bean.applySubArr[0] forKey:@"pic_url"]];
+        bean.applySubSmall = [NSString stringWithFormat:@"%@",[NetDataCommon stringFromDic:bean.applySubArr[0] forKey:@"pic_small"]];
     }
 
     NSArray *cArr = [NetDataCommon arrayWithNetData:[infoDic objectForKey:@"comments"]];

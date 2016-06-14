@@ -350,12 +350,14 @@
     [[ShareView shareInfo] showShare:YES];
     [[ShareView shareInfo] setGid:self.saiBean.sId];
     [[ShareView shareInfo] setController:_contrller];
-    [[ShareView shareInfo] setMsg:self.saiBean.title];
-    NSData * data = [UIImage imageData:[UIImage imageWithUrlStr:self.saiBean.applySubUrl]];
-    UIImage *image = [UIImage imageWithData:data];
-    [[ShareView shareInfo] setImg:image];
+    [[ShareView shareInfo] setMsg:self.saiBean.g_title];
+    if (self.saiBean.applySubSmall==nil) {
+          [[ShareView shareInfo] setImg:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.saiBean.applySubUrl]]]];
+    }else{
+          [[ShareView shareInfo] setImg:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.saiBean.applySubSmall]]]];
+    }
     [[ShareView shareInfo] setPid:self.saiBean.sId];
-    [[ShareView shareInfo] setMst:self.saiBean.g_title];
+    [[ShareView shareInfo] setMst:self.saiBean.title];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

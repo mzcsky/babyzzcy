@@ -260,14 +260,14 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [_collectionView deselectItemAtIndexPath:indexPath animated:NO];
-    if (_pData && _pData.is_single==1) {
-        if (_imageArray.count>0) {
-            [ProgressHUD showError:@"只能上传一张作品!"];
-            return;
-        }
-    }
+   
     if (indexPath.row == self.imageArray.count) {
-        
+        if (_pData && _pData.is_single==1) {
+            if (_imageArray.count>0) {
+                [ProgressHUD showError:@"只能上传一张作品!"];
+                return;
+            }
+        }
         _indexPath = indexPath;
         
         //弹出照片选择
@@ -337,10 +337,11 @@
         if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
             self.imagePicker = [[UIImagePickerController alloc] init];
             self.imagePicker.delegate = self;
+            
             if([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0) {
                 self.imagePicker.modalPresentationStyle=UIModalPresentationOverCurrentContext;
             }
-
+            
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             self.imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
             [self presentViewController:self.imagePicker animated:YES completion:^{

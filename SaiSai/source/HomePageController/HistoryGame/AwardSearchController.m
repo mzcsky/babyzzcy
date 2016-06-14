@@ -133,7 +133,7 @@
     
     [ProgressHUD show:LOADING];
     
-    [manager GET:URL_AwardUrl parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
+    [manager GET:URL_AwardUrl_innermesh parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
         
         
         [_AStableView headerEndRefreshing];
@@ -141,8 +141,8 @@
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
 //        NSLog(@"请求获奖作品搜索数据结果:%@",jsonDic);
-        if ([[jsonDic objectForKey:@"resultCode"] integerValue] == 1) {
-            NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"list"]];
+        if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
+            NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
             if (page == 1){
                 if (_ASdataArray && _ASdataArray.count > 0) {
                     [_ASdataArray removeAllObjects];

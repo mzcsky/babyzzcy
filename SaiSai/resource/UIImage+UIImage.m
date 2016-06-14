@@ -9,6 +9,8 @@
 #import "UIImage+UIImage.h"
 
 @implementation UIImage (UIImage)
+
+
 + (UIImage *)imageWithUrlStr:(NSString *)urlStr{
     
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]];
@@ -17,6 +19,8 @@
 
     return image;
 }
+
+
 
 +(NSData *)imageData:(UIImage *)myimage
 {
