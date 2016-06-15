@@ -31,7 +31,7 @@
 
 #pragma mark===============================================================================================
 //外
-#define URL_AwardUrl         @"http://139.129.129.245:9080/zhongzaicanyu/apply/findApplyListByCondition?"
+#define URL_AwardUrl         @"http://saisai.iapptry.com/ceshi/Sy/grabble?"
 
 #define KGetRecommendList    @"http://api.saisaiapp.com/api.php?action=getRecommendList"
 

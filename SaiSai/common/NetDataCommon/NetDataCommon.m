@@ -57,10 +57,9 @@
 +(NSArray*)arrayWithNetData:(NSArray*)arr
 {
     if (arr!=nil && [arr isKindOfClass:[NSArray class]] && [arr count]>0) {
-        NSMutableArray * tmpArr = [[NSMutableArray alloc] initWithCapacity:arr.count];
         
+        NSMutableArray * tmpArr = [[NSMutableArray alloc] initWithCapacity:arr.count];
         for (int i = 0; i < arr.count; i++) {
-            
             
             NSDictionary * dir = [arr objectAtIndex:i];
             

@@ -351,10 +351,10 @@
     [[ShareView shareInfo] setGid:self.saiBean.sId];
     [[ShareView shareInfo] setController:_contrller];
     [[ShareView shareInfo] setMsg:self.saiBean.g_title];
-    if (self.saiBean.applySubSmall==nil) {
-          [[ShareView shareInfo] setImg:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.saiBean.applySubUrl]]]];
+    if (self.saiBean.applySubSmall!=nil && self.saiBean.applySubSmall.length > 0) {
+               [[ShareView shareInfo] setImg:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.saiBean.applySubSmall]]]];
     }else{
-          [[ShareView shareInfo] setImg:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.saiBean.applySubSmall]]]];
+             [[ShareView shareInfo] setImg:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.saiBean.applySubUrl]]]];
     }
     [[ShareView shareInfo] setPid:self.saiBean.sId];
     [[ShareView shareInfo] setMst:self.saiBean.title];

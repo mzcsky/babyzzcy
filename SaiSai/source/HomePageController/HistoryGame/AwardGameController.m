@@ -168,7 +168,6 @@
     [_tableView addHeaderWithTarget:self action:@selector(refreshDataA)];
     [_tableView addFooterWithTarget:self action:@selector(loadMoreDataA)];
     
-//    [self getDataArr];
 }
 #pragma mark ===============请求数据===============
 /*

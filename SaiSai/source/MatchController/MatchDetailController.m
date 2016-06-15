@@ -220,7 +220,7 @@
     
     _CSlabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2, SCREEN_WIDTH, 50)];
     _CSlabel.textColor = BACKGROUND_FENSE;
-    _CSlabel.font = [UIFont systemFontOfSize:20];
+    _CSlabel.font = FONT(20);
     _CSlabel.text = @"活动正在征集审核通过马上展示";
     _CSlabel.textAlignment = NSTextAlignmentCenter;
 

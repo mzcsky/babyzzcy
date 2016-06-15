@@ -252,7 +252,7 @@
         cell.alertBtn.hidden = YES;
     }else{
         cell.alertBtn.hidden = NO;
-        [cell setImage:_imageArray[indexPath.row]];
+        [cell setImageURL:_imageArray[indexPath.row]];
     }
 
     return cell;
@@ -278,38 +278,59 @@
         [_nameField resignFirstResponder];
         [_desTextView resignFirstResponder];
     }else{
-        
-        UIView * backV = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
-        backV.backgroundColor = [UIColor blackColor];
-        [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:backV];
-        
-        [[UIApplication sharedApplication].keyWindow.rootViewController.view bringSubviewToFront:backV];
-        
-        
-        UIImage * image = _imageArray[indexPath.row];
-        
-        CGFloat imgH = image.size.height * (SCREEN_WIDTH/image.size.width);
-        _MimageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,imgH)];
-        
-        _MimageView.center = backV.center;
-        
-        _MimageView.image = image;
-        
-        [backV addSubview:_MimageView];
-        
-        UITapGestureRecognizer *singTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeImageView)];
+        NSInteger count = self.imageArray.count;
+        // 1.封装图片数据
+        NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+        for (int i = 0; i<count; i++) {
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            // photo.image = [UIImage imageNamed:@"guide4_667"];
+            
+            //            UPImageCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+            //            cell.imageView;
+            
+            UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectZero];
+            imgView.size = CGSizeMake(300, 300);
+            
+            photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",_imageArray[i]]];
+            photo.srcImageView = imgView; // 来源于哪个UIImageView
+            [photos addObject:photo];
+        }
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.photos = photos; // 设置所有的图片
+        browser.currentPhotoIndex = indexPath.row;
+        [browser show];
 
-        [backV addGestureRecognizer:singTap];
+//        UIView * backV = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+//        backV.backgroundColor = [UIColor blackColor];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:backV];
+//        
+//        [[UIApplication sharedApplication].keyWindow.rootViewController.view bringSubviewToFront:backV];
+//        
+//        
+//        UIImage * image = _imageArray[indexPath.row];
+//        
+//        CGFloat imgH = image.size.height * (SCREEN_WIDTH/image.size.width);
+//        _MimageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,imgH)];
+//        
+//        _MimageView.center = backV.center;
+//        
+//        _MimageView.image = image;
+//        
+//        [backV addSubview:_MimageView];
+//        
+//        UITapGestureRecognizer *singTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeImageView)];
+//
+//        [backV addGestureRecognizer:singTap];
 
     }
 }
-- (void)removeImageView{
-    
-    
-    [_MimageView.superview removeFromSuperview];
-    
-}
-#pragma mark 
+//- (void)removeImageView{
+//    
+//    
+//    [_MimageView.superview removeFromSuperview];
+//    
+//}
+#pragma mark
 #pragma mark ===UPImageCell delegate =====
 -(void)upImageCellAlert:(NSIndexPath *)indexPath{
     _indexPath = indexPath;
@@ -467,13 +488,15 @@
         if (status == 1) {
             [ProgressHUD dismiss];
             //修改图片
-            NSArray *array = @[image];
-            
+//            NSArray *array = @[image];
+              NSArray *array = [resDict objectForKey:@"data"];
+
             if (isReplace) {
                 [_imageArray replaceObjectAtIndex:index withObject:[array firstObject]];
             }
             else{
-                    [self.imageArray addObject:[array firstObject]];                
+                [self.imageArray addObject:[array firstObject]];
+           
             }
             
             [_collectionView reloadData];

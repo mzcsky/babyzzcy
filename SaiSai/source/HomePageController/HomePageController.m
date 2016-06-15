@@ -61,7 +61,6 @@
     NSMutableArray    *_lunclaArray, *_lunclaNames;
     NSInteger         _lunPage;
     NSInteger         _lunprojId;
-    
     BOOL _isFinishedRequest;
     
     
@@ -97,7 +96,6 @@
     [self initData];//数据初始化
     [self initTableView];//用户信息请求
     
-//    [self lungetData];//广告栏请求
     [self getAgeMenu];//获取年龄分类
     [self getDetail];//补充广告栏数据请求
 
@@ -110,6 +108,7 @@
     _lunadArray = [[NSMutableArray alloc] init];
     _lunadSArray = [[NSMutableArray alloc] init];
     _luntArray = [[NSMutableArray alloc] init];
+
     
 }
 
@@ -467,7 +466,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *resDict = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-//        NSLog(@"请求获取详情广告栏接口结果:%@",resDict);
+        NSLog(@"请求获取详情广告栏接口结果:%@",resDict);
         //解析数据
         int status = [[resDict objectForKey:@"status"] intValue];
         if (status == 1) {
@@ -498,7 +497,7 @@
             [ProgressHUD showError:[resDict objectForKey:@"msg"]];
         }
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"failuer");
+        NSLog(@"-----------failuer");
         [ProgressHUD showError:CHECKNET];
         
         [_tableView headerEndRefreshing];
@@ -543,7 +542,7 @@
         [_tableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
-        NSLog(@"请求获取主界面参赛作品数据结果:%@",jsonDic);
+//        NSLog(@"请求获取主界面参赛作品数据结果:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
             if (page == 1) {
@@ -942,5 +941,11 @@
 //    [UIView commitAnimations];
 //    
 //}
-
+//if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
+//    NSArray *dataArr;
+//    
+//    id dataTemp = [[jsonDic objectForKey:@"data"] objectForKey:@"data"];
+//    if(dataTemp != nil && [dataTemp isKindOfClass:[NSArray class]] && [(NSArray *)dataTemp count]>0){
+//        
+//        dataArr = (NSArray *)dataTemp;
 @end

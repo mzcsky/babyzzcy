@@ -23,6 +23,7 @@
     NSMutableArray    *_SWdataArray;
     UISearchBar       *_SWsearchBar;
     int               _SWpage;
+    UILabel           *_alertLabel;
 }
 
 - (void)viewDidLoad {
@@ -56,6 +57,13 @@
     _SWtableView.dataSource = self;
     _SWtableView.delegate = self;
     _SWtableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-keyBorad-109-40, SCREEN_WIDTH, 40)];
+    _alertLabel.text = @"没有搜索到相关作品";
+    _alertLabel.font = FONT(18);
+    _alertLabel.textAlignment = NSTextAlignmentCenter;
+    _alertLabel.hidden = YES;
+    _alertLabel.textColor = BACKGROUND_FENSE;
+    [_SWtableView addSubview:_alertLabel];
     [self.view addSubview:_SWtableView];
     
     _SWsearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
@@ -63,7 +71,7 @@
     _SWsearchBar.delegate = self;
     [self.view addSubview:_SWsearchBar];
 
-        [_SWtableView addFooterWithTarget:self action:@selector(SWloadMore)];
+    [_SWtableView addFooterWithTarget:self action:@selector(SWloadMore)];
 
 
 }
@@ -130,13 +138,14 @@
     
     [ProgressHUD show:LOADING];
     
-    [manager GET:URL_AwardUrl_innermesh parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
+    [manager GET:URL_AwardUrl parameters:paraDic success:^(AFHTTPRequestOperation * operation, id response){
         [_SWtableView footerEndRefreshing];
         
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:nil];
         NSLog(@"===========请求搜索作品数据结果========:%@",jsonDic);
         if ([[jsonDic objectForKey:@"status"] integerValue] == 1) {
             NSArray *dataArr = [[NSArray alloc] initWithArray:[[jsonDic objectForKey:@"data"] objectForKey:@"data"]];
+       
             if (page == 1) {
                 if (_SWdataArray && _SWdataArray.count > 0) {
                     [_SWdataArray removeAllObjects];
@@ -146,6 +155,7 @@
             }
             
             if (dataArr && dataArr.count > 0) {
+                _alertLabel.hidden = YES;
                 for (int i = 0; i < dataArr.count; i++) {
                     
                     SaiBean *bean = [SaiBean parseInfo:dataArr[i]];
@@ -154,8 +164,11 @@
                         && bean.applySubArr.count > 0) {
                     
                         [_SWdataArray addObject:bean];
+
                     }
                 }
+            }else{
+                _alertLabel.hidden = NO;
             }
             if (dataArr.count < [PAGE_COUNT intValue]) {
                 _SWtableView.footerHidden =YES;
@@ -174,8 +187,8 @@
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
         NSLog(@"failuer");
         [ProgressHUD showError:CHECKNET];
-        
         [_SWtableView footerEndRefreshing];
+
     }];
     
 
@@ -234,7 +247,7 @@
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if (!searchText || [searchText isEqualToString:@""]) {
-        return;
+        _alertLabel.hidden = YES;
     }
     //调用接口
     [self SWrefreshDatas];

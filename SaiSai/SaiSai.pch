@@ -78,7 +78,7 @@
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 
 #define lunViewHeight SCREEN_WIDTH*5/9
-
+#define keyBorad 253
 
 #pragma mark -
 #pragma mark COLOR
