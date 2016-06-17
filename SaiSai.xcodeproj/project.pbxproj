@@ -102,7 +102,6 @@
 		63E22D521B99DFE400D04575 /* ForgetPswController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E22D511B99DFE400D04575 /* ForgetPswController.m */; };
 		63E4FA871C151B46007BD20B /* MatchClaBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E4FA861C151B46007BD20B /* MatchClaBean.m */; };
 		63EC32141C1F1723004D1CAD /* icon-60-phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63EC32131C1F1723004D1CAD /* icon-60-phone@2x.png */; };
-		63EC32181C1F2C57004D1CAD /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EC32171C1F2C57004D1CAD /* libPushSDK-1.8.8.a */; };
 		63EC321A1C1F2C76004D1CAD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EC32191C1F2C76004D1CAD /* CFNetwork.framework */; };
 		63EC321C1C1F2C82004D1CAD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EC321B1C1F2C82004D1CAD /* CoreFoundation.framework */; };
 		63EC321E1C1F2C93004D1CAD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EC321D1C1F2C93004D1CAD /* CoreGraphics.framework */; };
@@ -111,7 +110,6 @@
 		63EC32241C1F2CD3004D1CAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EC32231C1F2CD3004D1CAD /* UIKit.framework */; };
 		63EC32261C1F2CDE004D1CAD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EC32251C1F2CDE004D1CAD /* Security.framework */; };
 		63EC32281C1F2CF6004D1CAD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EC32271C1F2CF6004D1CAD /* libz.tbd */; };
-		63EC322A1C1F2D43004D1CAD /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63EC32291C1F2D43004D1CAD /* PushConfig.plist */; };
 		6E207A8C1CC4836500B686A9 /* ActionAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E207A851CC4836500B686A9 /* ActionAdView.m */; };
 		6E207A8D1CC4836500B686A9 /* ActivityDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E207A871CC4836500B686A9 /* ActivityDetailController.m */; };
 		6E207A8E1CC4836500B686A9 /* QingZiTitleScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E207A891CC4836500B686A9 /* QingZiTitleScroll.m */; };
@@ -231,6 +229,7 @@
 		6E91C5F71CC78ACD00673B94 /* QingZiShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C5F61CC78ACD00673B94 /* QingZiShowCell.m */; };
 		6E91C5FD1CC8858900673B94 /* SaiBeanAward.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C5FC1CC8858900673B94 /* SaiBeanAward.m */; };
 		6E91C6261CC8B88700673B94 /* MatchInstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E91C6251CC8B88700673B94 /* MatchInstViewController.m */; };
+		6EAE0EE91D138E33005E6A50 /* jpush-ios-2.1.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EAE0EE71D138E33005E6A50 /* jpush-ios-2.1.7.a */; };
 		6EBC9F581CA131BE0088F94C /* ic_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC9F571CA131BE0088F94C /* ic_search.png */; };
 		6EBC9F5B1CA134320088F94C /* SearchWorkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC9F5A1CA134320088F94C /* SearchWorkController.m */; };
 		6EDCF6381D003CF100FEF0FE /* UIImage+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDCF6371D003CF100FEF0FE /* UIImage+UIImage.m */; };
@@ -573,8 +572,6 @@
 		63E4FA851C151B46007BD20B /* MatchClaBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchClaBean.h; sourceTree = "<group>"; };
 		63E4FA861C151B46007BD20B /* MatchClaBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchClaBean.m; sourceTree = "<group>"; };
 		63EC32131C1F1723004D1CAD /* icon-60-phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60-phone@2x.png"; sourceTree = "<group>"; };
-		63EC32161C1F2C57004D1CAD /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
-		63EC32171C1F2C57004D1CAD /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
 		63EC32191C1F2C76004D1CAD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		63EC321B1C1F2C82004D1CAD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		63EC321D1C1F2C93004D1CAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -583,7 +580,6 @@
 		63EC32231C1F2CD3004D1CAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		63EC32251C1F2CDE004D1CAD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		63EC32271C1F2CF6004D1CAD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		63EC32291C1F2D43004D1CAD /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		6E207A841CC4836500B686A9 /* ActionAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionAdView.h; sourceTree = "<group>"; };
 		6E207A851CC4836500B686A9 /* ActionAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionAdView.m; sourceTree = "<group>"; };
 		6E207A861CC4836500B686A9 /* ActivityDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailController.h; sourceTree = "<group>"; };
@@ -747,6 +743,8 @@
 		6E91C5FC1CC8858900673B94 /* SaiBeanAward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaiBeanAward.m; path = ../SaiBeanAward.m; sourceTree = "<group>"; };
 		6E91C6241CC8B88700673B94 /* MatchInstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchInstViewController.h; sourceTree = "<group>"; };
 		6E91C6251CC8B88700673B94 /* MatchInstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchInstViewController.m; sourceTree = "<group>"; };
+		6EAE0EE71D138E33005E6A50 /* jpush-ios-2.1.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.7.a"; sourceTree = "<group>"; };
+		6EAE0EE81D138E33005E6A50 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		6EBC9F571CA131BE0088F94C /* ic_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_search.png; sourceTree = "<group>"; };
 		6EBC9F591CA134320088F94C /* SearchWorkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWorkController.h; sourceTree = "<group>"; };
 		6EBC9F5A1CA134320088F94C /* SearchWorkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWorkController.m; sourceTree = "<group>"; };
@@ -1033,6 +1031,7 @@
 				6E617B581D015ADE00A4EE7D /* TencentOpenAPI.framework in Frameworks */,
 				6E617A031D011F5F00A4EE7D /* libicucore.tbd in Frameworks */,
 				6E7DC1701CE57B8600E47676 /* CoreLocation.framework in Frameworks */,
+				6EAE0EE91D138E33005E6A50 /* jpush-ios-2.1.7.a in Frameworks */,
 				6E617B571D015ADE00A4EE7D /* libSocialQQ.a in Frameworks */,
 				63EC32241C1F2CD3004D1CAD /* UIKit.framework in Frameworks */,
 				6E617B5B1D015ADE00A4EE7D /* libWeChatSDK.a in Frameworks */,
@@ -1042,7 +1041,6 @@
 				6E617B5A1D015ADE00A4EE7D /* libSocialWechat.a in Frameworks */,
 				6E617B7C1D0161AD00A4EE7D /* libWeiboSDK.a in Frameworks */,
 				E8D0D8E91B97490900791A1A /* libsqlite3.dylib in Frameworks */,
-				63EC32181C1F2C57004D1CAD /* libPushSDK-1.8.8.a in Frameworks */,
 				6E617B551D015ADE00A4EE7D /* libWeiboSDK.a in Frameworks */,
 				E8D0D8E31B9748D800791A1A /* libstdc++.dylib in Frameworks */,
 				E8D0D8E11B9748CC00791A1A /* libz.dylib in Frameworks */,
@@ -1066,9 +1064,9 @@
 		6333D1781C095F96000613B1 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				6EAE0EE61D138E33005E6A50 /* lib */,
 				6E617A9F1D015ADE00A4EE7D /* UMSocialSDK */,
 				6EE338001CD205FF00AF04D3 /* JTCalendar */,
-				63EC32151C1F2C57004D1CAD /* lib */,
 				6333D1791C095F96000613B1 /* AdView */,
 				6333D1821C095F96000613B1 /* classify */,
 				6333D1851C095F96000613B1 /* GuidePage */,
@@ -1455,16 +1453,6 @@
 			path = QingZiController;
 			sourceTree = "<group>";
 		};
-		63EC32151C1F2C57004D1CAD /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				63EC32291C1F2D43004D1CAD /* PushConfig.plist */,
-				63EC32161C1F2C57004D1CAD /* APService.h */,
-				63EC32171C1F2C57004D1CAD /* libPushSDK-1.8.8.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		6E40CDBA1CCB151C00ACE083 /* HomePage(风采展示) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1721,6 +1709,16 @@
 				6EDCF63C1D003F1700FEF0FE /* controller */,
 			);
 			name = "QingZiShow(详情页面)";
+			sourceTree = "<group>";
+		};
+		6EAE0EE61D138E33005E6A50 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				6EAE0EE71D138E33005E6A50 /* jpush-ios-2.1.7.a */,
+				6EAE0EE81D138E33005E6A50 /* JPUSHService.h */,
+			);
+			name = lib;
+			path = ../lib;
 			sourceTree = "<group>";
 		};
 		6EDCF6321D003C2600FEF0FE /* CateGory */ = {
@@ -2766,7 +2764,6 @@
 				6E3804F11CA4082300FD61D7 /* jubao.jpg in Resources */,
 				6E617B221D015ADE00A4EE7D /* UMSnsAccountViewController.xib in Resources */,
 				F589F0091B980CBD00EF8814 /* share_qq@2x.png in Resources */,
-				63EC322A1C1F2D43004D1CAD /* PushConfig.plist in Resources */,
 				63D9F9981BDA825B00A9A8C2 /* guide3_480.png in Resources */,
 				636CA8E21C0F4A6A00250A08 /* tab_xx_nor@2x.png in Resources */,
 				F589F00A1B980CBD00EF8814 /* share_qqkj@2x.png in Resources */,
@@ -3116,6 +3113,7 @@
 					"$(PROJECT_DIR)/SaiSai/common/UMSocialSDK/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/SaiSai/common/lib",
 					"$(PROJECT_DIR)/SaiSai/common/UMSocialSDK/UMSocial_Sdk_5.2.1",
+					"$(PROJECT_DIR)/SaiSai/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3154,6 +3152,7 @@
 					"$(PROJECT_DIR)/SaiSai/common/UMSocialSDK/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/SaiSai/common/lib",
 					"$(PROJECT_DIR)/SaiSai/common/UMSocialSDK/UMSocial_Sdk_5.2.1",
+					"$(PROJECT_DIR)/SaiSai/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

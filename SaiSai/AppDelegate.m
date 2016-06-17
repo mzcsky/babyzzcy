@@ -15,7 +15,7 @@
 #import "UMSocialSinaSSOHandler.h"
 #import "VersionCheckAPI.h"
 #import "QingZiController.h"
-#import "APService.h"
+#import "JPUSHService.h"
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @property (nonatomic, retain) XTTabBarController    *tabCtrl;
@@ -76,14 +76,14 @@
     
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //categories
-        [APService
+        [JPUSHService
          registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
                                              UIUserNotificationTypeSound |
                                              UIUserNotificationTypeAlert)
          categories:nil];
     } else {
         //categories nil
-        [APService
+        [JPUSHService
          registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                              
                                              
@@ -100,7 +100,7 @@
          // Required
          categories:nil];
     }
-    [APService setupWithOption:launchOptions];
+    [JPUSHService setupWithOption:launchOptions appKey:@"0eb8fbd731ac40e1832f0e5e" channel:nil apsForProduction:YES];
 
     
     
@@ -192,7 +192,7 @@
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Required
-    [APService registerDeviceToken:deviceToken];
+    [JPUSHService registerDeviceToken:deviceToken];
     NSLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
     
 
@@ -200,7 +200,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // Required
-    [APService handleRemoteNotification:userInfo];
+    [JPUSHService handleRemoteNotification:userInfo];
     NSLog(@"===========%@=========",userInfo);
 }
 - (void)application:(UIApplication *)application
@@ -209,7 +209,7 @@ fetchCompletionHandler:(void
                         (^)(UIBackgroundFetchResult))completionHandler {
     // IOS 7 Support Required
     
-    [APService handleRemoteNotification:userInfo];
+    [JPUSHService handleRemoteNotification:userInfo];
     
     NSLog(@"推送----%@",userInfo);
  
