@@ -9,7 +9,6 @@
 #import "UserModel.h"
 #import <CommonCrypto/CommonDigest.h>
 
-#define USERINFO_DICTIONARY     @"USERINFO_DICTIONARY"
 
 
 static UserModel    *_userModel;

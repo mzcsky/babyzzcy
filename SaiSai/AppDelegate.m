@@ -193,7 +193,7 @@
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Required
     [JPUSHService registerDeviceToken:deviceToken];
-    NSLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
+//    NSLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
     
 
 }
@@ -201,7 +201,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // Required
     [JPUSHService handleRemoteNotification:userInfo];
-    NSLog(@"===========%@=========",userInfo);
+//    NSLog(@"===========%@=========",userInfo);
 }
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -211,7 +211,7 @@ fetchCompletionHandler:(void
     
     [JPUSHService handleRemoteNotification:userInfo];
     
-    NSLog(@"推送----%@",userInfo);
+//    NSLog(@"推送----%@",userInfo);
  
     completionHandler(UIBackgroundFetchResultNewData);
 }

@@ -80,6 +80,10 @@
 #define lunViewHeight SCREEN_WIDTH*5/9
 #define keyBorad 253
 
+
+#define MD5Key @"dS8KjuOI9"
+#define USERINFO_DICTIONARY     @"USERINFO_DICTIONARY"
+
 #pragma mark -
 #pragma mark COLOR
 #define Age_BACKROUND_COLOR          UIColorFromRGB(0xffaf00)

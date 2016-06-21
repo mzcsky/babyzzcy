@@ -20,11 +20,14 @@
 #import "CustomButton.h"
 #import "ProductDetailsController.h"
 #import "QingImageBean.h"
+#import "NSString+MD5.h"
 
 
 #define titleScrollHeight 39
 #define CellHeight lunViewHeight + 60
-@interface QingZiController ()<UITableViewDelegate,UITableViewDataSource,SixBtnCellDelegate,ActionAdViewDelegate, NDHMenuViewDelegate,UIWebViewDelegate >
+@interface QingZiController ()<UIWebViewDelegate>
+
+//@interface QingZiController ()<UITableViewDelegate,UITableViewDataSource,SixBtnCellDelegate,ActionAdViewDelegate, NDHMenuViewDelegate,UIWebViewDelegate >
 
 @property (nonatomic, strong) NDHMenuView * ndMenuView;
 @property (nonatomic, strong) NSMutableArray   *menuArray;
@@ -41,10 +44,12 @@
 @property (nonatomic, strong) NSTimer * timer;
 @property (nonatomic, strong) UIScrollView * adScrollView;
 @property (nonatomic, strong) UIPageControl * pageControl;
+@property (nonatomic, weak) UIWebView * webView;
 
 @property (nonatomic, strong) NSArray * plistArr;
 //页面
-@property (nonatomic, strong) UIWebView  *webView;
+
+@property (nonatomic, strong) NSString * userId;
 
 @end
 
@@ -59,9 +64,68 @@
     self.TheadView.hidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
 
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:USERINFO_DICTIONARY]) {
+        NSDictionary * dic = [[NSUserDefaults standardUserDefaults] valueForKey:USERINFO_DICTIONARY];
+        
+        int userID = [dic[@"id"] intValue];
+        
+        if (self.userId && [self.userId intValue]!=userID && self.webView){
+            [_webView removeFromSuperview];
+            _webView = nil;
+            
+            UIWebView * webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-69)];
+            webView.backgroundColor = [UIColor whiteColor];
+            webView.delegate = self;
+            
+            self.userId = [NSString stringWithFormat:@"%d",userID];
+            NSString * key = [NSString stringWithFormat:@"%@%@",self.userId,MD5Key];
+
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.zzcyer.com/wap/?id=%@&key=%@",self.userId,[NSString getMD5String:key]]]];
+            
+            [webView loadRequest:request];
+            [self.view addSubview:webView];
+            [self.view bringSubviewToFront:webView];
+            _webView = webView;
+       }
+    }
 }
 
 
+//老的加载页面
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    
+    [ProgressHUD show:LOADING];
+    
+    NSDictionary * dic = [[NSUserDefaults standardUserDefaults] valueForKey:USERINFO_DICTIONARY];
+    
+    
+    UIWebView * webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-69)];
+    webView.backgroundColor = [UIColor whiteColor];
+    webView.delegate = self;
+    NSString *str = [NSString stringWithFormat:@"%d",[dic[@"id"] intValue]];
+    
+    self.userId = str;
+    
+    NSString * key = [NSString stringWithFormat:@"%@%@",str,MD5Key];
+    
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.zzcyer.com/wap/?id=%@&key=%@",str,[NSString getMD5String:key]]]];
+    NSLog(@"%@",request);
+    
+    [webView loadRequest:request];
+    
+    
+    self.webView = webView;
+    [self.view addSubview:webView];
+    
+    
+}
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [ProgressHUD dismiss];
+}
 
 
 //- (void)viewDidLoad{
@@ -555,26 +619,5 @@
 //@end
 
 
-//老的加载页面
-- (void)viewDidLoad{
-    [super viewDidLoad];
-    [ProgressHUD show:LOADING];
-
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-69)];
-    _webView.backgroundColor = [UIColor whiteColor];
-    
-    _webView.delegate = self;
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.zzcyer.com"]];
-    [_webView loadRequest:request];
-
-    [self.view addSubview:_webView];
-
-}
-
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-//    NSLog(@"aaaaaaaaaa");
-    [ProgressHUD dismiss];
-}
 @end
 
